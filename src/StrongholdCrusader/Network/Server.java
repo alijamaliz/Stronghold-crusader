@@ -11,7 +11,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.util.LinkedList;
 
 /**
  * Created by Baran on 5/29/2017.
@@ -19,11 +18,12 @@ import java.util.LinkedList;
 public class Server implements Runnable {
     Thread listenThread;
     Thread sendMapThread;
-    LinkedList<Player> players;
     DatagramSocket socket;
+    Game game;
 
     public Server() {
-        players = new LinkedList<>();
+        game = new Game();
+
         try {
             socket = new DatagramSocket(Settings.SERVER_PORT);
         } catch (SocketException e) {
@@ -36,7 +36,7 @@ public class Server implements Runnable {
             @Override
             public void run() {
                 while (true) {
-                    sendMapToAll(new Map());
+                    //sendMapToAll(new Map());
                     try {
                         Thread.sleep(1000 / Settings.FRAME_RATE);
                     } catch (InterruptedException e) {
@@ -90,10 +90,10 @@ public class Server implements Runnable {
             case GameEvent.JOIN_TO_GAME: {
                 System.out.println(gameEvent.message + ":" + address + ":" + port);
                 if (isUsernameAvailable(gameEvent.message)) {
-                    players.add(new Player(gameEvent.message, address, port));
-                    sendPacket("Player " + gameEvent.message + " created!", address, port);
+                    game.players.add(new ServerPlayer(gameEvent.message, address, port));
+                    sendPacket("ClientPlayer " + gameEvent.message + " created!", address, port);
                 } else
-                    sendPacket("Player name is already taken...", address, port);
+                    sendPacket("ClientPlayer name is already taken...", address, port);
                 break;
             }
         }
@@ -111,7 +111,7 @@ public class Server implements Runnable {
     }
 
     private void sendPacketForAll(String body) {
-        for (Player player : players) {
+        for (ServerPlayer player : game.players) {
             sendPacket(body, player.address, player.port);
         }
     }
@@ -121,7 +121,7 @@ public class Server implements Runnable {
     }
 
     public boolean isUsernameAvailable(String username) {
-        for (Player player : players) {
+        for (ServerPlayer player : game.players) {
             if (player.playerName.equals(username))
                 return false;
         }

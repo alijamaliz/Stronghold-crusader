@@ -6,7 +6,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
@@ -38,7 +37,7 @@ public class MenuGUI implements Initializable {
         join.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //???
+                ClientPlayer clientPlayer = new ClientPlayer("Ali");
             }
         });
         exit.setOnAction(new EventHandler<ActionEvent>() {
