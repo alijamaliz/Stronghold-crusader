@@ -8,7 +8,7 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class ResourceManager {
-    public Image getBuilding(String name)
+    public static Image getBuilding(String name)
     {
         switch (name)
         {
@@ -50,7 +50,7 @@ public class ResourceManager {
             default: return null;
         }
     }
-    public Image getHuman(String name)
+    public static Image getHuman(String name)
     {
         switch (name)
         {
