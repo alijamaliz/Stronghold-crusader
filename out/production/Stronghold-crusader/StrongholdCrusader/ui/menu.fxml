@@ -10,7 +10,7 @@
    <children>
       <ImageView fx:id="image" fitHeight="600.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@menu.jpg" />
+            <Image url="@../../../Resources/images/menu/menu.jpg" />
          </image>
       </ImageView>
       <Button fx:id="join" layoutX="686.0" layoutY="173.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="190.0" style="-fx-background-color: yellow;" text="Join network" />
