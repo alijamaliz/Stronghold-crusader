@@ -15,9 +15,9 @@ public class Map {
     MapGUI gui;
 
     public Map() {
-        tiles = new MapTile[Settings.MAP_WIDTH_RESOLUTION][Settings.MAP_HEIGHT_RESOLUTION];
+        mapManager = new MapManager();
+        tiles = mapManager.getMapById(1);
         objects = new LinkedList<>();
         gui = new MapGUI(this);
-        mapManager = new MapManager();
     }
 }

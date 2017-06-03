@@ -45,6 +45,7 @@ public class MapGUI implements Runnable {
         Menu.stage.show();
     }
 
+    //Return an AnchorPane containing tile images
     public AnchorPane getMapBackground() {
         AnchorPane background = new AnchorPane();
         for (int i = 0; i < map.tiles.length; i++) {
@@ -67,6 +68,7 @@ public class MapGUI implements Runnable {
         }
         return background;
     }
+    //Return an AnchorPane containing game object images
     public AnchorPane getMapObjects() {
         AnchorPane objects = new AnchorPane();
         for (GameObject object : map.objects) {
@@ -85,6 +87,7 @@ public class MapGUI implements Runnable {
         return objects;
     }
 
+    //Refresh game objects position and show them
     public void showMap() {
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.getChildren().remove(1);
@@ -98,6 +101,7 @@ public class MapGUI implements Runnable {
         Menu.stage.setScene(scene);
     }
 
+    //Thread for map update in each game cycle
     @Override
     public void run() {
         while (true) {
