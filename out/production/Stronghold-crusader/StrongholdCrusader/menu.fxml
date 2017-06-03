@@ -6,12 +6,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane fx:controller="StrongholdCrusader.MenuGUI" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StrongholdCrusader.MenuGUI">
    <children>
-      <ImageView fx:id="image" fitHeight="600.0" fitWidth="1000.0" layoutX="1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image" fitHeight="600.0" fitWidth="1000.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@MenuBG.jpg" />
+            <Image url="@ui/menu.jpg" />
          </image>
       </ImageView>
       <Button fx:id="server" layoutX="686.0" layoutY="173.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="190.0" style="-fx-background-color: yellow;" text="Join network" />
