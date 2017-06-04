@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class ResourceManager {
     Map<String,Image> resources;
-    ResourceManager()
+    public ResourceManager()
     {
         resources = new HashMap<>();
         ///Adding Barracks Photo

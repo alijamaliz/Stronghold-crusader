@@ -53,16 +53,16 @@ public class MapGUI implements Runnable {
                 Image image = null;
 
                 if(map.tiles[i][j] instanceof Sea)
-                    image = resourceManager.getBuilding("Farm");
+                    image = resourceManager.getImage("Farm");
                 if(map.tiles[i][j] instanceof Plain)
-                    image = resourceManager.getBuilding("Market");
+                    image = resourceManager.getImage("Market");
                 if(map.tiles[i][j] instanceof Mountain)
-                    image = resourceManager.getBuilding("Port");
+                    image = resourceManager.getImage("Port");
 
                 ImageView imageView = new ImageView();
                 imageView.setImage(image);
-                imageView.setLayoutX(i * (resourceManager.getBuilding("Farm").getWidth()));
-                imageView.setLayoutY(j * (resourceManager.getBuilding("Farm").getHeight()));
+                imageView.setLayoutX(i * (resourceManager.getImage("Farm").getWidth()));
+                imageView.setLayoutY(j * (resourceManager.getImage("Farm").getHeight()));
                 background.getChildren().add(imageView);
             }
         }
@@ -74,9 +74,9 @@ public class MapGUI implements Runnable {
         for (GameObject object : map.objects) {
             Image image = null;
             if (object instanceof Building)
-                image = resourceManager.getBuilding(object.name);
+                image = resourceManager.getImage(object.name);
             if (object instanceof Human)
-                image = resourceManager.getHuman(object.name);
+                image = resourceManager.getImage(object.name);
 
             ImageView imageView = new ImageView();
             imageView.setImage(image);
