@@ -7,7 +7,7 @@ import java.io.*;
 /**
  * Created by MiladIbra on 6/3/2017.
  */
-public class MapManager {
+public class MapManager implements Serializable {
     //Get default maps by id
     //0 is Plain, 1 is Mountain, 2 is Sea
     public MapTile[][] getMapById(int id) {
@@ -32,5 +32,33 @@ public class MapManager {
             e.printStackTrace();
         }
         return tiles;
+    }
+    public void saveMap(Map map,int mapID) ///Saving Map With ObjectStreams into files
+    {
+        try
+        {
+            File mapFile = new File("../../Resources/maps/map"+mapID+".map");
+            FileOutputStream fileOutputStream = new FileOutputStream(mapFile);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(map);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    public Map LoadMap(int mapID) /// Loading Map Files which were saved with ObjectStreams
+    {
+        Map map=null;
+        try
+        {
+            File mapFile = new File("../../Resources/maps/map"+mapID+".map");
+            FileInputStream fileInputStream = new FileInputStream(mapFile);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            map = (Map) objectInputStream.readObject();
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return map;
     }
 }

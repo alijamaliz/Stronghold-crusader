@@ -3,12 +3,13 @@ package StrongholdCrusader.Map;
 import StrongholdCrusader.GameObjects.GameObject;
 import StrongholdCrusader.Settings;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
  * Created by Baran on 5/29/2017.
  */
-public class Map {
+public class Map implements Serializable {
     MapTile[][] tiles;
     LinkedList<GameObject> objects;
     MapManager mapManager;
