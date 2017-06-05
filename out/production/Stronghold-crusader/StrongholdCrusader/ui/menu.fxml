@@ -9,9 +9,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StrongholdCrusader.MenuGUI">
    <children>
       <ImageView fx:id="image" fitHeight="600.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../Resources/images/menu/menu.jpg" />
-         </image>
+
       </ImageView>
       <Button fx:id="join" layoutX="686.0" layoutY="173.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="190.0" style="-fx-background-color: yellow;" text="Join network" />
       <Button fx:id="exit" layoutX="732.0" layoutY="254.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: yellow;" text="Exit" />

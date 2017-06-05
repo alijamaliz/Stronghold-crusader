@@ -18,7 +18,8 @@ public class Menu extends Application {
         stage.setTitle("Menu");
         try {
             Menu.stage.setScene(new Scene
-                    ( FXMLLoader.load(getClass().getResource("UI/menu.fxml"))));
+                    ( FXMLLoader.load(getClass().getResource("ui/menu.fxml"))));
+
 
         } catch (IOException e) {
             e.printStackTrace();
