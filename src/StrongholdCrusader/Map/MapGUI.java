@@ -57,14 +57,14 @@ public class MapGUI implements Runnable,Serializable {
                 if(map.tiles[i][j] instanceof Sea)
                     image = resourceManager.getImage("Farm");
                 if(map.tiles[i][j] instanceof Plain)
-                    image = resourceManager.getImage("Market");
+                    image = resourceManager.getImage("Plain1");
                 if(map.tiles[i][j] instanceof Mountain)
                     image = resourceManager.getImage("Port");
 
                 ImageView imageView = new ImageView();
                 imageView.setImage(image);
-                imageView.setLayoutX(i * (resourceManager.getImage("Farm").getWidth()));
-                imageView.setLayoutY(j * (resourceManager.getImage("Farm").getHeight()));
+                imageView.setLayoutX(i * (image.getWidth()));
+                imageView.setLayoutY(j * (image.getHeight()));
                 background.getChildren().add(imageView);
             }
         }

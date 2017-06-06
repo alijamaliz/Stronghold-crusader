@@ -55,6 +55,10 @@ public class ResourceManager {
         File vassalFile = new File("Resources/images/Humans/Worker.png");
         Image vassal = new Image(vassalFile.toURI().toString());
         resources.put("Vassal",vassal);
+
+        File plain1TileFile = new File("Resources/images/Tiles/Plain1.jpg");
+        Image plain1Tile = new Image(plain1TileFile.toURI().toString());
+        resources.put("Plain1", plain1Tile);
     }
     public Image getImage(String name) ///Returns every object's Image
     {
