@@ -28,7 +28,11 @@ public class JoinGUI implements Initializable {
         join.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                ClientPlayer clientPlayer = new ClientPlayer(playerName.getText());
+                if (playerName != null) {
+                    ClientPlayer clientPlayer = new ClientPlayer(playerName.getText());
+                }
+                else
+                    notice.setText("Please insert your name");
             }
         });
 

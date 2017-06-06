@@ -53,7 +53,13 @@ public class MenuGUI implements Initializable {
         joinpage.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Menu.a = 1;
+                try {
+                    Menu.root = FXMLLoader.load(getClass().getResource("ui/join.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Menu.window.setScene(new Scene(Menu.root));
+                Menu.window.show();
             }
         });
         exit.setOnAction(new EventHandler<ActionEvent>() {
