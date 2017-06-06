@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
@@ -67,6 +68,7 @@ public class MapGUI implements Runnable, Serializable {
         Menu.stage.setFullScreen(true);
         Menu.stage.show();
 
+        //Arrow keys navigating
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -93,6 +95,34 @@ public class MapGUI implements Runnable, Serializable {
                 if (event.getCode().getName().equals("Up"))
                     navigationUD = navigationUD.replace("U", "");
                 if (event.getCode().getName().equals("Down"))
+                    navigationUD = navigationUD.replace("D", "");
+            }
+        });
+
+        //Mouse Navigating
+        scene.setOnMouseMoved(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println(event.getScreenX() + ":" + event.getScreenY());
+                if (event.getScreenX() < Settings.MOUSE_MAP_NAVIGATION_MARGIN)
+                    navigationLR = "L" + navigationLR;
+                else
+                    navigationLR = navigationLR.replace("L", "");
+
+                if (event.getScreenX() > scene.getWidth() - Settings.MOUSE_MAP_NAVIGATION_MARGIN)
+                    navigationLR = "R" + navigationLR;
+                else
+                    navigationLR = navigationLR.replace("R", "");
+
+
+                if (event.getScreenY() < Settings.MOUSE_MAP_NAVIGATION_MARGIN)
+                    navigationUD = "U" + navigationUD;
+                else
+                    navigationUD = navigationUD.replace("U", "");
+
+                if (event.getScreenY() > scene.getHeight() - Settings.MOUSE_MAP_NAVIGATION_MARGIN)
+                    navigationUD = "D" + navigationUD;
+                else
                     navigationUD = navigationUD.replace("D", "");
             }
         });
