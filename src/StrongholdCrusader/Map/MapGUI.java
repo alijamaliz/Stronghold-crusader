@@ -3,15 +3,21 @@ package StrongholdCrusader.Map;
 import StrongholdCrusader.GameObjects.Buildings.Building;
 import StrongholdCrusader.GameObjects.GameObject;
 import StrongholdCrusader.GameObjects.Humans.Human;
+import StrongholdCrusader.GameObjects.Pair;
 import StrongholdCrusader.Menu;
 import StrongholdCrusader.ResourceManager;
 import StrongholdCrusader.Settings;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Camera;
 import javafx.scene.Group;
+import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
@@ -19,24 +25,39 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.Serializable;
+import java.util.NavigableMap;
 
 /**
  * Created by Baran on 6/3/2017.
  */
-public class MapGUI implements Runnable,Serializable {
+public class MapGUI implements Runnable, Serializable {
     ResourceManager resourceManager;
+    Pair viewOffset;
     Map map;
+
+    String navigationLR;
+    String navigationUD;
+
+    AnchorPane anchorPane;
+    Scene scene;
 
     public MapGUI(Map map) {
         this.map = map;
         resourceManager = new ResourceManager();
+        viewOffset = new Pair(0, 0);
 
-        AnchorPane anchorPane = new AnchorPane();
+        navigationLR = "";
+        navigationUD = "";
+
+        anchorPane = new AnchorPane();
         anchorPane.getChildren().add(getMapBackground());
         anchorPane.getChildren().add(getMapObjects());
 
         //Creating a Scene by passing the group object, height and width
-        Scene scene = new Scene(anchorPane, 600, 300);
+        scene = new Scene(anchorPane, 600, 300);
+        //Offset
+        anchorPane.setTranslateX(viewOffset.x);
+        anchorPane.setTranslateY(viewOffset.y);
         //Setting the title to Stage.
         Menu.stage.setTitle("Map");
         //Adding the scene to Stage
@@ -45,6 +66,61 @@ public class MapGUI implements Runnable,Serializable {
         Menu.stage.setMaximized(true);
         Menu.stage.setFullScreen(true);
         Menu.stage.show();
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                System.out.println(event.getCode());
+                if (event.getCode().getName().equals("Left") && !navigationLR.contains("L"))
+                    navigationLR = "L" + navigationLR;
+                if (event.getCode().getName().equals("Right") && !navigationLR.contains("R"))
+                    navigationLR = "R" + navigationLR;
+                if (event.getCode().getName().equals("Up") && !navigationUD.contains("U"))
+                    navigationUD = "U" + navigationUD;
+                if (event.getCode().getName().equals("Down") && !navigationUD.contains("D"))
+                    navigationUD = "D" + navigationUD;
+            }
+        });
+
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                System.out.println(event.getCode().getName());
+                if (event.getCode().getName().equals("Left"))
+                    navigationLR = navigationLR.replace("L", "");
+                if (event.getCode().getName().equals("Right"))
+                    navigationLR = navigationLR.replace("R", "");
+                if (event.getCode().getName().equals("Up"))
+                    navigationUD = navigationUD.replace("U", "");
+                if (event.getCode().getName().equals("Down"))
+                    navigationUD = navigationUD.replace("D", "");
+            }
+        });
+    }
+
+    private void changeViewOffset() {
+        int mapWidth = Settings.MAP_WIDTH_RESOLUTION * (int) resourceManager.getImage("Plain1").getWidth();
+        int mapHeight = Settings.MAP_HEIGHT_RESOLUTION * (int) resourceManager.getImage("Plain1").getHeight();
+        if (navigationLR.length() != 0) {
+            if (navigationLR.charAt(0) == 'R') {
+                if (viewOffset.x - Settings.MAP_NAVIGATION_SPEED > -1 * (mapWidth - Settings.MAP_NAVIGATION_SPEED - scene.getWidth()))
+                    viewOffset.x -= Settings.MAP_NAVIGATION_SPEED;
+            }
+            if (navigationLR.charAt(0) == 'L') {
+                if (viewOffset.x + Settings.MAP_NAVIGATION_SPEED < Settings.MAP_NAVIGATION_SPEED)
+                    viewOffset.x += Settings.MAP_NAVIGATION_SPEED;
+            }
+        }
+        if (navigationUD.length() != 0) {
+            if (navigationUD.charAt(0) == 'D') {
+                if (viewOffset.y - Settings.MAP_NAVIGATION_SPEED > -1 * (mapHeight - Settings.MAP_NAVIGATION_SPEED - scene.getHeight()))
+                    viewOffset.y -= Settings.MAP_NAVIGATION_SPEED;
+            }
+            if (navigationUD.charAt(0) == 'U') {
+                if (viewOffset.y + Settings.MAP_NAVIGATION_SPEED < Settings.MAP_NAVIGATION_SPEED)
+                    viewOffset.y += Settings.MAP_NAVIGATION_SPEED;
+            }
+        }
     }
 
     //Return an AnchorPane containing tile images
@@ -54,11 +130,11 @@ public class MapGUI implements Runnable,Serializable {
             for (int j = 0; j < map.tiles[i].length; j++) {
                 Image image = null;
 
-                if(map.tiles[i][j] instanceof Sea)
+                if (map.tiles[i][j] instanceof Sea)
                     image = resourceManager.getImage("Farm");
-                if(map.tiles[i][j] instanceof Plain)
+                if (map.tiles[i][j] instanceof Plain)
                     image = resourceManager.getImage("Plain1");
-                if(map.tiles[i][j] instanceof Mountain)
+                if (map.tiles[i][j] instanceof Mountain)
                     image = resourceManager.getImage("Port");
 
                 ImageView imageView = new ImageView();
@@ -70,6 +146,7 @@ public class MapGUI implements Runnable,Serializable {
         }
         return background;
     }
+
     //Return an AnchorPane containing game object images
     public AnchorPane getMapObjects() {
         AnchorPane objects = new AnchorPane();
@@ -91,16 +168,30 @@ public class MapGUI implements Runnable,Serializable {
 
     //Refresh game objects position and show them
     public void showMap() {
-        AnchorPane anchorPane = new AnchorPane();
-        anchorPane.getChildren().remove(1);
-        anchorPane.getChildren().add(getMapObjects());
+        //AnchorPane anchorPane = new AnchorPane();
+        //anchorPane.getChildren().add(getMapBackground());
+
+        //anchorPane.getChildren().remove(1);
+        //anchorPane.getChildren().add(getMapObjects());
 
         //Creating a Scene by passing the group object, height and width
-        Scene scene = new Scene(anchorPane, 600, 300);
+        //Offset
+        anchorPane.setTranslateX(viewOffset.x);
+        anchorPane.setTranslateY(viewOffset.y);
         //Setting the title to Stage.
-        Menu.stage.setTitle("Map");
+        //Menu.stage.setTitle("Map");
         //Adding the scene to Stage
-        Menu.stage.setScene(scene);
+        //Menu.stage.setScene(scene);
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                ;
+                Menu.stage.setScene(scene);
+            }
+        });
+
+
     }
 
     //Thread for map update in each game cycle
@@ -108,6 +199,8 @@ public class MapGUI implements Runnable,Serializable {
     public void run() {
         while (true) {
             try {
+                changeViewOffset();
+                //System.out.println(navigationLR + ":" + navigationUD);
                 showMap();
                 Thread.sleep(1000 / Settings.FRAME_RATE);
             } catch (InterruptedException e) {
