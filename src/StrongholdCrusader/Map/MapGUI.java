@@ -9,38 +9,25 @@ import StrongholdCrusader.ResourceManager;
 import StrongholdCrusader.Settings;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Camera;
-import javafx.scene.Group;
-import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.stage.Screen;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
 import java.io.Serializable;
-import java.util.NavigableMap;
-
 /**
  * Created by Baran on 6/3/2017.
  */
 public class MapGUI implements Runnable, Serializable {
-    ResourceManager resourceManager;
-    Pair viewOffset;
-    Map map;
+    private ResourceManager resourceManager;
+    private Pair viewOffset;
+    private Map map;
 
-    String navigationLR;
-    String navigationUD;
+    private String navigationLR, navigationUD;
 
-    AnchorPane anchorPane;
-    Scene scene;
+    private AnchorPane anchorPane;
+    private Scene scene;
 
     public MapGUI(Map map) {
         this.map = map;
@@ -54,16 +41,11 @@ public class MapGUI implements Runnable, Serializable {
         anchorPane.getChildren().add(getMapBackground());
         anchorPane.getChildren().add(getMapObjects());
 
-        //Creating a Scene by passing the group object, height and width
-        scene = new Scene(anchorPane, 600, 300);
-        //Offset
+        scene = new Scene(anchorPane);
         anchorPane.setTranslateX(viewOffset.x);
         anchorPane.setTranslateY(viewOffset.y);
-        //Setting the title to Stage.
         Menu.stage.setTitle("Map");
-        //Adding the scene to Stage
         Menu.stage.setScene(scene);
-
         Menu.stage.setMaximized(true);
         Menu.stage.setFullScreen(true);
         Menu.stage.show();
@@ -108,18 +90,14 @@ public class MapGUI implements Runnable, Serializable {
                     navigationLR = "L" + navigationLR;
                 else
                     navigationLR = navigationLR.replace("L", "");
-
                 if (event.getScreenX() > scene.getWidth() - Settings.MOUSE_MAP_NAVIGATION_MARGIN)
                     navigationLR = "R" + navigationLR;
                 else
                     navigationLR = navigationLR.replace("R", "");
-
-
                 if (event.getScreenY() < Settings.MOUSE_MAP_NAVIGATION_MARGIN)
                     navigationUD = "U" + navigationUD;
                 else
                     navigationUD = navigationUD.replace("U", "");
-
                 if (event.getScreenY() > scene.getHeight() - Settings.MOUSE_MAP_NAVIGATION_MARGIN)
                     navigationUD = "D" + navigationUD;
                 else
@@ -161,11 +139,11 @@ public class MapGUI implements Runnable, Serializable {
                 Image image = null;
 
                 if (map.tiles[i][j] instanceof Sea)
-                    image = resourceManager.getImage("Farm");
+                    image = resourceManager.getImage("Sea");
                 if (map.tiles[i][j] instanceof Plain)
                     image = resourceManager.getImage("Plain1");
                 if (map.tiles[i][j] instanceof Mountain)
-                    image = resourceManager.getImage("Port");
+                    image = resourceManager.getImage("Mountain");
 
                 ImageView imageView = new ImageView();
                 imageView.setImage(image);
@@ -198,30 +176,19 @@ public class MapGUI implements Runnable, Serializable {
 
     //Refresh game objects position and show them
     public void showMap() {
-        //AnchorPane anchorPane = new AnchorPane();
         //anchorPane.getChildren().add(getMapBackground());
 
         //anchorPane.getChildren().remove(1);
         //anchorPane.getChildren().add(getMapObjects());
-
-        //Creating a Scene by passing the group object, height and width
         //Offset
         anchorPane.setTranslateX(viewOffset.x);
         anchorPane.setTranslateY(viewOffset.y);
-        //Setting the title to Stage.
-        //Menu.stage.setTitle("Map");
-        //Adding the scene to Stage
-        //Menu.stage.setScene(scene);
-
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                ;
                 Menu.stage.setScene(scene);
             }
         });
-
-
     }
 
     //Thread for map update in each game cycle
@@ -230,12 +197,16 @@ public class MapGUI implements Runnable, Serializable {
         while (true) {
             try {
                 changeViewOffset();
-                //System.out.println(navigationLR + ":" + navigationUD);
                 showMap();
                 Thread.sleep(1000 / Settings.FRAME_RATE);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void focusOnGameObject(GameObject gameObject) {
+        viewOffset.x = -1 * (int)(gameObject.position.x - scene.getWidth());
+        viewOffset.y = -1 * (int)(gameObject.position.y - scene.getHeight());
     }
 }

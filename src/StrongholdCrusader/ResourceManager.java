@@ -59,6 +59,14 @@ public class ResourceManager {
         File plain1TileFile = new File("Resources/images/Tiles/Plain1.jpg");
         Image plain1Tile = new Image(plain1TileFile.toURI().toString());
         resources.put("Plain1", plain1Tile);
+
+        File mountainTileFile = new File("Resources/images/Tiles/Mountain1.jpg");
+        Image mountainTile = new Image(mountainTileFile.toURI().toString());
+        resources.put("Mountain", mountainTile);
+
+        File seaTileFile = new File("Resources/images/Tiles/Sea1.jpg");
+        Image seaTile = new Image(seaTileFile.toURI().toString());
+        resources.put("Sea", seaTile);
     }
     public Image getImage(String name) ///Returns every object's Image
     {
