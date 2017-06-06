@@ -9,4 +9,5 @@ public abstract class GameObject implements Serializable {
     public Pair position;
     int health;
     public String name;
+    public String ownerName;
 }

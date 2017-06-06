@@ -1,6 +1,7 @@
 package StrongholdCrusader.Map;
 
 import StrongholdCrusader.Settings;
+import org.json.simple.JSONObject;
 
 import java.io.*;
 
@@ -60,5 +61,10 @@ public class MapManager implements Serializable {
             e.printStackTrace();
         }
         return map;
+    }
+
+    public JSONObject mapToJSON (Map map) {
+        //TODO
+        return null;
     }
 }
