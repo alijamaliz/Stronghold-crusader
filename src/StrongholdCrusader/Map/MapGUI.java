@@ -54,7 +54,6 @@ public class MapGUI implements Runnable, Serializable {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                System.out.println(event.getCode());
                 if (event.getCode().getName().equals("Left") && !navigationLR.contains("L"))
                     navigationLR = "L" + navigationLR;
                 if (event.getCode().getName().equals("Right") && !navigationLR.contains("R"))
@@ -69,7 +68,6 @@ public class MapGUI implements Runnable, Serializable {
         scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                System.out.println(event.getCode().getName());
                 if (event.getCode().getName().equals("Left"))
                     navigationLR = navigationLR.replace("L", "");
                 if (event.getCode().getName().equals("Right"))
@@ -85,7 +83,6 @@ public class MapGUI implements Runnable, Serializable {
         scene.setOnMouseMoved(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println(event.getScreenX() + ":" + event.getScreenY());
                 if (event.getScreenX() < Settings.MOUSE_MAP_NAVIGATION_MARGIN)
                     navigationLR = "L" + navigationLR;
                 else

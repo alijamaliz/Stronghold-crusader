@@ -8,10 +8,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
+import java.net.*;
 
 /**
  * Created by Baran on 5/29/2017.
@@ -89,7 +86,7 @@ public class Server implements Runnable {
         }
         switch (gameEvent.type) {
             case GameEvent.JOIN_TO_GAME: {
-                System.out.println(gameEvent.message + ":" + address + ":" + port);
+                //.out.println(gameEvent.message + ":" + address + ":" + port);
                 if (isUsernameAvailable(gameEvent.message)) {
                     game.players.add(new ServerPlayer(gameEvent.message, address, port));
                     sendPacket("ClientPlayer " + gameEvent.message + " created!", address, port);
@@ -130,6 +127,12 @@ public class Server implements Runnable {
     }
 
     public String getServerIP() {
-        return "127.0.0.1";
+        String serverIP = "";
+        try {
+            serverIP = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        return serverIP;
     }
 }
