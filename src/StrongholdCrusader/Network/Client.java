@@ -23,6 +23,7 @@ public class Client implements Runnable {
             e.printStackTrace();
         }
         try {
+            System.out.println(serverIP);
             serverAddress = InetAddress.getByName(serverIP);
         } catch (UnknownHostException e) {
             e.printStackTrace();

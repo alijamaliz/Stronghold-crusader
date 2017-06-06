@@ -1,5 +1,6 @@
 package StrongholdCrusader.Network;
 
+import StrongholdCrusader.Network.ServerPlayer;
 import StrongholdCrusader.Map.Map;
 import StrongholdCrusader.Settings;
 import org.json.simple.JSONObject;
@@ -21,7 +22,7 @@ public class Server implements Runnable {
     DatagramSocket socket;
     Game game;
 
-    public Server() {
+    public Server(int mapId) {
         game = new Game();
 
         try {
@@ -73,7 +74,7 @@ public class Server implements Runnable {
     }
 
     public static void main(String[] args) {
-        Server server = new Server();
+        Server server = new Server(1);
     }
 
     private void analyzePacket(String body, InetAddress address, int port) {
@@ -126,5 +127,9 @@ public class Server implements Runnable {
                 return false;
         }
         return true;
+    }
+
+    public String getServerIP() {
+        return "127.0.0.1";
     }
 }

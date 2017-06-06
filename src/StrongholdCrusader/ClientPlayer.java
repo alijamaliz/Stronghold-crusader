@@ -11,9 +11,9 @@ public class ClientPlayer {
     Client client;
     Map map;
 
-    public ClientPlayer(String username) {
+    public ClientPlayer(String username, String serverIP) {
         this.username = username;
-        client = new Client("127.0.0.1");
+        client = new Client(serverIP);
         client.sendJoinRequest(username);
         map = new Map();
     }

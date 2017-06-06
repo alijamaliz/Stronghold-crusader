@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sun.applet.Main;
 
 import java.io.IOException;
 
@@ -13,22 +14,19 @@ import java.io.IOException;
  */
 public class Menu extends Application  {
     public static Stage stage;
-    public static Stage window;
-    public static Parent root;
-    Thread thread;
+
     @Override
-    public void start  (Stage stage)  {
-        window = stage;
-        stage.setTitle("Menu");
+    public void start (Stage stage) {
+        //window = stage;
+        Menu.stage = stage;
+        //Menu.stage.setTitle("Menu");
+
         try {
-                root = FXMLLoader.load(getClass().getResource("ui/menu.fxml"));
+            Menu.stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("UI/menu.fxml"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        window.setScene(new Scene(root));
-        window.show();
-
-
+        Menu.stage.show();
     }
 
 

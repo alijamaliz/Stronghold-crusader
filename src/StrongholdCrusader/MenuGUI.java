@@ -31,10 +31,21 @@ public class MenuGUI implements Initializable {
     @FXML
     Button server;
     @FXML
-    Button joinpage;
+    Button join;
     @FXML
     Button exit;
-
+    @FXML
+    TextField visible1;
+    @FXML
+    TextField visible2;
+    @FXML
+    Label lbl1;
+    @FXML
+    Label lbl2;
+    @FXML
+    Button submit;
+    @FXML
+    Label notice;
 
 
     @Override
@@ -47,19 +58,55 @@ public class MenuGUI implements Initializable {
         server.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Server server1 = new Server();
+                server.setVisible(false);
+                join.setVisible(false);
+                exit.setVisible(false);
+                lbl1.setText("your name:");
+                lbl2.setText("mapID:");
+                lbl1.setLayoutX(lbl1.getLayoutX()+100);
+                lbl2.setLayoutX(lbl2.getLayoutX()+100);
+                visible1.setLayoutX(visible1.getLayoutX()+100);
+                visible2.setLayoutX(visible2.getLayoutX()+100);
+                submit.setLayoutX(submit.getLayoutX()+100);
+                visible1.setVisible(true);
+                visible2.setVisible(true);
+                submit.setVisible(true);
+                submit.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        if (visible1 == null || visible2 == null)
+                            notice.setText("Please insert values");
+                        else {
+                            Server server = new Server(Integer.parseInt(visible2.getText()));
+                            String serverIP = server.getServerIP();
+                            ClientPlayer clientPlayer = new ClientPlayer(visible1.getText(), serverIP);
+                        }
+                    }
+                });
             }
         });
-        joinpage.setOnAction(new EventHandler<ActionEvent>() {
+        join.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                try {
-                    Menu.root = FXMLLoader.load(getClass().getResource("ui/join.fxml"));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Menu.window.setScene(new Scene(Menu.root));
-                Menu.window.show();
+                server.setVisible(false);
+                join.setVisible(false);
+                exit.setVisible(false);
+                lbl1.setText("your name");
+                lbl2.setText("IP");
+                lbl1.setLayoutX(lbl1.getLayoutX()+100);
+                lbl2.setLayoutX(lbl2.getLayoutX()+100);
+                visible1.setLayoutX(visible1.getLayoutX()+100);
+                visible2.setLayoutX(visible2.getLayoutX()+100);
+                submit.setLayoutX(submit.getLayoutX()+100);
+                visible1.setVisible(true);
+                visible2.setVisible(true);
+                submit.setVisible(true);
+                submit.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        ClientPlayer clientPlayer = new ClientPlayer(visible1.getText(),visible2.getText());
+                    }
+                });
             }
         });
         exit.setOnAction(new EventHandler<ActionEvent>() {
