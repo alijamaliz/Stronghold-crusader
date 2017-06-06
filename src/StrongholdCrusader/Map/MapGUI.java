@@ -18,10 +18,12 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.Serializable;
+
 /**
  * Created by Baran on 6/3/2017.
  */
-public class MapGUI implements Runnable {
+public class MapGUI implements Runnable,Serializable {
     ResourceManager resourceManager;
     Map map;
 
