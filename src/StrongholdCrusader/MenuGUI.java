@@ -46,6 +46,8 @@ public class MenuGUI implements Initializable {
     Button submit;
     @FXML
     Label notice;
+    @FXML
+    Button back;
 
 
     @Override
@@ -54,61 +56,26 @@ public class MenuGUI implements Initializable {
         Image image1 = new Image(file.toURI().toString());
         image.setImage(image1);
 
+        lbl1.setVisible(false);
+        lbl2.setVisible(false);
+        notice.setVisible(false);
+        visible1.setVisible(false);
+        visible2.setVisible(false);
+        back.setVisible(false);
 
         server.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                server.setVisible(false);
-                join.setVisible(false);
-                exit.setVisible(false);
-                lbl1.setText("your name:");
-                lbl2.setText("mapID:");
-                lbl1.setLayoutX(lbl1.getLayoutX()+100);
-                lbl2.setLayoutX(lbl2.getLayoutX()+100);
-                visible1.setLayoutX(visible1.getLayoutX()+100);
-                visible2.setLayoutX(visible2.getLayoutX()+100);
-                submit.setLayoutX(submit.getLayoutX()+100);
-                visible1.setVisible(true);
-                visible2.setVisible(true);
-                submit.setVisible(true);
-                submit.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        if (visible1 == null || visible2 == null)
-                            notice.setText("Please insert values");
-                        else {
-                            Server server = new Server(Integer.parseInt(visible2.getText()));
-                            String serverIP = server.getServerIP();
-                            ClientPlayer clientPlayer = new ClientPlayer(visible1.getText(), serverIP);
-                        }
-                    }
-                });
+                goToCreateServerPage();
             }
         });
         join.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                server.setVisible(false);
-                join.setVisible(false);
-                exit.setVisible(false);
-                lbl1.setText("your name");
-                lbl2.setText("IP");
-                lbl1.setLayoutX(lbl1.getLayoutX()+100);
-                lbl2.setLayoutX(lbl2.getLayoutX()+100);
-                visible1.setLayoutX(visible1.getLayoutX()+100);
-                visible2.setLayoutX(visible2.getLayoutX()+100);
-                submit.setLayoutX(submit.getLayoutX()+100);
-                visible1.setVisible(true);
-                visible2.setVisible(true);
-                submit.setVisible(true);
-                submit.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        ClientPlayer clientPlayer = new ClientPlayer(visible1.getText(),visible2.getText());
-                    }
-                });
+                goToJoinToServerPage();
             }
         });
+
         exit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -116,6 +83,95 @@ public class MenuGUI implements Initializable {
             }
         });
 
+        back.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                backToMainMenu();
+            }
+        });
 
+
+    }
+
+    private void backToMainMenu() {
+        lbl1.setVisible(false);
+        lbl2.setVisible(false);
+        notice.setVisible(false);
+        visible1.setVisible(false);
+        visible2.setVisible(false);
+        back.setVisible(false);
+        submit.setVisible(false);
+
+        notice.setText("");
+
+        server.setVisible(true);
+        join.setVisible(true);
+        exit.setVisible(true);
+    }
+
+    private void goToCreateServerPage() {
+        server.setVisible(false);
+        join.setVisible(false);
+        exit.setVisible(false);
+
+        lbl1.setText("نام کاربری:");
+        lbl1.setVisible(true);
+
+        lbl2.setText("شماره نقشه:");
+        lbl2.setVisible(true);
+
+        visible1.setPromptText("ex: Ali");
+        visible1.setVisible(true);
+
+        visible2.setPromptText("ex: 1");
+        visible2.setVisible(true);
+
+        submit.setVisible(true);
+        submit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (visible1.getText().equals("") || visible2.getText().equals("")) {
+                    notice.setText("* مقادیر وارد شده صحیح نیست...");
+                    notice.setVisible(true);
+                }
+                else {
+                    //Create new server and player
+                    Server server = new Server(Integer.parseInt(visible2.getText()));
+                    String serverIP = server.getServerIP();
+                    ClientPlayer clientPlayer = new ClientPlayer(visible1.getText(), serverIP);
+                }
+            }
+        });
+
+        back.setVisible(true);
+    }
+
+    private void goToJoinToServerPage() {
+        server.setVisible(false);
+        join.setVisible(false);
+        exit.setVisible(false);
+
+        lbl1.setText("نام کاربری:");
+        lbl1.setVisible(true);
+
+        lbl2.setText("آدرس سرور:");
+        lbl2.setVisible(true);
+
+        visible1.setPromptText("ex: Ali");
+        visible1.setVisible(true);
+
+        visible2.setPromptText("ex: 127.0.0.1");
+        visible2.setVisible(true);
+
+        submit.setVisible(true);
+        submit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //Create new player
+                ClientPlayer clientPlayer = new ClientPlayer(visible1.getText(),visible2.getText());
+            }
+        });
+
+        back.setVisible(true);
     }
 }

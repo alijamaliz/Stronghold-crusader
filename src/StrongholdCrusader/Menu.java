@@ -3,10 +3,9 @@ package StrongholdCrusader;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sun.applet.Main;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -18,9 +17,8 @@ public class Menu extends Application  {
 
     @Override
     public void start (Stage stage) {
-        //window = stage;
         Menu.stage = stage;
-        //Menu.stage.setTitle("Menu");
+        Menu.stage.initStyle(StageStyle.UNDECORATED);
 
         try {
             Menu.stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("UI/menu.fxml"))));
@@ -29,7 +27,4 @@ public class Menu extends Application  {
         }
         Menu.stage.show();
     }
-
-
-
 }
