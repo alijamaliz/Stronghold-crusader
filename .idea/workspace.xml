@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="351a4214-e5f6-4ff3-ae03-de786c49c5ff" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/images/Buildings/Barracks.png" afterPath="$PROJECT_DIR$/Resources/images/Buildings/Barracks.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Barracks.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Barracks.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Building.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Building.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Farm.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Farm.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Market.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Market.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Palace.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Palace.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Port.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Port.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Quarry.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Quarry.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/WoodCutter.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/WoodCutter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Soldier.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Soldier.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Vassal.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Vassal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Worker.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Worker.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/Menu.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/Menu.java" />
     </list>
     <ignored path="Stronghold-crusader.iws" />
@@ -34,21 +34,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
+            <state relative-caret-position="131">
+              <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Soldier.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Soldier.java">
+      <file leaf-file-name="Barracks.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Barracks.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
+            <state relative-caret-position="307">
+              <caret line="44" column="33" selection-start-line="44" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -56,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Worker.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Worker.java">
+      <file leaf-file-name="Farm.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Farm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+            <state relative-caret-position="285">
+              <caret line="30" column="32" selection-start-line="28" selection-start-column="8" selection-end-line="30" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -68,11 +68,59 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Vassal.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Vassal.java">
+      <file leaf-file-name="Market.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Market.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+            <state relative-caret-position="329">
+              <caret line="141" column="40" selection-start-line="141" selection-start-column="40" selection-end-line="141" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Palace.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Palace.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="329">
+              <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Port.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Port.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="29" column="32" selection-start-line="27" selection-start-column="8" selection-end-line="29" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Quarry.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Quarry.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="30" column="40" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WoodCutter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/WoodCutter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="682">
+              <caret line="31" column="40" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -117,6 +165,9 @@
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/Map/MapManager.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Human.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Building.java" />
+        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Vassal.java" />
+        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Soldier.java" />
+        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Worker.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Barracks.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Farm.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Market.java" />
@@ -124,10 +175,7 @@
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Port.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Quarry.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/WoodCutter.java" />
-        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Vassal.java" />
-        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Soldier.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/Menu.java" />
-        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Worker.java" />
       </list>
     </option>
   </component>
@@ -846,12 +894,12 @@
       <workItem from="1496712575024" duration="16047000" />
       <workItem from="1496958214310" duration="6866000" />
       <workItem from="1496994027019" duration="1631000" />
-      <workItem from="1496995684771" duration="3397000" />
+      <workItem from="1496995684771" duration="7389000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42284000" />
+    <option name="totallyTimeSpent" value="46276000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -942,6 +990,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1020,6 +1069,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1052,6 +1102,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1127,6 +1178,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1164,6 +1216,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1190,84 +1245,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Farm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="19" column="51" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Palace.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-45">
-          <caret line="18" column="51" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Port.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="51" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Quarry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/WoodCutter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="18" column="51" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Barracks.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Market.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1629">
-          <caret line="18" column="51" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1298,6 +1275,84 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Barracks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="44" column="33" selection-start-line="44" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Market.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="141" column="40" selection-start-line="141" selection-start-column="40" selection-end-line="141" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Palace.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Farm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="30" column="32" selection-start-line="28" selection-start-column="8" selection-end-line="30" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Port.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="29" column="32" selection-start-line="27" selection-start-column="8" selection-end-line="29" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Quarry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="30" column="40" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/WoodCutter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="31" column="40" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>

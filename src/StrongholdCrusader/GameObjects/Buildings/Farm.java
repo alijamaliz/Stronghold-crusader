@@ -12,9 +12,9 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class Farm extends Building {
-    AnchorPane anchorPane;
+    public AnchorPane anchorPane;
     @Override
-    AnchorPane clickAction() {
+    public AnchorPane clickAction() {
 
         anchorPane = new AnchorPane();
         File building = new File("Resources/images/Buildings/Farm.png");
@@ -26,7 +26,11 @@ public class Farm extends Building {
 
             }
         });
+        imageView.setLayoutX(170);
+        distroy.setLayoutX(170);
+        distroy.setLayoutY(150);
         anchorPane.getChildren().addAll(imageView,distroy);
+        anchorPane.setPrefSize(500,250);
         return anchorPane;
     }
 }

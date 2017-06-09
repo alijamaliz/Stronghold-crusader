@@ -5,7 +5,6 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-
 import java.io.File;
 
 /**
@@ -17,10 +16,10 @@ public class Barracks extends Building {
     public AnchorPane clickAction() {
         anchorPane = new AnchorPane();
         File building = new File("Resources/images/Buildings/Barracks.png");
-        ImageView imageView = new ImageView(building.toURI().toString());
+        ImageView buildingImage = new ImageView(building.toURI().toString());
         Button createSoldier = new Button("createSoldier");
         File soldier = new File("Resources/images/Humans/Soldier.png");
-        ImageView soldier1 = new ImageView(soldier.toURI().toString());
+        ImageView soldierImage = new ImageView(soldier.toURI().toString());
         Button distroy = new Button("Distroy Building");
         distroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -34,9 +33,16 @@ public class Barracks extends Building {
 
             }
         });
-        createSoldier.setLayoutX(createSoldier.getLayoutX()+50);
-        imageView.setLayoutY(imageView.getLayoutY()+200);
-        anchorPane.getChildren().addAll(imageView,createSoldier,soldier1,distroy);
+        buildingImage.setLayoutX(20);
+        buildingImage.setLayoutY(buildingImage.getLayoutY()+40);
+        distroy.setLayoutX(20);
+        distroy.setLayoutY(210);
+        soldierImage.setLayoutX(300);
+        soldierImage.setLayoutY(100);
+        createSoldier.setLayoutX(270);
+        createSoldier.setLayoutY(210);
+        anchorPane.getChildren().addAll(buildingImage,createSoldier,soldierImage,distroy);
+        anchorPane.setPrefSize(500,250);
         return anchorPane;
     }
 }

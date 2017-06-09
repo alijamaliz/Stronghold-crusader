@@ -7,6 +7,6 @@ import javafx.scene.layout.AnchorPane;
  */
 public abstract class Building extends GameObject {
     Pair Size;
-    AnchorPane anchorPane;
+    public AnchorPane anchorPane;
     abstract AnchorPane clickAction();
 }

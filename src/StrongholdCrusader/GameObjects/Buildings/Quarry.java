@@ -13,7 +13,7 @@ import java.io.File;
  */
 public class Quarry extends Building {
     @Override
-    AnchorPane clickAction() {
+    public AnchorPane clickAction() {
         anchorPane = new AnchorPane();
         File building = new File("Resources/images/Buildings/Quarry.png");
         ImageView imageView = new ImageView(building.toURI().toString());
@@ -24,7 +24,11 @@ public class Quarry extends Building {
 
             }
         });
+        imageView.setLayoutX(170);
+        distroy.setLayoutX(170);
+        distroy.setLayoutY(150);
         anchorPane.getChildren().addAll(imageView,distroy);
+        anchorPane.setPrefSize(500,250);
         return anchorPane;
     }
 }

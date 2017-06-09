@@ -12,9 +12,9 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class Palace extends Building {
-    AnchorPane anchorPane;
+    public AnchorPane anchorPane;
     @Override
-    AnchorPane clickAction() {
+    public AnchorPane clickAction() {
         anchorPane = new AnchorPane();
         File building = new File("Resources/images/Buildings/Palace.png");
         ImageView imageView = new ImageView(building.toURI().toString());
@@ -32,7 +32,14 @@ public class Palace extends Building {
 
             }
         });
+        imageView.setLayoutX(40);
+        imageView.setLayoutY(40);
+        createVassal.setLayoutX(200);
+        createWorker.setLayoutX(350);
+        createVassal.setLayoutY(100);
+        createWorker.setLayoutY(100);
         anchorPane.getChildren().addAll(imageView,createVassal,createWorker);
+        anchorPane.setPrefSize(500,250);
         return anchorPane;
     }
 }

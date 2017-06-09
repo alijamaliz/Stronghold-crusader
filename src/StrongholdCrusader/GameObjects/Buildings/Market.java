@@ -12,17 +12,19 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class Market extends Building {
-    AnchorPane anchorPane;
+    public AnchorPane anchorPane;
     @Override
-    AnchorPane clickAction() {
+    public AnchorPane clickAction() {
         anchorPane = new AnchorPane();
         File building = new File("Resources/images/Buildings/Market.png");
-        ImageView imageView = new ImageView(building.toURI().toString());
+        ImageView buildingImage = new ImageView(building.toURI().toString());
         Button stone = new Button("stone");
         Button iron = new Button("iron");
         Button wood = new Button("wood");
-        Button buy = new Button("buy");
-        Button sell = new Button("sell");
+        Button buy = new Button("buy(5 piece)");
+        Button sell = new Button("sell(5 piece)");
+        Button back = new Button("Back");
+        back.setVisible(false);
         buy.setVisible(false);
         sell.setVisible(false);
         stone.setOnAction(new EventHandler<ActionEvent>() {
@@ -33,6 +35,7 @@ public class Market extends Building {
                 iron.setVisible(false);
                 buy.setVisible(true);
                 sell.setVisible(true);
+                back.setVisible(true);
                 buy.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
@@ -57,6 +60,7 @@ public class Market extends Building {
                 iron.setVisible(false);
                 buy.setVisible(true);
                 sell.setVisible(true);
+                back.setVisible(true);
                 buy.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
@@ -81,6 +85,7 @@ public class Market extends Building {
                 iron.setVisible(false);
                 buy.setVisible(true);
                 sell.setVisible(true);
+                back.setVisible(true);
                 buy.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
@@ -104,7 +109,37 @@ public class Market extends Building {
 
             }
         });
-        anchorPane.getChildren().addAll(imageView,distroy,stone,wood,iron,buy,sell);
+        back.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                iron.setVisible(true);
+                wood.setVisible(true);
+                stone.setVisible(true);
+                buy.setVisible(false);
+                sell.setVisible(false);
+                back.setVisible(false);
+            }
+        });
+
+        buildingImage.setLayoutX(30);
+        buildingImage.setLayoutY(30);
+        distroy.setLayoutX(30);
+        distroy.setLayoutY(170);
+        iron.setLayoutX(200);
+        wood.setLayoutX(300);
+        stone.setLayoutX(400);
+        stone.setLayoutY(80);
+        wood.setLayoutY(80);
+        iron.setLayoutY(80);
+        buy.setLayoutX(200);
+        sell.setLayoutX(350);
+        sell.setLayoutY(120);
+        buy.setLayoutY(120);
+        back.setLayoutX(300);
+        back.setLayoutY(200);
+
+        anchorPane.getChildren().addAll(buildingImage,distroy,stone,wood,iron,buy,sell,back);
+        anchorPane.setPrefSize(500,250);
         return anchorPane;
     }
 }
