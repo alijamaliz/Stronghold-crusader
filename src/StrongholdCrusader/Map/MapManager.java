@@ -118,6 +118,10 @@ public class MapManager implements Serializable {
             object1.put("position",position);
             ///adding name to object
             object1.put("ownerName",gameObject.ownerName);
+            ///adding health
+            object1.put("health",gameObject.health);
+            ///adding name
+            object1.put("name",gameObject.name);
             ///adding object type
             if(gameObject instanceof Barracks)
             {
