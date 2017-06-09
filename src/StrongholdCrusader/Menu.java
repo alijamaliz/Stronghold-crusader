@@ -21,7 +21,7 @@ public class Menu extends Application  {
         Menu.stage.initStyle(StageStyle.UNDECORATED);
 
         try {
-            Menu.stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("UI/menu.fxml"))));
+            Menu.stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("ui/menu.fxml"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
