@@ -16,7 +16,7 @@ public class Port extends Building {
     @Override
     AnchorPane clickAction() {
         anchorPane = new AnchorPane();
-        File building = new File("Resources/Buildings/Port.png");
+        File building = new File("Resources/images/Buildings/Port.png");
         ImageView imageView = new ImageView(building.toURI().toString());
         Button distroy = new Button("Distroy Building");
         distroy.setOnAction(new EventHandler<ActionEvent>() {

@@ -16,7 +16,7 @@ public class Palace extends Building {
     @Override
     AnchorPane clickAction() {
         anchorPane = new AnchorPane();
-        File building = new File("Resources/Buildings/Palace.png");
+        File building = new File("Resources/images/Buildings/Palace.png");
         ImageView imageView = new ImageView(building.toURI().toString());
         Button createVassal = new Button("Create Vassal");
         Button createWorker = new Button("Create Worker");

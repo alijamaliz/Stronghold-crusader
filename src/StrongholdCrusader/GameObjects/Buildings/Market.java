@@ -16,7 +16,7 @@ public class Market extends Building {
     @Override
     AnchorPane clickAction() {
         anchorPane = new AnchorPane();
-        File building = new File("Resources/Buildings/Market.png");
+        File building = new File("Resources/images/Buildings/Market.png");
         ImageView imageView = new ImageView(building.toURI().toString());
         Button stone = new Button("stone");
         Button iron = new Button("iron");

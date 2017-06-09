@@ -10,15 +10,19 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class Soldier extends Human {
-    AnchorPane anchorPane;
+    public AnchorPane anchorPane;
     @Override
-    AnchorPane clickAction() {
+    public AnchorPane clickAction() {
 
         anchorPane = new AnchorPane();
         File file = new File("Resources/images/Humans/Soldier.png");
         ImageView imageView = new ImageView(file.toURI().toString());
-        Button button = new Button("toVassal");
+        Button button = new Button("Change to Vassal");
+        button.setLayoutX(button.getLayoutX()+70);
+        button.setLayoutY(30);
         anchorPane.getChildren().addAll(imageView,button);
+        anchorPane.setPrefHeight(100);
+        anchorPane.setPrefWidth(300);
         return anchorPane;
     }
 }
