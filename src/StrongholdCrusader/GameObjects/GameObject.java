@@ -10,4 +10,5 @@ public abstract class GameObject implements Serializable {
     public int health;
     public String name;
     public String ownerName;
+    public String type;
 }
