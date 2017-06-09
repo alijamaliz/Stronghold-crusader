@@ -10,6 +10,10 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class Worker extends Human {
+    public Worker()
+    {
+        this.type="Worker";
+    }
     public AnchorPane anchorPane;
     @Override
     public AnchorPane clickAction() {

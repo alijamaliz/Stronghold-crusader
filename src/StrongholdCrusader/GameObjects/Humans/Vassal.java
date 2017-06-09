@@ -10,6 +10,10 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class Vassal extends Human {
+    public Vassal()
+    {
+        this.type="Vassal";
+    }
     public AnchorPane anchorPane;
     @Override
     public AnchorPane clickAction() {

@@ -7,11 +7,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.File;
+import java.util.Queue;
 
 /**
  * Created by Baran on 5/29/2017.
  */
 public class Quarry extends Building {
+    public Quarry()
+    {
+        this.type="Quarry";
+    }
     @Override
     public AnchorPane clickAction() {
         anchorPane = new AnchorPane();

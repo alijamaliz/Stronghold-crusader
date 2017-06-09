@@ -10,6 +10,10 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class Soldier extends Human {
+    public Soldier()
+    {
+        this.type="Soldier";
+    }
     public AnchorPane anchorPane;
     @Override
     public AnchorPane clickAction() {

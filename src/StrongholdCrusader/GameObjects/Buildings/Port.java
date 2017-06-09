@@ -12,6 +12,10 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class Port extends Building {
+    public Port()
+    {
+        this.type="Port";
+    }
     public AnchorPane anchorPane;
     @Override
     public AnchorPane clickAction() {

@@ -127,6 +127,7 @@ public class MapManager implements Serializable {
         Integer environment;
         JSONObject pos;
         map.tiles = new MapTile[Settings.MAP_WIDTH_RESOLUTION][Settings.MAP_HEIGHT_RESOLUTION];
+        ///GEtting info from JSON
         JSONArray tiles =(JSONArray) mapTiles.get("tiles");
         for (Object tileObject : tiles) {
             JSONObject tile = (JSONObject) tileObject;
@@ -135,22 +136,105 @@ public class MapManager implements Serializable {
             j=(Integer) pos.get("y");
             String type = (String) tile.get("type");
             environment = (Integer) tile.get("environment");
+            ///Creating Tile
             switch (type)
             {
                 case "Plain" :
                 {
                     map.tiles[i.intValue()][j.intValue()] = new Plain();
-                }
+                } break;
                 case "Mountain" :
                 {
                     map.tiles[i.intValue()][j.intValue()] = new Mountain();
-                }
+                } break;
                 case "Sea" :
                 {
                     map.tiles[i.intValue()][j.intValue()] = new Sea();
-                }
+                } break;
             }
             map.tiles[i.intValue()][j.intValue()].environment=environment;
+        }
+        return map;
+    }
+    public Map JSONobjectsToMap (JSONObject objectArray , Map map)
+    {
+        GameObject addingObject=null;
+        Integer i;
+        Integer j;
+        String ownerName;
+        Integer health;
+        String name;
+        String type;
+        JSONObject pos;
+        JSONArray objects = (JSONArray) objectArray.get("objects");
+        for (Object object : objects) {
+            ///Getting info from JSON
+            JSONObject oneObject = (JSONObject) object;
+            pos = (JSONObject) oneObject.get("position");
+            i=(Integer) pos.get("x");
+            j=(Integer) pos.get("y");
+            ownerName=(String) oneObject.get("ownerName");
+            health = (Integer) oneObject.get("health");
+            name= (String) oneObject.get("name");
+            type=(String) oneObject.get("type");
+            ///Creating Object
+            switch (type)
+            {
+                case "Barracks" :
+                {
+                    addingObject = new Barracks();
+                } break;
+                case "Farm" :
+                {
+                    addingObject = new Farm();
+                } break;
+                case "Market" :
+                {
+                    addingObject = new Market();
+                } break;
+                case "Palace" :
+                {
+                    addingObject = new Palace();
+                } break;
+                case "Port" :
+                {
+                    addingObject = new Port();
+                } break;
+                case "Quarry" :
+                {
+                    addingObject = new Quarry();
+                } break;
+                case "WoodCutter" :
+                {
+                    addingObject = new WoodCutter();
+                } break;
+                case "Soldier" :
+                {
+                    addingObject = new Soldier();
+                } break;
+                case "Vassal" :
+                {
+                    addingObject = new Vassal();
+                } break;
+                case "Worker" :
+                {
+                    addingObject = new Worker();
+                } break;
+            }
+            ///Adding info to object
+            if(addingObject!=null)
+            {
+                addingObject.health=health.intValue();
+                addingObject.position.x=i.intValue();
+                addingObject.position.y=j.intValue();
+                addingObject.ownerName=ownerName;
+                addingObject.name=name;
+            }
+            ///Adding to Map
+            if(!map.objects.contains(addingObject))
+            {
+                map.objects.add(addingObject);
+            }
         }
         return map;
     }

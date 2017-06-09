@@ -12,6 +12,10 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class Farm extends Building {
+    public Farm()
+    {
+        this.type="Farm";
+    }
     public AnchorPane anchorPane;
     @Override
     public AnchorPane clickAction() {

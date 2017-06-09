@@ -11,6 +11,10 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class Barracks extends Building {
+    public Barracks()
+    {
+        this.type="Barracks";
+    }
     public AnchorPane anchorPane;
     @Override
     public AnchorPane clickAction() {

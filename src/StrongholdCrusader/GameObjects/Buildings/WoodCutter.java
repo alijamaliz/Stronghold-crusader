@@ -12,6 +12,10 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class WoodCutter extends Building {
+    public WoodCutter()
+    {
+        this.type="WoodCutter";
+    }
     public AnchorPane anchorPane;
     @Override
     public AnchorPane clickAction() {
