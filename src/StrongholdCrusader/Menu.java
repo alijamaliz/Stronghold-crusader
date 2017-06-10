@@ -1,4 +1,4 @@
-//ITNOA
+//ITNOA//
 package StrongholdCrusader;
 
 import StrongholdCrusader.GameObjects.Buildings.*;
@@ -24,16 +24,12 @@ public class Menu extends Application  {
     public void start (Stage stage) {
         Menu.stage = stage;
         //Menu.stage.initStyle(StageStyle.UNDECORATED);
-        WoodCutter barracks = new WoodCutter();
-        barracks.clickAction();
-        Scene scene = new Scene(barracks.anchorPane);
-        Menu.stage.setScene(scene);
 
-        /*try {
+        try {
             Menu.stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("ui/menu.fxml"))));
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
         Menu.stage.show();
     }
 }

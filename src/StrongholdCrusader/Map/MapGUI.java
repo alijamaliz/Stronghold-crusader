@@ -1,6 +1,7 @@
 package StrongholdCrusader.Map;
 
 import StrongholdCrusader.GameObjects.Buildings.Building;
+import StrongholdCrusader.GameObjects.Buildings.Farm;
 import StrongholdCrusader.GameObjects.GameObject;
 import StrongholdCrusader.GameObjects.Humans.Human;
 import StrongholdCrusader.GameObjects.Pair;
@@ -8,13 +9,21 @@ import StrongholdCrusader.Menu;
 import StrongholdCrusader.ResourceManager;
 import StrongholdCrusader.Settings;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
+
+import java.io.File;
 import java.io.Serializable;
 /**
  * Created by Baran on 6/3/2017.
@@ -23,11 +32,10 @@ public class MapGUI implements Runnable, Serializable {
     private ResourceManager resourceManager;
     private Pair viewOffset;
     private Map map;
-
     private String navigationLR, navigationUD;
-
     private AnchorPane anchorPane;
     private Scene scene;
+    Button create;
 
     public MapGUI(Map map) {
         this.map = map;
@@ -36,10 +44,12 @@ public class MapGUI implements Runnable, Serializable {
 
         navigationLR = "";
         navigationUD = "";
+        create = new Button("+");
 
         anchorPane = new AnchorPane();
         anchorPane.getChildren().add(getMapBackground());
         anchorPane.getChildren().add(getMapObjects());
+        anchorPane.getChildren().add(create);
 
         scene = new Scene(anchorPane);
         anchorPane.setTranslateX(viewOffset.x);
@@ -109,23 +119,46 @@ public class MapGUI implements Runnable, Serializable {
         if (navigationLR.length() != 0) {
             if (navigationLR.charAt(0) == 'R') {
                 if (viewOffset.x - Settings.MAP_NAVIGATION_SPEED > -1 * (mapWidth - Settings.MAP_NAVIGATION_SPEED - scene.getWidth()))
-                    viewOffset.x -= Settings.MAP_NAVIGATION_SPEED;
+                {viewOffset.x -= Settings.MAP_NAVIGATION_SPEED;create.setLayoutX(create.getLayoutX()+Settings.MAP_NAVIGATION_SPEED);}
             }
             if (navigationLR.charAt(0) == 'L') {
                 if (viewOffset.x + Settings.MAP_NAVIGATION_SPEED < Settings.MAP_NAVIGATION_SPEED)
-                    viewOffset.x += Settings.MAP_NAVIGATION_SPEED;
+                {viewOffset.x += Settings.MAP_NAVIGATION_SPEED;create.setLayoutX(create.getLayoutX()-Settings.MAP_NAVIGATION_SPEED);}
             }
         }
         if (navigationUD.length() != 0) {
             if (navigationUD.charAt(0) == 'D') {
                 if (viewOffset.y - Settings.MAP_NAVIGATION_SPEED > -1 * (mapHeight - Settings.MAP_NAVIGATION_SPEED - scene.getHeight()))
-                    viewOffset.y -= Settings.MAP_NAVIGATION_SPEED;
+                {viewOffset.y -= Settings.MAP_NAVIGATION_SPEED;create.setLayoutY(create.getLayoutY()+Settings.MAP_NAVIGATION_SPEED);}
             }
             if (navigationUD.charAt(0) == 'U') {
                 if (viewOffset.y + Settings.MAP_NAVIGATION_SPEED < Settings.MAP_NAVIGATION_SPEED)
-                    viewOffset.y += Settings.MAP_NAVIGATION_SPEED;
+                {viewOffset.y += Settings.MAP_NAVIGATION_SPEED;create.setLayoutY(create.getLayoutY()-Settings.MAP_NAVIGATION_SPEED);}
             }
         }
+
+
+    }
+
+//menu for create buildings//
+    void menuOfCreateBuilding(){
+        create.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                AnchorPane anchorPane1 = new AnchorPane();
+                Button button = new Button("create");
+                File file = new File("Resources/images/Buildings/Farm.png");
+                ImageView farm = new ImageView(file.toURI().toString());
+                button.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        map.objects.add(new Farm());
+                    }
+                });
+                create.setVisible(false);
+                anchorPane.getChildren().add(button);
+            }
+        });
     }
 
     //Return an AnchorPane containing tile images
@@ -194,6 +227,7 @@ public class MapGUI implements Runnable, Serializable {
         while (true) {
             try {
                 changeViewOffset();
+                menuOfCreateBuilding();
                 showMap();
                 Thread.sleep(1000 / Settings.FRAME_RATE);
             } catch (InterruptedException e) {
