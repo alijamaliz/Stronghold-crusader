@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 import java.io.*;
+import java.util.LinkedList;
 
 /**
  * Created by MiladIbra on 6/3/2017.
@@ -69,104 +70,172 @@ public class MapManager implements Serializable {
         }
         return map;
     }
-
-    public JSONObject mapToJSON (Map map) {
-        JSONObject finalJSON = new JSONObject();
-        JSONObject pos = new JSONObject();
+    public JSONObject mapTilesToJSON(Map map) ///Gives MapTile Array and Environment of map in JSON type
+    {
+        JSONObject mapTileJSON = new JSONObject();
         JSONArray tiles = new JSONArray();
-        JSONArray objects = new JSONArray();
-        JSONArray tile = new JSONArray();
-        JSONObject object = new JSONObject();
-        //Tiles array to JSONarray
-        //0 is Plain, 1 is Mountain, 2 is Sea
-        for(int i=0;i<Settings.MAP_WIDTH_RESOLUTION;i++)
+        JSONArray oneTile = new JSONArray();
+        JSONObject pos = new JSONObject();
+        for (int i=0;i<Settings.MAP_WIDTH_RESOLUTION;i++)
         {
             for (int j=0;j<Settings.MAP_HEIGHT_RESOLUTION;j++)
             {
-                JSONObject object1=(JSONObject) object.clone();
-                JSONArray oneTile=(JSONArray) tile.clone();
+                JSONObject tile = (JSONObject) oneTile.clone();
                 JSONObject position = (JSONObject) pos.clone();
-                ///adding position of tile into position object
-                position.put("x",i);
-                position.put("y",j);
-                object1.put("position",position);
-                oneTile.add(object1);
-                ///adding plain
-                if(map.tiles[i][j] instanceof Plain)
-                {
-                    oneTile.add(0);
-                }
-                ///adding Mountain
-                else if(map.tiles[i][j] instanceof Mountain)
-                {
-                    oneTile.add(1);
-                }
-                ///adding sea
-                else
-                {
-                    oneTile.add(2);
-                }
-                tiles.add(oneTile);
+                position.put("x",new Integer(i));
+                position.put("y",new Integer(j));
+                tile.put("position",position);
+                tile.put("type",map.tiles[i][j].type);
+                tile.put("environment",map.tiles[i][j].environment);
+                tiles.add(tile);
             }
         }
+        mapTileJSON.put("tiles",tiles);
+        return mapTileJSON;
+    }
+    public JSONObject mapObjectsToJSON (Map map) ///Gives objects of map in JSON type
+    {
+        JSONObject mapObjectJSON = new JSONObject();
+        JSONObject pos = new JSONObject();
+        JSONArray objects = new JSONArray();
+        JSONObject OneObject = new JSONObject();
         for (GameObject gameObject : map.objects) {
-            JSONObject object1=(JSONObject) object.clone();
+            JSONObject object=(JSONObject) OneObject.clone();
             JSONObject position = (JSONObject) pos.clone();
             ///adding position to object
-            position.put("x",gameObject.position.x);
-            position.put("y",gameObject.position.y);
-            object1.put("position",position);
-            ///adding name to object
-            object1.put("ownerName",gameObject.ownerName);
+            position.put("x",new Integer(gameObject.position.x));
+            position.put("y",new Integer(gameObject.position.y));
+            object.put("position",position);
+            ///adding ownerName to object
+            object.put("ownerName",gameObject.ownerName);
             ///adding health
-            object1.put("health",gameObject.health);
+            object.put("health",new Integer(gameObject.health));
             ///adding name
-            object1.put("name",gameObject.name);
+            object.put("name",gameObject.name);
             ///adding object type
-            if(gameObject instanceof Barracks)
-            {
-                object1.put("type","Barracks");
-            }
-            else if(gameObject instanceof Farm)
-            {
-                object1.put("type","Farm");
-            }
-            else if(gameObject instanceof Market)
-            {
-                object1.put("type","Market");
-            }
-            else if(gameObject instanceof Palace)
-            {
-                object1.put("type","Palace");
-            }
-            else if(gameObject instanceof Port)
-            {
-                object1.put("type","Port");
-            }
-            else if(gameObject instanceof Quarry)
-            {
-                object1.put("type","Quarry");
-            }
-            else if(gameObject instanceof WoodCutter)
-            {
-                object1.put("type","WoodCutter");
-            }
-            else if(gameObject instanceof Soldier)
-            {
-                object1.put("type","Soldier");
-            }
-            else if(gameObject instanceof Vassal)
-            {
-                object1.put("type","Vassal");
-            }
-            else if(gameObject instanceof Worker)
-            {
-                object1.put("type","Worker");
-            }
-            objects.add(object1);
+            object.put("type",gameObject.type);
+            objects.add(object);
         }
-        finalJSON.put("tiles",tiles);
-        finalJSON.put("objects",objects);
-        return finalJSON;
+        mapObjectJSON.put("objects",objects);
+        return mapObjectJSON;
+    }
+    public Map JSONtilesToMap (JSONObject mapTiles)
+    {
+        Map map = new Map();
+        Integer i;
+        Integer j;
+        Integer environment;
+        JSONObject pos;
+        map.tiles = new MapTile[Settings.MAP_WIDTH_RESOLUTION][Settings.MAP_HEIGHT_RESOLUTION];
+        ///GEtting info from JSON
+        JSONArray tiles =(JSONArray) mapTiles.get("tiles");
+        for (Object tileObject : tiles) {
+            JSONObject tile = (JSONObject) tileObject;
+            pos = (JSONObject) tile.get("position");
+            i=(Integer) pos.get("x");
+            j=(Integer) pos.get("y");
+            String type = (String) tile.get("type");
+            environment = (Integer) tile.get("environment");
+            ///Creating Tile
+            switch (type)
+            {
+                case "Plain" :
+                {
+                    map.tiles[i.intValue()][j.intValue()] = new Plain();
+                } break;
+                case "Mountain" :
+                {
+                    map.tiles[i.intValue()][j.intValue()] = new Mountain();
+                } break;
+                case "Sea" :
+                {
+                    map.tiles[i.intValue()][j.intValue()] = new Sea();
+                } break;
+            }
+            map.tiles[i.intValue()][j.intValue()].environment=environment;
+        }
+        return map;
+    }
+    public Map JSONobjectsToMap (JSONObject objectArray , Map map)
+    {
+        GameObject addingObject=null;
+        Integer i;
+        Integer j;
+        String ownerName;
+        Integer health;
+        String name;
+        String type;
+        JSONObject pos;
+        JSONArray objects = (JSONArray) objectArray.get("objects");
+        for (Object object : objects) {
+            ///Getting info from JSON
+            JSONObject oneObject = (JSONObject) object;
+            pos = (JSONObject) oneObject.get("position");
+            i=(Integer) pos.get("x");
+            j=(Integer) pos.get("y");
+            ownerName=(String) oneObject.get("ownerName");
+            health = (Integer) oneObject.get("health");
+            name= (String) oneObject.get("name");
+            type=(String) oneObject.get("type");
+            ///Creating Object
+            switch (type)
+            {
+                case "Barracks" :
+                {
+                    addingObject = new Barracks();
+                } break;
+                case "Farm" :
+                {
+                    addingObject = new Farm();
+                } break;
+                case "Market" :
+                {
+                    addingObject = new Market();
+                } break;
+                case "Palace" :
+                {
+                    addingObject = new Palace();
+                } break;
+                case "Port" :
+                {
+                    addingObject = new Port();
+                } break;
+                case "Quarry" :
+                {
+                    addingObject = new Quarry();
+                } break;
+                case "WoodCutter" :
+                {
+                    addingObject = new WoodCutter();
+                } break;
+                case "Soldier" :
+                {
+                    addingObject = new Soldier();
+                } break;
+                case "Vassal" :
+                {
+                    addingObject = new Vassal();
+                } break;
+                case "Worker" :
+                {
+                    addingObject = new Worker();
+                } break;
+            }
+            ///Adding info to object
+            if(addingObject!=null)
+            {
+                addingObject.health=health.intValue();
+                addingObject.position.x=i.intValue();
+                addingObject.position.y=j.intValue();
+                addingObject.ownerName=ownerName;
+                addingObject.name=name;
+            }
+            ///Adding to Map
+            if(!map.objects.contains(addingObject))
+            {
+                map.objects.add(addingObject);
+            }
+        }
+        return map;
     }
 }
