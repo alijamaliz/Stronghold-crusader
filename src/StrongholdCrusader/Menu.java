@@ -18,7 +18,7 @@ public class Menu extends Application  {
     @Override
     public void start (Stage stage) {
         Menu.stage = stage;
-        Menu.stage.initStyle(StageStyle.UNDECORATED);
+        //Menu.stage.initStyle(StageStyle.UNDECORATED);
 
         try {
             Menu.stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("UI/menu.fxml"))));

@@ -6,6 +6,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StrongholdCrusader.MenuGUI">
    <children>
@@ -24,5 +27,15 @@
       <Label layoutX="714.0" layoutY="547.0" prefHeight="39.0" prefWidth="272.0" text="Copyright © 2017  All rights reserved." />
       <Button fx:id="back" layoutX="20.0" layoutY="550.0" mnemonicParsing="false" style="-fx-background-color: yellow; -fx-font-weight: bold; -fx-font-family: 'b nazanin'; -fx-font-size: 16px;" text="بازگشت" visible="false" />
       <Button fx:id="exit" layoutX="20.0" layoutY="550.0" mnemonicParsing="false" style="-fx-background-color: yellow; -fx-font-weight: bold; -fx-font-family: 'b nazanin'; -fx-font-size: 18px;" text="خروج" />
+      <Button fx:id="startGame" layoutX="20.0" layoutY="550.0" mnemonicParsing="false" style="-fx-background-color: yellow; -fx-font-weight: bold; -fx-font-family: 'b nazanin'; -fx-font-size: 18px;" text="شروع بازی" visible="false" />
+       <Label fx:id="serverIPLabel" layoutX="760.0" layoutY="70.0" style="-fx-text-fill: yellow; -fx-font-weight: bold; -fx-font-family: 'b nazanin'; -fx-font-size: 18px;" textAlignment="RIGHT" visible="false" />
+       <GridPane fx:id="usersGridView" layoutX="630.0" layoutY="100.0" prefWidth="300.0" style="-fx-background-color: yellow;" visible="false">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
    </children>
 </AnchorPane>

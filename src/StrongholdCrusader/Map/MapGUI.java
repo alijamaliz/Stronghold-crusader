@@ -38,69 +38,6 @@ public class MapGUI implements Runnable, Serializable {
         navigationUD = "";
 
         anchorPane = new AnchorPane();
-        anchorPane.getChildren().add(getMapBackground());
-        anchorPane.getChildren().add(getMapObjects());
-
-        scene = new Scene(anchorPane);
-        anchorPane.setTranslateX(viewOffset.x);
-        anchorPane.setTranslateY(viewOffset.y);
-        Menu.stage.setTitle("Map");
-        Menu.stage.setScene(scene);
-        Menu.stage.setMaximized(true);
-        Menu.stage.setFullScreen(true);
-        Menu.stage.show();
-
-        //Arrow keys navigating
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode().getName().equals("Left") && !navigationLR.contains("L"))
-                    navigationLR = "L" + navigationLR;
-                if (event.getCode().getName().equals("Right") && !navigationLR.contains("R"))
-                    navigationLR = "R" + navigationLR;
-                if (event.getCode().getName().equals("Up") && !navigationUD.contains("U"))
-                    navigationUD = "U" + navigationUD;
-                if (event.getCode().getName().equals("Down") && !navigationUD.contains("D"))
-                    navigationUD = "D" + navigationUD;
-            }
-        });
-
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode().getName().equals("Left"))
-                    navigationLR = navigationLR.replace("L", "");
-                if (event.getCode().getName().equals("Right"))
-                    navigationLR = navigationLR.replace("R", "");
-                if (event.getCode().getName().equals("Up"))
-                    navigationUD = navigationUD.replace("U", "");
-                if (event.getCode().getName().equals("Down"))
-                    navigationUD = navigationUD.replace("D", "");
-            }
-        });
-
-        //Mouse Navigating
-        scene.setOnMouseMoved(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (event.getScreenX() < Settings.MOUSE_MAP_NAVIGATION_MARGIN)
-                    navigationLR = "L" + navigationLR;
-                else
-                    navigationLR = navigationLR.replace("L", "");
-                if (event.getScreenX() > scene.getWidth() - Settings.MOUSE_MAP_NAVIGATION_MARGIN)
-                    navigationLR = "R" + navigationLR;
-                else
-                    navigationLR = navigationLR.replace("R", "");
-                if (event.getScreenY() < Settings.MOUSE_MAP_NAVIGATION_MARGIN)
-                    navigationUD = "U" + navigationUD;
-                else
-                    navigationUD = navigationUD.replace("U", "");
-                if (event.getScreenY() > scene.getHeight() - Settings.MOUSE_MAP_NAVIGATION_MARGIN)
-                    navigationUD = "D" + navigationUD;
-                else
-                    navigationUD = navigationUD.replace("D", "");
-            }
-        });
     }
 
     private void changeViewOffset() {
@@ -170,9 +107,72 @@ public class MapGUI implements Runnable, Serializable {
         }
         return objects;
     }
-
-    //Refresh game objects position and show them
     public void showMap() {
+        anchorPane.getChildren().add(getMapBackground());
+        anchorPane.getChildren().add(getMapObjects());
+
+        scene = new Scene(anchorPane);
+        anchorPane.setTranslateX(viewOffset.x);
+        anchorPane.setTranslateY(viewOffset.y);
+        Menu.stage.setScene(scene);
+        Menu.stage.setMaximized(true);
+        Menu.stage.setFullScreen(true);
+        Menu.stage.show();
+
+        //Arrow keys navigating
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode().getName().equals("Left") && !navigationLR.contains("L"))
+                    navigationLR = "L" + navigationLR;
+                if (event.getCode().getName().equals("Right") && !navigationLR.contains("R"))
+                    navigationLR = "R" + navigationLR;
+                if (event.getCode().getName().equals("Up") && !navigationUD.contains("U"))
+                    navigationUD = "U" + navigationUD;
+                if (event.getCode().getName().equals("Down") && !navigationUD.contains("D"))
+                    navigationUD = "D" + navigationUD;
+            }
+        });
+
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode().getName().equals("Left"))
+                    navigationLR = navigationLR.replace("L", "");
+                if (event.getCode().getName().equals("Right"))
+                    navigationLR = navigationLR.replace("R", "");
+                if (event.getCode().getName().equals("Up"))
+                    navigationUD = navigationUD.replace("U", "");
+                if (event.getCode().getName().equals("Down"))
+                    navigationUD = navigationUD.replace("D", "");
+            }
+        });
+
+        //Mouse Navigating
+        scene.setOnMouseMoved(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getScreenX() < Settings.MOUSE_MAP_NAVIGATION_MARGIN)
+                    navigationLR = "L" + navigationLR;
+                else
+                    navigationLR = navigationLR.replace("L", "");
+                if (event.getScreenX() > scene.getWidth() - Settings.MOUSE_MAP_NAVIGATION_MARGIN)
+                    navigationLR = "R" + navigationLR;
+                else
+                    navigationLR = navigationLR.replace("R", "");
+                if (event.getScreenY() < Settings.MOUSE_MAP_NAVIGATION_MARGIN)
+                    navigationUD = "U" + navigationUD;
+                else
+                    navigationUD = navigationUD.replace("U", "");
+                if (event.getScreenY() > scene.getHeight() - Settings.MOUSE_MAP_NAVIGATION_MARGIN)
+                    navigationUD = "D" + navigationUD;
+                else
+                    navigationUD = navigationUD.replace("D", "");
+            }
+        });
+    }
+    //Refresh game objects position and show them
+    public void updateMap() {
         //anchorPane.getChildren().add(getMapBackground());
 
         //anchorPane.getChildren().remove(1);
@@ -194,7 +194,7 @@ public class MapGUI implements Runnable, Serializable {
         while (true) {
             try {
                 changeViewOffset();
-                showMap();
+                updateMap();
                 Thread.sleep(1000 / Settings.FRAME_RATE);
             } catch (InterruptedException e) {
                 e.printStackTrace();

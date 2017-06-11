@@ -86,13 +86,25 @@ public class Server implements Runnable {
         }
         switch (gameEvent.type) {
             case GameEvent.JOIN_TO_GAME: {
-                //.out.println(gameEvent.message + ":" + address + ":" + port);
-                if (isUsernameAvailable(gameEvent.message)) {
-                    game.players.add(new ServerPlayer(gameEvent.message, address, port));
-                    sendPacket("ClientPlayer " + gameEvent.message + " created!", address, port);
-                } else
-                    sendPacket("ClientPlayer name is already taken...", address, port);
+                String username = gameEvent.message;
+                if (isUsernameAvailable(username)) {
+                    game.players.add(new ServerPlayer(username, address, port));
+                    //Send OK result for client
+                    GameEvent createGameEvent = new GameEvent(GameEvent.USER_SUCCESSFULLY_CREATED, "ClientPlayer " + username + " created!");
+                    sendPacket(createGameEvent.getJSON(), address, port);
+                    //Send join alert for all clients
+                    GameEvent joinGameEvent = new GameEvent(GameEvent.USER_JOINED_TO_NETWORK, username + "," + address.getHostAddress());
+                    sendPacketForAll(joinGameEvent.getJSON());
+                } else {
+                    //Send duplicate result for client
+                    GameEvent duplicateGameEvent = new GameEvent(GameEvent.DUPLICATE_USERNAME, "ClientPlayer name is already taken...");
+                    sendPacket(duplicateGameEvent.getJSON(), address, port);
+                }
                 break;
+            }
+            case GameEvent.START_GAME: {
+                GameEvent startGameEvent = new GameEvent(GameEvent.START_GAME, "Game started...");
+                sendPacketForAll(startGameEvent.getJSON());
             }
         }
     }

@@ -20,7 +20,10 @@ public class Map implements Serializable {
         tiles = mapManager.getMapById(1);
         objects = new LinkedList<>();
         gui = new MapGUI(this);
+    }
 
+    public void showMapScreen() {
+        gui.showMap();
         new Thread(gui).start();
     }
 }
