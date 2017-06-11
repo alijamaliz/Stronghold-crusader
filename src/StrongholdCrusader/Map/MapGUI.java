@@ -1,306 +1,1 @@
-package StrongholdCrusader.Map;
-
-import StrongholdCrusader.GameObjects.Buildings.Building;
-import StrongholdCrusader.GameObjects.Buildings.Farm;
-import StrongholdCrusader.GameObjects.GameObject;
-import StrongholdCrusader.GameObjects.Humans.Human;
-import StrongholdCrusader.GameObjects.Pair;
-import StrongholdCrusader.Menu;
-import StrongholdCrusader.ResourceManager;
-import StrongholdCrusader.Settings;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Screen;
-
-import java.io.File;
-import java.io.Serializable;
-/**
- * Created by Baran on 6/3/2017.
- */
-public class MapGUI implements Runnable, Serializable {
-    private ResourceManager resourceManager;
-    private Pair viewOffset;
-    private Map map;
-    private String navigationLR, navigationUD;
-    private AnchorPane anchorPane;
-    private Scene scene;
-    Button create;
-
-    public MapGUI(Map map) {
-        this.map = map;
-        resourceManager = new ResourceManager();
-        viewOffset = new Pair(0, 0);
-
-        navigationLR = "";
-        navigationUD = "";
-        create = new Button("+");
-
-        anchorPane = new AnchorPane();
-        anchorPane.getChildren().add(getMapBackground());
-        anchorPane.getChildren().add(getMapObjects());
-        anchorPane.getChildren().add(create);
-
-        scene = new Scene(anchorPane);
-        anchorPane.setTranslateX(viewOffset.x);
-        Menu.stage.setTitle("Map");
-        anchorPane.setTranslateY(viewOffset.y);
-        Menu.stage.setScene(scene);
-        Menu.stage.setFullScreen(true);
-        Menu.stage.setMaximized(true);
-        Menu.stage.show();
-
-        //Arrow keys navigating
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                    navigationLR = "L" + navigationLR;
-                if (event.getCode().getName().equals("Left") && !navigationLR.contains("L"))
-                if (event.getCode().getName().equals("Right") && !navigationLR.contains("R"))
-                    navigationLR = "R" + navigationLR;
-                if (event.getCode().getName().equals("Up") && !navigationUD.contains("U"))
-                    navigationUD = "U" + navigationUD;
-                if (event.getCode().getName().equals("Down") && !navigationUD.contains("D"))
-                    navigationUD = "D" + navigationUD;
-            }
-        });
-
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode().getName().equals("Left"))
-                    navigationLR = navigationLR.replace("L", "");
-                if (event.getCode().getName().equals("Right"))
-                    navigationLR = navigationLR.replace("R", "");
-                if (event.getCode().getName().equals("Up"))
-                    navigationUD = navigationUD.replace("U", "");
-                if (event.getCode().getName().equals("Down"))
-                    navigationUD = navigationUD.replace("D", "");
-            }
-        });
-
-        //Mouse Navigating
-        scene.setOnMouseMoved(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (event.getScreenX() < Settings.MOUSE_MAP_NAVIGATION_MARGIN)
-                    navigationLR = "L" + navigationLR;
-                else
-                    navigationLR = navigationLR.replace("L", "");
-                if (event.getScreenX() > scene.getWidth() - Settings.MOUSE_MAP_NAVIGATION_MARGIN)
-                    navigationLR = "R" + navigationLR;
-                else
-                    navigationLR = navigationLR.replace("R", "");
-                if (event.getScreenY() < Settings.MOUSE_MAP_NAVIGATION_MARGIN)
-                    navigationUD = "U" + navigationUD;
-                else
-                    navigationUD = "D" + navigationUD;
-                    navigationUD = navigationUD.replace("U", "");
-                if (event.getScreenY() > scene.getHeight() - Settings.MOUSE_MAP_NAVIGATION_MARGIN)
-                else
-                    navigationUD = navigationUD.replace("D", "");
-            }
-        });
-    }
-
-    private void changeViewOffset() {
-        int mapWidth = Settings.MAP_WIDTH_RESOLUTION * (int) resourceManager.getImage("Plain1").getWidth();
-        int mapHeight = Settings.MAP_HEIGHT_RESOLUTION * (int) resourceManager.getImage("Plain1").getHeight();
-        if (navigationLR.length() != 0) {
-            if (navigationLR.charAt(0) == 'R') {
-                if (viewOffset.x - Settings.MAP_NAVIGATION_SPEED > -1 * (mapWidth - Settings.MAP_NAVIGATION_SPEED - scene.getWidth()))
-                {viewOffset.x -= Settings.MAP_NAVIGATION_SPEED;create.setLayoutX(create.getLayoutX()+Settings.MAP_NAVIGATION_SPEED);}
-            }
-            if (navigationLR.charAt(0) == 'L') {
-                if (viewOffset.x + Settings.MAP_NAVIGATION_SPEED < Settings.MAP_NAVIGATION_SPEED)
-                {viewOffset.x += Settings.MAP_NAVIGATION_SPEED;create.setLayoutX(create.getLayoutX()-Settings.MAP_NAVIGATION_SPEED);}
-            }
-        }
-        if (navigationUD.length() != 0) {
-            if (navigationUD.charAt(0) == 'D') {
-                if (viewOffset.y - Settings.MAP_NAVIGATION_SPEED > -1 * (mapHeight - Settings.MAP_NAVIGATION_SPEED - scene.getHeight()))
-                {viewOffset.y -= Settings.MAP_NAVIGATION_SPEED;create.setLayoutY(create.getLayoutY()+Settings.MAP_NAVIGATION_SPEED);}
-            }
-            if (navigationUD.charAt(0) == 'U') {
-                if (viewOffset.y + Settings.MAP_NAVIGATION_SPEED < Settings.MAP_NAVIGATION_SPEED)
-                {viewOffset.y += Settings.MAP_NAVIGATION_SPEED;create.setLayoutY(create.getLayoutY()-Settings.MAP_NAVIGATION_SPEED);}
-            }
-        }
-
-
-    }
-
-//menu for create buildings//
-    void menuOfCreateBuilding(){
-        create.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                AnchorPane anchorPane1 = new AnchorPane();
-                Button button = new Button("create");
-                File file = new File("Resources/images/Buildings/Farm.png");
-                ImageView farm = new ImageView(file.toURI().toString());
-                button.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        map.objects.add(new Farm());
-                    }
-                });
-                create.setVisible(false);
-                anchorPane.getChildren().add(button);
-            }
-        });
-    }
-
-    //Return an AnchorPane containing tile images
-    public AnchorPane getMapBackground() {
-        AnchorPane background = new AnchorPane();
-        for (int i = 0; i < map.tiles.length; i++) {
-            for (int j = 0; j < map.tiles[i].length; j++) {
-                Image image = null;
-
-                if (map.tiles[i][j] instanceof Sea)
-                    image = resourceManager.getImage("Sea");
-                if (map.tiles[i][j] instanceof Plain)
-                    image = resourceManager.getImage("Plain1");
-                if (map.tiles[i][j] instanceof Mountain)
-                    image = resourceManager.getImage("Mountain");
-
-                ImageView imageView = new ImageView();
-                imageView.setImage(image);
-                imageView.setLayoutX(i * (image.getWidth()));
-                imageView.setLayoutY(j * (image.getHeight()));
-                background.getChildren().add(imageView);
-            }
-        }
-        return background;
-    }
-
-    //Return an AnchorPane containing game object images
-    public AnchorPane getMapObjects() {
-        AnchorPane objects = new AnchorPane();
-        for (GameObject object : map.objects) {
-            Image image = null;
-            if (object instanceof Building)
-                image = resourceManager.getImage(object.name);
-            if (object instanceof Human)
-                image = resourceManager.getImage(object.name);
-
-            ImageView imageView = new ImageView();
-            imageView.setImage(image);
-            imageView.setLayoutX(object.position.x);
-            imageView.setLayoutY(object.position.y);
-            objects.getChildren().add(imageView);
-        }
-        return objects;
-    }
-    public void showMap() {
-        anchorPane.getChildren().add(getMapBackground());
-        anchorPane.getChildren().add(getMapObjects());
-
-        scene = new Scene(anchorPane);
-        anchorPane.setTranslateX(viewOffset.x);
-        anchorPane.setTranslateY(viewOffset.y);
-        Menu.stage.setScene(scene);
-        Menu.stage.setMaximized(true);
-        Menu.stage.setFullScreen(true);
-        Menu.stage.show();
-
-        //Arrow keys navigating
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode().getName().equals("Left") && !navigationLR.contains("L"))
-                    navigationLR = "L" + navigationLR;
-                if (event.getCode().getName().equals("Right") && !navigationLR.contains("R"))
-                    navigationLR = "R" + navigationLR;
-                if (event.getCode().getName().equals("Up") && !navigationUD.contains("U"))
-                    navigationUD = "U" + navigationUD;
-                if (event.getCode().getName().equals("Down") && !navigationUD.contains("D"))
-                    navigationUD = "D" + navigationUD;
-            }
-        });
-
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode().getName().equals("Left"))
-                    navigationLR = navigationLR.replace("L", "");
-                if (event.getCode().getName().equals("Right"))
-                    navigationLR = navigationLR.replace("R", "");
-                if (event.getCode().getName().equals("Up"))
-                    navigationUD = navigationUD.replace("U", "");
-                if (event.getCode().getName().equals("Down"))
-                    navigationUD = navigationUD.replace("D", "");
-            }
-        });
-
-        //Mouse Navigating
-        scene.setOnMouseMoved(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (event.getScreenX() < Settings.MOUSE_MAP_NAVIGATION_MARGIN)
-                    navigationLR = "L" + navigationLR;
-                else
-                    navigationLR = navigationLR.replace("L", "");
-                if (event.getScreenX() > scene.getWidth() - Settings.MOUSE_MAP_NAVIGATION_MARGIN)
-                    navigationLR = "R" + navigationLR;
-                else
-                    navigationLR = navigationLR.replace("R", "");
-                if (event.getScreenY() < Settings.MOUSE_MAP_NAVIGATION_MARGIN)
-                    navigationUD = "U" + navigationUD;
-                else
-                    navigationUD = navigationUD.replace("U", "");
-                if (event.getScreenY() > scene.getHeight() - Settings.MOUSE_MAP_NAVIGATION_MARGIN)
-                    navigationUD = "D" + navigationUD;
-                else
-                    navigationUD = navigationUD.replace("D", "");
-            }
-        });
-    }
-    //Refresh game objects position and show them
-    public void updateMap() {
-        //anchorPane.getChildren().add(getMapBackground());
-
-        //anchorPane.getChildren().remove(1);
-        //anchorPane.getChildren().add(getMapObjects());
-        //Offset
-        anchorPane.setTranslateX(viewOffset.x);
-        anchorPane.setTranslateY(viewOffset.y);
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                Menu.stage.setScene(scene);
-            }
-        });
-    }
-
-    //Thread for map update in each game cycle
-    @Override
-    public void run() {
-        while (true) {
-            try {
-                changeViewOffset();
-                showMap();
-                menuOfCreateBuilding();
-                Thread.sleep(1000 / Settings.FRAME_RATE);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public void focusOnGameObject(GameObject gameObject) {
-        viewOffset.x = -1 * (int)(gameObject.position.x - scene.getWidth());
-        viewOffset.y = -1 * (int)(gameObject.position.y - scene.getHeight());
-    }
-}
+package StrongholdCrusader.Map;import StrongholdCrusader.GameObjects.Buildings.Building;import StrongholdCrusader.GameObjects.Buildings.Farm;import StrongholdCrusader.GameObjects.GameObject;import StrongholdCrusader.GameObjects.Humans.Human;import StrongholdCrusader.GameObjects.Pair;import StrongholdCrusader.Menu;import StrongholdCrusader.ResourceManager;import StrongholdCrusader.Settings;import javafx.application.Platform;import javafx.event.ActionEvent;import javafx.event.Event;import javafx.event.EventHandler;import javafx.event.EventType;import javafx.geometry.Insets;import javafx.geometry.Rectangle2D;import javafx.scene.Scene;import javafx.scene.control.Button;import javafx.scene.image.Image;import javafx.scene.image.ImageView;import javafx.scene.input.KeyEvent;import javafx.scene.input.MouseEvent;import javafx.scene.layout.AnchorPane;import javafx.scene.layout.Background;import javafx.scene.layout.BackgroundFill;import javafx.scene.layout.CornerRadii;import javafx.scene.paint.Color;import javafx.scene.text.Font;import javafx.stage.Screen;import java.io.File;import java.io.Serializable;/** * Created by Baran on 6/3/2017. */public class MapGUI implements Runnable, Serializable {    private ResourceManager resourceManager;    private Pair viewOffset;    private Map map;    private String navigationLR, navigationUD;    private AnchorPane anchorPane;    private AnchorPane backgroundAnchorPane, objectsAnchorPane, menusAnchorPane;    private Scene scene;    public MapGUI(Map map) {        this.map = map;        resourceManager = new ResourceManager();        viewOffset = new Pair(0, 0);        navigationLR = "";        navigationUD = "";        anchorPane = new AnchorPane();        scene = new Scene(anchorPane);    }    private void changeViewOffset() {        int mapWidth = Settings.MAP_WIDTH_RESOLUTION * (int) resourceManager.getImage("Plain1").getWidth();        int mapHeight = Settings.MAP_HEIGHT_RESOLUTION * (int) resourceManager.getImage("Plain1").getHeight();        if (navigationLR.length() != 0) {            if (navigationLR.charAt(0) == 'R') {                if (viewOffset.x - Settings.MAP_NAVIGATION_SPEED > -1 * (mapWidth - Settings.MAP_NAVIGATION_SPEED - scene.getWidth())) {                    viewOffset.x -= Settings.MAP_NAVIGATION_SPEED;                }            }            if (navigationLR.charAt(0) == 'L') {                if (viewOffset.x + Settings.MAP_NAVIGATION_SPEED < Settings.MAP_NAVIGATION_SPEED) {                    viewOffset.x += Settings.MAP_NAVIGATION_SPEED;                }            }        }        if (navigationUD.length() != 0) {            if (navigationUD.charAt(0) == 'D') {                if (viewOffset.y - Settings.MAP_NAVIGATION_SPEED > -1 * (mapHeight - Settings.MAP_NAVIGATION_SPEED - scene.getHeight())) {                    viewOffset.y -= Settings.MAP_NAVIGATION_SPEED;                }            }            if (navigationUD.charAt(0) == 'U') {                if (viewOffset.y + Settings.MAP_NAVIGATION_SPEED < Settings.MAP_NAVIGATION_SPEED) {                    viewOffset.y += Settings.MAP_NAVIGATION_SPEED;                }            }        }    }    //menu for create buildings//    private AnchorPane menuOfCreateBuilding() {        AnchorPane anchorPane1 = new AnchorPane();        anchorPane1.setBackground(new Background(new BackgroundFill(Color.DARKGREEN, new CornerRadii(5), Insets.EMPTY)));        anchorPane1.setPadding(new Insets(30));        ImageView farm = new ImageView(resourceManager.getImage("Farm"));        farm.setLayoutX(20);        ImageView quarry = new ImageView(resourceManager.getImage("Quarry"));        quarry.setLayoutX(150);        ImageView market = new ImageView(resourceManager.getImage("Market"));        market.setLayoutX(250);        anchorPane1.getChildren().addAll(farm, quarry, market);        anchorPane1.setLayoutX(100);        anchorPane1.setLayoutY(Screen.getPrimary().getBounds().getHeight() - 150);        return anchorPane1;    }    //Return an AnchorPane containing tile images    public AnchorPane getMapBackground() {        AnchorPane background = new AnchorPane();        for (int i = 0; i < map.tiles.length; i++) {            for (int j = 0; j < map.tiles[i].length; j++) {                Image image = null;                if (map.tiles[i][j] instanceof Sea)                    image = resourceManager.getImage("Sea");                if (map.tiles[i][j] instanceof Plain)                    image = resourceManager.getImage("Plain1");                if (map.tiles[i][j] instanceof Mountain)                    image = resourceManager.getImage("Mountain");                ImageView imageView = new ImageView();                imageView.setImage(image);                imageView.setLayoutX(i * (image.getWidth()));                imageView.setLayoutY(j * (image.getHeight()));                background.getChildren().add(imageView);            }        }        return background;    }    //Return an AnchorPane containing game object images    public AnchorPane getMapObjects() {        AnchorPane objects = new AnchorPane();        for (GameObject object : map.objects) {            Image image = null;            if (object instanceof Building)                image = resourceManager.getImage(object.name);            if (object instanceof Human)                image = resourceManager.getImage(object.name);            ImageView imageView = new ImageView();            imageView.setImage(image);            imageView.setLayoutX(object.position.x);            imageView.setLayoutY(object.position.y);            objects.getChildren().add(imageView);        }        return objects;    }    public AnchorPane getMapMenus() {        AnchorPane menus = new AnchorPane();        Button create = new Button("+");        create.setPrefSize(40, 40);        create.setFont(new Font(20));        create.setLayoutX(10);        create.setLayoutY(10);        create.setOnAction(new EventHandler<ActionEvent>() {            @Override            public void handle(ActionEvent event) {                create.setVisible(false);                anchorPane.getChildren().add(menuOfCreateBuilding());            }        });        menus.getChildren().addAll(create);        menus.setLayoutX(10);        menus.setLayoutY(Screen.getPrimary().getBounds().getHeight() - 70);        return menus;    }    public void showMap() {        backgroundAnchorPane = getMapBackground();        objectsAnchorPane = getMapObjects();        menusAnchorPane = getMapMenus();        backgroundAnchorPane.setTranslateX(viewOffset.x);        backgroundAnchorPane.setTranslateY(viewOffset.y);        objectsAnchorPane.setTranslateX(viewOffset.x);        objectsAnchorPane.setTranslateY(viewOffset.y);        anchorPane.getChildren().addAll(backgroundAnchorPane, objectsAnchorPane, menusAnchorPane);        /*anchorPane.setTranslateX(viewOffset.x);        anchorPane.setTranslateY(viewOffset.y);*/        //Arrow keys navigating        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {            @Override            public void handle(KeyEvent event) {                if (event.getCode().getName().equals("Left") && !navigationLR.contains("L"))                    navigationLR = "L" + navigationLR;                if (event.getCode().getName().equals("Right") && !navigationLR.contains("R"))                    navigationLR = "R" + navigationLR;                if (event.getCode().getName().equals("Up") && !navigationUD.contains("U"))                    navigationUD = "U" + navigationUD;                if (event.getCode().getName().equals("Down") && !navigationUD.contains("D"))                    navigationUD = "D" + navigationUD;            }        });        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {            @Override            public void handle(KeyEvent event) {                if (event.getCode().getName().equals("Left"))                    navigationLR = navigationLR.replace("L", "");                if (event.getCode().getName().equals("Right"))                    navigationLR = navigationLR.replace("R", "");                if (event.getCode().getName().equals("Up"))                    navigationUD = navigationUD.replace("U", "");                if (event.getCode().getName().equals("Down"))                    navigationUD = navigationUD.replace("D", "");            }        });        //Mouse Navigating        scene.setOnMouseMoved(new EventHandler<MouseEvent>() {            @Override            public void handle(MouseEvent event) {                if (event.getScreenX() < Settings.MOUSE_MAP_NAVIGATION_MARGIN)                    navigationLR = "L" + navigationLR;                else                    navigationLR = navigationLR.replace("L", "");                if (event.getScreenX() > scene.getWidth() - Settings.MOUSE_MAP_NAVIGATION_MARGIN)                    navigationLR = "R" + navigationLR;                else                    navigationLR = navigationLR.replace("R", "");                if (event.getScreenY() < Settings.MOUSE_MAP_NAVIGATION_MARGIN)                    navigationUD = "U" + navigationUD;                else                    navigationUD = navigationUD.replace("U", "");                if (event.getScreenY() > scene.getHeight() - Settings.MOUSE_MAP_NAVIGATION_MARGIN)                    navigationUD = "D" + navigationUD;                else                    navigationUD = navigationUD.replace("D", "");            }        });        Platform.runLater(new Runnable() {            @Override            public void run() {                Menu.stage.setScene(scene);                Menu.stage.setMaximized(true);                Menu.stage.setFullScreen(true);                //Menu.stage.show();            }        });    }    //Refresh game objects position and show them    public void updateMap() {        //anchorPane.getChildren().add(getMapBackground());        //anchorPane.getChildren().remove(1);        //anchorPane.getChildren().add(getMapObjects());        //Offset        backgroundAnchorPane.setTranslateX(viewOffset.x);        backgroundAnchorPane.setTranslateY(viewOffset.y);        objectsAnchorPane.setTranslateX(viewOffset.x);        objectsAnchorPane.setTranslateY(viewOffset.y);        Platform.runLater(new Runnable() {            @Override            public void run() {                Menu.stage.setScene(scene);            }        });    }    //Thread for map update in each game cycle    @Override    public void run() {        while (true) {            try {                changeViewOffset();                updateMap();                Thread.sleep(1000 / Settings.FRAME_RATE);            } catch (InterruptedException e) {                e.printStackTrace();            }        }    }    public void focusOnGameObject(GameObject gameObject) {        viewOffset.x = -1 * (int) (gameObject.position.x - scene.getWidth());        viewOffset.y = -1 * (int) (gameObject.position.y - scene.getHeight());    }}

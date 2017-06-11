@@ -200,7 +200,6 @@ public class MenuGUI implements Initializable {
     }
 
     private void goToUsersListPage(boolean showStartButton) {
-
         lbl1.setVisible(false);
         lbl2.setVisible(false);
         visible1.setVisible(false);
