@@ -225,7 +225,6 @@ public class MenuGUI implements Initializable {
 
     private void start() {
         clientPlayer.client.sendGameEvent(GameEvent.START_GAME, "Game started...");
-        clientPlayer.map.showMapScreen();
     }
 
     private void showPlayersPane() {
