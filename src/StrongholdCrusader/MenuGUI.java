@@ -214,7 +214,6 @@ public class MenuGUI implements Initializable {
         startGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Clicked");
                 start();
             }
         });

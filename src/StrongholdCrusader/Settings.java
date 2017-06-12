@@ -11,4 +11,7 @@ public class Settings {
     public static final int MAP_HEIGHT_RESOLUTION = 100;
     public static final int MAP_NAVIGATION_SPEED = 50;
     public static final int MOUSE_MAP_NAVIGATION_MARGIN = 10;
+    public static final int MAP_TILES_WIDTH = 30;
+    public static final int MAP_TILES_HEIGHT = 30;
+
 }

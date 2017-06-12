@@ -48,7 +48,6 @@ public class ClientPlayer {
                 break;
             }
             case GameEvent.START_GAME: {
-                System.out.println("Start");
                 map.showMapScreen();
             }
         }
