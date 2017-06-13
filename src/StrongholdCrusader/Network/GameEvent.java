@@ -14,6 +14,13 @@ public class GameEvent {
     public static final int USER_SUCCESSFULLY_CREATED = 4;
     public static final int ALL_PLAYERS = 5;
     public static final int START_GAME = 6;
+    public static final int WOOD_CUTTER_CREATED = 7;
+    public static final int BARRACKS_CREATED = 8;
+    public static final int MARKET_CREATED = 9;
+    public static final int PORT_CREATED = 10;
+    public static final int QUARRAY_CREATED = 11;
+    public static final int FARM_CREATED = 12;
+    public static final int MAP_OBJECTS = 13;
 
     public int type;
     public String message;

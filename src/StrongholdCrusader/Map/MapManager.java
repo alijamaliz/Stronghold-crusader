@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -25,7 +26,7 @@ public class MapManager implements Serializable {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(filename)));
             for (int i = 0; i < Settings.MAP_WIDTH_RESOLUTION; i++) {
-                String line  = bufferedReader.readLine();
+                String line = bufferedReader.readLine();
                 for (int j = 0; j < Settings.MAP_HEIGHT_RESOLUTION; j++) {
                     if (line.charAt(j) == '0')
                         tiles[i][j] = new Plain();
@@ -42,85 +43,79 @@ public class MapManager implements Serializable {
         }
         return tiles;
     }
-    public void saveMap(Map map,int mapID) ///Saving Map With ObjectStreams into files
+
+    public void saveMap(Map map, int mapID) ///Saving Map With ObjectStreams into files
     {
-        try
-        {
-            File mapFile = new File("../../Resources/maps/map"+mapID+".map");
+        try {
+            File mapFile = new File("../../Resources/maps/map" + mapID + ".map");
             FileOutputStream fileOutputStream = new FileOutputStream(mapFile);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(map);
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     public Map LoadMap(int mapID) /// Loading Map Files which were saved with ObjectStreams
     {
-        Map map=null;
-        try
-        {
-            File mapFile = new File("../../Resources/maps/map"+mapID+".map");
+        Map map = null;
+        try {
+            File mapFile = new File("../../Resources/maps/map" + mapID + ".map");
             FileInputStream fileInputStream = new FileInputStream(mapFile);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             map = (Map) objectInputStream.readObject();
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return map;
     }
+
     public JSONObject mapTilesToJSON(Map map) ///Gives MapTile Array and Environment of map in JSON type
     {
         JSONObject mapTileJSON = new JSONObject();
         JSONArray tiles = new JSONArray();
         JSONArray oneTile = new JSONArray();
         JSONObject pos = new JSONObject();
-        for (int i=0;i<Settings.MAP_WIDTH_RESOLUTION;i++)
-        {
-            for (int j=0;j<Settings.MAP_HEIGHT_RESOLUTION;j++)
-            {
+        for (int i = 0; i < Settings.MAP_WIDTH_RESOLUTION; i++) {
+            for (int j = 0; j < Settings.MAP_HEIGHT_RESOLUTION; j++) {
                 JSONObject tile = (JSONObject) oneTile.clone();
                 JSONObject position = (JSONObject) pos.clone();
-                position.put("x",new Integer(i));
-                position.put("y",new Integer(j));
-                tile.put("position",position);
-                tile.put("type",map.tiles[i][j].type);
-                tile.put("environment",map.tiles[i][j].environment);
+                position.put("x", new Integer(i));
+                position.put("y", new Integer(j));
+                tile.put("position", position);
+                tile.put("type", map.tiles[i][j].type);
+                tile.put("environment", map.tiles[i][j].environment);
                 tiles.add(tile);
             }
         }
-        mapTileJSON.put("tiles",tiles);
+        mapTileJSON.put("tiles", tiles);
         return mapTileJSON;
     }
-    public JSONObject mapObjectsToJSON (Map map) ///Gives objects of map in JSON type
+
+    public static JSONObject mapObjectsToJSON(LinkedList<GameObject> mapObjects) ///Gives objects of map in JSON type
     {
-        JSONObject mapObjectJSON = new JSONObject();
-        JSONObject pos = new JSONObject();
+        JSONObject mapObjectsJSON = new JSONObject();
         JSONArray objects = new JSONArray();
-        JSONObject OneObject = new JSONObject();
-        for (GameObject gameObject : map.objects) {
-            JSONObject object=(JSONObject) OneObject.clone();
-            JSONObject position = (JSONObject) pos.clone();
+        for (GameObject gameObject : mapObjects) {
+            JSONObject object = new JSONObject();
+            JSONObject position = new JSONObject();
             ///adding position to object
-            position.put("x",new Integer(gameObject.position.x));
-            position.put("y",new Integer(gameObject.position.y));
-            object.put("position",position);
+            position.put("x", new Integer(gameObject.position.x));
+            position.put("y", new Integer(gameObject.position.y));
+            object.put("position", position);
             ///adding ownerName to object
-            object.put("ownerName",gameObject.ownerName);
+            object.put("ownerName", gameObject.ownerName);
             ///adding health
-            object.put("health",new Integer(gameObject.health));
-            ///adding name
-            object.put("name",gameObject.name);
+            object.put("health", new Integer(gameObject.health));
             ///adding object type
-            object.put("type",gameObject.type);
+            object.put("type", gameObject.type);
             objects.add(object);
         }
-        mapObjectJSON.put("objects",objects);
-        return mapObjectJSON;
+        mapObjectsJSON.put("objects", objects);
+        return mapObjectsJSON;
     }
-    public Map JSONtilesToMap (JSONObject mapTiles)
-    {
+
+    /*public Map JSONtilesToMap(JSONObject mapTiles) {
         Map map = new Map();
         Integer i;
         Integer j;
@@ -128,37 +123,36 @@ public class MapManager implements Serializable {
         JSONObject pos;
         map.tiles = new MapTile[Settings.MAP_WIDTH_RESOLUTION][Settings.MAP_HEIGHT_RESOLUTION];
         ///GEtting info from JSON
-        JSONArray tiles =(JSONArray) mapTiles.get("tiles");
+        JSONArray tiles = (JSONArray) mapTiles.get("tiles");
         for (Object tileObject : tiles) {
             JSONObject tile = (JSONObject) tileObject;
             pos = (JSONObject) tile.get("position");
-            i=(Integer) pos.get("x");
-            j=(Integer) pos.get("y");
+            i = (Integer) pos.get("x");
+            j = (Integer) pos.get("y");
             String type = (String) tile.get("type");
             environment = (Integer) tile.get("environment");
             ///Creating Tile
-            switch (type)
-            {
-                case "Plain" :
-                {
+            switch (type) {
+                case "Plain": {
                     map.tiles[i.intValue()][j.intValue()] = new Plain();
-                } break;
-                case "Mountain" :
-                {
+                }
+                break;
+                case "Mountain": {
                     map.tiles[i.intValue()][j.intValue()] = new Mountain();
-                } break;
-                case "Sea" :
-                {
+                }
+                break;
+                case "Sea": {
                     map.tiles[i.intValue()][j.intValue()] = new Sea();
-                } break;
+                }
+                break;
             }
-            map.tiles[i.intValue()][j.intValue()].environment=environment;
+            map.tiles[i.intValue()][j.intValue()].environment = environment;
         }
         return map;
-    }
-    public Map JSONobjectsToMap (JSONObject objectArray , Map map)
-    {
-        GameObject addingObject=null;
+    }*/
+
+    public Map JSONobjectsToMap(JSONObject objectArray, Map map) {
+        GameObject addingObject = null;
         Integer i;
         Integer j;
         String ownerName;
@@ -171,68 +165,64 @@ public class MapManager implements Serializable {
             ///Getting info from JSON
             JSONObject oneObject = (JSONObject) object;
             pos = (JSONObject) oneObject.get("position");
-            i=(Integer) pos.get("x");
-            j=(Integer) pos.get("y");
-            ownerName=(String) oneObject.get("ownerName");
+            i = (Integer) pos.get("x");
+            j = (Integer) pos.get("y");
+            ownerName = (String) oneObject.get("ownerName");
             health = (Integer) oneObject.get("health");
-            name= (String) oneObject.get("name");
-            type=(String) oneObject.get("type");
+            name = (String) oneObject.get("name");
+            type = (String) oneObject.get("type");
             ///Creating Object
-            switch (type)
-            {
-                case "Barracks" :
-                {
+            switch (type) {
+                case "Barracks": {
                     addingObject = new Barracks();
-                } break;
-                case "Farm" :
-                {
+                }
+                break;
+                case "Farm": {
                     addingObject = new Farm();
-                } break;
-                case "Market" :
-                {
+                }
+                break;
+                case "Market": {
                     addingObject = new Market();
-                } break;
-                case "Palace" :
-                {
+                }
+                break;
+                case "Palace": {
                     addingObject = new Palace();
-                } break;
-                case "Port" :
-                {
+                }
+                break;
+                case "Port": {
                     addingObject = new Port();
-                } break;
-                case "Quarry" :
-                {
+                }
+                break;
+                case "Quarry": {
                     addingObject = new Quarry();
-                } break;
-                case "WoodCutter" :
-                {
+                }
+                break;
+                case "WoodCutter": {
                     addingObject = new WoodCutter();
-                } break;
-                case "Soldier" :
-                {
+                }
+                break;
+                case "Soldier": {
                     addingObject = new Soldier();
-                } break;
-                case "Vassal" :
-                {
+                }
+                break;
+                case "Vassal": {
                     addingObject = new Vassal();
-                } break;
-                case "Worker" :
-                {
+                }
+                break;
+                case "Worker": {
                     addingObject = new Worker();
-                } break;
+                }
+                break;
             }
             ///Adding info to object
-            if(addingObject!=null)
-            {
-                addingObject.health=health.intValue();
-                addingObject.position.x=i.intValue();
-                addingObject.position.y=j.intValue();
-                addingObject.ownerName=ownerName;
-                addingObject.name=name;
+            if (addingObject != null) {
+                addingObject.health = health.intValue();
+                addingObject.position.x = i.intValue();
+                addingObject.position.y = j.intValue();
+                addingObject.ownerName = ownerName;
             }
             ///Adding to Map
-            if(!map.objects.contains(addingObject))
-            {
+            if (!map.objects.contains(addingObject)) {
                 map.objects.add(addingObject);
             }
         }

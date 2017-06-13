@@ -1,5 +1,9 @@
 package StrongholdCrusader.Network;
 
+import StrongholdCrusader.GameObjects.Buildings.*;
+import StrongholdCrusader.GameObjects.GameObject;
+import StrongholdCrusader.GameObjects.Pair;
+import StrongholdCrusader.Map.MapManager;
 import StrongholdCrusader.Network.ServerPlayer;
 import StrongholdCrusader.Map.Map;
 import StrongholdCrusader.Settings;
@@ -9,13 +13,14 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.net.*;
+import java.util.Random;
 
 /**
  * Created by Baran on 5/29/2017.
  */
 public class Server implements Runnable {
     Thread listenThread;
-    Thread sendMapThread;
+    Thread sendMapObjectsThread;
     DatagramSocket socket;
     Game game;
 
@@ -30,20 +35,19 @@ public class Server implements Runnable {
         listenThread = new Thread(this);
         listenThread.start();
 
-        sendMapThread = new Thread(new Runnable() {
+        sendMapObjectsThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
-                    //sendMapToAll(new Map());
+                    sendMapObjectsToAll();
                     try {
-                        Thread.sleep(1000 / Settings.FRAME_RATE);
+                        Thread.sleep(1000 / Settings.FRAME_RATE * 5);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             }
         });
-        sendMapThread.start();
 
     }
 
@@ -105,6 +109,62 @@ public class Server implements Runnable {
             case GameEvent.START_GAME: {
                 GameEvent startGameEvent = new GameEvent(GameEvent.START_GAME, "Game started...");
                 sendPacketForAll(startGameEvent.getJSON());
+                sendMapObjectsThread.start();
+                break;
+            }
+            case GameEvent.WOOD_CUTTER_CREATED: {
+                int x = Integer.parseInt(gameEvent.message.substring(0, gameEvent.message.indexOf(":")));
+                int y = Integer.parseInt(gameEvent.message.substring(gameEvent.message.indexOf(":") + 1));
+                WoodCutter woodCutter = new WoodCutter();
+                woodCutter.position = new Pair(x, y);
+                woodCutter.id = generateNewID();
+                game.objects.add(woodCutter);
+                break;
+            }
+            case GameEvent.BARRACKS_CREATED: {
+                int x = Integer.parseInt(gameEvent.message.substring(0, gameEvent.message.indexOf(":")));
+                int y = Integer.parseInt(gameEvent.message.substring(gameEvent.message.indexOf(":") + 1));
+                Barracks barracks = new Barracks();
+                barracks.position = new Pair(x, y);
+                barracks.id = generateNewID();
+                game.objects.add(barracks);
+                break;
+            }
+            case GameEvent.FARM_CREATED: {
+                int x = Integer.parseInt(gameEvent.message.substring(0, gameEvent.message.indexOf(":")));
+                int y = Integer.parseInt(gameEvent.message.substring(gameEvent.message.indexOf(":") + 1));
+                Farm farm = new Farm();
+                farm.position = new Pair(x, y);
+                farm.id = generateNewID();
+                game.objects.add(farm);
+                break;
+            }
+            case GameEvent.MARKET_CREATED: {
+                int x = Integer.parseInt(gameEvent.message.substring(0, gameEvent.message.indexOf(":")));
+                int y = Integer.parseInt(gameEvent.message.substring(gameEvent.message.indexOf(":") + 1));
+                Market market = new Market();
+                market.position = new Pair(x, y);
+                market.id = generateNewID();
+                game.objects.add(market);
+                break;
+            }
+            case GameEvent.QUARRAY_CREATED: {
+                int x = Integer.parseInt(gameEvent.message.substring(0, gameEvent.message.indexOf(":")));
+                int y = Integer.parseInt(gameEvent.message.substring(gameEvent.message.indexOf(":") + 1));
+                Quarry quarry = new Quarry();
+                quarry.position = new Pair(x, y);
+                quarry.id = generateNewID();
+                game.objects.add(quarry);
+                break;
+            }
+            case GameEvent.PORT_CREATED: {
+                int x = Integer.parseInt(gameEvent.message.substring(0, gameEvent.message.indexOf(":")));
+                int y = Integer.parseInt(gameEvent.message.substring(gameEvent.message.indexOf(":") + 1));
+                Port portBuilding = new Port();
+                portBuilding.position = new Pair(x, y);
+                portBuilding.id = generateNewID();
+                game.objects.add(portBuilding);
+                break;
             }
         }
     }
@@ -130,6 +190,12 @@ public class Server implements Runnable {
         sendPacketForAll("Map");
     }
 
+    public void sendMapObjectsToAll() {
+        String objects = MapManager.mapObjectsToJSON(game.objects).toJSONString();
+        GameEvent gameEvent = new GameEvent(GameEvent.MAP_OBJECTS, objects);
+        sendPacketForAll(gameEvent.getJSON());
+    }
+
     public boolean isUsernameAvailable(String username) {
         for (ServerPlayer player : game.players) {
             if (player.playerName.equals(username))
@@ -146,5 +212,21 @@ public class Server implements Runnable {
             e.printStackTrace();
         }
         return serverIP;
+    }
+
+    private int generateNewID() {
+        int id = new Random().nextInt(9999) + 1000;
+        while (isDuplicateId(id)) {
+            id = new Random().nextInt(9999) + 1000;
+        }
+        return id;
+    }
+
+    private boolean isDuplicateId(int id) {
+        for (GameObject object : game.objects) {
+            if (object.id == id)
+                return true;
+        }
+        return false;
     }
 }

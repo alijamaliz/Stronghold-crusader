@@ -118,8 +118,8 @@ public class Client implements Runnable {
     }
 
     public Map getLastServerMap() {
-        Map lastMap = new Map();
+        //Map lastMap = new Map();
         //TODO parse map from string
-        return lastMap;
+        return null;
     }
 }
