@@ -5,6 +5,7 @@ import StrongholdCrusader.GameObjects.GameObject;
 import StrongholdCrusader.GameObjects.Humans.Soldier;
 import StrongholdCrusader.GameObjects.Humans.Vassal;
 import StrongholdCrusader.GameObjects.Humans.Worker;
+import StrongholdCrusader.GameObjects.Pair;
 import StrongholdCrusader.Settings;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -42,6 +43,17 @@ public class MapManager implements Serializable {
             e.printStackTrace();
         }
         return tiles;
+    }
+
+    public static ArrayList<Pair> getMapPalacePositionsById(int id) {
+        ArrayList<Pair> positions = new ArrayList<>();
+        positions.add(new Pair(5 , 5));
+        positions.add(new Pair(45 , 5));
+        positions.add(new Pair(80 , 5));
+        positions.add(new Pair(5 , 85));
+        positions.add(new Pair(45 , 85));
+        positions.add(new Pair(80 , 85));
+        return positions;
     }
 
     public void saveMap(Map map, int mapID) ///Saving Map With ObjectStreams into files

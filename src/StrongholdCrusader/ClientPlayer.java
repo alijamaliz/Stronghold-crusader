@@ -71,14 +71,19 @@ public class ClientPlayer {
                         int id = new Integer(((Long) (obj.get("id"))).intValue());
                         int health = new Integer(((Long) (obj.get("health"))).intValue());
                         if (map.findGameObjectObjectById(id) == null) { //Create object
+                            if (obj.get("type").equals("Palace")) {
+                                Palace palace = new Palace();
+                                palace.position = new Pair(x, y);
+                                palace.id = id;
+                                palace.health = health;
+                                map.objects.add(palace);
+                            }
                             if (obj.get("type").equals("WoodCutter")) {
-                                if (map.findGameObjectObjectById(id) == null) {
-                                    WoodCutter woodCutter = new WoodCutter();
-                                    woodCutter.position = new Pair(x, y);
-                                    woodCutter.id = id;
-                                    woodCutter.health = health;
-                                    map.objects.add(woodCutter);
-                                }
+                                WoodCutter woodCutter = new WoodCutter();
+                                woodCutter.position = new Pair(x, y);
+                                woodCutter.id = id;
+                                woodCutter.health = health;
+                                map.objects.add(woodCutter);
                             }
                             if (obj.get("type").equals("Quarry")) {
                                 Quarry quarry = new Quarry();

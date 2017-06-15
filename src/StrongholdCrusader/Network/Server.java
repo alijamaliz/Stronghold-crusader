@@ -91,6 +91,15 @@ public class Server implements Runnable {
                 String username = gameEvent.message;
                 if (isUsernameAvailable(username)) {
                     game.players.add(new ServerPlayer(username, address, port));
+
+                    //Create new user Palace
+                    Palace palace = new Palace();
+                    palace.position = game.getRandomPalacePosition();
+                    palace.health = 100;
+                    palace.id = generateNewID();
+                    palace.ownerName = getSenderPlayerName(address);
+                    game.objects.add(palace);
+
                     //Send OK result for client
                     GameEvent createGameEvent = new GameEvent(GameEvent.USER_SUCCESSFULLY_CREATED, "ClientPlayer " + username + " created!");
                     sendPacket(createGameEvent.getJSON(), address, port);

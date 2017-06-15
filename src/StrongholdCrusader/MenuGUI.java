@@ -246,8 +246,6 @@ public class MenuGUI implements Initializable {
 
     public void addPlayerToTable(String username, String address) {
         numberOfUsers++;
-        System.out.println(username + ":" + address);
-        System.out.println(numberOfUsers);
         Label usernameLabel = new Label(username);
         Label addressLabel = new Label(address);
         addressLabel.setPrefWidth(150);
