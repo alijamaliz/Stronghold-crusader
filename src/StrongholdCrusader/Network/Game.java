@@ -12,10 +12,11 @@ import java.util.LinkedList;
 public class Game {
     public LinkedList<ServerPlayer> players;
     public LinkedList<GameObject> objects;
+    public int mapId;
 
-    public Game() {
+    public Game(int mapId) {
         players = new LinkedList<>();
         objects = new LinkedList<>();
-
+        this.mapId = mapId;
     }
 }

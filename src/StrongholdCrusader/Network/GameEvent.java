@@ -21,6 +21,7 @@ public class GameEvent {
     public static final int QUARRAY_CREATED = 11;
     public static final int FARM_CREATED = 12;
     public static final int MAP_OBJECTS = 13;
+    public static final int MAP_ID = 14;
 
     public int type;
     public String message;

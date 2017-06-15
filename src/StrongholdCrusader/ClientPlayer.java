@@ -55,13 +55,12 @@ public class ClientPlayer {
                 break;
             }
             case GameEvent.START_GAME: {
+                map.setMapId(Integer.parseInt(gameEvent.message));
                 map.showMapScreen();
+                break;
             }
             case GameEvent.MAP_OBJECTS: {
                 JSONParser jsonParser = new JSONParser();
-                //System.out.println(gameEvent.message);
-                //System.out.println(map.objects.size());
-                System.out.println();
                 try {
                     JSONObject objects = (JSONObject) jsonParser.parse(gameEvent.message);
                     JSONArray objectsArray = (JSONArray) objects.get("objects");
@@ -125,6 +124,7 @@ public class ClientPlayer {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+                break;
             }
         }
     }

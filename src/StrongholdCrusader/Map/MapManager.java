@@ -20,7 +20,7 @@ import java.util.LinkedList;
 public class MapManager implements Serializable {
     //Get default maps by id
     //0 is Plain, 1 is Mountain, 2 is Sea
-    public MapTile[][] getMapById(int id) {
+    public static MapTile[][] getMapTilesById(int id) {
         MapTile[][] tiles = new MapTile[Settings.MAP_WIDTH_RESOLUTION][Settings.MAP_HEIGHT_RESOLUTION];
         String filename = "Resources/maps/map" + id + ".map";
         try {
@@ -70,21 +70,20 @@ public class MapManager implements Serializable {
         return map;
     }
 
-    public JSONObject mapTilesToJSON(Map map) ///Gives MapTile Array and Environment of map in JSON type
+    public static JSONObject mapTilesToJSON(int mapId) ///Gives MapTile Array and Environment of map in JSON type
     {
+        MapTile[][] tilesArray = getMapTilesById(mapId);
         JSONObject mapTileJSON = new JSONObject();
         JSONArray tiles = new JSONArray();
-        JSONArray oneTile = new JSONArray();
-        JSONObject pos = new JSONObject();
         for (int i = 0; i < Settings.MAP_WIDTH_RESOLUTION; i++) {
             for (int j = 0; j < Settings.MAP_HEIGHT_RESOLUTION; j++) {
-                JSONObject tile = (JSONObject) oneTile.clone();
-                JSONObject position = (JSONObject) pos.clone();
+                JSONObject tile = new JSONObject();
+                JSONObject position = new JSONObject();
                 position.put("x", new Integer(i));
                 position.put("y", new Integer(j));
                 tile.put("position", position);
-                tile.put("type", map.tiles[i][j].type);
-                tile.put("environment", map.tiles[i][j].environment);
+                tile.put("type", tilesArray[i][j].type);
+                tile.put("environment", tilesArray[i][j].environment);
                 tiles.add(tile);
             }
         }

@@ -4,8 +4,6 @@ import StrongholdCrusader.GameObjects.Buildings.*;
 import StrongholdCrusader.GameObjects.GameObject;
 import StrongholdCrusader.GameObjects.Pair;
 import StrongholdCrusader.Map.MapManager;
-import StrongholdCrusader.Network.ServerPlayer;
-import StrongholdCrusader.Map.Map;
 import StrongholdCrusader.Settings;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -25,7 +23,7 @@ public class Server implements Runnable {
     Game game;
 
     public Server(int mapId) {
-        game = new Game();
+        game = new Game(mapId);
 
         try {
             socket = new DatagramSocket(Settings.SERVER_PORT);
@@ -107,8 +105,9 @@ public class Server implements Runnable {
                 break;
             }
             case GameEvent.START_GAME: {
-                GameEvent startGameEvent = new GameEvent(GameEvent.START_GAME, "Game started...");
+                GameEvent startGameEvent = new GameEvent(GameEvent.START_GAME, String.valueOf(game.mapId));
                 sendPacketForAll(startGameEvent.getJSON());
+                //sendMapToAll();
                 sendMapObjectsThread.start();
                 break;
             }
@@ -200,8 +199,10 @@ public class Server implements Runnable {
         }
     }
 
-    public void sendMapToAll(Map map) {
-        sendPacketForAll("Map");
+    public void sendMapToAll() {
+        //String mapString = MapManager.mapTilesToJSON(game.mapId).toJSONString();
+        GameEvent mapGameEvent = new GameEvent(GameEvent.MAP_ID, String.valueOf(game.mapId));
+        sendPacketForAll(mapGameEvent.getJSON());
     }
 
     public void sendMapObjectsToAll() {
