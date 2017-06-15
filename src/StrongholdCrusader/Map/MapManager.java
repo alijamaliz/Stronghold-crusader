@@ -99,6 +99,8 @@ public class MapManager implements Serializable {
         for (GameObject gameObject : mapObjects) {
             JSONObject object = new JSONObject();
             JSONObject position = new JSONObject();
+            ///adding id to object
+            object.put("id", gameObject.id);
             ///adding position to object
             position.put("x", new Integer(gameObject.position.x));
             position.put("y", new Integer(gameObject.position.y));

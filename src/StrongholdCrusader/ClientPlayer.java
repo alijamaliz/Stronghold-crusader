@@ -59,7 +59,9 @@ public class ClientPlayer {
             }
             case GameEvent.MAP_OBJECTS: {
                 JSONParser jsonParser = new JSONParser();
-                System.out.println(gameEvent.message);
+                //System.out.println(gameEvent.message);
+                //System.out.println(map.objects.size());
+                System.out.println();
                 try {
                     JSONObject objects = (JSONObject) jsonParser.parse(gameEvent.message);
                     JSONArray objectsArray = (JSONArray) objects.get("objects");
@@ -69,44 +71,55 @@ public class ClientPlayer {
                         int y = new Integer(((Long) (((JSONObject) obj.get("position")).get("y"))).intValue());
                         int id = new Integer(((Long) (obj.get("id"))).intValue());
                         int health = new Integer(((Long) (obj.get("health"))).intValue());
-                        if (obj.get("type") == "WoodCutter") {
-                            if (map.findGameObjectObjectById(id) == null) {
-                                WoodCutter woodCutter = new WoodCutter();
-                                woodCutter.position = new Pair(x, y);
-                                woodCutter.id = id;
-                                woodCutter.health = health;
-                                map.objects.add(woodCutter);
+                        if (map.findGameObjectObjectById(id) == null) { //Create object
+                            if (obj.get("type").equals("WoodCutter")) {
+                                if (map.findGameObjectObjectById(id) == null) {
+                                    WoodCutter woodCutter = new WoodCutter();
+                                    woodCutter.position = new Pair(x, y);
+                                    woodCutter.id = id;
+                                    woodCutter.health = health;
+                                    map.objects.add(woodCutter);
+                                }
                             }
-                            else {
-                                GameObject gameObject = map.findGameObjectObjectById(id);
-                                gameObject.position = new Pair(x, y);
-                                gameObject.health = health;
+                            if (obj.get("type").equals("Quarry")) {
+                                Quarry quarry = new Quarry();
+                                quarry.position = new Pair(x, y);
+                                quarry.id = id;
+                                quarry.health = health;
+                                map.objects.add(quarry);
                             }
-                        }
-                        if (obj.get("type") == "Quarry") {
-                            Quarry quarry = new Quarry();
-                            quarry.position = new Pair(x, y);
-                            map.objects.add(quarry);
-                        }
-                        if (obj.get("type") == "Market") {
-                            Market market = new Market();
-                            market.position = new Pair(x, y);
-                            map.objects.add(market);
-                        }
-                        if (obj.get("type") == "Port") {
-                            Port port = new Port();
-                            port.position = new Pair(x, y);
-                            map.objects.add(port);
-                        }
-                        if (obj.get("type") == "Farm") {
-                            Farm farm = new Farm();
-                            farm.position = new Pair(x, y);
-                            map.objects.add(farm);
-                        }
-                        if (obj.get("type") == "Barracks") {
-                            Barracks barracks = new Barracks();
-                            barracks.position = new Pair(x, y);
-                            map.objects.add(barracks);
+                            if (obj.get("type").equals("Market")) {
+                                Market market = new Market();
+                                market.position = new Pair(x, y);
+                                market.id = id;
+                                market.health = health;
+                                map.objects.add(market);
+                            }
+                            if (obj.get("type").equals("Port")) {
+                                Port port = new Port();
+                                port.position = new Pair(x, y);
+                                port.id = id;
+                                port.health = health;
+                                map.objects.add(port);
+                            }
+                            if (obj.get("type").equals("Farm")) {
+                                Farm farm = new Farm();
+                                farm.position = new Pair(x, y);
+                                farm.id = id;
+                                farm.health = health;
+                                map.objects.add(farm);
+                            }
+                            if (obj.get("type").equals("Barracks")) {
+                                Barracks barracks = new Barracks();
+                                barracks.position = new Pair(x, y);
+                                barracks.id = id;
+                                barracks.health = health;
+                                map.objects.add(barracks);
+                            }
+                        } else { //Update object
+                            GameObject gameObject = map.findGameObjectObjectById(id);
+                            gameObject.position = new Pair(x, y);
+                            gameObject.health = health;
                         }
                     }
                 } catch (ParseException e) {

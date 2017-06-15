@@ -118,6 +118,7 @@ public class Server implements Runnable {
                 WoodCutter woodCutter = new WoodCutter();
                 woodCutter.position = new Pair(x, y);
                 woodCutter.id = generateNewID();
+                woodCutter.ownerName = getSenderPlayerName(address);
                 game.objects.add(woodCutter);
                 break;
             }
@@ -127,6 +128,7 @@ public class Server implements Runnable {
                 Barracks barracks = new Barracks();
                 barracks.position = new Pair(x, y);
                 barracks.id = generateNewID();
+                barracks.ownerName = getSenderPlayerName(address);
                 game.objects.add(barracks);
                 break;
             }
@@ -136,6 +138,7 @@ public class Server implements Runnable {
                 Farm farm = new Farm();
                 farm.position = new Pair(x, y);
                 farm.id = generateNewID();
+                farm.ownerName = getSenderPlayerName(address);
                 game.objects.add(farm);
                 break;
             }
@@ -145,6 +148,7 @@ public class Server implements Runnable {
                 Market market = new Market();
                 market.position = new Pair(x, y);
                 market.id = generateNewID();
+                market.ownerName = getSenderPlayerName(address);
                 game.objects.add(market);
                 break;
             }
@@ -154,6 +158,7 @@ public class Server implements Runnable {
                 Quarry quarry = new Quarry();
                 quarry.position = new Pair(x, y);
                 quarry.id = generateNewID();
+                quarry.ownerName = getSenderPlayerName(address);
                 game.objects.add(quarry);
                 break;
             }
@@ -163,10 +168,19 @@ public class Server implements Runnable {
                 Port portBuilding = new Port();
                 portBuilding.position = new Pair(x, y);
                 portBuilding.id = generateNewID();
+                portBuilding.ownerName = getSenderPlayerName(address);
                 game.objects.add(portBuilding);
                 break;
             }
         }
+    }
+
+    private String getSenderPlayerName(InetAddress address) {
+        for (ServerPlayer player : game.players) {
+            if (player.address.getHostAddress().equals(address.getHostAddress()))
+                return player.playerName;
+        }
+        return "Unknown";
     }
 
     private boolean sendPacket(String body, InetAddress address, int port) {
