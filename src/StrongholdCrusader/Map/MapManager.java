@@ -10,6 +10,8 @@ import StrongholdCrusader.Settings;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -24,6 +26,21 @@ public class MapManager implements Serializable {
     public static MapTile[][] getMapTilesById(int id) {
         MapTile[][] tiles = new MapTile[Settings.MAP_WIDTH_RESOLUTION][Settings.MAP_HEIGHT_RESOLUTION];
         String filename = "Resources/maps/map" + id + ".map";
+        /*String content = "";
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(filename)));
+            String line = "";
+            while ((line = bufferedReader.readLine()) != null && line.length() != 0) {
+                content += line;
+            }
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        JSONParser jsonParser = new JSONParser();
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(content);
+        */
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(filename)));
             for (int i = 0; i < Settings.MAP_WIDTH_RESOLUTION; i++) {
@@ -47,12 +64,12 @@ public class MapManager implements Serializable {
 
     public static ArrayList<Pair> getMapPalacePositionsById(int id) {
         ArrayList<Pair> positions = new ArrayList<>();
-        positions.add(new Pair(5 , 5));
-        positions.add(new Pair(45 , 5));
-        positions.add(new Pair(80 , 5));
-        positions.add(new Pair(5 , 85));
-        positions.add(new Pair(45 , 85));
-        positions.add(new Pair(80 , 85));
+        positions.add(new Pair(5, 5));
+        positions.add(new Pair(45, 5));
+        positions.add(new Pair(80, 5));
+        positions.add(new Pair(5, 85));
+        positions.add(new Pair(45, 85));
+        positions.add(new Pair(80, 85));
         return positions;
     }
 
