@@ -8,5 +8,9 @@ import java.util.LinkedList;
  */
 public abstract class MapTile implements Serializable {
     String type;
-    Integer environment;
+    public boolean filled;
+
+    public MapTile() {
+        filled = false;
+    }
 }

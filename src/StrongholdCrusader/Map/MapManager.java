@@ -112,7 +112,7 @@ public class MapManager implements Serializable {
                 position.put("y", new Integer(j));
                 tile.put("position", position);
                 tile.put("type", tilesArray[i][j].type);
-                tile.put("environment", tilesArray[i][j].environment);
+//                tile.put("environment", tilesArray[i][j].environment);
                 tiles.add(tile);
             }
         }

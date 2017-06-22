@@ -98,7 +98,7 @@ public class Server implements Runnable {
                     palace.health = 100;
                     palace.id = generateNewID();
                     palace.ownerName = getSenderPlayerName(address);
-                    game.objects.add(palace);
+                    game.addBuildingToMap(palace);
 
                     //Send OK result for client
                     GameEvent createGameEvent = new GameEvent(GameEvent.USER_SUCCESSFULLY_CREATED, "ClientPlayer " + username + " created!");
@@ -127,7 +127,8 @@ public class Server implements Runnable {
                 woodCutter.position = new Pair(x, y);
                 woodCutter.id = generateNewID();
                 woodCutter.ownerName = getSenderPlayerName(address);
-                game.objects.add(woodCutter);
+                if (game.buildingCanCreate(woodCutter))
+                    game.addBuildingToMap(woodCutter);
                 break;
             }
             case GameEvent.BARRACKS_CREATED: {
@@ -137,7 +138,8 @@ public class Server implements Runnable {
                 barracks.position = new Pair(x, y);
                 barracks.id = generateNewID();
                 barracks.ownerName = getSenderPlayerName(address);
-                game.objects.add(barracks);
+                if (game.buildingCanCreate(barracks))
+                    game.addBuildingToMap(barracks);
                 break;
             }
             case GameEvent.FARM_CREATED: {
@@ -147,7 +149,8 @@ public class Server implements Runnable {
                 farm.position = new Pair(x, y);
                 farm.id = generateNewID();
                 farm.ownerName = getSenderPlayerName(address);
-                game.objects.add(farm);
+                if (game.buildingCanCreate(farm))
+                    game.addBuildingToMap(farm);
                 break;
             }
             case GameEvent.MARKET_CREATED: {
@@ -157,7 +160,8 @@ public class Server implements Runnable {
                 market.position = new Pair(x, y);
                 market.id = generateNewID();
                 market.ownerName = getSenderPlayerName(address);
-                game.objects.add(market);
+                if (game.buildingCanCreate(market))
+                    game.addBuildingToMap(market);
                 break;
             }
             case GameEvent.QUARRAY_CREATED: {
@@ -167,7 +171,8 @@ public class Server implements Runnable {
                 quarry.position = new Pair(x, y);
                 quarry.id = generateNewID();
                 quarry.ownerName = getSenderPlayerName(address);
-                game.objects.add(quarry);
+                if (game.buildingCanCreate(quarry))
+                    game.addBuildingToMap(quarry);
                 break;
             }
             case GameEvent.PORT_CREATED: {
@@ -177,7 +182,8 @@ public class Server implements Runnable {
                 portBuilding.position = new Pair(x, y);
                 portBuilding.id = generateNewID();
                 portBuilding.ownerName = getSenderPlayerName(address);
-                game.objects.add(portBuilding);
+                if (game.buildingCanCreate(portBuilding))
+                    game.addBuildingToMap(portBuilding);
                 break;
             }
         }
