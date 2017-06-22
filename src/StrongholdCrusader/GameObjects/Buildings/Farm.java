@@ -1,5 +1,6 @@
 package StrongholdCrusader.GameObjects.Buildings;
 
+import StrongholdCrusader.GameObjects.Pair;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -12,11 +13,13 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class Farm extends Building {
-    public Farm()
-    {
-        this.type="Farm";
+    public Farm() {
+        this.type = "Farm";
+        this.size = new Pair(4, 4);
     }
+
     public AnchorPane anchorPane;
+
     @Override
     public AnchorPane clickAction() {
 
@@ -33,8 +36,8 @@ public class Farm extends Building {
         imageView.setLayoutX(170);
         distroy.setLayoutX(170);
         distroy.setLayoutY(150);
-        anchorPane.getChildren().addAll(imageView,distroy);
-        anchorPane.setPrefSize(500,250);
+        anchorPane.getChildren().addAll(imageView, distroy);
+        anchorPane.setPrefSize(500, 250);
         return anchorPane;
     }
 }

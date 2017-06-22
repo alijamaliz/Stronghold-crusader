@@ -1,5 +1,6 @@
 package StrongholdCrusader.GameObjects.Buildings;
 
+import StrongholdCrusader.GameObjects.Pair;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -13,10 +14,11 @@ import java.util.Queue;
  * Created by Baran on 5/29/2017.
  */
 public class Quarry extends Building {
-    public Quarry()
-    {
-        this.type="Quarry";
+    public Quarry() {
+        this.type = "Quarry";
+        this.size = new Pair(4, 4);
     }
+
     @Override
     public AnchorPane clickAction() {
         anchorPane = new AnchorPane();
@@ -32,8 +34,8 @@ public class Quarry extends Building {
         imageView.setLayoutX(170);
         distroy.setLayoutX(170);
         distroy.setLayoutY(150);
-        anchorPane.getChildren().addAll(imageView,distroy);
-        anchorPane.setPrefSize(500,250);
+        anchorPane.getChildren().addAll(imageView, distroy);
+        anchorPane.setPrefSize(500, 250);
         return anchorPane;
     }
 }

@@ -1,5 +1,6 @@
 package StrongholdCrusader.GameObjects.Buildings;
 
+import StrongholdCrusader.GameObjects.Pair;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -12,11 +13,13 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class Market extends Building {
-    public Market()
-    {
-        this.type="Market";
+    public Market() {
+        this.type = "Market";
+        this.size = new Pair(4, 4);
     }
+
     public AnchorPane anchorPane;
+
     @Override
     public AnchorPane clickAction() {
         anchorPane = new AnchorPane();
@@ -142,8 +145,8 @@ public class Market extends Building {
         back.setLayoutX(300);
         back.setLayoutY(200);
 
-        anchorPane.getChildren().addAll(buildingImage,distroy,stone,wood,iron,buy,sell,back);
-        anchorPane.setPrefSize(500,250);
+        anchorPane.getChildren().addAll(buildingImage, distroy, stone, wood, iron, buy, sell, back);
+        anchorPane.setPrefSize(500, 250);
         return anchorPane;
     }
 }
