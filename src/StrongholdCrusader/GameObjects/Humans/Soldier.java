@@ -1,10 +1,12 @@
 package StrongholdCrusader.GameObjects.Humans;
 
+import StrongholdCrusader.Map.MapTile;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.File;
+import java.util.LinkedList;
 
 /**
  * Created by Baran on 5/29/2017.
@@ -28,5 +30,11 @@ public class Soldier extends Human {
         anchorPane.setPrefHeight(100);
         anchorPane.setPrefWidth(300);
         return anchorPane;
+    }
+
+    @Override
+    public LinkedList<MapTile> territory() {
+        ///TODO
+        return null;
     }
 }
