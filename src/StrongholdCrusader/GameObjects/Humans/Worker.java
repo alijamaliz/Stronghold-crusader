@@ -1,10 +1,12 @@
 package StrongholdCrusader.GameObjects.Humans;
 
+import StrongholdCrusader.Map.MapTile;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.File;
+import java.util.LinkedList;
 
 /**
  * Created by Baran on 5/29/2017.
@@ -26,5 +28,19 @@ public class Worker extends Human {
         anchorPane.getChildren().addAll(imageView,button);
         anchorPane.setPrefSize(300,100);
         return anchorPane;
+    }
+
+    @Override
+    public LinkedList<MapTile> territory() {
+        ///TODO
+        return null;
+    }
+    public void getResorces()
+    {
+        ///TODO
+    }
+    public void useResources()
+    {
+        ///TODO
     }
 }
