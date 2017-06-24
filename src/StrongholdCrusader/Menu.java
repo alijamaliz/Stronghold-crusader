@@ -34,6 +34,7 @@ public class Menu extends Application  {
             }
         });
 
+
         try {
             Menu.stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("ui/menu.fxml"))));
         } catch (IOException e) {
