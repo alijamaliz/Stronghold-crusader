@@ -1,5 +1,6 @@
 package StrongholdCrusader.GameObjects.Humans;
 
+import StrongholdCrusader.Map.Map;
 import StrongholdCrusader.Map.MapTile;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -28,7 +29,7 @@ public class Vassal extends Human {
     }
 
     @Override
-    public LinkedList<MapTile> territory() {
+    public LinkedList<MapTile> territory(Map map, MapTile tile) {
         ///TODO
         return null;
     }

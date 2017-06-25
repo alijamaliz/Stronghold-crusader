@@ -47,11 +47,11 @@ public class MapManager implements Serializable {
                 String line = bufferedReader.readLine();
                 for (int j = 0; j < Settings.MAP_HEIGHT_RESOLUTION; j++) {
                     if (line.charAt(j) == '0')
-                        tiles[i][j] = new Plain();
+                        tiles[i][j] = new Plain(i,j);
                     if (line.charAt(j) == '1')
-                        tiles[i][j] = new Mountain();
+                        tiles[i][j] = new Mountain(i,j);
                     if (line.charAt(0) == '2')
-                        tiles[i][j] = new Sea();
+                        tiles[i][j] = new Sea(i,j);
                 }
             }
         } catch (FileNotFoundException e) {
