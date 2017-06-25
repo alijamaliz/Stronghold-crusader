@@ -14,7 +14,6 @@ public abstract class Human extends GameObject {
     int power;
     boolean can_climb;
     int speed;
-    abstract AnchorPane clickAction();
     public void attack(GameObject object)
     {
         if (this.health > 0 && object.health>0)

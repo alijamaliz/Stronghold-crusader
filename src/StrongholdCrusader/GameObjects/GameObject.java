@@ -1,5 +1,7 @@
 package StrongholdCrusader.GameObjects;
 
+import javafx.scene.layout.AnchorPane;
+
 import java.io.Serializable;
 
 /**
@@ -15,4 +17,6 @@ public abstract class GameObject implements Serializable {
     public GameObject() {
         health = 100;
     }
+
+    public abstract AnchorPane clickAction();
 }
