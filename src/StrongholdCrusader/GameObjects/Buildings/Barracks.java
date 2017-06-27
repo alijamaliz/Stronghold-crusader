@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 
 import java.io.File;
 
@@ -50,7 +51,11 @@ public class Barracks extends Building {
         createSoldier.setLayoutX(270);
         createSoldier.setLayoutY(210);
         anchorPane.getChildren().addAll(buildingImage, createSoldier, soldierImage, distroy);
-        anchorPane.setPrefSize(500, 250);
+        anchorPane.setPrefSize(400, 260);
+        anchorPane.setLayoutX(20);
+        anchorPane.setLayoutY(Screen.getPrimary().getBounds().getHeight()-280);
+        anchorPane.setId("barracks");
+        anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         return anchorPane;
     }
 }

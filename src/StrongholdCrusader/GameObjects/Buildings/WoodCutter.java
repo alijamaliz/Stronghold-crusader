@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 
 import java.io.File;
 
@@ -37,6 +38,10 @@ public class WoodCutter extends Building {
         distroy.setLayoutY(150);
         anchorPane.getChildren().addAll(imageView, distroy);
         anchorPane.setPrefSize(500, 250);
+        anchorPane.setLayoutX(20);
+        anchorPane.setId("barracks");
+        anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
+        anchorPane.setLayoutY(Screen.getPrimary().getBounds().getHeight()-270);
         return anchorPane;
     }
 }

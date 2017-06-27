@@ -3,9 +3,16 @@ package StrongholdCrusader.GameObjects.Buildings;
 import StrongholdCrusader.GameObjects.Pair;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 
 import java.io.File;
 
@@ -34,6 +41,11 @@ public class Market extends Building {
         back.setVisible(false);
         buy.setVisible(false);
         sell.setVisible(false);
+        buy.setId("marketBuy");
+        sell.setId("marketSell");
+        stone.setId("stone");
+        wood.setId("wood");
+        iron.setId("iron");
         stone.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -144,9 +156,11 @@ public class Market extends Building {
         buy.setLayoutY(120);
         back.setLayoutX(300);
         back.setLayoutY(200);
-
         anchorPane.getChildren().addAll(buildingImage, distroy, stone, wood, iron, buy, sell, back);
-        anchorPane.setPrefSize(500, 250);
+        anchorPane.setLayoutX(10);
+        anchorPane.setLayoutY(Screen.getPrimary().getBounds().getHeight()-270);
+        anchorPane.setId("marketMenu");
+        anchorPane.getStylesheets().add("StrongholdCrusader/css/market.css");
         return anchorPane;
     }
 }
