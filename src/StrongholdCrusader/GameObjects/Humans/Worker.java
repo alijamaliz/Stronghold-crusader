@@ -40,6 +40,7 @@ public class Worker extends Human {
     {
         ///TODO
     }
+    @Override
     public void useResources()
     {
         ///TODO

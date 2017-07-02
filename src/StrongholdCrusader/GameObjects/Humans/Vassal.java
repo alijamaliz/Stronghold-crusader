@@ -33,4 +33,9 @@ public class Vassal extends Human {
         ///TODO
         return null;
     }
+
+    @Override
+    public void useResources() {
+
+    }
 }

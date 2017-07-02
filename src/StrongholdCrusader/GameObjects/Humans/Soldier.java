@@ -38,4 +38,10 @@ public class Soldier extends Human {
         ///TODO
         return null;
     }
+
+    @Override
+    public void useResources() {
+        ///TODO
+    }
+
 }

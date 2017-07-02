@@ -31,27 +31,6 @@ public abstract class Human extends GameObject {
     {
         //TODO
     }
-    public LinkedList<MapTile> findRoute(MapTile start , MapTile end)
-    {
-        //TODO
-        return null;
-    }
-    public LinkedList<MapTile> adjacentTiles(Map map,MapTile tile)
-    {
-        LinkedList<MapTile> adjacent_tiles = new LinkedList<>();
-        try{
-            adjacent_tiles.add(map.tiles[tile.position.x-1][tile.position.y]);
-        }catch (NullPointerException e) {}
-        try{
-            adjacent_tiles.add(map.tiles[tile.position.x+1][tile.position.y]);
-        }catch (NullPointerException e) {}
-        try{
-            adjacent_tiles.add(map.tiles[tile.position.x][tile.position.y-1]);
-        }catch (NullPointerException e) {}
-        try{
-            adjacent_tiles.add(map.tiles[tile.position.x-1][tile.position.y+1]);
-        }catch (NullPointerException e) {}
-        return adjacent_tiles;
-    }
     public abstract LinkedList<MapTile> territory(Map map,MapTile tile);
+    public abstract void useResources();
 }

@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 
 import java.io.File;
 
@@ -33,11 +34,13 @@ public class Farm extends Building {
 
             }
         });
-        imageView.setLayoutX(170);
-        distroy.setLayoutX(170);
+        imageView.setLayoutX(140);
+        distroy.setLayoutX(140);
         distroy.setLayoutY(150);
         anchorPane.getChildren().addAll(imageView, distroy);
-        anchorPane.setPrefSize(500, 250);
+        anchorPane.setPrefSize(400, 250);
+        anchorPane.setId("farm");
+        anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         return anchorPane;
     }
 }

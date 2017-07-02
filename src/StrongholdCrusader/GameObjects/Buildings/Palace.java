@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 
 import java.io.File;
 
@@ -41,12 +42,14 @@ public class Palace extends Building {
         });
         imageView.setLayoutX(40);
         imageView.setLayoutY(40);
-        createVassal.setLayoutX(200);
-        createWorker.setLayoutX(350);
+        createVassal.setLayoutX(250);
+        createWorker.setLayoutX(400);
         createVassal.setLayoutY(100);
         createWorker.setLayoutY(100);
         anchorPane.getChildren().addAll(imageView, createVassal, createWorker);
-        anchorPane.setPrefSize(500, 250);
+        anchorPane.setPrefSize(550, 250);
+        anchorPane.setId("barracks");
+        anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         return anchorPane;
     }
 }

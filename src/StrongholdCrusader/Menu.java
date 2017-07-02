@@ -34,12 +34,15 @@ public class Menu extends Application  {
             }
         });
 
+        Scene scene = null;
 
         try {
-            Menu.stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("ui/menu.fxml"))));
+            scene = new Scene(FXMLLoader.load(getClass().getResource("ui/menu.fxml")));
+            Menu.stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         Menu.stage.show();
     }
 }

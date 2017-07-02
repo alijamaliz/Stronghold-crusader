@@ -82,7 +82,7 @@ public class ResourceManager {
         Image woodcutterMenu = new Image(woodcutterMenuFile.toURI().toString());
         resources.put("WoodCutter-menu", woodcutterMenu);
 
-        File plain1TileFile = new File("Resources/images/Tiles/Plain1.jpg");
+        File plain1TileFile = new File("Resources/images/Tiles/plain1.jpg");
         Image plain1Tile = new Image(plain1TileFile.toURI().toString());
         resources.put("Plain1", plain1Tile);
 
