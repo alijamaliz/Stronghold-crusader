@@ -48,8 +48,6 @@ public class Palace extends Building {
         createWorker.setLayoutY(100);
         anchorPane.getChildren().addAll(imageView, createVassal, createWorker);
         anchorPane.setPrefSize(550, 250);
-        anchorPane.setLayoutX(20);
-        anchorPane.setLayoutY(Screen.getPrimary().getBounds().getHeight()-270);
         anchorPane.setId("barracks");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         return anchorPane;

@@ -13,5 +13,7 @@ public class Settings {
     public static final int MOUSE_MAP_NAVIGATION_MARGIN = 10;
     public static int MAP_TILES_WIDTH = 30;
     public static int MAP_TILES_HEIGHT = 30;
+    public static int MENUS_ANCHORPANE_WIDTH = 900;
+    public static int MENUS_ANCHORPANE_HEIGHT = 150;
 
 }

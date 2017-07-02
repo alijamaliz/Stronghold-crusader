@@ -39,8 +39,6 @@ public class Farm extends Building {
         distroy.setLayoutY(150);
         anchorPane.getChildren().addAll(imageView, distroy);
         anchorPane.setPrefSize(400, 250);
-        anchorPane.setLayoutX(20);
-        anchorPane.setLayoutY(Screen.getPrimary().getBounds().getHeight()-270);
         anchorPane.setId("farm");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         return anchorPane;

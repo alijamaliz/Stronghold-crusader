@@ -52,8 +52,6 @@ public class Barracks extends Building {
         createSoldier.setLayoutY(210);
         anchorPane.getChildren().addAll(buildingImage, createSoldier, soldierImage, distroy);
         anchorPane.setPrefSize(400, 260);
-        anchorPane.setLayoutX(20);
-        anchorPane.setLayoutY(Screen.getPrimary().getBounds().getHeight()-280);
         anchorPane.setId("barracks");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         return anchorPane;

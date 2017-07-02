@@ -157,8 +157,6 @@ public class Market extends Building {
         back.setLayoutX(300);
         back.setLayoutY(200);
         anchorPane.getChildren().addAll(buildingImage, distroy, stone, wood, iron, buy, sell, back);
-        anchorPane.setLayoutX(10);
-        anchorPane.setLayoutY(Screen.getPrimary().getBounds().getHeight()-270);
         anchorPane.setId("marketMenu");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/market.css");
         return anchorPane;
