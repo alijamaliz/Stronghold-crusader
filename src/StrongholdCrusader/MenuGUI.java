@@ -2,34 +2,22 @@ package StrongholdCrusader;
 
 import StrongholdCrusader.Network.GameEvent;
 import StrongholdCrusader.Network.Server;
-import StrongholdCrusader.Network.ServerPlayer;
-import com.sun.javafx.collections.ObservableListWrapper;
-import com.sun.javafx.collections.SourceAdapterChange;
-import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.InetAddress;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -70,9 +58,36 @@ public class MenuGUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        File file = new File("Resources/images/menu/menu.jpg");
+        File file = new File("Resources/images/menu/menu_00000.jpg");
         Image image1 = new Image(file.toURI().toString());
         image.setImage(image1);
+
+        Thread animateThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int counter = 0;
+                while (true) {
+                    String imageNumber = String.valueOf(counter);
+                    while (imageNumber.length() < 5)
+                        imageNumber = "0" + imageNumber;
+
+                    File file = new File("Resources/images/menu/menu_" + imageNumber + ".jpg");
+                    Image image1 = new Image(file.toURI().toString());
+                    image.setImage(image1);
+                    if (counter < 299)
+                        counter++;
+                    else
+                        counter = 0;
+                    try {
+                        Thread.sleep(41);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        animateThread.start();
+
 
         numberOfUsers = 0;
 
@@ -110,7 +125,6 @@ public class MenuGUI implements Initializable {
                 backToMainMenu();
             }
         });
-
 
 
     }
