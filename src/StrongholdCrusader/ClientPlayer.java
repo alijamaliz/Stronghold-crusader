@@ -59,6 +59,10 @@ public class ClientPlayer {
                 map.showMapScreen();
                 break;
             }
+            case GameEvent.SHOW_ALERT: {
+                showMessage(gameEvent.message);
+                break;
+            }
             case GameEvent.MAP_OBJECTS: {
                 JSONParser jsonParser = new JSONParser();
                 try {
@@ -132,5 +136,9 @@ public class ClientPlayer {
                 break;
             }
         }
+    }
+
+    private void showMessage(String message) {
+        map.showMessage(message);
     }
 }

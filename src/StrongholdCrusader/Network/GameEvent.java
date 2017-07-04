@@ -23,6 +23,7 @@ public class GameEvent {
     public static final int FARM_CREATED = 12;
     public static final int MAP_OBJECTS = 13;
     public static final int MAP_ID = 14;
+    public static final int SHOW_ALERT = 15;
     public int type;
     public String message;
     public GameEvent(int type, String message) {
