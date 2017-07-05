@@ -1,6 +1,7 @@
 package StrongholdCrusader.GameObjects.Buildings;
 
 import StrongholdCrusader.GameObjects.Pair;
+import StrongholdCrusader.Settings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -33,13 +34,14 @@ public class WoodCutter extends Building {
 
             }
         });
-        imageView.setLayoutX(170);
-        distroy.setLayoutX(170);
-        distroy.setLayoutY(150);
+        imageView.setLayoutX(60);
+        imageView.setLayoutY(20);
+        distroy.setLayoutX(250);
+        distroy.setLayoutY(60);
         anchorPane.getChildren().addAll(imageView, distroy);
-        anchorPane.setPrefSize(500, 250);
-        anchorPane.setId("barracks");
+        anchorPane.setId("building");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
+        anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
         return anchorPane;
     }
 }

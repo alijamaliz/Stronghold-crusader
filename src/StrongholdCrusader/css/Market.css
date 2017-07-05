@@ -3,10 +3,8 @@
     -fx-padding: 10px;
     -fx-border-width: 3px;
     -fx-border-color: aliceblue;
-    -fx-border-style: groove;
     -fx-border-radius: 10px;
     -fx-opacity: 0.6;
-    
 }
 .button:hover{
     -fx-opacity: 1;
@@ -17,7 +15,7 @@
 }
 #marketMenu{
     -fx-background-color: azure;
-    -fx-padding: 10px;
+    -fx-padding: 15px;
     -fx-border-width: 5px;
     -fx-border-radius: 40px;
     -fx-border-color: #a6ffa9;

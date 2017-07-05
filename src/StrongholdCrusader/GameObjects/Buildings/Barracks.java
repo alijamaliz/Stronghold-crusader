@@ -1,6 +1,8 @@
 package StrongholdCrusader.GameObjects.Buildings;
 
 import StrongholdCrusader.GameObjects.Pair;
+import StrongholdCrusader.Settings;
+import com.sun.xml.internal.ws.api.config.management.policy.ManagementAssertion;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -43,16 +45,16 @@ public class Barracks extends Building {
             }
         });
         buildingImage.setLayoutX(20);
-        buildingImage.setLayoutY(buildingImage.getLayoutY() + 40);
-        distroy.setLayoutX(20);
-        distroy.setLayoutY(210);
-        soldierImage.setLayoutX(300);
-        soldierImage.setLayoutY(100);
-        createSoldier.setLayoutX(270);
-        createSoldier.setLayoutY(210);
+        buildingImage.setLayoutY(buildingImage.getLayoutY());
+        distroy.setLayoutX(210);
+        distroy.setLayoutY(60);
+        soldierImage.setLayoutX(400);
+        soldierImage.setLayoutY(40);
+        createSoldier.setLayoutX(480);
+        createSoldier.setLayoutY(60);
         anchorPane.getChildren().addAll(buildingImage, createSoldier, soldierImage, distroy);
-        anchorPane.setPrefSize(400, 260);
-        anchorPane.setId("barracks");
+        anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
+        anchorPane.setId("building");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         return anchorPane;
     }

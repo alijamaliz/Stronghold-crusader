@@ -1,6 +1,7 @@
 package StrongholdCrusader.GameObjects.Buildings;
 
 import StrongholdCrusader.GameObjects.Pair;
+import StrongholdCrusader.Settings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -41,15 +42,16 @@ public class Palace extends Building {
             }
         });
         imageView.setLayoutX(40);
-        imageView.setLayoutY(40);
-        createVassal.setLayoutX(250);
-        createWorker.setLayoutX(400);
-        createVassal.setLayoutY(100);
-        createWorker.setLayoutY(100);
+        imageView.setLayoutY(-20);
+        createVassal.setLayoutX(350);
+        createWorker.setLayoutX(550);
+        createVassal.setLayoutY(60);
+        createWorker.setLayoutY(60);
         anchorPane.getChildren().addAll(imageView, createVassal, createWorker);
         anchorPane.setPrefSize(550, 250);
-        anchorPane.setId("barracks");
+        anchorPane.setId("building");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
+        anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
         return anchorPane;
     }
 }

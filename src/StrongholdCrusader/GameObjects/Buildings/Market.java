@@ -1,6 +1,13 @@
 package StrongholdCrusader.GameObjects.Buildings;
 
 import StrongholdCrusader.GameObjects.Pair;
+import StrongholdCrusader.Map.Map;
+import StrongholdCrusader.Settings;
+import javafx.animation.FadeTransition;
+import javafx.animation.Transition;
+import javafx.animation.TranslateTransition;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +20,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
+import javafx.util.Duration;
 
 import java.io.File;
 
@@ -142,22 +150,23 @@ public class Market extends Building {
 
         buildingImage.setLayoutX(30);
         buildingImage.setLayoutY(30);
-        distroy.setLayoutX(30);
-        distroy.setLayoutY(170);
-        iron.setLayoutX(200);
-        wood.setLayoutX(300);
-        stone.setLayoutX(400);
-        stone.setLayoutY(80);
-        wood.setLayoutY(80);
-        iron.setLayoutY(80);
-        buy.setLayoutX(200);
-        sell.setLayoutX(350);
-        sell.setLayoutY(120);
-        buy.setLayoutY(120);
-        back.setLayoutX(300);
-        back.setLayoutY(200);
+        distroy.setLayoutX(160);
+        distroy.setLayoutY(60);
+        iron.setLayoutX(400);
+        wood.setLayoutX(550);
+        stone.setLayoutX(700);
+        stone.setLayoutY(60);
+        wood.setLayoutY(60);
+        iron.setLayoutY(60);
+        buy.setLayoutX(400);
+        sell.setLayoutX(550);
+        sell.setLayoutY(60);
+        buy.setLayoutY(60);
+        back.setLayoutX(700);
+        back.setLayoutY(60);
         anchorPane.getChildren().addAll(buildingImage, distroy, stone, wood, iron, buy, sell, back);
         anchorPane.setId("marketMenu");
+        anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH,Settings.MENUS_ANCHORPANE_HEIGHT);
         anchorPane.getStylesheets().add("StrongholdCrusader/css/market.css");
         return anchorPane;
     }

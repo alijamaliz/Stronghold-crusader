@@ -1,6 +1,7 @@
 package StrongholdCrusader.GameObjects.Buildings;
 
 import StrongholdCrusader.GameObjects.Pair;
+import StrongholdCrusader.Settings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -34,12 +35,13 @@ public class Farm extends Building {
 
             }
         });
-        imageView.setLayoutX(140);
-        distroy.setLayoutX(140);
-        distroy.setLayoutY(150);
+        imageView.setLayoutX(60);
+        imageView.setLayoutY(20);
+        distroy.setLayoutX(250);
+        distroy.setLayoutY(60);
         anchorPane.getChildren().addAll(imageView, distroy);
-        anchorPane.setPrefSize(400, 250);
-        anchorPane.setId("farm");
+        anchorPane.setId("building");
+        anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         return anchorPane;
     }
