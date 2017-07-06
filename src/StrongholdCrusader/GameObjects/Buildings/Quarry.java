@@ -1,6 +1,7 @@
 package StrongholdCrusader.GameObjects.Buildings;
 
 import StrongholdCrusader.GameObjects.Pair;
+import StrongholdCrusader.Map.MapGUI;
 import StrongholdCrusader.Settings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,6 +18,12 @@ import java.util.Queue;
  */
 public class Quarry extends Building {
     public Quarry() {
+        this.type = "Quarry";
+        this.size = new Pair(4, 4);
+    }
+
+    public Quarry(MapGUI mapGUI) {
+        super(mapGUI);
         this.type = "Quarry";
         this.size = new Pair(4, 4);
     }

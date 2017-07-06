@@ -24,6 +24,9 @@ public class GameEvent {
     public static final int MAP_OBJECTS = 13;
     public static final int MAP_ID = 14;
     public static final int SHOW_ALERT = 15;
+    public static final int SOLDIER_CREATED = 16;
+    public static final int VASSEL_CREATED = 17;
+    public static final int WORKER_CREATED = 18;
     public int type;
     public String message;
     public GameEvent(int type, String message) {

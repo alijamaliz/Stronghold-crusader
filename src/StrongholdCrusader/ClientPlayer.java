@@ -2,6 +2,9 @@ package StrongholdCrusader;
 
 import StrongholdCrusader.GameObjects.Buildings.*;
 import StrongholdCrusader.GameObjects.GameObject;
+import StrongholdCrusader.GameObjects.Humans.Soldier;
+import StrongholdCrusader.GameObjects.Humans.Vassal;
+import StrongholdCrusader.GameObjects.Humans.Worker;
 import StrongholdCrusader.GameObjects.Pair;
 import StrongholdCrusader.Map.Map;
 import StrongholdCrusader.Network.Client;
@@ -76,53 +79,74 @@ public class ClientPlayer {
                         int health = new Integer(((Long) (obj.get("health"))).intValue());
                         if (map.findGameObjectObjectById(id) == null) { //Create object
                             if (obj.get("type").equals("Palace")) {
-                                Palace palace = new Palace();
+                                Palace palace = new Palace(map.getGui());
                                 palace.position = new Pair(x, y);
                                 palace.id = id;
                                 palace.health = health;
                                 map.objects.add(palace);
                             }
                             if (obj.get("type").equals("WoodCutter")) {
-                                WoodCutter woodCutter = new WoodCutter();
+                                WoodCutter woodCutter = new WoodCutter(map.getGui());
                                 woodCutter.position = new Pair(x, y);
                                 woodCutter.id = id;
                                 woodCutter.health = health;
                                 map.objects.add(woodCutter);
                             }
                             if (obj.get("type").equals("Quarry")) {
-                                Quarry quarry = new Quarry();
+                                Quarry quarry = new Quarry(map.getGui());
                                 quarry.position = new Pair(x, y);
                                 quarry.id = id;
                                 quarry.health = health;
                                 map.objects.add(quarry);
                             }
                             if (obj.get("type").equals("Market")) {
-                                Market market = new Market();
+                                Market market = new Market(map.getGui());
                                 market.position = new Pair(x, y);
                                 market.id = id;
                                 market.health = health;
                                 map.objects.add(market);
                             }
                             if (obj.get("type").equals("Port")) {
-                                Port port = new Port();
+                                Port port = new Port(map.getGui());
                                 port.position = new Pair(x, y);
                                 port.id = id;
                                 port.health = health;
                                 map.objects.add(port);
                             }
                             if (obj.get("type").equals("Farm")) {
-                                Farm farm = new Farm();
+                                Farm farm = new Farm(map.getGui());
                                 farm.position = new Pair(x, y);
                                 farm.id = id;
                                 farm.health = health;
                                 map.objects.add(farm);
                             }
                             if (obj.get("type").equals("Barracks")) {
-                                Barracks barracks = new Barracks();
+                                Barracks barracks = new Barracks(map.getGui());
                                 barracks.position = new Pair(x, y);
                                 barracks.id = id;
                                 barracks.health = health;
                                 map.objects.add(barracks);
+                            }
+                            if (obj.get("type").equals("Worker")) {
+                                Worker worker = new Worker(map.getGui());
+                                worker.position = new Pair(x, y);
+                                worker.id = id;
+                                worker.health = health;
+                                map.objects.add(worker);
+                            }
+                            if (obj.get("type").equals("Vassal")) {
+                                Vassal vassal = new Vassal(map.getGui());
+                                vassal.position = new Pair(x, y);
+                                vassal.id = id;
+                                vassal.health = health;
+                                map.objects.add(vassal);
+                            }
+                            if (obj.get("type").equals("Soldier")) {
+                                Soldier soldier = new Soldier(map.getGui());
+                                soldier.position = new Pair(x, y);
+                                soldier.id = id;
+                                soldier.health = health;
+                                map.objects.add(soldier);
                             }
                         } else { //Update object
                             GameObject gameObject = map.findGameObjectObjectById(id);

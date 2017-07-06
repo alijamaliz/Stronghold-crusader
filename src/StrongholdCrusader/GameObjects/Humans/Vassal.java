@@ -1,7 +1,9 @@
 package StrongholdCrusader.GameObjects.Humans;
 
 import StrongholdCrusader.Map.Map;
+import StrongholdCrusader.Map.MapGUI;
 import StrongholdCrusader.Map.MapTile;
+import StrongholdCrusader.MenuGUI;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -15,6 +17,10 @@ import java.util.LinkedList;
 public class Vassal extends Human {
     public Vassal()
     {
+        this.type="Vassal";
+    }
+    public Vassal(MapGUI mapGUI) {
+        super(mapGUI);
         this.type="Vassal";
     }
     public AnchorPane anchorPane;

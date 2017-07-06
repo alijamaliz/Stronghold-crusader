@@ -1,6 +1,7 @@
 package StrongholdCrusader.GameObjects.Buildings;
 
 import StrongholdCrusader.GameObjects.Pair;
+import StrongholdCrusader.Map.MapGUI;
 import StrongholdCrusader.Settings;
 import com.sun.xml.internal.ws.api.config.management.policy.ManagementAssertion;
 import javafx.event.ActionEvent;
@@ -17,6 +18,12 @@ import java.io.File;
  */
 public class Barracks extends Building {
     public Barracks() {
+        this.type = "Barracks";
+        this.size = new Pair(5, 5);
+    }
+
+    public Barracks(MapGUI mapGUI) {
+        super(mapGUI);
         this.type = "Barracks";
         this.size = new Pair(5, 5);
     }

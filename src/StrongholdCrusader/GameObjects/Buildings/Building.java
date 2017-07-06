@@ -1,5 +1,6 @@
 package StrongholdCrusader.GameObjects.Buildings;
 import StrongholdCrusader.GameObjects.*;
+import StrongholdCrusader.Map.MapGUI;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -8,4 +9,11 @@ import javafx.scene.layout.AnchorPane;
 public abstract class Building extends GameObject {
     public Pair size;
     public AnchorPane anchorPane;
+
+    public Building() {
+    }
+
+    public Building(MapGUI mapGUI) {
+        super(mapGUI);
+    }
 }

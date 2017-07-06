@@ -1,6 +1,7 @@
 package StrongholdCrusader.GameObjects.Buildings;
 
 import StrongholdCrusader.GameObjects.Pair;
+import StrongholdCrusader.Map.MapGUI;
 import StrongholdCrusader.Settings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,6 +17,12 @@ import java.io.File;
  */
 public class Farm extends Building {
     public Farm() {
+        this.type = "Farm";
+        this.size = new Pair(4, 4);
+    }
+
+    public Farm(MapGUI mapGUI) {
+        super(mapGUI);
         this.type = "Farm";
         this.size = new Pair(4, 4);
     }

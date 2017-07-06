@@ -2,6 +2,7 @@ package StrongholdCrusader.GameObjects.Buildings;
 
 import StrongholdCrusader.GameObjects.Pair;
 import StrongholdCrusader.Map.Map;
+import StrongholdCrusader.Map.MapGUI;
 import StrongholdCrusader.Settings;
 import javafx.animation.FadeTransition;
 import javafx.animation.Transition;
@@ -32,6 +33,13 @@ public class Market extends Building {
         this.type = "Market";
         this.size = new Pair(4, 4);
     }
+
+    public Market(MapGUI mapGUI) {
+        super(mapGUI);
+        this.type = "Market";
+        this.size = new Pair(4, 4);
+    }
+
 
     public AnchorPane anchorPane;
 

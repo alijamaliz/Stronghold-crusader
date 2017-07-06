@@ -1,10 +1,9 @@
 package StrongholdCrusader.Network;
 
 import StrongholdCrusader.GameObjects.Buildings.Building;
-import StrongholdCrusader.GameObjects.Buildings.Palace;
 import StrongholdCrusader.GameObjects.GameObject;
+import StrongholdCrusader.GameObjects.Humans.Human;
 import StrongholdCrusader.GameObjects.Pair;
-import StrongholdCrusader.Map.Map;
 import StrongholdCrusader.Map.MapManager;
 import StrongholdCrusader.Map.MapTile;
 import StrongholdCrusader.Settings;
@@ -39,6 +38,19 @@ public class Game {
         return palacePosition;
     }
 
+    public void addHumanToMap(Human human) {
+        objects.add(human);
+        tiles[human.position.x][human.position.y].filled = true;
+    }
+
+    public boolean humanCanCreate(Human human) {
+        if (human.position.x > Settings.MAP_WIDTH_RESOLUTION || human.position.y > Settings.MAP_HEIGHT_RESOLUTION)
+            return false;
+        if (tiles[human.position.x][human.position.y].filled)
+            return false;
+        return true;
+    }
+
     public void addBuildingToMap(Building building) {
         objects.add(building);
         for (int i = building.position.x; i < building.position.x + building.size.x; i++) {
@@ -48,12 +60,12 @@ public class Game {
         }
     }
 
-    public boolean buildingCanCreate (Building building) {
+    public boolean buildingCanCreate(Building building) {
         if (building.position.x + building.size.x > Settings.MAP_WIDTH_RESOLUTION || building.position.y + building.size.y > Settings.MAP_HEIGHT_RESOLUTION)
             return false;
         for (int i = building.position.x; i < building.position.x + building.size.x; i++) {
             for (int j = building.position.y; j < building.position.y + building.size.y; j++) {
-                if(tiles[i][j].filled)
+                if (tiles[i][j].filled)
                     return false;
             }
         }

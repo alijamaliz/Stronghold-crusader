@@ -1,6 +1,7 @@
 package StrongholdCrusader.GameObjects.Humans;
 
 import StrongholdCrusader.Map.Map;
+import StrongholdCrusader.Map.MapGUI;
 import StrongholdCrusader.Map.MapTile;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -15,6 +16,11 @@ import java.util.LinkedList;
 public class Worker extends Human {
     public Worker()
     {
+        this.type="Worker";
+    }
+    public Worker(MapGUI mapGUI)
+    {
+        super(mapGUI);
         this.type="Worker";
     }
     public AnchorPane anchorPane;

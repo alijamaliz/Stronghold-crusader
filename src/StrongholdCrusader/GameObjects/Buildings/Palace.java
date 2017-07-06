@@ -1,6 +1,7 @@
 package StrongholdCrusader.GameObjects.Buildings;
 
 import StrongholdCrusader.GameObjects.Pair;
+import StrongholdCrusader.Map.MapGUI;
 import StrongholdCrusader.Settings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,6 +21,12 @@ public class Palace extends Building {
         this.size = new Pair(6, 6);
     }
 
+    public Palace(MapGUI mapGUI) {
+        super(mapGUI);
+        this.type = "Palace";
+        this.size = new Pair(6, 6);
+    }
+
     public AnchorPane anchorPane;
 
     @Override
@@ -32,13 +39,17 @@ public class Palace extends Building {
         createVassal.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                int x = Palace.this.position.x - 1;
+                int y = Palace.this.position.y - 1;
+                Palace.this.mapGUI.createHuman("Worker", new Pair(x, y));
             }
         });
         createWorker.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                int x = Palace.this.position.x + Palace.this.size.x;
+                int y = Palace.this.position.y + Palace.this.size.y;
+                Palace.this.mapGUI.createHuman("Worker", new Pair(x, y));
             }
         });
         imageView.setLayoutX(40);

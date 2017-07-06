@@ -2,6 +2,9 @@ package StrongholdCrusader.Network;
 
 import StrongholdCrusader.GameObjects.Buildings.*;
 import StrongholdCrusader.GameObjects.GameObject;
+import StrongholdCrusader.GameObjects.Humans.Soldier;
+import StrongholdCrusader.GameObjects.Humans.Vassal;
+import StrongholdCrusader.GameObjects.Humans.Worker;
 import StrongholdCrusader.GameObjects.Pair;
 import StrongholdCrusader.Map.MapManager;
 import StrongholdCrusader.Settings;
@@ -184,6 +187,39 @@ public class Server implements Runnable {
                 portBuilding.ownerName = getSenderPlayerName(address);
                 if (game.buildingCanCreate(portBuilding))
                     game.addBuildingToMap(portBuilding);
+                break;
+            }
+            case GameEvent.WORKER_CREATED: {
+                int x = Integer.parseInt(gameEvent.message.substring(0, gameEvent.message.indexOf(":")));
+                int y = Integer.parseInt(gameEvent.message.substring(gameEvent.message.indexOf(":") + 1));
+                Worker worker = new Worker();
+                worker.position = new Pair(x, y);
+                worker.id = generateNewID();
+                worker.ownerName = getSenderPlayerName(address);
+                if (game.humanCanCreate(worker))
+                    game.addHumanToMap(worker);
+                break;
+            }
+            case GameEvent.VASSEL_CREATED: {
+                int x = Integer.parseInt(gameEvent.message.substring(0, gameEvent.message.indexOf(":")));
+                int y = Integer.parseInt(gameEvent.message.substring(gameEvent.message.indexOf(":") + 1));
+                Vassal vassal = new Vassal();
+                vassal.position = new Pair(x, y);
+                vassal.id = generateNewID();
+                vassal.ownerName = getSenderPlayerName(address);
+                if (game.humanCanCreate(vassal))
+                    game.addHumanToMap(vassal);
+                break;
+            }
+            case GameEvent.SOLDIER_CREATED: {
+                int x = Integer.parseInt(gameEvent.message.substring(0, gameEvent.message.indexOf(":")));
+                int y = Integer.parseInt(gameEvent.message.substring(gameEvent.message.indexOf(":") + 1));
+                Soldier soldier = new Soldier();
+                soldier.position = new Pair(x, y);
+                soldier.id = generateNewID();
+                soldier.ownerName = getSenderPlayerName(address);
+                if (game.humanCanCreate(soldier))
+                    game.addHumanToMap(soldier);
                 break;
             }
         }

@@ -1,6 +1,7 @@
 package StrongholdCrusader.GameObjects.Humans;
 import StrongholdCrusader.GameObjects.*;
 import StrongholdCrusader.Map.Map;
+import StrongholdCrusader.Map.MapGUI;
 import StrongholdCrusader.Map.MapTile;
 import javafx.scene.layout.AnchorPane;
 
@@ -14,6 +15,14 @@ public abstract class Human extends GameObject {
     int power;
     boolean can_climb;
     int speed;
+
+    public Human() {
+    }
+
+    public Human(MapGUI mapGUI) {
+        super(mapGUI);
+    }
+
     public void attack(GameObject object)
     {
         if (this.health > 0 && object.health>0)
