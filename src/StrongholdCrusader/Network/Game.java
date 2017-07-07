@@ -4,13 +4,10 @@ import StrongholdCrusader.GameObjects.Buildings.Building;
 import StrongholdCrusader.GameObjects.GameObject;
 import StrongholdCrusader.GameObjects.Humans.Human;
 import StrongholdCrusader.GameObjects.Pair;
-import StrongholdCrusader.Map.MapManager;
-import StrongholdCrusader.Map.MapTile;
+import StrongholdCrusader.Map.*;
 import StrongholdCrusader.Settings;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by Baran on 5/29/2017.
@@ -46,9 +43,7 @@ public class Game {
     public boolean humanCanCreate(Human human) {
         if (human.position.x > Settings.MAP_WIDTH_RESOLUTION || human.position.y > Settings.MAP_HEIGHT_RESOLUTION)
             return false;
-        if (tiles[human.position.x][human.position.y].filled)
-            return false;
-        return true;
+        return !tiles[human.position.x][human.position.y].filled;
     }
 
     public void addBuildingToMap(Building building) {
@@ -70,5 +65,13 @@ public class Game {
             }
         }
         return true;
+    }
+
+    public GameObject getGameObjectById(int id) {
+        for (GameObject object : objects) {
+            if (object.id == id)
+                return object;
+        }
+        return null;
     }
 }

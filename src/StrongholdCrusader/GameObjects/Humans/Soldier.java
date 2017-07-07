@@ -16,11 +16,13 @@ import java.util.LinkedList;
 public class Soldier extends Human {
     public Soldier()     {
         this.type="Soldier";
+        this.speed = 1;
     }
 
     public Soldier(MapGUI mapGUI)     {
         super(mapGUI);
         this.type="Soldier";
+        this.speed = 1;
     }
     public AnchorPane anchorPane;
     @Override

@@ -27,6 +27,7 @@ public class GameEvent {
     public static final int SOLDIER_CREATED = 16;
     public static final int VASSEL_CREATED = 17;
     public static final int WORKER_CREATED = 18;
+    public static final int MOVE_HUMAN = 19;
     public int type;
     public String message;
     public GameEvent(int type, String message) {

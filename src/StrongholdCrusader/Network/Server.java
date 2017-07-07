@@ -2,6 +2,7 @@ package StrongholdCrusader.Network;
 
 import StrongholdCrusader.GameObjects.Buildings.*;
 import StrongholdCrusader.GameObjects.GameObject;
+import StrongholdCrusader.GameObjects.Humans.Human;
 import StrongholdCrusader.GameObjects.Humans.Soldier;
 import StrongholdCrusader.GameObjects.Humans.Vassal;
 import StrongholdCrusader.GameObjects.Humans.Worker;
@@ -40,9 +41,10 @@ public class Server implements Runnable {
             @Override
             public void run() {
                 while (true) {
+                    updateMapObjects();
                     sendMapObjectsToAll();
                     try {
-                        Thread.sleep(1000 / Settings.FRAME_RATE * 5);
+                        Thread.sleep(1000 / Settings.SEND_DATA_RATE);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -50,6 +52,19 @@ public class Server implements Runnable {
             }
         });
 
+    }
+
+    private void updateMapObjects() {
+        for (GameObject object : game.objects) {
+            if (object instanceof Human) {
+                Human human = (Human) object;
+                human.updatePosition();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Server server = new Server(1);
     }
 
     @Override
@@ -73,10 +88,6 @@ public class Server implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        Server server = new Server(1);
     }
 
     private void analyzePacket(String body, InetAddress address, int port) {
@@ -222,6 +233,21 @@ public class Server implements Runnable {
                     game.addHumanToMap(soldier);
                 break;
             }
+            case GameEvent.MOVE_HUMAN: {
+                String[] args = gameEvent.message.split(":");
+                int humanId = Integer.parseInt(args[0]);
+                int x = Integer.parseInt(args[1]);
+                int y = Integer.parseInt(args[2]);
+                moveHuman(humanId, new Pair(x, y));
+                break;
+            }
+        }
+    }
+
+    private void moveHuman(int humanId, Pair pair) {
+        Human human = (Human) game.getGameObjectById(humanId);
+        if (human != null) {
+            human.goToTile(game.tiles, game.tiles[pair.x][pair.y]);
         }
     }
 

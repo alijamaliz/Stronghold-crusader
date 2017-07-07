@@ -93,6 +93,10 @@ public class ResourceManager {
         File seaTileFile = new File("Resources/images/Tiles/Sea1.jpg");
         Image seaTile = new Image(seaTileFile.toURI().toString());
         resources.put("Sea", seaTile);
+
+        File selectDestinationFile = new File("Resources/images/Cursors/selectDestination.png");
+        Image SelectDestination = new Image(selectDestinationFile.toURI().toString());
+        resources.put("SelectDestination", SelectDestination);
     }
 
     public Image getImage(String name) ///Returns every object's Image

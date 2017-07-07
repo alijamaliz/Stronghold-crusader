@@ -48,7 +48,9 @@ public class Barracks extends Building {
         createSoldier.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                int x = Barracks.this.position.x + Barracks.this.size.x;
+                int y = Barracks.this.position.y + Barracks.this.size.y;
+                Barracks.this.mapGUI.createHuman("Soldier", new Pair(x, y));
             }
         });
         buildingImage.setLayoutX(20);

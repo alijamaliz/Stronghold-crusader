@@ -17,11 +17,13 @@ public class Worker extends Human {
     public Worker()
     {
         this.type="Worker";
+        this.speed = 1;
     }
     public Worker(MapGUI mapGUI)
     {
         super(mapGUI);
         this.type="Worker";
+        this.speed = 1;
     }
     public AnchorPane anchorPane;
     @Override

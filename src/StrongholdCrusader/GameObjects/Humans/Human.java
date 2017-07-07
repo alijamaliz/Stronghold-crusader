@@ -1,11 +1,12 @@
 package StrongholdCrusader.GameObjects.Humans;
 import StrongholdCrusader.GameObjects.*;
-import StrongholdCrusader.Map.Map;
-import StrongholdCrusader.Map.MapGUI;
-import StrongholdCrusader.Map.MapTile;
+import StrongholdCrusader.Map.*;
+import StrongholdCrusader.Settings;
 import javafx.scene.layout.AnchorPane;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Created by Baran on 5/29/2017.
@@ -13,8 +14,10 @@ import java.util.LinkedList;
 public abstract class Human extends GameObject {
     int foodUse,goldUse;
     int power;
-    boolean can_climb;
-    int speed;
+    protected boolean canClimb;
+    protected int speed;
+    private LinkedList<MapTile> movingPath;
+    private int speedHandler;
 
     public Human() {
     }
@@ -36,10 +39,103 @@ public abstract class Human extends GameObject {
            }
         }
     }
-    public void goToTile(MapTile tile)
+
+    public void updatePosition() {
+        if (speedHandler == Settings.SEND_DATA_RATE / speed) {
+            if (movingPath != null) {
+                if (movingPath.size() != 0) {
+                    this.position = movingPath.getLast().position;
+                    movingPath.removeLast();
+                } else {
+                    movingPath = null;
+                }
+            }
+            speedHandler = 0;
+        }
+        speedHandler++;
+    }
+
+    public void goToTile(MapTile[][] tiles, MapTile tile)
     {
+        this.movingPath = findRoute(tiles, tiles[position.x][position.y], tile, canClimb);
         //TODO
     }
-    public abstract LinkedList<MapTile> territory(Map map,MapTile tile);
+    public abstract LinkedList<MapTile> territory(Map map, MapTile tile);
     public abstract void useResources();
+
+    private static LinkedList<MapTile> adjacentList(MapTile[][] tiles, MapTile tile, boolean canClimb)
+    {
+        LinkedList<MapTile> adjacents = new LinkedList<>();
+        for (int i = tile.position.x-1 ;i<tile.position.x+2;i++)
+        {
+            for (int j =tile.position.y-1 ; j<tile.position.y+2;j++)
+            {
+                if((i== tile.position.x && j!=tile.position.y) || (j==tile.position.y && i!=tile.position.x)) // Not adding corner tiles
+                {
+                    try
+                    {
+                        MapTile tmp = tiles[i][j];
+                        if(!tmp.filled && canClimb) //for climbers
+                        {
+                            if(!(tmp instanceof Sea))
+                            {
+                                adjacents.add(tmp);
+                            }
+                        }
+                        else if(!tmp.filled && !canClimb)
+                        {
+                            if(!(tmp instanceof Mountain) && !(tmp instanceof Sea)) // for non-climbers
+                            {
+                                adjacents.add(tmp);
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        ///Do Nothing becuase its Null pionter and unwanted nodes
+                    }
+                }
+            }
+        }
+        return adjacents;
+    }
+
+    private LinkedList<MapTile> findRoute(MapTile[][] tiles, MapTile start , MapTile end , boolean canClimb) ///BFS codes go here
+    {
+        HashMap<MapTile, Boolean> visited = new HashMap<>(); //every tile is visited or not
+        HashMap<MapTile,MapTile> edgeTo = new HashMap<>(); // stores where the tile comes from
+        LinkedList<MapTile> path = new LinkedList<>();
+        Queue<MapTile> queue = new LinkedList();
+        MapTile currunt = start;
+        queue.add(currunt);
+        visited.put(currunt,true);
+        while (!queue.isEmpty())
+        {
+            currunt = queue.remove();
+            if(currunt.equals(end))
+            {
+                break;
+            }
+            else
+            {
+                for (MapTile mapTile : adjacentList(tiles,currunt,canClimb)) {
+                    if(!visited.containsKey(mapTile))
+                    {
+                        queue.add(mapTile);
+                        visited.put(mapTile,true);
+                        edgeTo.put(mapTile,currunt);
+                    }
+                }
+            }
+        }
+        if(!currunt.equals(end)) // runs when there is not a way and return an empty LinkedList
+        {
+            return path;
+        }
+        for(MapTile tile = end ; tile!=null ; tile = edgeTo.get(tile)) // adding tiles to LinkedList (reversely)
+        {
+            path.addLast(tile);
+        }
+        return path;
+    }
 }

@@ -41,7 +41,7 @@ public class Palace extends Building {
             public void handle(ActionEvent event) {
                 int x = Palace.this.position.x - 1;
                 int y = Palace.this.position.y - 1;
-                Palace.this.mapGUI.createHuman("Worker", new Pair(x, y));
+                Palace.this.mapGUI.createHuman("Vassal", new Pair(x, y));
             }
         });
         createWorker.setOnAction(new EventHandler<ActionEvent>() {

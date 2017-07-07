@@ -18,10 +18,12 @@ public class Vassal extends Human {
     public Vassal()
     {
         this.type="Vassal";
+        this.speed = 1;
     }
     public Vassal(MapGUI mapGUI) {
         super(mapGUI);
         this.type="Vassal";
+        this.speed = 1;
     }
     public AnchorPane anchorPane;
     @Override
