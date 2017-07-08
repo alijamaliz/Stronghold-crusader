@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="351a4214-e5f6-4ff3-ae03-de786c49c5ff" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Human.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Human.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Soldier.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Soldier.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Vassal.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Vassal.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Worker.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Worker.java" />
-    </list>
+    <list default="true" id="351a4214-e5f6-4ff3-ae03-de786c49c5ff" name="Default" comment="" />
     <ignored path="Stronghold-crusader.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -817,12 +811,12 @@
       <workItem from="1498423323104" duration="1803000" />
       <workItem from="1498740026059" duration="2881000" />
       <workItem from="1499323919092" duration="23000" />
-      <workItem from="1499489486288" duration="849000" />
+      <workItem from="1499489486288" duration="916000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44941000" />
+    <option name="totallyTimeSpent" value="45008000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -834,7 +828,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
