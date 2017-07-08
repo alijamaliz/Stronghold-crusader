@@ -38,7 +38,7 @@ public class WoodCutter extends Building {
         distroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                WoodCutter.this.mapGUI.removeBuildings(WoodCutter.this);
             }
         });
         imageView.setLayoutX(60);

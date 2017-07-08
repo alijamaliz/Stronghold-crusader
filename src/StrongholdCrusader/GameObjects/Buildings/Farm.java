@@ -39,7 +39,7 @@ public class Farm extends Building {
         distroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                Farm.this.mapGUI.removeBuildings(Farm.this);
             }
         });
         imageView.setLayoutX(60);

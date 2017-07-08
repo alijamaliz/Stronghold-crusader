@@ -141,7 +141,7 @@ public class Market extends Building {
         distroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                Market.this.mapGUI.removeBuildings(Market.this);
             }
         });
         back.setOnAction(new EventHandler<ActionEvent>() {

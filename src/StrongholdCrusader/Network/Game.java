@@ -54,6 +54,9 @@ public class Game {
             }
         }
     }
+    public void removeBuilding(Building building){
+        objects.remove(building);
+    }
 
     public boolean buildingCanCreate(Building building) {
         if (building.position.x + building.size.x > Settings.MAP_WIDTH_RESOLUTION || building.position.y + building.size.y > Settings.MAP_HEIGHT_RESOLUTION)

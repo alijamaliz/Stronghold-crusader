@@ -66,6 +66,12 @@ public class ClientPlayer {
                 showMessage(gameEvent.message);
                 break;
             }
+            case GameEvent.DISTROY_BUILDING: {
+                System.out.println("Dalghak");
+                int id = Integer.parseInt(gameEvent.message);
+                map.objects.remove(getObjectsById(id));
+                break;
+            }
             case GameEvent.MAP_OBJECTS: {
                 JSONParser jsonParser = new JSONParser();
                 try {
@@ -159,10 +165,23 @@ public class ClientPlayer {
                 }
                 break;
             }
+
         }
     }
 
     private void showMessage(String message) {
         map.showMessage(message);
     }
+
+
+    private GameObject getObjectsById(int id) {
+        for (GameObject gameObject:map.objects) {
+            if (gameObject.id == id) {
+                return gameObject;
+            }
+        }
+        return null;
+    }
+
 }
+

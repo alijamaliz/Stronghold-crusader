@@ -241,6 +241,13 @@ public class Server implements Runnable {
                 moveHuman(humanId, new Pair(x, y));
                 break;
             }
+            case GameEvent.DISTROY_BUILDING: {
+                int id = Integer.parseInt(gameEvent.message);
+                game.removeBuilding((Building)game.getGameObjectById(id));
+                GameEvent createGameEvent = new GameEvent(GameEvent.DISTROY_BUILDING, gameEvent.message);
+                sendPacket(createGameEvent.getJSON(), address, port);
+                break;
+            }
         }
     }
 

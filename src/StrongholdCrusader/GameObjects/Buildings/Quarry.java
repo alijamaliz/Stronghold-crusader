@@ -37,7 +37,7 @@ public class Quarry extends Building {
         distroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                Quarry.this.mapGUI.removeBuildings(Quarry.this);
             }
         });
         imageView.setLayoutX(60);

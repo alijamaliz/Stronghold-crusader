@@ -42,7 +42,7 @@ public class Barracks extends Building {
         distroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                Barracks.this.mapGUI.removeBuildings(Barracks.this);
             }
         });
         createSoldier.setOnAction(new EventHandler<ActionEvent>() {

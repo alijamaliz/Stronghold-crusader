@@ -38,7 +38,7 @@ public class Port extends Building {
         distroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                Port.this.mapGUI.removeBuildings(Port.this);
             }
         });
         imageView.setLayoutX(60);
