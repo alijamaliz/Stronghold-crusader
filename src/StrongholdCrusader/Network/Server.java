@@ -58,7 +58,7 @@ public class Server implements Runnable {
         for (GameObject object : game.objects) {
             if (object instanceof Human) {
                 Human human = (Human) object;
-                human.updatePosition();
+                human.updatePosition(game.tiles);
             }
         }
     }
