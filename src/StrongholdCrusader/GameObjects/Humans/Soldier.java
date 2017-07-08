@@ -18,12 +18,17 @@ public class Soldier extends Human {
         this.type="Soldier";
         this.speed = 1;
         this.zone=7;
+        this.power=70;
+        this.health=1000;
     }
 
     public Soldier(MapGUI mapGUI)     {
         super(mapGUI);
         this.type="Soldier";
         this.speed = 1;
+        this.power=70;
+        this.zone=7;
+        this.health=1000;
     }
     public AnchorPane anchorPane;
     @Override
