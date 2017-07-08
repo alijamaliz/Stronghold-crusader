@@ -18,6 +18,9 @@ public class Worker extends Human {
     {
         this.type="Worker";
         this.speed = 1;
+        this.zone=3;
+        this.power=20;
+        this.health=500;
     }
     public Worker(MapGUI mapGUI)
     {
@@ -25,6 +28,8 @@ public class Worker extends Human {
         this.type="Worker";
         this.speed = 1;
         this.zone=3;
+        this.power=20;
+        this.health=500;
     }
     public AnchorPane anchorPane;
     @Override
@@ -38,12 +43,6 @@ public class Worker extends Human {
         anchorPane.getChildren().addAll(imageView,button);
         anchorPane.setPrefSize(300,100);
         return anchorPane;
-    }
-
-    @Override
-    public LinkedList<MapTile> territory(Map map, MapTile tile) {
-        ///TODO
-        return null;
     }
     public void getResorces()
     {

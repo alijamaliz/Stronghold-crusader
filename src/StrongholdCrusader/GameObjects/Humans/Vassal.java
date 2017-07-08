@@ -19,12 +19,17 @@ public class Vassal extends Human {
     {
         this.type="Vassal";
         this.speed = 1;
+        this.zone=3;
+        this.power=20;
+        this.health=500;
     }
     public Vassal(MapGUI mapGUI) {
         super(mapGUI);
         this.type="Vassal";
         this.speed = 1;
         this.zone=3;
+        this.power=20;
+        this.health=500;
     }
     public AnchorPane anchorPane;
     @Override
@@ -36,13 +41,6 @@ public class Vassal extends Human {
         anchorPane.setPrefSize(300,100);
         return anchorPane;
     }
-
-    @Override
-    public LinkedList<MapTile> territory(Map map, MapTile tile) {
-        ///TODO
-        return null;
-    }
-
     @Override
     public void useResources() {
 

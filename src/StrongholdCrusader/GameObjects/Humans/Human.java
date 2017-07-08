@@ -27,17 +27,42 @@ public abstract class Human extends GameObject {
         super(mapGUI);
     }
 
-    public void attack(GameObject object)
+    public void attack(MapTile[][] tiles ,GameObject object,MapTile objectTile)
     {
-        if (this.health > 0 && object.health>0)
+        int x = this.position.x;
+        int y = this.position.y;
+        LinkedList<Pair> zone = new LinkedList<>();
+        zone.add(new Pair(x-1,y));
+        zone.add(new Pair(x+1,y));
+        zone.add(new Pair(x,y-1));
+        zone.add(new Pair(x,y+1));
+        zone.add(new Pair(x,y));
+        Pair objectPair = new Pair(object.position.x,object.position.y);
+        if(!Pair.contains(zone,objectPair))
         {
-           if(object.health-power<0)
-           {
-               object.health=0;
-           }
-           else {
-               object.health-=power;
-           }
+            this.goToTile(tiles,objectTile);
+            if (this.health > 0 && object.health>0)
+            {
+                if(object.health-power<0)
+                {
+                    object.health=0;
+                }
+                else {
+                    object.health-=power;
+                }
+            }
+        }
+        else {
+            if (this.health > 0 && object.health>0)
+            {
+                if(object.health-power<0)
+                {
+                    object.health=0;
+                }
+                else {
+                    object.health-=power;
+                }
+            }
         }
     }
 
@@ -61,7 +86,7 @@ public abstract class Human extends GameObject {
         this.movingPath = findRoute(tiles, tiles[position.x][position.y], tile, canClimb);
         //TODO
     }
-    public LinkedList<MapTile> territory(Map map, MapTile tile) ///Return Zone of every Human
+    public LinkedList<MapTile> territory(MapTile[][] tiles, MapTile tile) ///Return Zone of every Human
     {
         LinkedList<MapTile> territory = new LinkedList<>();
         int x = tile.position.x;
@@ -71,7 +96,7 @@ public abstract class Human extends GameObject {
             for(int j = y-(i-x+zone);j<=y+(i-x+zone);j++)
             {
                 try {
-                    territory.add(map.tiles[i][j]);
+                    territory.add(tiles[i][j]);
                 }catch (Exception e)
                 {
                     ///Do Nothing , Becuase this Tile is Out of array
