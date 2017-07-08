@@ -24,6 +24,7 @@ public class Vassal extends Human {
         super(mapGUI);
         this.type="Vassal";
         this.speed = 1;
+        this.zone=3;
     }
     public AnchorPane anchorPane;
     @Override

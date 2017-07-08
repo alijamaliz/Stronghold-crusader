@@ -17,6 +17,7 @@ public class Soldier extends Human {
     public Soldier()     {
         this.type="Soldier";
         this.speed = 1;
+        this.zone=7;
     }
 
     public Soldier(MapGUI mapGUI)     {
@@ -39,13 +40,6 @@ public class Soldier extends Human {
         anchorPane.setPrefWidth(300);
         return anchorPane;
     }
-
-    @Override
-    public LinkedList<MapTile> territory(Map map,MapTile tile) {
-        ///TODO
-        return null;
-    }
-
     @Override
     public void useResources() {
         ///TODO

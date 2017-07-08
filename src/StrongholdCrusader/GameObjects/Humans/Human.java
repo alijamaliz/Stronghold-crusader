@@ -12,6 +12,7 @@ import java.util.Queue;
  * Created by Baran on 5/29/2017.
  */
 public abstract class Human extends GameObject {
+    int zone;
     int foodUse,goldUse;
     int power;
     protected boolean canClimb;
@@ -60,7 +61,25 @@ public abstract class Human extends GameObject {
         this.movingPath = findRoute(tiles, tiles[position.x][position.y], tile, canClimb);
         //TODO
     }
-    public abstract LinkedList<MapTile> territory(Map map, MapTile tile);
+    public LinkedList<MapTile> territory(Map map, MapTile tile) ///Return Zone of every Human
+    {
+        LinkedList<MapTile> territory = new LinkedList<>();
+        int x = tile.position.x;
+        int y = tile.position.y;
+        for(int i = x-zone;i<=x+zone;i++)
+        {
+            for(int j = y-(i-x+zone);j<=y+(i-x+zone);j++)
+            {
+                try {
+                    territory.add(map.tiles[i][j]);
+                }catch (Exception e)
+                {
+                    ///Do Nothing , Becuase this Tile is Out of array
+                }
+            }
+        }
+        return territory;
+    }
     public abstract void useResources();
 
     private static LinkedList<MapTile> adjacentList(MapTile[][] tiles, MapTile tile, boolean canClimb)
