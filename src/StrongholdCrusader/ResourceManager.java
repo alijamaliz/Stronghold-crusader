@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by Baran on 5/29/2017.
@@ -86,7 +87,7 @@ public class ResourceManager {
         Image plain1Tile = new Image(plain1TileFile.toURI().toString());
         resources.put("Plain1", plain1Tile);
 
-        File mountainTileFile = new File("Resources/images/Tiles/Mountain1.jpg");
+        File mountainTileFile = new File("Resources/images/Tiles/Mountain1.png");
         Image mountainTile = new Image(mountainTileFile.toURI().toString());
         resources.put("Mountain", mountainTile);
 
