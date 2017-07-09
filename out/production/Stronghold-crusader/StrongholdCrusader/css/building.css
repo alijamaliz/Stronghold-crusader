@@ -1,0 +1,22 @@
+#building{
+    -fx-background-color: #ecffee;
+    -fx-border-radius: 40px;
+    -fx-border-width: 5px;
+    -fx-background-radius: 40px;
+    -fx-padding: 15px;
+    -fx-border-color: #a6ffa9;;
+}
+
+.button{
+    -fx-background-color:#A9A9A9 ;
+    -fx-background-radius: 5px;
+    -fx-opacity: 0.6;
+}
+.button:hover{
+    -fx-opacity: 1;
+}
+.button:pressed{
+    -fx-padding: 10px;
+    -fx-background-color: #f0d1ff;
+    -fx-background-radius: 10px;
+}

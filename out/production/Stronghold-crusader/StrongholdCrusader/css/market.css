@@ -1,0 +1,35 @@
+.button{
+    -fx-background-color: darkgray;
+    -fx-padding: 10px;
+    -fx-border-width: 3px;
+    -fx-border-color: aliceblue;
+    -fx-border-radius: 10px;
+    -fx-opacity: 0.6;
+}
+.button:hover{
+    -fx-opacity: 1;
+}
+.button:pressed{
+    -fx-background-color: gold;
+    -fx-background-radius: 5px;
+}
+#marketMenu{
+    -fx-background-color: azure;
+    -fx-padding: 15px;
+    -fx-border-width: 5px;
+    -fx-border-radius: 40px;
+    -fx-border-color: #a6ffa9;
+    -fx-background-radius: 40px;
+
+}
+#stone:pressed{
+    -fx-background-color: #fff789;
+}
+#wood:pressed{
+
+    -fx-background-color: burlywood;
+}
+#iron:pressed{
+    -fx-background-color: #282318;
+}
+
