@@ -132,8 +132,6 @@ public abstract class Human extends GameObject {
         return territory;
     }
 
-    public abstract void useResources();
-
     private LinkedList<MapTile> findRoute(MapTile[][] tiles, MapTile start, MapTile end, boolean canClimb) ///BFS codes go here
     {
         HashMap<MapTile, Boolean> visited = new HashMap<>(); //every tile is visited or not
