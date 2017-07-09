@@ -98,6 +98,10 @@ public class ResourceManager {
         File selectDestinationFile = new File("Resources/images/Cursors/selectDestination.png");
         Image SelectDestination = new Image(selectDestinationFile.toURI().toString());
         resources.put("SelectDestination", SelectDestination);
+
+        File refrencesImageFile = new File("Resources/images/resources-board.png");
+        Image refrencesAnchorpane = new Image(refrencesImageFile.toURI().toString());
+        resources.put("Refrences",refrencesAnchorpane);
     }
 
     public Image getImage(String name) ///Returns every object's Image

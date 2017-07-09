@@ -16,5 +16,7 @@ public class Settings {
     public static int MAP_TILES_HEIGHT = 30;
     public static int MENUS_ANCHORPANE_WIDTH = 900;
     public static int MENUS_ANCHORPANE_HEIGHT = 150;
+    public static int REFRENCES_ANCHORPANE_WIDTH = 179;
+    public static int REFRENCES_ANCHORPANE_HEIGHT = 250;
 
 }
