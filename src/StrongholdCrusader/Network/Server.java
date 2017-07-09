@@ -245,12 +245,28 @@ public class Server implements Runnable {
             }
             case GameEvent.DISTROY_BUILDING: {
                 int id = Integer.parseInt(gameEvent.message);
-                game.removeBuilding((Building)game.getGameObjectById(id));
+                game.removeBuilding((Building) game.getGameObjectById(id));
                 GameEvent createGameEvent = new GameEvent(GameEvent.DISTROY_BUILDING, gameEvent.message);
                 sendPacket(createGameEvent.getJSON(), address, port);
                 break;
             }
+            case GameEvent.CHANGE_HUMAN_CLIMB: {
+                String[] args = gameEvent.message.split(":");
+                int humanId = Integer.parseInt(args[0]);
+                boolean status;
+                if (args[1].equals("true"))
+                    status = true;
+                else
+                    status = false;
+                changeHumanClimb(humanId, status);
+                break;
+            }
         }
+    }
+
+    private void changeHumanClimb(int humanId, boolean status) {
+        Human human = (Human) game.getGameObjectById(humanId);
+        human.canClimb = status;
     }
 
     private void sendFocusOnPalacePacketForAll() {
@@ -268,10 +284,10 @@ public class Server implements Runnable {
         }
     }
 
-    private int getPalaceIdByPlayerName (String playerName) {
+    private int getPalaceIdByPlayerName(String playerName) {
         for (GameObject object : game.objects) {
             if (object instanceof Palace && object.ownerName.equals(playerName))
-                return  object.id;
+                return object.id;
         }
         return 0;
     }

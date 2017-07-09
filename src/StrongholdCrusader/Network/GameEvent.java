@@ -31,6 +31,7 @@ public class GameEvent {
     public static final int DISTROY_BUILDING = 20;
     public static final int FOCUS_ON_BUILDING = 21;
     public static final int RESOURCES = 22;
+    public static final int CHANGE_HUMAN_CLIMB = 23;
     public int type;
     public String message;
     public GameEvent(int type, String message) {

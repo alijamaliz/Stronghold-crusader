@@ -46,8 +46,7 @@ public class Vassal extends Human {
         checkBox.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if (checkBox.isSelected())
-                    mapGUI.changeClimbStatus(Vassal.this);
+                    mapGUI.changeClimbStatus(Vassal.this,checkBox.isSelected());
             }
         });
         imageView.setLayoutX(200);

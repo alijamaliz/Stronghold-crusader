@@ -47,8 +47,7 @@ public class Worker extends Human {
         checkBox.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if (checkBox.isSelected())
-                    mapGUI.changeClimbStatus(Worker.this);
+                    mapGUI.changeClimbStatus(Worker.this,checkBox.isSelected());
             }
         });
         button.setLayoutX(200);

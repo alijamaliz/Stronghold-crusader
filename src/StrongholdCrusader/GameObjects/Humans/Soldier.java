@@ -47,8 +47,7 @@ public class Soldier extends Human {
         checkBox.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if (checkBox.isSelected())
-                    mapGUI.changeClimbStatus(Soldier.this);
+                    mapGUI.changeClimbStatus(Soldier.this,checkBox.isSelected());
             }
         });
         imageView.setLayoutX(100);

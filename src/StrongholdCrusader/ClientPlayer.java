@@ -18,7 +18,7 @@ import org.json.simple.parser.ParseException;
  * Created by Baran on 6/3/2017.
  */
 public class ClientPlayer {
-    String username;
+    public String username;
     public Client client;
     Map map;
     MenuGUI menuGUI;
@@ -83,12 +83,14 @@ public class ClientPlayer {
                         int y = new Integer(((Long) (((JSONObject) obj.get("position")).get("y"))).intValue());
                         int id = new Integer(((Long) (obj.get("id"))).intValue());
                         int health = new Integer(((Long) (obj.get("health"))).intValue());
+                        String owner = (String) obj.get("ownerName");
                         if (map.findGameObjectObjectById(id) == null) { //Create object
                             if (obj.get("type").equals("Palace")) {
                                 Palace palace = new Palace(map.getGui());
                                 palace.position = new Pair(x, y);
                                 palace.id = id;
                                 palace.health = health;
+                                palace.ownerName = owner;
                                 map.objects.add(palace);
                             }
                             if (obj.get("type").equals("WoodCutter")) {
@@ -96,6 +98,7 @@ public class ClientPlayer {
                                 woodCutter.position = new Pair(x, y);
                                 woodCutter.id = id;
                                 woodCutter.health = health;
+                                woodCutter.ownerName = owner;
                                 map.objects.add(woodCutter);
                             }
                             if (obj.get("type").equals("Quarry")) {
@@ -103,6 +106,7 @@ public class ClientPlayer {
                                 quarry.position = new Pair(x, y);
                                 quarry.id = id;
                                 quarry.health = health;
+                                quarry.ownerName = owner;
                                 map.objects.add(quarry);
                             }
                             if (obj.get("type").equals("Market")) {
@@ -110,6 +114,7 @@ public class ClientPlayer {
                                 market.position = new Pair(x, y);
                                 market.id = id;
                                 market.health = health;
+                                market.ownerName = owner;
                                 map.objects.add(market);
                             }
                             if (obj.get("type").equals("Port")) {
@@ -117,6 +122,7 @@ public class ClientPlayer {
                                 port.position = new Pair(x, y);
                                 port.id = id;
                                 port.health = health;
+                                port.ownerName = owner;
                                 map.objects.add(port);
                             }
                             if (obj.get("type").equals("Farm")) {
@@ -124,6 +130,7 @@ public class ClientPlayer {
                                 farm.position = new Pair(x, y);
                                 farm.id = id;
                                 farm.health = health;
+                                farm.ownerName = owner;
                                 map.objects.add(farm);
                             }
                             if (obj.get("type").equals("Barracks")) {
@@ -131,6 +138,7 @@ public class ClientPlayer {
                                 barracks.position = new Pair(x, y);
                                 barracks.id = id;
                                 barracks.health = health;
+                                barracks.ownerName = owner;
                                 map.objects.add(barracks);
                             }
                             if (obj.get("type").equals("Worker")) {
@@ -138,6 +146,7 @@ public class ClientPlayer {
                                 worker.position = new Pair(x, y);
                                 worker.id = id;
                                 worker.health = health;
+                                worker.ownerName = owner;
                                 map.objects.add(worker);
                             }
                             if (obj.get("type").equals("Vassal")) {
@@ -145,6 +154,7 @@ public class ClientPlayer {
                                 vassal.position = new Pair(x, y);
                                 vassal.id = id;
                                 vassal.health = health;
+                                vassal.ownerName = owner;
                                 map.objects.add(vassal);
                             }
                             if (obj.get("type").equals("Soldier")) {
@@ -152,6 +162,7 @@ public class ClientPlayer {
                                 soldier.position = new Pair(x, y);
                                 soldier.id = id;
                                 soldier.health = health;
+                                soldier.ownerName = owner;
                                 map.objects.add(soldier);
                             }
                         } else { //Update object
