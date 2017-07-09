@@ -4,6 +4,7 @@ import StrongholdCrusader.GameObjects.Buildings.Barracks;
 import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 
 import java.io.File;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ import java.util.Random;
  */
 public class ResourceManager {
     Map<String, Image> resources;
-
+    Map<String,AudioClip> sounds;
     public ResourceManager() {
         resources = new HashMap<>();
         ///Adding Barracks Photo
@@ -102,13 +103,30 @@ public class ResourceManager {
         File refrencesImageFile = new File("Resources/images/resources-board.png");
         Image refrencesAnchorpane = new Image(refrencesImageFile.toURI().toString());
         resources.put("Refrences",refrencesAnchorpane);
+
+        AudioClip bgMusic1 = new AudioClip("Resources/sounds/01 - A Pane in the Glass.mp3");
+//        bgMusic1.setCycleCount(AudioClip.INDEFINITE);
+        sounds.put("bgMusic1",bgMusic1);
+
+        AudioClip bgMusic2 = new AudioClip("Resources/sounds/02 - A Strong Spice.mp3");
+//        bgMusic1.setCycleCount(AudioClip.INDEFINITE);
+        sounds.put("bgMusic2",bgMusic2);
     }
+
 
     public Image getImage(String name) ///Returns every object's Image
     {
         if (resources.containsKey(name)) {
             return resources.get(name);
         } else return null;
+    }
+    public AudioClip getSound(String name)
+    {
+        if(sounds.containsKey(name))
+        {
+            return sounds.get(name);
+        }
+        else return null;
     }
 
     public Cursor getCursor(String name) {
