@@ -105,6 +105,13 @@ public class Server implements Runnable {
             case GameEvent.JOIN_TO_GAME: {
                 String username = gameEvent.message;
                 if (isUsernameAvailable(username)) {
+
+                    //Send previous players for new player
+                    for (ServerPlayer player : game.players) {
+                        GameEvent joinGameEvent = new GameEvent(GameEvent.USER_JOINED_TO_NETWORK, player.playerName + "," + player.address.getHostAddress());
+                        sendPacket(joinGameEvent.getJSON(), address, port);
+                    }
+
                     game.players.add(new ServerPlayer(username, address, port));
 
                     //Create new user Palace
