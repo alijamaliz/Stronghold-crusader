@@ -45,7 +45,7 @@ public class Market extends Building {
     public AnchorPane anchorPane;
 
     @Override
-    public AnchorPane clickAction() {
+    public AnchorPane clickAction(boolean owner) {
         anchorPane = new AnchorPane();
         File building = new File("Resources/images/Buildings/Market.png");
         ImageView buildingImage = new ImageView(building.toURI().toString());
@@ -177,6 +177,15 @@ public class Market extends Building {
         anchorPane.setId("marketMenu");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH,Settings.MENUS_ANCHORPANE_HEIGHT);
         anchorPane.getStylesheets().add("StrongholdCrusader/css/market.css");
+        if (!owner){
+            distroy.setVisible(false);
+            back.setVisible(false);
+            buy.setVisible(false);
+            sell.setVisible(false);
+            stone.setVisible(false);
+            wood.setVisible(false);
+            iron.setVisible(false);
+        }
         return anchorPane;
     }
 }

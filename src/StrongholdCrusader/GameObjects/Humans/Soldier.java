@@ -35,7 +35,7 @@ public class Soldier extends Human {
     }
     public AnchorPane anchorPane;
     @Override
-    public AnchorPane clickAction() {
+    public AnchorPane clickAction(boolean owner) {
 
         anchorPane = new AnchorPane();
         File file = new File("Resources/images/Humans/Soldier.png");

@@ -30,7 +30,7 @@ public class WoodCutter extends Building {
     public AnchorPane anchorPane;
 
     @Override
-    public AnchorPane clickAction() {
+    public AnchorPane clickAction(boolean owner) {
         anchorPane = new AnchorPane();
         File building = new File("Resources/images/Buildings/WoodCutter.png");
         ImageView imageView = new ImageView(building.toURI().toString());
@@ -49,6 +49,9 @@ public class WoodCutter extends Building {
         anchorPane.setId("building");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
+        if (!owner){
+            distroy.setVisible(false);
+        }
         return anchorPane;
     }
 }
