@@ -55,6 +55,13 @@ public class Game {
         }
     }
     public void removeBuilding(Building building){
+        for(int i = building.position.x ; i<building.position.x + building.size.x;i++)
+        {
+            for (int j = building.position.y ; j<building.position.y + building.size.y ; j++)
+            {
+                tiles[i][j].filled=false;
+            }
+        }
         objects.remove(building);
     }
 
