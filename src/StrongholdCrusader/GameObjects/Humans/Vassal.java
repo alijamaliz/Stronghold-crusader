@@ -4,7 +4,10 @@ import StrongholdCrusader.Map.Map;
 import StrongholdCrusader.Map.MapGUI;
 import StrongholdCrusader.Map.MapTile;
 import StrongholdCrusader.MenuGUI;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -37,7 +40,20 @@ public class Vassal extends Human {
         anchorPane = new AnchorPane();
         File file = new File("Resources/images/Humans/Vassal.png");
         ImageView imageView = new ImageView(file.toURI().toString());
-        anchorPane.getChildren().addAll(imageView);
+        CheckBox checkBox = new CheckBox("Can Climb ?");
+        checkBox.setLayoutX(400);
+        checkBox.setLayoutY(60);
+        checkBox.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (checkBox.isSelected())
+                    mapGUI.changeClimbStatus(Vassal.this);
+            }
+        });
+        imageView.setLayoutX(200);
+        anchorPane.getChildren().addAll(imageView,checkBox);
+        imageView.setLayoutX(200);
+        imageView.setLayoutY(40);
         anchorPane.setPrefSize(300,100);
         return anchorPane;
     }

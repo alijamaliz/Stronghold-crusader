@@ -177,11 +177,12 @@ public class ClientPlayer {
                 int golds = Integer.parseInt(args[0]);
                 int foods = Integer.parseInt(args[1]);
                 int woods = Integer.parseInt(args[2]);
-                System.out.println(golds);
+                map.getGui().updateRefrences(golds,foods,woods);
                 break;
             }
         }
     }
+
 
     private void showMessage(String message) {
         map.showMessage(message);

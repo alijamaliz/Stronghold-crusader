@@ -3,7 +3,10 @@ package StrongholdCrusader.GameObjects.Humans;
 import StrongholdCrusader.Map.Map;
 import StrongholdCrusader.Map.MapGUI;
 import StrongholdCrusader.Map.MapTile;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -38,9 +41,21 @@ public class Worker extends Human {
         File file = new File("Resources/images/Humans/Worker.png");
         ImageView imageView = new ImageView(file.toURI().toString());
         Button button = new Button("Change to Vassal");
-        button.setLayoutX(button.getLayoutX()+70);
-        button.setLayoutY(30);
-        anchorPane.getChildren().addAll(imageView,button);
+        CheckBox checkBox = new CheckBox("Can Climb ?");
+        checkBox.setLayoutX(400);
+        checkBox.setLayoutY(60);
+        checkBox.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (checkBox.isSelected())
+                    mapGUI.changeClimbStatus(Worker.this);
+            }
+        });
+        button.setLayoutX(200);
+        imageView.setLayoutX(100);
+        imageView.setLayoutY(40);
+        button.setLayoutY(60);
+        anchorPane.getChildren().addAll(imageView,button,checkBox);
         anchorPane.setPrefSize(300,100);
         return anchorPane;
     }

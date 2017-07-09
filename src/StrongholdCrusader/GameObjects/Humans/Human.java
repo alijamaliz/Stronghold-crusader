@@ -16,7 +16,7 @@ import java.util.Queue;
  * Created by Baran on 5/29/2017.
  */
 public abstract class Human extends GameObject {
-    protected boolean canClimb;
+    public boolean canClimb;
     protected int speed;
     int zone;
     int foodUse, goldUse;
