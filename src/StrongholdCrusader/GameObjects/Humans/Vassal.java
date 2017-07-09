@@ -56,8 +56,4 @@ public class Vassal extends Human {
         anchorPane.setPrefSize(300,100);
         return anchorPane;
     }
-    @Override
-    public void useResources() {
-
-    }
 }

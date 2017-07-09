@@ -60,10 +60,4 @@ public class Soldier extends Human {
         return anchorPane;
 
     }
-
-    @Override
-    public void useResources() {
-        ///TODO
-    }
-
 }

@@ -58,13 +58,4 @@ public class Worker extends Human {
         anchorPane.setPrefSize(300,100);
         return anchorPane;
     }
-    public void getResorces()
-    {
-        ///TODO
-    }
-    @Override
-    public void useResources()
-    {
-        ///TODO
-    }
 }
