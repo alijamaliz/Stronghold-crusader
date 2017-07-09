@@ -36,7 +36,7 @@ public class Vassal extends Human {
     }
     public AnchorPane anchorPane;
     @Override
-    public AnchorPane clickAction() {
+    public AnchorPane clickAction(boolean owner) {
         anchorPane = new AnchorPane();
         File file = new File("Resources/images/Humans/Vassal.png");
         ImageView imageView = new ImageView(file.toURI().toString());

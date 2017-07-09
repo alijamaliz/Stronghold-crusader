@@ -25,5 +25,5 @@ public abstract class GameObject implements Serializable {
         this.mapGUI = mapGUI;
     }
 
-    public abstract AnchorPane clickAction();
+    public abstract AnchorPane clickAction(boolean owner);
 }

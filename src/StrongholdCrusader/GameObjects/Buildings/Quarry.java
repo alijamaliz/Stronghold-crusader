@@ -29,7 +29,7 @@ public class Quarry extends Building {
     }
 
     @Override
-    public AnchorPane clickAction() {
+    public AnchorPane clickAction(boolean owner) {
         anchorPane = new AnchorPane();
         File building = new File("Resources/images/Buildings/Quarry.png");
         ImageView imageView = new ImageView(building.toURI().toString());
@@ -48,6 +48,9 @@ public class Quarry extends Building {
         anchorPane.setId("building");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
+        if (!owner){
+            distroy.setVisible(false);
+        }
         return anchorPane;
     }
 }

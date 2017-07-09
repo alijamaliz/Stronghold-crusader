@@ -36,7 +36,7 @@ public class Worker extends Human {
     }
     public AnchorPane anchorPane;
     @Override
-    public AnchorPane clickAction() {
+    public AnchorPane clickAction(boolean owner) {
         anchorPane = new AnchorPane();
         File file = new File("Resources/images/Humans/Worker.png");
         ImageView imageView = new ImageView(file.toURI().toString());

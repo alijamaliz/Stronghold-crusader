@@ -31,7 +31,7 @@ public class Barracks extends Building {
     public AnchorPane anchorPane;
 
     @Override
-    public AnchorPane clickAction() {
+    public AnchorPane clickAction(boolean owner) {
         anchorPane = new AnchorPane();
         File building = new File("Resources/images/Buildings/Barracks.png");
         ImageView buildingImage = new ImageView(building.toURI().toString());
@@ -65,6 +65,10 @@ public class Barracks extends Building {
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
         anchorPane.setId("building");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
+        if (!owner){
+            distroy.setVisible(false);
+            createSoldier.setVisible(false);
+        }
         return anchorPane;
     }
 }
