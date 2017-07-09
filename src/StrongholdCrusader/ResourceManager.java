@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 
 import java.io.File;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -104,13 +105,10 @@ public class ResourceManager {
         Image refrencesAnchorpane = new Image(refrencesImageFile.toURI().toString());
         resources.put("Refrences",refrencesAnchorpane);
 
-        AudioClip bgMusic1 = new AudioClip("Resources/sounds/01 - A Pane in the Glass.mp3");
-//        bgMusic1.setCycleCount(AudioClip.INDEFINITE);
+        URL url = getClass().getResource("Resources/sounds/01 - A Pane in the Glass.mp3");
+        AudioClip bgMusic1 = new AudioClip(url.toString());
+        bgMusic1.setCycleCount(AudioClip.INDEFINITE);
         sounds.put("bgMusic1",bgMusic1);
-
-        AudioClip bgMusic2 = new AudioClip("Resources/sounds/02 - A Strong Spice.mp3");
-//        bgMusic1.setCycleCount(AudioClip.INDEFINITE);
-        sounds.put("bgMusic2",bgMusic2);
     }
 
 
