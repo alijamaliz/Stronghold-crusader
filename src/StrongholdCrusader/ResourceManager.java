@@ -105,6 +105,15 @@ public class ResourceManager {
         Image refrencesAnchorpane = new Image(refrencesImageFile.toURI().toString());
         resources.put("Refrences",refrencesAnchorpane);
 
+        ///Animation of Tree
+
+        for(int i=1; i<=14 ;i++ )
+        {
+            File treeAnimFile = new File("Resources/images/animation/tree/tree"+i+".png");
+            Image treeAnimImage = new Image(treeAnimFile.toURI().toString());
+            resources.put("treeAnim"+i,treeAnimImage);
+        }
+
        // URL url = getClass().getResource("Resources/sounds/"01 - A Pane in the Glass.mp3");
         //AudioClip bgMusic1 = new AudioClip(url.toString());
        // bgMusic1.setCycleCount(AudioClip.INDEFINITE);
