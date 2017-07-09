@@ -2,22 +2,21 @@ package StrongholdCrusader;
 
 import StrongholdCrusader.Network.GameEvent;
 import StrongholdCrusader.Network.Server;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -50,14 +49,16 @@ public class MenuGUI implements Initializable {
     @FXML
     Label serverIPLabel;
     @FXML
-    GridPane usersGridView;
+    ListView<String> usersListView;
     @FXML
     Button startGame;
     private ClientPlayer clientPlayer;
     private int numberOfUsers;
+    private ArrayList<String> players;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        players = new ArrayList<>();
         File file = new File("Resources/images/menu/menu_00000.jpg");
         Image image1 = new Image(file.toURI().toString());
         image.setImage(image1);
@@ -222,8 +223,7 @@ public class MenuGUI implements Initializable {
         back.setVisible(false);
 
         serverIPLabel.setVisible(true);
-        usersGridView.setVisible(true);
-        showPlayersPane();
+        usersListView.setVisible(true);
 
         startGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -240,35 +240,9 @@ public class MenuGUI implements Initializable {
         clientPlayer.client.sendGameEvent(GameEvent.START_GAME, "Game started...");
     }
 
-    private void showPlayersPane() {
-        usersGridView.setPadding(new Insets(10));
-        ColumnConstraints column1 = new ColumnConstraints(100);
-        ColumnConstraints column2 = new ColumnConstraints(100);
-        usersGridView.getColumnConstraints().addAll(column1, column2);
-
-        Label usernameLabel = new Label("نام کاربری");
-        Label addressLabel = new Label("آدرس");
-        addressLabel.setPrefWidth(150);
-        usernameLabel.setPrefWidth(150);
-        addressLabel.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-        usernameLabel.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
-        GridPane.setHalignment(usernameLabel, HPos.RIGHT);
-        usersGridView.add(usernameLabel, 0, 0);
-        GridPane.setHalignment(addressLabel, HPos.RIGHT);
-        usersGridView.add(addressLabel, 1, 2);
-    }
-
-    public void addPlayerToTable(String username, String address) {
+    public void addPlayerToTable(String username) {
         numberOfUsers++;
-        Label usernameLabel = new Label(username);
-        Label addressLabel = new Label(address);
-        addressLabel.setPrefWidth(150);
-        usernameLabel.setPrefWidth(150);
-
-        GridPane.setHalignment(usernameLabel, HPos.RIGHT);
-        //usersGridView.add(usernameLabel, 0, numberOfUsers + 1);
-        GridPane.setHalignment(addressLabel, HPos.LEFT);
-        //usersGridView.add(addressLabel, 1, numberOfUsers + 1);
-
+        players.add(username);
+        usersListView.setItems(FXCollections.observableList(players));
     }
 }

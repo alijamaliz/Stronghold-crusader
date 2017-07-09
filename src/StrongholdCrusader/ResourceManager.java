@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 
 import java.io.File;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +17,7 @@ import java.util.Random;
  * Created by Baran on 5/29/2017.
  */
 public class ResourceManager {
-    Map<String, Image> resources;
+    static Map<String, Image> resources;
     Map<String,AudioClip> sounds;
     public ResourceManager() {
         resources = new HashMap<>();
@@ -121,7 +122,7 @@ public class ResourceManager {
     }
 
 
-    public Image getImage(String name) ///Returns every object's Image
+    public static Image getImage(String name) ///Returns every object's Image
     {
         if (resources.containsKey(name)) {
             return resources.get(name);

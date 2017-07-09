@@ -15,12 +15,10 @@ public class NatureObject extends ImageView implements Serializable,Runnable
 {
     public String type;
     public Pair position;
-    ResourceManager resourceManager;
-    NatureObject(String type,Pair pair)
+    public NatureObject(String type,Pair pair)
     {
         this.type = type;
         this.position=pair;
-        resourceManager = new ResourceManager();
     }
 
     @Override
@@ -30,7 +28,7 @@ public class NatureObject extends ImageView implements Serializable,Runnable
         {
             int counter = 1;
             while (true) {
-                this.setImage(resourceManager.getImage("treeAnim"+counter));
+                this.setImage(ResourceManager.getImage("treeAnim"+counter));
                 if (counter < 15)
                     counter++;
                 else

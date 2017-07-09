@@ -5,16 +5,15 @@ import StrongholdCrusader.GameObjects.GameObject;
 import StrongholdCrusader.GameObjects.Humans.Soldier;
 import StrongholdCrusader.GameObjects.Humans.Vassal;
 import StrongholdCrusader.GameObjects.Humans.Worker;
+import StrongholdCrusader.GameObjects.NatureObject;
 import StrongholdCrusader.GameObjects.Pair;
 import StrongholdCrusader.Settings;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -23,15 +22,16 @@ import java.util.LinkedList;
 public class MapManager implements Serializable {
     //Get default maps by id
     //0 is Plain, 1 is Mountain, 2 is Sea
-    public static MapTile[][] getMapTilesById(int id) {
-        MapTile[][] tiles = new MapTile[Settings.MAP_WIDTH_RESOLUTION][Settings.MAP_HEIGHT_RESOLUTION];
+
+    private static JSONObject getMapJSONObject(int id) {
         String filename = "Resources/maps/map" + id + ".map";
-        /*String content = "";
+
+        String mapJSON = "";
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(filename)));
             String line = "";
             while ((line = bufferedReader.readLine()) != null && line.length() != 0) {
-                content += line;
+                mapJSON += line;
             }
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
@@ -39,19 +39,76 @@ public class MapManager implements Serializable {
             e1.printStackTrace();
         }
         JSONParser jsonParser = new JSONParser();
-        JSONObject jsonObject = (JSONObject) jsonParser.parse(content);
-        */
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject = (JSONObject) jsonParser.parse(mapJSON);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+
+    public static MapTile[][] getMapTiles(int id) {
+        MapTile[][] tiles = new MapTile[Settings.MAP_WIDTH_RESOLUTION][Settings.MAP_HEIGHT_RESOLUTION];
+
+        JSONObject jsonObject = getMapJSONObject(id);
+        String mapTiles = (String) jsonObject.get("tiles");
+
+        for (int i = 0; i < Settings.MAP_WIDTH_RESOLUTION; i++) {
+            for (int j = 0; j < Settings.MAP_HEIGHT_RESOLUTION; j++) {
+                int index = i * Settings.MAP_WIDTH_RESOLUTION + j;
+                if (mapTiles.charAt(index) == '0')
+                    tiles[i][j] = new Plain(i, j);
+                if (mapTiles.charAt(index) == '1')
+                    tiles[i][j] = new Mountain(i, j);
+                if (mapTiles.charAt(index) == '2')
+                    tiles[i][j] = new Sea(i, j);
+            }
+        }
+        return tiles;
+    }
+
+    public static LinkedList<Pair> getPalacePositions(int id) {
+        LinkedList<Pair> places = new LinkedList<>();
+        JSONObject jsonObject = getMapJSONObject(id);
+        JSONArray palacePlacesArray = (JSONArray) jsonObject.get("palacePlaces");
+        for (Object o : palacePlacesArray) {
+            JSONArray palacePlace = (JSONArray) o;
+            int x = new Integer(((Long) (palacePlace.get(0))).intValue());
+            int y = new Integer(((Long) (palacePlace.get(1))).intValue());
+            places.add(new Pair(x, y));
+        }
+        return places;
+    }
+
+    public static LinkedList<NatureObject> getNatureObjects(int id) {
+        LinkedList<NatureObject> natureObjects = new LinkedList<>();
+        JSONObject jsonObject = getMapJSONObject(id);
+        JSONArray natureObjectsArray = (JSONArray) jsonObject.get("mapObjects");
+        for (Object o : natureObjectsArray) {
+            JSONObject natureObject = (JSONObject) o;
+            JSONArray position = (JSONArray) natureObject.get("position");
+            natureObjects.add(new NatureObject((String) natureObject.get("type"), new Pair((int) position.get(0), (int) position.get(1))));
+        }
+        return natureObjects;
+    }
+
+    /*public static MapTile[][] getMapTiles(int id) {
+        MapTile[][] tiles = new MapTile[Settings.MAP_WIDTH_RESOLUTION][Settings.MAP_HEIGHT_RESOLUTION];
+        String filename = "Resources/maps/map" + id + ".map";
+
+
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(filename)));
             for (int i = 0; i < Settings.MAP_WIDTH_RESOLUTION; i++) {
                 String line = bufferedReader.readLine();
                 for (int j = 0; j < Settings.MAP_HEIGHT_RESOLUTION; j++) {
                     if (line.charAt(j) == '0')
-                        tiles[i][j] = new Plain(i,j);
+                        tiles[i][j] = new Plain(i, j);
                     if (line.charAt(j) == '1')
-                        tiles[i][j] = new Mountain(i,j);
+                        tiles[i][j] = new Mountain(i, j);
                     if (line.charAt(0) == '2')
-                        tiles[i][j] = new Sea(i,j);
+                        tiles[i][j] = new Sea(i, j);
                 }
             }
         } catch (FileNotFoundException e) {
@@ -61,22 +118,24 @@ public class MapManager implements Serializable {
         }
         return tiles;
     }
-
-    public static ArrayList<Pair> getMapPalacePositionsById(int id) {
-        ArrayList<Pair> positions = new ArrayList<>();
-        positions.add(new Pair(5, 5));
-        positions.add(new Pair(45, 5));
-        positions.add(new Pair(80, 5));
-        positions.add(new Pair(5, 85));
-        positions.add(new Pair(45, 85));
-        positions.add(new Pair(80, 85));
+*/
+    /*public static LinkedList<Pair> getMapPalacePositionsById(int id) {
+        LinkedList<Pair> positions = new LinkedList<>();
+        if (id == 1) {
+            positions.add(new Pair(7, 7));
+            positions.add(new Pair(45, 7));
+            positions.add(new Pair(80, 7));
+            positions.add(new Pair(7, 80));
+            positions.add(new Pair(45, 80));
+            positions.add(new Pair(78, 80));
+        }
         return positions;
-    }
+    }*/
 
-    public void saveMap(Map map, int mapID) ///Saving Map With ObjectStreams into files
+    public static void saveMap(Map map, int mapID) ///Saving Map With ObjectStreams into files
     {
         try {
-            File mapFile = new File("../../Resources/maps/map" + mapID + ".map");
+            File mapFile = new File("Resources/maps/map" + mapID + ".map");
             FileOutputStream fileOutputStream = new FileOutputStream(mapFile);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(map);
@@ -85,11 +144,11 @@ public class MapManager implements Serializable {
         }
     }
 
-    public Map LoadMap(int mapID) /// Loading Map Files which were saved with ObjectStreams
+    public static Map loadMap(int mapID) /// Loading Map Files which were saved with ObjectStreams
     {
         Map map = null;
         try {
-            File mapFile = new File("../../Resources/maps/map" + mapID + ".map");
+            File mapFile = new File("Resources/maps/map" + mapID + ".map");
             FileInputStream fileInputStream = new FileInputStream(mapFile);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             map = (Map) objectInputStream.readObject();
@@ -101,7 +160,7 @@ public class MapManager implements Serializable {
 
     public static JSONObject mapTilesToJSON(int mapId) ///Gives MapTile Array and Environment of map in JSON type
     {
-        MapTile[][] tilesArray = getMapTilesById(mapId);
+        MapTile[][] tilesArray = getMapTiles(mapId);
         JSONObject mapTileJSON = new JSONObject();
         JSONArray tiles = new JSONArray();
         for (int i = 0; i < Settings.MAP_WIDTH_RESOLUTION; i++) {
@@ -258,4 +317,5 @@ public class MapManager implements Serializable {
         }
         return map;
     }
+
 }
