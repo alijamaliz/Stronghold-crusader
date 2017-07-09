@@ -23,7 +23,7 @@ public abstract class Human extends GameObject {
     int power;
     private int speedHandler;
     private MapTile nextTile;
-    private MapTile tagetTile;
+    private MapTile targetTile;
 
     public Human() {
     }
@@ -96,8 +96,8 @@ public abstract class Human extends GameObject {
                 tiles[this.position.x][this.position.y].filled = false;
                 this.position = nextTile.position;
                 tiles[this.position.x][this.position.y].filled = true;
-                if (!tiles[position.x][position.y].equals(tagetTile)) {
-                    LinkedList<MapTile> path = findRoute(tiles, tiles[position.x][position.y], tagetTile, canClimb);
+                if (!tiles[position.x][position.y].equals(targetTile)) {
+                    LinkedList<MapTile> path = findRoute(tiles, tiles[position.x][position.y], targetTile, canClimb);
                     path.removeLast();
                     this.nextTile = path.getLast();
                 } else
@@ -109,8 +109,8 @@ public abstract class Human extends GameObject {
     }
 
     public void goToTile(MapTile[][] tiles, MapTile tile) {
-        tagetTile = tile;
-        LinkedList<MapTile> path = findRoute(tiles, tiles[position.x][position.y], tagetTile, canClimb);
+        targetTile = tile;
+        LinkedList<MapTile> path = findRoute(tiles, tiles[position.x][position.y], targetTile, canClimb);
         path.removeLast();
         this.nextTile = path.getLast();
     }

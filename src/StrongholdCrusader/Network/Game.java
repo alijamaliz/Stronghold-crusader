@@ -3,11 +3,17 @@ package StrongholdCrusader.Network;
 import StrongholdCrusader.GameObjects.Buildings.Building;
 import StrongholdCrusader.GameObjects.GameObject;
 import StrongholdCrusader.GameObjects.Humans.Human;
+import StrongholdCrusader.GameObjects.Humans.Soldier;
+import StrongholdCrusader.GameObjects.Humans.Vassal;
+import StrongholdCrusader.GameObjects.Humans.Worker;
 import StrongholdCrusader.GameObjects.Pair;
-import StrongholdCrusader.Map.*;
+import StrongholdCrusader.Map.MapManager;
+import StrongholdCrusader.Map.MapTile;
 import StrongholdCrusader.Settings;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Random;
 
 /**
  * Created by Baran on 5/29/2017.
@@ -25,6 +31,31 @@ public class Game {
         tiles = MapManager.getMapTilesById(mapId);
         this.mapId = mapId;
         palacePositions = MapManager.getMapPalacePositionsById(mapId);
+
+        //Game Thread
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true)
+                    try {
+                        for (ServerPlayer player : players) {
+                            for (GameObject gameObject : getGameObjectByPlayerName(player.playerName)) {
+                                if (gameObject instanceof Vassal || gameObject instanceof Worker) {
+                                    player.foods -= 1;
+                                    System.out.println(player.foods);
+                                }
+                                if (gameObject instanceof Soldier) {
+                                    System.out.println("Solier");
+                                    player.foods -= 2;
+                                }
+                            }
+                        }
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+            }
+        }).start();
     }
 
     public Pair getRandomPalacePosition() {
@@ -54,7 +85,8 @@ public class Game {
             }
         }
     }
-    public void removeBuilding(Building building){
+
+    public void removeBuilding(Building building) {
         objects.remove(building);
     }
 
@@ -77,4 +109,15 @@ public class Game {
         }
         return null;
     }
+
+
+    public LinkedList<GameObject> getGameObjectByPlayerName(String playerName) {
+        LinkedList<GameObject> playerObjects = new LinkedList<>();
+        for (GameObject object : objects) {
+            if (object.ownerName.equals(playerName))
+                playerObjects.add(object);
+        }
+        return playerObjects;
+    }
+
 }

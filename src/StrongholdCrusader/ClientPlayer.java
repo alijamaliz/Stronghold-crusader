@@ -165,7 +165,21 @@ public class ClientPlayer {
                 }
                 break;
             }
-
+            case GameEvent.FOCUS_ON_BUILDING: {
+                String[] args = gameEvent.message.split(":");
+                int x = Integer.parseInt(args[0]);
+                int y = Integer.parseInt(args[1]);
+                map.getGui().focusOnTile(map.tiles[x][y]);
+                break;
+            }
+            case GameEvent.RESOURCES: {
+                String[] args = gameEvent.message.split(":");
+                int golds = Integer.parseInt(args[0]);
+                int foods = Integer.parseInt(args[1]);
+                int woods = Integer.parseInt(args[2]);
+                System.out.println(golds);
+                break;
+            }
         }
     }
 

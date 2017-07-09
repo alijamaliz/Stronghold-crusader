@@ -54,7 +54,7 @@ public class ResourceManager {
         Image worker = new Image(workerFile.toURI().toString());
         resources.put("Worker", worker);
         ///Adding Vassal Photo
-        File vassalFile = new File("Resources/images/Humans/Worker.png");
+        File vassalFile = new File("Resources/images/Humans/Vassal.png");
         Image vassal = new Image(vassalFile.toURI().toString());
         resources.put("Vassal", vassal);
 

@@ -43,6 +43,7 @@ public class Server implements Runnable {
                 while (true) {
                     updateMapObjects();
                     sendMapObjectsToAll();
+                    sendResourcesForAll();
                     try {
                         Thread.sleep(1000 / Settings.SEND_DATA_RATE);
                     } catch (InterruptedException e) {
@@ -130,6 +131,7 @@ public class Server implements Runnable {
             case GameEvent.START_GAME: {
                 GameEvent startGameEvent = new GameEvent(GameEvent.START_GAME, String.valueOf(game.mapId));
                 sendPacketForAll(startGameEvent.getJSON());
+                sendFocusOnPalacePacketForAll();
                 //sendMapToAll();
                 sendMapObjectsThread.start();
                 break;
@@ -249,6 +251,29 @@ public class Server implements Runnable {
                 break;
             }
         }
+    }
+
+    private void sendFocusOnPalacePacketForAll() {
+        for (ServerPlayer player : game.players) {
+            Palace palace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(player.playerName));
+            GameEvent palaceFocus = new GameEvent(GameEvent.FOCUS_ON_BUILDING, palace.position.x + ":" + palace.position.y);
+            sendPacket(palaceFocus.getJSON(), player.address, player.port);
+        }
+    }
+
+    private void sendResourcesForAll() {
+        for (ServerPlayer player : game.players) {
+            GameEvent resourcesEvent = new GameEvent(GameEvent.RESOURCES, player.golds + ":" + player.foods + ":" + player.woods);
+            sendPacket(resourcesEvent.getJSON(), player.address, player.port);
+        }
+    }
+
+    private int getPalaceIdByPlayerName (String playerName) {
+        for (GameObject object : game.objects) {
+            if (object instanceof Palace && object.ownerName.equals(playerName))
+                return  object.id;
+        }
+        return 0;
     }
 
     private void moveHuman(int humanId, Pair pair) {
