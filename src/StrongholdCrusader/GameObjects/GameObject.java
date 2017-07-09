@@ -21,7 +21,7 @@ public abstract class GameObject implements Serializable {
     }
 
     public GameObject(MapGUI mapGUI) {
-        health = 100;
+        health = 1000;
         this.mapGUI = mapGUI;
     }
 
