@@ -88,7 +88,9 @@ public class MapManager implements Serializable {
         for (Object o : natureObjectsArray) {
             JSONObject natureObject = (JSONObject) o;
             JSONArray position = (JSONArray) natureObject.get("position");
-            natureObjects.add(new NatureObject((String) natureObject.get("type"), new Pair((int) position.get(0), (int) position.get(1))));
+            int x = new Integer(((Long) (position.get(0))).intValue());
+            int y = new Integer(((Long) (position.get(1))).intValue());
+            natureObjects.add(new NatureObject((String) natureObject.get("type"), new Pair(x, y)));
         }
         return natureObjects;
     }

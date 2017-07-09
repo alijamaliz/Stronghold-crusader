@@ -1,24 +1,21 @@
 package StrongholdCrusader;
 
-import StrongholdCrusader.GameObjects.Buildings.Barracks;
 import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 
 import java.io.File;
-import java.io.Serializable;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * Created by Baran on 5/29/2017.
  */
 public class ResourceManager {
     static Map<String, Image> resources;
-    Map<String,AudioClip> sounds;
+    Map<String, AudioClip> sounds;
+
     public ResourceManager() {
         resources = new HashMap<>();
         ///Adding Barracks Photo
@@ -104,37 +101,39 @@ public class ResourceManager {
 
         File refrencesImageFile = new File("Resources/images/resources-board.png");
         Image refrencesAnchorpane = new Image(refrencesImageFile.toURI().toString());
-        resources.put("Refrences",refrencesAnchorpane);
+        resources.put("Refrences", refrencesAnchorpane);
 
         ///Animation of Tree
 
-        for(int i=1; i<=14 ;i++ )
-        {
-            File treeAnimFile = new File("Resources/images/animation/tree/tree"+i+".png");
+        for (int i = 1; i <= 14; i++) {
+            File treeAnimFile = new File("Resources/images/animation/tree1/tree" + i + ".png");
             Image treeAnimImage = new Image(treeAnimFile.toURI().toString());
-            resources.put("treeAnim"+i,treeAnimImage);
+            resources.put("tree1Anim" + i, treeAnimImage);
         }
 
-       // URL url = getClass().getResource("Resources/sounds/"01 - A Pane in the Glass.mp3");
+        for (int i = 1; i <= 14; i++) {
+            File treeAnimFile = new File("Resources/images/animation/tree2/tree" + i + ".png");
+            Image treeAnimImage = new Image(treeAnimFile.toURI().toString());
+            resources.put("tree2Anim" + i, treeAnimImage);
+        }
+        // URL url = getClass().getResource("Resources/sounds/"01 - A Pane in the Glass.mp3");
         //AudioClip bgMusic1 = new AudioClip(url.toString());
-       // bgMusic1.setCycleCount(AudioClip.INDEFINITE);
+        // bgMusic1.setCycleCount(AudioClip.INDEFINITE);
         //sounds.put("bgMusic1",bgMusic1);
     }
 
 
-    public static Image getImage(String name) ///Returns every object's Image
+    public Image getImage(String name) ///Returns every object's Image
     {
         if (resources.containsKey(name)) {
             return resources.get(name);
         } else return null;
     }
-    public AudioClip getSound(String name)
-    {
-        if(sounds.containsKey(name))
-        {
+
+    public AudioClip getSound(String name) {
+        if (sounds.containsKey(name)) {
             return sounds.get(name);
-        }
-        else return null;
+        } else return null;
     }
 
     public Cursor getCursor(String name) {
