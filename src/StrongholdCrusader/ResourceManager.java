@@ -105,10 +105,10 @@ public class ResourceManager {
         Image refrencesAnchorpane = new Image(refrencesImageFile.toURI().toString());
         resources.put("Refrences",refrencesAnchorpane);
 
-        URL url = getClass().getResource("Resources/sounds/01 - A Pane in the Glass.mp3");
-        AudioClip bgMusic1 = new AudioClip(url.toString());
-        bgMusic1.setCycleCount(AudioClip.INDEFINITE);
-        sounds.put("bgMusic1",bgMusic1);
+       // URL url = getClass().getResource("Resources/sounds/"01 - A Pane in the Glass.mp3");
+        //AudioClip bgMusic1 = new AudioClip(url.toString());
+       // bgMusic1.setCycleCount(AudioClip.INDEFINITE);
+        //sounds.put("bgMusic1",bgMusic1);
     }
 
 
