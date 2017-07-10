@@ -3,6 +3,7 @@ package StrongholdCrusader.GameObjects.Buildings;
 import StrongholdCrusader.GameObjects.Pair;
 import StrongholdCrusader.Map.Map;
 import StrongholdCrusader.Map.MapGUI;
+import StrongholdCrusader.Network.GameEvent;
 import StrongholdCrusader.Settings;
 import javafx.animation.FadeTransition;
 import javafx.animation.Transition;
@@ -48,7 +49,7 @@ public class Market extends Building {
         anchorPane = new AnchorPane();
         File building = new File("Resources/images/Buildings/Market.png");
         ImageView buildingImage = new ImageView(building.toURI().toString());
-        Button stone = new Button("stone");
+        Button food = new Button("food");
         Button iron = new Button("iron");
         Button wood = new Button("wood");
         Button buy = new Button("buy(5 piece)");
@@ -59,13 +60,13 @@ public class Market extends Building {
         sell.setVisible(false);
         buy.setId("marketBuy");
         sell.setId("marketSell");
-        stone.setId("stone");
+        food.setId("food");
         wood.setId("wood");
         iron.setId("iron");
-        stone.setOnAction(new EventHandler<ActionEvent>() {
+        food.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                stone.setVisible(false);
+                food.setVisible(false);
                 wood.setVisible(false);
                 iron.setVisible(false);
                 buy.setVisible(true);
@@ -74,13 +75,13 @@ public class Market extends Building {
                 buy.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-
+                        mapGUI.map.sendGameEvent(GameEvent.BUY_RESOURCE,"food");
                     }
                 });
                 sell.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-
+                        mapGUI.map.sendGameEvent(GameEvent.SELL_RESOURCE,"food");
                     }
                 });
 
@@ -91,7 +92,7 @@ public class Market extends Building {
             @Override
             public void handle(ActionEvent event) {
                 wood.setVisible(false);
-                stone.setVisible(false);
+                food.setVisible(false);
                 iron.setVisible(false);
                 buy.setVisible(true);
                 sell.setVisible(true);
@@ -99,13 +100,13 @@ public class Market extends Building {
                 buy.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-
+                        mapGUI.map.sendGameEvent(GameEvent.BUY_RESOURCE,"wood");
                     }
                 });
                 sell.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-
+                        mapGUI.map.sendGameEvent(GameEvent.SELL_RESOURCE,"wood");
                     }
                 });
 
@@ -115,7 +116,7 @@ public class Market extends Building {
         iron.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                stone.setVisible(false);
+                food.setVisible(false);
                 wood.setVisible(false);
                 iron.setVisible(false);
                 buy.setVisible(true);
@@ -149,7 +150,7 @@ public class Market extends Building {
             public void handle(ActionEvent event) {
                 iron.setVisible(true);
                 wood.setVisible(true);
-                stone.setVisible(true);
+                food.setVisible(true);
                 buy.setVisible(false);
                 sell.setVisible(false);
                 back.setVisible(false);
@@ -162,8 +163,8 @@ public class Market extends Building {
         distroy.setLayoutY(60);
         iron.setLayoutX(400);
         wood.setLayoutX(550);
-        stone.setLayoutX(700);
-        stone.setLayoutY(60);
+        food.setLayoutX(700);
+        food.setLayoutY(60);
         wood.setLayoutY(60);
         iron.setLayoutY(60);
         buy.setLayoutX(400);
@@ -172,7 +173,7 @@ public class Market extends Building {
         buy.setLayoutY(60);
         back.setLayoutX(700);
         back.setLayoutY(60);
-        anchorPane.getChildren().addAll(buildingImage, distroy, stone, wood, iron, buy, sell, back);
+        anchorPane.getChildren().addAll(buildingImage, distroy, food, wood, iron, buy, sell, back);
         anchorPane.setId("marketMenu");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH,Settings.MENUS_ANCHORPANE_HEIGHT);
         anchorPane.getStylesheets().add("StrongholdCrusader/css/market.css");
@@ -181,7 +182,7 @@ public class Market extends Building {
             back.setVisible(false);
             buy.setVisible(false);
             sell.setVisible(false);
-            stone.setVisible(false);
+            food.setVisible(false);
             wood.setVisible(false);
             iron.setVisible(false);
         }

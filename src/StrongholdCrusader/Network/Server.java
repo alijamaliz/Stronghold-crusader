@@ -119,7 +119,7 @@ public class Server implements Runnable {
                     palace.position = game.getRandomPalacePosition();
                     palace.health = 100;
                     palace.id = generateNewID();
-                    palace.ownerName = getSenderPlayerName(address);
+                    palace.ownerName =getSenderPlayerByAddress(address).playerName;
                     game.addBuildingToMap(palace);
 
                     //Send OK result for client
@@ -149,7 +149,7 @@ public class Server implements Runnable {
                 WoodCutter woodCutter = new WoodCutter();
                 woodCutter.position = new Pair(x, y);
                 woodCutter.id = generateNewID();
-                woodCutter.ownerName = getSenderPlayerName(address);
+                woodCutter.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.buildingCanCreate(woodCutter))
                     game.addBuildingToMap(woodCutter);
                 break;
@@ -160,7 +160,7 @@ public class Server implements Runnable {
                 Barracks barracks = new Barracks();
                 barracks.position = new Pair(x, y);
                 barracks.id = generateNewID();
-                barracks.ownerName = getSenderPlayerName(address);
+                barracks.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.buildingCanCreate(barracks))
                     game.addBuildingToMap(barracks);
                 break;
@@ -171,7 +171,7 @@ public class Server implements Runnable {
                 Farm farm = new Farm();
                 farm.position = new Pair(x, y);
                 farm.id = generateNewID();
-                farm.ownerName = getSenderPlayerName(address);
+                farm.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.buildingCanCreate(farm))
                     game.addBuildingToMap(farm);
                 break;
@@ -182,7 +182,7 @@ public class Server implements Runnable {
                 Market market = new Market();
                 market.position = new Pair(x, y);
                 market.id = generateNewID();
-                market.ownerName = getSenderPlayerName(address);
+                market.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.buildingCanCreate(market))
                     game.addBuildingToMap(market);
                 break;
@@ -193,7 +193,7 @@ public class Server implements Runnable {
                 Quarry quarry = new Quarry();
                 quarry.position = new Pair(x, y);
                 quarry.id = generateNewID();
-                quarry.ownerName = getSenderPlayerName(address);
+                quarry.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.buildingCanCreate(quarry))
                     game.addBuildingToMap(quarry);
                 break;
@@ -204,7 +204,7 @@ public class Server implements Runnable {
                 Port portBuilding = new Port();
                 portBuilding.position = new Pair(x, y);
                 portBuilding.id = generateNewID();
-                portBuilding.ownerName = getSenderPlayerName(address);
+                portBuilding.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.buildingCanCreate(portBuilding))
                     game.addBuildingToMap(portBuilding);
                 break;
@@ -215,7 +215,7 @@ public class Server implements Runnable {
                 Worker worker = new Worker();
                 worker.position = new Pair(x, y);
                 worker.id = generateNewID();
-                worker.ownerName = getSenderPlayerName(address);
+                worker.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.humanCanCreate(worker))
                     game.addHumanToMap(worker);
                 break;
@@ -226,7 +226,7 @@ public class Server implements Runnable {
                 Vassal vassal = new Vassal();
                 vassal.position = new Pair(x, y);
                 vassal.id = generateNewID();
-                vassal.ownerName = getSenderPlayerName(address);
+                vassal.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.humanCanCreate(vassal))
                     game.addHumanToMap(vassal);
                 break;
@@ -237,7 +237,7 @@ public class Server implements Runnable {
                 Soldier soldier = new Soldier();
                 soldier.position = new Pair(x, y);
                 soldier.id = generateNewID();
-                soldier.ownerName = getSenderPlayerName(address);
+                soldier.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.humanCanCreate(soldier))
                     game.addHumanToMap(soldier);
                 break;
@@ -266,6 +266,32 @@ public class Server implements Runnable {
                 else
                     status = false;
                 changeHumanClimb(humanId, status);
+                break;
+            }
+            case GameEvent.BUY_RESOURCE : {
+                if(gameEvent.message.equals("wood"))
+                {
+                    getSenderPlayerByAddress(address).golds -= 5;
+                    getSenderPlayerByAddress(address).woods += 5;
+                }
+                if(gameEvent.message.equals("food"))
+                {
+                    getSenderPlayerByAddress(address).golds -= 10;
+                    getSenderPlayerByAddress(address).foods += 5;
+                }
+                break;
+            }
+            case GameEvent.SELL_RESOURCE : {
+                if(gameEvent.message.equals("wood"))
+                {
+                    getSenderPlayerByAddress(address).golds += 3;
+                    getSenderPlayerByAddress(address).woods -= 5;
+                }
+                if(gameEvent.message.equals("food"))
+                {
+                    getSenderPlayerByAddress(address).golds += 7;
+                    getSenderPlayerByAddress(address).foods -= 5;
+                }
                 break;
             }
         }
@@ -306,12 +332,12 @@ public class Server implements Runnable {
         }
     }
 
-    private String getSenderPlayerName(InetAddress address) {
+    private ServerPlayer getSenderPlayerByAddress(InetAddress address) {
         for (ServerPlayer player : game.players) {
             if (player.address.getHostAddress().equals(address.getHostAddress()))
-                return player.playerName;
+                return player;
         }
-        return "Unknown";
+        return null;
     }
 
     private boolean sendPacket(String body, InetAddress address, int port) {
