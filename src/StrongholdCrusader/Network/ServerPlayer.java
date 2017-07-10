@@ -1,6 +1,7 @@
 package StrongholdCrusader.Network;
 
 import StrongholdCrusader.GameObjects.GameObject;
+import StrongholdCrusader.Settings;
 
 import java.net.*;
 import java.util.LinkedList;
@@ -25,8 +26,8 @@ public class ServerPlayer {
         this.address = address;
         this.port = port;
 
-        golds = 500;
-        foods = 1000;
-        woods = 0;
+        golds = Settings.INITIAL_PLAYER_GOLDS;
+        foods = Settings.INITIAL_PLAYER_FOODS;
+        woods = Settings.INITIAL_PLAYER_WOODS;
     }
 }

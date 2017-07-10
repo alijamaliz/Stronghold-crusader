@@ -151,10 +151,12 @@ public class Server implements Runnable {
                 woodCutter.id = generateNewID();
                 woodCutter.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.buildingCanCreate(woodCutter))
-                    game.addBuildingToMap(woodCutter);
-                else {
+                    if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.WOOD_CUTTER_CREATION_NEEDED_WOOD))
+                        game.addBuildingToMap(woodCutter);
+                    else
+                        sendShowAlertRequest("چوب مورد نیاز است!", address, port);
+                else
                     sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
-                }
                 break;
             }
             case GameEvent.BARRACKS_CREATED: {
@@ -165,7 +167,12 @@ public class Server implements Runnable {
                 barracks.id = generateNewID();
                 barracks.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.buildingCanCreate(barracks))
-                    game.addBuildingToMap(barracks);
+                    if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.BARRACKS_CREATION_NEEDED_WOOD))
+                        game.addBuildingToMap(barracks);
+                    else
+                        sendShowAlertRequest("چوب مورد نیاز است!", address, port);
+                else
+                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
                 break;
             }
             case GameEvent.FARM_CREATED: {
@@ -176,7 +183,12 @@ public class Server implements Runnable {
                 farm.id = generateNewID();
                 farm.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.buildingCanCreate(farm))
-                    game.addBuildingToMap(farm);
+                    if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.FARM_CREATION_NEEDED_WOOD))
+                        game.addBuildingToMap(farm);
+                    else
+                        sendShowAlertRequest("چوب مورد نیاز است!", address, port);
+                else
+                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
                 break;
             }
             case GameEvent.MARKET_CREATED: {
@@ -187,7 +199,12 @@ public class Server implements Runnable {
                 market.id = generateNewID();
                 market.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.buildingCanCreate(market))
-                    game.addBuildingToMap(market);
+                    if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.MARKET_CREATION_NEEDED_WOOD))
+                        game.addBuildingToMap(market);
+                    else
+                        sendShowAlertRequest("چوب مورد نیاز است!", address, port);
+                else
+                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
                 break;
             }
             case GameEvent.QUARRAY_CREATED: {
@@ -198,7 +215,12 @@ public class Server implements Runnable {
                 quarry.id = generateNewID();
                 quarry.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.buildingCanCreate(quarry))
-                    game.addBuildingToMap(quarry);
+                    if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.QUARRY_CREATION_NEEDED_WOOD))
+                        game.addBuildingToMap(quarry);
+                    else
+                        sendShowAlertRequest("چوب مورد نیاز است!", address, port);
+                else
+                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
                 break;
             }
             case GameEvent.PORT_CREATED: {
@@ -209,7 +231,12 @@ public class Server implements Runnable {
                 portBuilding.id = generateNewID();
                 portBuilding.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.buildingCanCreate(portBuilding))
-                    game.addBuildingToMap(portBuilding);
+                    if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.PORT_CREATION_NEEDED_WOOD))
+                        game.addBuildingToMap(portBuilding);
+                    else
+                        sendShowAlertRequest("چوب مورد نیاز است!", address, port);
+                else
+                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
                 break;
             }
             case GameEvent.WORKER_CREATED: {
@@ -221,6 +248,8 @@ public class Server implements Runnable {
                 worker.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.humanCanCreate(worker))
                     game.addHumanToMap(worker);
+                else
+                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
                 break;
             }
             case GameEvent.VASSEL_CREATED: {
@@ -232,6 +261,8 @@ public class Server implements Runnable {
                 vassal.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.humanCanCreate(vassal))
                     game.addHumanToMap(vassal);
+                else
+                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
                 break;
             }
             case GameEvent.SOLDIER_CREATED: {
@@ -242,7 +273,12 @@ public class Server implements Runnable {
                 soldier.id = generateNewID();
                 soldier.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.humanCanCreate(soldier))
-                    game.addHumanToMap(soldier);
+                    if (game.changeResources(getSenderPlayerByAddress(address), "gold", -1 * Settings.SOLDIER_CREATION_NEEDED_GOLD))
+                        game.addHumanToMap(soldier);
+                    else
+                        sendShowAlertRequest("طلا کافی نیست!", address, port);
+                else
+                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
                 break;
             }
             case GameEvent.MOVE_HUMAN: {
@@ -274,26 +310,26 @@ public class Server implements Runnable {
             case GameEvent.BUY_RESOURCE : {
                 if(gameEvent.message.equals("wood"))
                 {
-                    getSenderPlayerByAddress(address).golds -= 5;
-                    getSenderPlayerByAddress(address).woods += 5;
+                    if (game.changeResources(getSenderPlayerByAddress(address), "gold", -5))
+                        game.changeResources(getSenderPlayerByAddress(address), "wood", 5);
                 }
                 if(gameEvent.message.equals("food"))
                 {
-                    getSenderPlayerByAddress(address).golds -= 10;
-                    getSenderPlayerByAddress(address).foods += 5;
+                    if (game.changeResources(getSenderPlayerByAddress(address), "gold", -10))
+                        game.changeResources(getSenderPlayerByAddress(address), "food", 5);
                 }
                 break;
             }
             case GameEvent.SELL_RESOURCE : {
                 if(gameEvent.message.equals("wood"))
                 {
-                    getSenderPlayerByAddress(address).golds += 3;
-                    getSenderPlayerByAddress(address).woods -= 5;
+                    if (game.changeResources(getSenderPlayerByAddress(address), "gold", 3))
+                        game.changeResources(getSenderPlayerByAddress(address), "wood", -5);
                 }
                 if(gameEvent.message.equals("food"))
                 {
-                    getSenderPlayerByAddress(address).golds += 7;
-                    getSenderPlayerByAddress(address).foods -= 5;
+                    if (game.changeResources(getSenderPlayerByAddress(address), "gold", 7))
+                        game.changeResources(getSenderPlayerByAddress(address), "food", -5);
                 }
                 break;
             }
