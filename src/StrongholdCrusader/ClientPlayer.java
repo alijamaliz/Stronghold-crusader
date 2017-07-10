@@ -54,7 +54,7 @@ public class ClientPlayer {
             case GameEvent.USER_JOINED_TO_NETWORK: {
                 String username = gameEvent.message.substring(0, gameEvent.message.indexOf(','));
                 String address = gameEvent.message.substring(gameEvent.message.indexOf(",") + 1);
-                menuGUI.addPlayerToTable(username, address);
+                menuGUI.addPlayerToTable(username + ":" + address);
                 break;
             }
             case GameEvent.START_GAME: {
