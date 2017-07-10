@@ -230,7 +230,7 @@ public class Server implements Runnable {
                 portBuilding.position = new Pair(x, y);
                 portBuilding.id = generateNewID();
                 portBuilding.ownerName = getSenderPlayerByAddress(address).playerName;
-                if (game.buildingCanCreate(portBuilding))
+                if (game.portCanCreate(portBuilding))
                     if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.PORT_CREATION_NEEDED_WOOD))
                         game.addBuildingToMap(portBuilding);
                     else
