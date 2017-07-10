@@ -75,7 +75,7 @@ public class Server implements Runnable {
             byte[] buffer = new byte[Settings.PACKET_MAX_SIZE];
             DatagramPacket incoming = new DatagramPacket(buffer, buffer.length);
             //2. Wait for an incoming data
-            System.out.println("Server socket created. Waiting for incoming data...");
+            //System.out.println("Server socket created. Waiting for incoming data...");
             //communication loop
             while (true) {
                 socket.receive(incoming);
@@ -152,6 +152,9 @@ public class Server implements Runnable {
                 woodCutter.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.buildingCanCreate(woodCutter))
                     game.addBuildingToMap(woodCutter);
+                else {
+                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+                }
                 break;
             }
             case GameEvent.BARRACKS_CREATED: {
@@ -401,5 +404,10 @@ public class Server implements Runnable {
                 return true;
         }
         return false;
+    }
+
+    private void sendShowAlertRequest(String message, InetAddress address, int port) {
+        GameEvent showAlertGameEvent = new GameEvent(GameEvent.SHOW_ALERT, message);
+        sendPacket(showAlertGameEvent.getJSON(), address, port);
     }
 }

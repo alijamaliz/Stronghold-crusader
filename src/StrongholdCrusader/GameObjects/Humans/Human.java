@@ -111,8 +111,10 @@ public abstract class Human extends GameObject {
     public void goToTile(MapTile[][] tiles, MapTile tile) {
         targetTile = tile;
         LinkedList<MapTile> path = findRoute(tiles, tiles[position.x][position.y], targetTile, canClimb);
-        path.removeLast();
-        this.nextTile = path.getLast();
+        if (path.size() != 0) {
+            path.removeLast();
+            this.nextTile = path.getLast();
+        }
     }
 
     public LinkedList<MapTile> territory(MapTile[][] tiles, MapTile tile) ///Return Zone of every Human

@@ -67,7 +67,6 @@ public class ClientPlayer {
                 break;
             }
             case GameEvent.DISTROY_BUILDING: {
-                System.out.println("Dalghak");
                 int id = Integer.parseInt(gameEvent.message);
                 map.objects.remove(getObjectsById(id));
                 break;
