@@ -293,7 +293,7 @@ public class Server implements Runnable {
                 int id = Integer.parseInt(gameEvent.message);
                 game.removeBuilding((Building) game.getGameObjectById(id));
                 GameEvent createGameEvent = new GameEvent(GameEvent.DISTROY_BUILDING, gameEvent.message);
-                sendPacket(createGameEvent.getJSON(), address, port);
+                sendPacketForAll(createGameEvent.getJSON());
                 break;
             }
             case GameEvent.CHANGE_HUMAN_CLIMB: {
