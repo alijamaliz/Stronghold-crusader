@@ -58,11 +58,11 @@ public class MapManager implements Serializable {
             for (int j = 0; j < Settings.MAP_HEIGHT_RESOLUTION; j++) {
                 int index = i * Settings.MAP_WIDTH_RESOLUTION + j;
                 if (mapTiles.charAt(index) == '0')
-                    tiles[i][j] = new Plain(i, j);
+                    tiles[j][i] = new Plain(j, i);
                 if (mapTiles.charAt(index) == '1')
-                    tiles[i][j] = new Mountain(i, j);
+                    tiles[j][i] = new Mountain(j, i);
                 if (mapTiles.charAt(index) == '2')
-                    tiles[i][j] = new Sea(i, j);
+                    tiles[j][i] = new Sea(j, i);
             }
         }
         return tiles;
