@@ -13,7 +13,7 @@ import java.util.Map;
  * Created by Baran on 5/29/2017.
  */
 public class ResourceManager {
-    static Map<String, Image> resources;
+    Map<String, Image> resources;
     Map<String, AudioClip> sounds;
 
     public ResourceManager() {
