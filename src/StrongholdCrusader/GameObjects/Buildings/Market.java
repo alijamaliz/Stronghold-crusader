@@ -182,7 +182,7 @@ public class Market extends Building {
             back.setVisible(false);
             buy.setVisible(false);
             sell.setVisible(false);
-            stone.setVisible(false);
+            food.setVisible(false);
             wood.setVisible(false);
             iron.setVisible(false);
         }
