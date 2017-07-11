@@ -131,44 +131,49 @@ public class ResourceManager {
         bgMusicClip1.setCycleCount(AudioClip.INDEFINITE);
         sounds.put("bgMusic2",bgMusicClip2);
 
+        File bgMusic3 = new File("Resources/sounds/bgMusic3.mp3");
+        AudioClip bgMusicClip3 = new AudioClip(bgMusic3.toURI().toString());
+        bgMusicClip1.setCycleCount(AudioClip.INDEFINITE);
+        sounds.put("bgMusic3",bgMusicClip3);
+
         ///Event Sounds
-        File attack = new File("Resources/sounds/Attack.wav");
+        File attack = new File("Resources/sounds/Attack.mp3");
         AudioClip attackClip = new AudioClip(attack.toURI().toString());
         sounds.put("Attack",attackClip);
 
-        File cantBuild = new File("Resources/sounds/CantBuild.wav");
+        File cantBuild = new File("Resources/sounds/CantBuild.mp3");
         AudioClip cantBuildClip = new AudioClip(cantBuild.toURI().toString());
         sounds.put("CantBuild",cantBuildClip);
 
-        File foodNeed = new File("Resources/sounds/FoodNeed.wav");
+        File foodNeed = new File("Resources/sounds/FoodNeed.mp3");
         AudioClip FoodNeedClip = new AudioClip(foodNeed.toURI().toString());
         sounds.put("FoodNeed",FoodNeedClip);
 
-        File goldNeed = new File("Resources/sounds/GoldNeed.wav");
+        File goldNeed = new File("Resources/sounds/GoldNeed.mp3");
         AudioClip goldNeedClip = new AudioClip(goldNeed.toURI().toString());
         sounds.put("GoldNeed",goldNeedClip);
 
-        File cantQuarry = new File("Resources/sounds/QuarryPlacementError.wav");
+        File cantQuarry = new File("Resources/sounds/QuarryPlacementError.mp3");
         AudioClip cantQuarryClip = new AudioClip(cantQuarry.toURI().toString());
         sounds.put("CantQuarry",bgMusicClip2);
 
-        File resourceAdd = new File("Resources/sounds/ResourceBuildingAdded.wav");
+        File resourceAdd = new File("Resources/sounds/ResourceBuildingAdded.mp3");
         AudioClip resourceAddClip = new AudioClip(resourceAdd.toURI().toString());
         sounds.put("ResourceAdd",resourceAddClip);
 
-        File soldierAdd = new File("Resources/sounds/Soldier.wav");
+        File soldierAdd = new File("Resources/sounds/Soldier.mp3");
         AudioClip soldierAddClip = new AudioClip(soldierAdd.toURI().toString());
         sounds.put("SoldierAdd",soldierAddClip);
 
-        File stoneNeed = new File("Resources/sounds/StoneNeed.wav");
+        File stoneNeed = new File("Resources/sounds/StoneNeed.mp3");
         AudioClip stoneNeedClip = new AudioClip(stoneNeed.toURI().toString());
         sounds.put("StoneNeed",stoneNeedClip);
 
-        File vassalAdd = new File("Resources/sounds/Vassal.wav");
+        File vassalAdd = new File("Resources/sounds/Vassal.mp3");
         AudioClip vassalAddClip = new AudioClip(vassalAdd.toURI().toString());
         sounds.put("VassalAdd",vassalAddClip);
 
-        File woodNeed = new File("Resources/sounds/WoodNeed.wav");
+        File woodNeed = new File("Resources/sounds/WoodNeed.mp3");
         AudioClip woodNeedClip = new AudioClip(woodNeed.toURI().toString());
         sounds.put("WoodNeed",woodNeedClip);
     }

@@ -119,7 +119,7 @@ public class Server implements Runnable {
                     palace.position = game.getRandomPalacePosition();
                     palace.health = 100;
                     palace.id = generateNewID();
-                    palace.ownerName =getSenderPlayerByAddress(address).playerName;
+                    palace.ownerName = getSenderPlayerByAddress(address).playerName;
                     game.addBuildingToMap(palace);
 
                     //Send OK result for client
@@ -220,7 +220,7 @@ public class Server implements Runnable {
                     else
                         sendShowAlertRequest("چوب مورد نیاز است!", address, port);
                 else
-                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+                    sendShowAlertRequest("معدن باید در محل ذخایر آهن ساخته شود!", address, port);
                 break;
             }
             case GameEvent.PORT_CREATED: {
@@ -273,9 +273,10 @@ public class Server implements Runnable {
                 soldier.id = generateNewID();
                 soldier.ownerName = getSenderPlayerByAddress(address).playerName;
                 if (game.humanCanCreate(soldier))
-                    if (game.changeResources(getSenderPlayerByAddress(address), "gold", -1 * Settings.SOLDIER_CREATION_NEEDED_GOLD))
+                    if (game.changeResources(getSenderPlayerByAddress(address), "gold", -1 * Settings.SOLDIER_CREATION_NEEDED_GOLD)) {
                         game.addHumanToMap(soldier);
-                    else
+                        sendPlaySoundRequest("SoldierAdd", address, port);
+                    } else
                         sendShowAlertRequest("طلا کافی نیست!", address, port);
                 else
                     sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
@@ -307,33 +308,34 @@ public class Server implements Runnable {
                 changeHumanClimb(humanId, status);
                 break;
             }
-            case GameEvent.BUY_RESOURCE : {
-                if(gameEvent.message.equals("wood"))
-                {
+            case GameEvent.BUY_RESOURCE: {
+                if (gameEvent.message.equals("wood")) {
                     if (game.changeResources(getSenderPlayerByAddress(address), "gold", -5))
                         game.changeResources(getSenderPlayerByAddress(address), "wood", 5);
                 }
-                if(gameEvent.message.equals("food"))
-                {
+                if (gameEvent.message.equals("food")) {
                     if (game.changeResources(getSenderPlayerByAddress(address), "gold", -10))
                         game.changeResources(getSenderPlayerByAddress(address), "food", 5);
                 }
                 break;
             }
-            case GameEvent.SELL_RESOURCE : {
-                if(gameEvent.message.equals("wood"))
-                {
+            case GameEvent.SELL_RESOURCE: {
+                if (gameEvent.message.equals("wood")) {
                     if (game.changeResources(getSenderPlayerByAddress(address), "gold", 3))
                         game.changeResources(getSenderPlayerByAddress(address), "wood", -5);
                 }
-                if(gameEvent.message.equals("food"))
-                {
+                if (gameEvent.message.equals("food")) {
                     if (game.changeResources(getSenderPlayerByAddress(address), "gold", 7))
                         game.changeResources(getSenderPlayerByAddress(address), "food", -5);
                 }
                 break;
             }
         }
+    }
+
+    private void sendPlaySoundRequest(String soldierAdd, InetAddress address, int port) {
+        GameEvent playSoundGameEvent = new GameEvent(GameEvent.PLAY_SOUND, soldierAdd);
+        sendPacket(playSoundGameEvent.getJSON(), address, port);
     }
 
     private void changeHumanClimb(int humanId, boolean status) {

@@ -64,7 +64,29 @@ public class ClientPlayer {
                 break;
             }
             case GameEvent.SHOW_ALERT: {
+                switch (gameEvent.message) {
+                    case "اینجا قرار نمی گیرد!": {
+                        map.getGui().playSound("CantBuild");
+                        break;
+                    }
+                    case "چوب مورد نیاز است!" : {
+                        map.getGui().playSound("WoodNeed");
+                        break;
+                    }
+                    case "طلا کافی نیست!" : {
+                        map.getGui().playSound("GoldNeed");
+                        break;
+                    }
+                    case "معدن باید در محل ذخایر آهن ذخیره شود!": {
+                        map.getGui().playSound("CantQuarry");
+                        break;
+                    }
+                }
                 showMessage(gameEvent.message);
+                break;
+            }
+            case GameEvent.PLAY_SOUND: {
+                map.getGui().playSound(gameEvent.message);
                 break;
             }
             case GameEvent.DISTROY_BUILDING: {
