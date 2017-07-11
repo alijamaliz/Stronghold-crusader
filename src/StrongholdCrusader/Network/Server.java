@@ -232,14 +232,14 @@ public class Server implements Runnable {
                 quarry.ownerName = getSenderPlayerByAddress(address).playerName;
                 Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
                 if (game.playerHasVassal(getSenderPlayerByAddress(address))) {
-                    if (game.buildingCanCreate(quarry, playerPalace))
+                    if (game.quarryCanCreate(quarry, playerPalace))
                         if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.QUARRY_CREATION_NEEDED_WOOD)) {
                             assignVassalToBuilding(game.getPlayerRandomVassalId(getSenderPlayerByAddress(address)), quarry);
                             game.addBuildingToMap(quarry);
                         } else
                             sendShowAlertRequest("چوب مورد نیاز است!", address, port);
                     else
-                        sendShowAlertRequest("معدن باید در محل ذخایر آهن ساخته شود!", address, port);
+                        sendShowAlertRequest("معدن باید در محل ذخایر سنگ ساخته شود!", address, port);
                 } else
                     sendShowAlertRequest("کارگر کافی وجود ندارد!", address, port);
                 break;
@@ -251,7 +251,8 @@ public class Server implements Runnable {
                 portBuilding.position = new Pair(x, y);
                 portBuilding.id = generateNewID();
                 portBuilding.ownerName = getSenderPlayerByAddress(address).playerName;
-                if (game.portCanCreate(portBuilding))
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
+                if (game.portCanCreate(portBuilding, playerPalace))
                     if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.PORT_CREATION_NEEDED_WOOD))
                         game.addBuildingToMap(portBuilding);
                     else
