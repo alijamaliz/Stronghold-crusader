@@ -211,13 +211,16 @@ public class Server implements Runnable {
                 market.id = generateNewID();
                 market.ownerName = getSenderPlayerByAddress(address).playerName;
                 Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
-                if (game.buildingCanCreate(market, playerPalace))
-                    if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.MARKET_CREATION_NEEDED_WOOD))
-                        game.addBuildingToMap(market);
+                if (!game.playerHasMarket(getSenderPlayerByAddress(address))) {
+                    if (game.buildingCanCreate(market, playerPalace))
+                        if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.MARKET_CREATION_NEEDED_WOOD))
+                            game.addBuildingToMap(market);
+                        else
+                            sendShowAlertRequest("چوب مورد نیاز است!", address, port);
                     else
-                        sendShowAlertRequest("چوب مورد نیاز است!", address, port);
-                else
-                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+                        sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+                } else
+                    sendShowAlertRequest("بازار قبلا ساخته شده است!", address, port);
                 break;
             }
             case GameEvent.QUARRAY_CREATED: {
