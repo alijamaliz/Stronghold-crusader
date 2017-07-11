@@ -21,6 +21,7 @@ import org.json.simple.parser.ParseException;
 public class ClientPlayer {
     public String username;
     public Client client;
+    public boolean isPlayerAlive = true;
     Map map;
     MenuGUI menuGUI;
 
@@ -69,11 +70,11 @@ public class ClientPlayer {
                         map.getGui().playSound("CantBuild");
                         break;
                     }
-                    case "چوب مورد نیاز است!" : {
+                    case "چوب مورد نیاز است!": {
                         map.getGui().playSound("WoodNeed");
                         break;
                     }
-                    case "طلا کافی نیست!" : {
+                    case "طلا کافی نیست!": {
                         map.getGui().playSound("GoldNeed");
                         break;
                     }
@@ -196,7 +197,7 @@ public class ClientPlayer {
                             gameObject.position = new Pair(x, y);
                             gameObject.health = health;
                             if (gameObject instanceof Human)
-                                ((Human) gameObject).canClimb =  (boolean) obj.get("canClimb");
+                                ((Human) gameObject).canClimb = (boolean) obj.get("canClimb");
                         }
                     }
                 } catch (ParseException e) {
@@ -216,7 +217,22 @@ public class ClientPlayer {
                 int golds = Integer.parseInt(args[0]);
                 int foods = Integer.parseInt(args[1]);
                 int woods = Integer.parseInt(args[2]);
-                map.getGui().updateRefrences(golds,foods,woods);
+                map.getGui().updateRefrences(golds, foods, woods);
+                break;
+            }
+            case GameEvent.PLAYER_LOSE: {
+                if (gameEvent.message.equals(username)) {
+                    map.getGui().showMessage("You lose!");
+                    isPlayerAlive = false;
+                }
+                else {
+                    map.getGui().showMessage(gameEvent.message + " نابود شد!");
+                }
+                break;
+            }
+            case GameEvent.YOU_WIN: {
+                map.getGui().showMessage("You lose!");
+                isPlayerAlive = false;
                 break;
             }
         }
@@ -229,7 +245,7 @@ public class ClientPlayer {
 
 
     private GameObject getObjectsById(int id) {
-        for (GameObject gameObject:map.objects) {
+        for (GameObject gameObject : map.objects) {
             if (gameObject.id == id) {
                 return gameObject;
             }

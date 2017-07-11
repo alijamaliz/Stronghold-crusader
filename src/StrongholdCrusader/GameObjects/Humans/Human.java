@@ -98,8 +98,10 @@ public abstract class Human extends GameObject {
                 tiles[this.position.x][this.position.y].filled = true;
                 if (!tiles[position.x][position.y].equals(targetTile)) {
                     LinkedList<MapTile> path = findRoute(tiles, tiles[position.x][position.y], targetTile, canClimb);
-                    path.removeLast();
-                    this.nextTile = path.getLast();
+                    if (path.size() != 0) {
+                        path.removeLast();
+                        this.nextTile = path.getLast();
+                    }
                 } else
                     nextTile = null;
             }
