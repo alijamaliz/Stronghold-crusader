@@ -2,6 +2,7 @@ package StrongholdCrusader;
 
 import StrongholdCrusader.GameObjects.Buildings.*;
 import StrongholdCrusader.GameObjects.GameObject;
+import StrongholdCrusader.GameObjects.Humans.Human;
 import StrongholdCrusader.GameObjects.Humans.Soldier;
 import StrongholdCrusader.GameObjects.Humans.Vassal;
 import StrongholdCrusader.GameObjects.Humans.Worker;
@@ -146,6 +147,7 @@ public class ClientPlayer {
                                 worker.id = id;
                                 worker.health = health;
                                 worker.ownerName = owner;
+                                worker.canClimb = (boolean) obj.get("canClimb");
                                 map.objects.add(worker);
                             }
                             if (obj.get("type").equals("Vassal")) {
@@ -154,6 +156,7 @@ public class ClientPlayer {
                                 vassal.id = id;
                                 vassal.health = health;
                                 vassal.ownerName = owner;
+                                vassal.canClimb = (boolean) obj.get("canClimb");
                                 map.objects.add(vassal);
                             }
                             if (obj.get("type").equals("Soldier")) {
@@ -162,12 +165,16 @@ public class ClientPlayer {
                                 soldier.id = id;
                                 soldier.health = health;
                                 soldier.ownerName = owner;
+                                soldier.canClimb = (boolean) obj.get("canClimb");
+                                System.out.println(soldier.canClimb);
                                 map.objects.add(soldier);
                             }
                         } else { //Update object
                             GameObject gameObject = map.findGameObjectObjectById(id);
                             gameObject.position = new Pair(x, y);
                             gameObject.health = health;
+                            if (gameObject instanceof Human)
+                                ((Human) gameObject).canClimb =  (boolean) obj.get("canClimb");
                         }
                     }
                 } catch (ParseException e) {

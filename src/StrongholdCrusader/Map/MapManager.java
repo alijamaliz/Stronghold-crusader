@@ -2,6 +2,7 @@ package StrongholdCrusader.Map;
 
 import StrongholdCrusader.GameObjects.Buildings.*;
 import StrongholdCrusader.GameObjects.GameObject;
+import StrongholdCrusader.GameObjects.Humans.Human;
 import StrongholdCrusader.GameObjects.Humans.Soldier;
 import StrongholdCrusader.GameObjects.Humans.Vassal;
 import StrongholdCrusader.GameObjects.Humans.Worker;
@@ -200,6 +201,8 @@ public class MapManager implements Serializable {
             object.put("health", new Integer(gameObject.health));
             ///adding object type
             object.put("type", gameObject.type);
+            if (gameObject instanceof Human)
+                object.put("canClimb", ((Human) gameObject).canClimb);
             objects.add(object);
         }
         mapObjectsJSON.put("objects", objects);

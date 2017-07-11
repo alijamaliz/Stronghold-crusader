@@ -4,13 +4,16 @@ import StrongholdCrusader.GameObjects.Pair;
 import StrongholdCrusader.Map.MapGUI;
 import StrongholdCrusader.Settings;
 import com.sun.xml.internal.ws.api.config.management.policy.ManagementAssertion;
+import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
+import javafx.util.Duration;
 
 import java.io.File;
 
@@ -30,16 +33,19 @@ public class Barracks extends Building {
     }
 
     public AnchorPane anchorPane;
+    Button createSoldier;
+    Button distroy;
 
     @Override
     public AnchorPane clickAction(boolean owner) {
         anchorPane = new AnchorPane();
         File building = new File("Resources/images/Buildings/Barracks.png");
         ImageView buildingImage = new ImageView(building.toURI().toString());
-        Button createSoldier = new Button("createSoldier");
+        createSoldier = new Button("createSoldier");
         File soldier = new File("Resources/images/Humans/Soldier.png");
         ImageView soldierImage = new ImageView(soldier.toURI().toString());
-        Button distroy = new Button("Distroy Building");
+        distroy = new Button("Distroy Building");
+        transition();
         distroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -75,5 +81,41 @@ public class Barracks extends Building {
             createSoldier.setVisible(false);
         }
         return anchorPane;
+    }
+
+
+    public void transition(){
+        ScaleTransition distroyTrans = new ScaleTransition(Duration.millis(300),distroy);
+        ScaleTransition createSoldierTrans = new ScaleTransition(Duration.millis(300),createSoldier);
+        distroyTrans.setFromX(1);
+        distroyTrans.setToX(1.1);
+        distroyTrans.setFromY(1);
+        distroyTrans.setToY(1.1);
+        createSoldierTrans.setFromX(1);
+        createSoldierTrans.setToX(1.1);
+        createSoldierTrans.setFromY(1);
+        createSoldierTrans.setToY(1.1);
+        createSoldierTrans.setAutoReverse(true);
+        distroyTrans.setAutoReverse(true);
+        distroy.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                distroyTrans.setFromX(1);
+                distroyTrans.setToX(1.1);
+                distroyTrans.setFromY(1);
+                distroyTrans.setToY(1.1);
+                distroyTrans.play();
+            }
+        });
+        distroy.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                distroyTrans.setFromX(1.1);
+                distroyTrans.setToX(1);
+                distroyTrans.setFromY(1.1);
+                distroyTrans.setToY(1);
+                distroyTrans.play();
+            }
+        });
     }
 }
