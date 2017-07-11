@@ -65,6 +65,5 @@ public class Soldier extends Human {
         anchorPane.setPrefHeight(100);
         anchorPane.setPrefWidth(300);
         return anchorPane;
-
     }
 }
