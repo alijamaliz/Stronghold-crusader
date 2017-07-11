@@ -4,6 +4,7 @@ import javafx.scene.Cursor;
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
+import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ public class ResourceManager {
 
     public ResourceManager() {
         resources = new HashMap<>();
+        sounds = new HashMap<>();
         ///Adding Barracks Photo
         File barracksFile = new File("Resources/images/Buildings/Barracks.png");
         Image barracks = new Image(barracksFile.toURI().toString());
@@ -116,10 +118,16 @@ public class ResourceManager {
             Image treeAnimImage = new Image(treeAnimFile.toURI().toString());
             resources.put("tree2Anim" + i, treeAnimImage);
         }
-        // URL url = getClass().getResource("Resources/sounds/"01 - A Pane in the Glass.mp3");
-        //AudioClip bgMusic1 = new AudioClip(url.toString());
-        // bgMusic1.setCycleCount(AudioClip.INDEFINITE);
-        //sounds.put("bgMusic1",bgMusic1);
+        ///Adding Sounds
+        File bgMusic1 = new File("Resources/sounds/bgMusic1.mp3");
+        AudioClip bgMusicClip1 = new AudioClip(bgMusic1.toURI().toString());
+        bgMusicClip1.setCycleCount(AudioClip.INDEFINITE);
+        sounds.put("bgMusic1",bgMusicClip1);
+
+        File bgMusic2 = new File("Resources/sounds/bgMusic2.mp3");
+        AudioClip bgMusicClip2 = new AudioClip(bgMusic2.toURI().toString());
+        bgMusicClip1.setCycleCount(AudioClip.INDEFINITE);
+        sounds.put("bgMusic2",bgMusicClip2);
     }
 
 

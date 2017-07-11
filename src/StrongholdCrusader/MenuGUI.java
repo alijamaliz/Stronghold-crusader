@@ -55,7 +55,6 @@ public class MenuGUI implements Initializable {
     private ClientPlayer clientPlayer;
     private int numberOfUsers;
     private ArrayList<String> players;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         players = new ArrayList<>();
@@ -88,7 +87,6 @@ public class MenuGUI implements Initializable {
             }
         });
         animateThread.start();
-
 
         numberOfUsers = 0;
 
