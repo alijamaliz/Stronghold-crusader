@@ -38,9 +38,9 @@ public class Farm extends Building {
     public AnchorPane clickAction(boolean owner) {
 
         anchorPane = new AnchorPane();
-        File building = new File("Resources/images/Buildings/Farm.png");
-        ImageView imageView = new ImageView(building.toURI().toString());
-        Button destroy = new Button("Distroy Building");
+        ImageView imageView = new ImageView(mapGUI.getResourceManager().getImage("Farm"));
+        Button destroy = new Button("Destroy Building");
+        destroy.setGraphic(imageView);
         transition(destroy);
         destroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -50,8 +50,8 @@ public class Farm extends Building {
         });
         imageView.setLayoutX(60);
         imageView.setLayoutY(20);
-        destroy.setLayoutX(250);
-        destroy.setLayoutY(60);
+        destroy.setLayoutX(50);
+        destroy.setLayoutY(10);
         ProgressBar health = new ProgressBar(this.health/100);
         health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
         health.setLayoutY(20);

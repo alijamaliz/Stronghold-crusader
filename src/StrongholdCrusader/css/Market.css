@@ -1,7 +1,7 @@
 .button{
     -fx-background-color: darkgray;
     -fx-padding: 10px;
-    -fx-border-width: 3px;
+    -fx-border-width: 5px;
     -fx-border-color: aliceblue;
     -fx-border-radius: 10px;
     -fx-opacity: 0.6;

@@ -37,9 +37,9 @@ public class Port extends Building {
     @Override
     public AnchorPane clickAction(boolean owner) {
         anchorPane = new AnchorPane();
-        File building = new File("Resources/images/Buildings/Port.png");
-        ImageView imageView = new ImageView(building.toURI().toString());
-        Button destroy = new Button("Distroy Building");
+        ImageView imageView = new ImageView(mapGUI.getResourceManager().getImage("Port"));
+        Button destroy = new Button("Destroy Building");
+        destroy.setGraphic(imageView);
         transition(destroy);
         destroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -47,16 +47,14 @@ public class Port extends Building {
                 Port.this.mapGUI.removeBuildings(Port.this);
             }
         });
-        imageView.setLayoutX(60);
-        imageView.setLayoutY(20);
-        destroy.setLayoutX(250);
-        destroy.setLayoutY(60);
+        destroy.setLayoutX(50);
+        destroy.setLayoutY(10);
         ProgressBar health = new ProgressBar(this.health/100);
         health.setStyle("-fx-accent: #96ff4c;");
         health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
         health.setLayoutY(20);
         health.setPrefSize(100,20);
-        anchorPane.getChildren().addAll(imageView, destroy,health);
+        anchorPane.getChildren().addAll(destroy,health);
         anchorPane.setId("building");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
