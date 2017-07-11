@@ -346,18 +346,14 @@ public class Server implements Runnable {
                 break;
             }
             case GameEvent.ATTACK: {
-                System.out.println("build");
-                String[] args = gameEvent.message.split(":");
-                int x = Integer.parseInt(args[0]);
-                int y = Integer.parseInt(args[1]);
-                Pair pair = new Pair(x,y);
-                for (GameObject object : game.objects) {
-                    if(object instanceof Building)
-                    {
-                        if (x <= ((Building) object).size.x +object.position.x && x >= object.position.x)
-                            System.out.println("dgsegerg");
-                    }
+                int x = Integer.parseInt(gameEvent.message.substring(0,gameEvent.message.indexOf(":")));
+                int y = Integer.parseInt(gameEvent.message.substring(gameEvent.message.indexOf(":")+1));
+                for (GameObject object:game.objects ) {
+                    if (object instanceof Building) {
+                        if (x >= object.position.x && x <= object.position.x + ((Building) object).size.x && y >= object.position.y && x <= object.position.y + ((Building) object).size.y)
+                            System.out.println("Building right");
 
+                    }
                 }
                 break;
             }
