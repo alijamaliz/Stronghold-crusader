@@ -31,4 +31,6 @@ public class Settings {
     public static int PORT_CREATION_NEEDED_WOOD = 30;
     public static int QUARRY_CREATION_NEEDED_WOOD = 30;
 
+    public static int PLAYER_CITY_RADIUS = 25;
+
 }

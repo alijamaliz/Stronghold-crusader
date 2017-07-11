@@ -27,7 +27,7 @@ public class Server implements Runnable {
     Game game;
 
     public Server(int mapId) {
-        game = new Game(mapId);
+        game = new Game(mapId, this);
 
         try {
             socket = new DatagramSocket(Settings.SERVER_PORT);
@@ -151,13 +151,13 @@ public class Server implements Runnable {
                 woodCutter.position = new Pair(x, y);
                 woodCutter.id = generateNewID();
                 woodCutter.ownerName = getSenderPlayerByAddress(address).playerName;
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
                 if (game.playerHasVassal(getSenderPlayerByAddress(address))) {
-                    if (game.buildingCanCreate(woodCutter))
+                    if (game.buildingCanCreate(woodCutter, playerPalace))
                         if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.WOOD_CUTTER_CREATION_NEEDED_WOOD)) {
                             assignVassalToBuilding(game.getPlayerRandomVassalId(getSenderPlayerByAddress(address)), woodCutter);
                             game.addBuildingToMap(woodCutter);
-                        }
-                        else
+                        } else
                             sendShowAlertRequest("چوب مورد نیاز است!", address, port);
                     else
                         sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
@@ -172,7 +172,8 @@ public class Server implements Runnable {
                 barracks.position = new Pair(x, y);
                 barracks.id = generateNewID();
                 barracks.ownerName = getSenderPlayerByAddress(address).playerName;
-                if (game.buildingCanCreate(barracks))
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
+                if (game.buildingCanCreate(barracks, playerPalace))
                     if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.BARRACKS_CREATION_NEEDED_WOOD))
                         game.addBuildingToMap(barracks);
                     else
@@ -188,8 +189,9 @@ public class Server implements Runnable {
                 farm.position = new Pair(x, y);
                 farm.id = generateNewID();
                 farm.ownerName = getSenderPlayerByAddress(address).playerName;
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
                 if (game.playerHasVassal(getSenderPlayerByAddress(address))) {
-                    if (game.buildingCanCreate(farm))
+                    if (game.buildingCanCreate(farm, playerPalace))
                         if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.FARM_CREATION_NEEDED_WOOD)) {
                             assignVassalToBuilding(game.getPlayerRandomVassalId(getSenderPlayerByAddress(address)), farm);
                             game.addBuildingToMap(farm);
@@ -208,7 +210,8 @@ public class Server implements Runnable {
                 market.position = new Pair(x, y);
                 market.id = generateNewID();
                 market.ownerName = getSenderPlayerByAddress(address).playerName;
-                if (game.buildingCanCreate(market))
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
+                if (game.buildingCanCreate(market, playerPalace))
                     if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.MARKET_CREATION_NEEDED_WOOD))
                         game.addBuildingToMap(market);
                     else
@@ -224,13 +227,13 @@ public class Server implements Runnable {
                 quarry.position = new Pair(x, y);
                 quarry.id = generateNewID();
                 quarry.ownerName = getSenderPlayerByAddress(address).playerName;
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
                 if (game.playerHasVassal(getSenderPlayerByAddress(address))) {
-                    if (game.buildingCanCreate(quarry))
+                    if (game.buildingCanCreate(quarry, playerPalace))
                         if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.QUARRY_CREATION_NEEDED_WOOD)) {
                             assignVassalToBuilding(game.getPlayerRandomVassalId(getSenderPlayerByAddress(address)), quarry);
                             game.addBuildingToMap(quarry);
-                        }
-                        else
+                        } else
                             sendShowAlertRequest("چوب مورد نیاز است!", address, port);
                     else
                         sendShowAlertRequest("معدن باید در محل ذخایر آهن ساخته شود!", address, port);
@@ -346,9 +349,9 @@ public class Server implements Runnable {
                 break;
             }
             case GameEvent.ATTACK: {
-                int x = Integer.parseInt(gameEvent.message.substring(0,gameEvent.message.indexOf(":")));
-                int y = Integer.parseInt(gameEvent.message.substring(gameEvent.message.indexOf(":")+1));
-                for (GameObject object:game.objects ) {
+                int x = Integer.parseInt(gameEvent.message.substring(0, gameEvent.message.indexOf(":")));
+                int y = Integer.parseInt(gameEvent.message.substring(gameEvent.message.indexOf(":") + 1));
+                for (GameObject object : game.objects) {
                     if (object instanceof Building) {
                         if (x >= object.position.x && x <= object.position.x + ((Building) object).size.x && y >= object.position.y && x <= object.position.y + ((Building) object).size.y)
                             System.out.println("Building right");
@@ -408,7 +411,7 @@ public class Server implements Runnable {
         return null;
     }
 
-    private boolean sendPacket(String body, InetAddress address, int port) {
+    public boolean sendPacket(String body, InetAddress address, int port) {
         DatagramPacket dp = new DatagramPacket(body.getBytes(), body.getBytes().length, address, port);
         try {
             socket.send(dp);
@@ -419,7 +422,7 @@ public class Server implements Runnable {
         }
     }
 
-    private void sendPacketForAll(String body) {
+    public void sendPacketForAll(String body) {
         for (ServerPlayer player : game.players) {
             sendPacket(body, player.address, player.port);
         }
