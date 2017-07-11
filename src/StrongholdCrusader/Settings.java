@@ -20,7 +20,7 @@ public class Settings {
     public static int REFRENCES_ANCHORPANE_HEIGHT = 250;
 
     public static int INITIAL_PLAYER_GOLDS = 500;
-    public static int INITIAL_PLAYER_WOODS = 20;
+    public static int INITIAL_PLAYER_WOODS = 200;
     public static int INITIAL_PLAYER_FOODS = 1000;
 
     public static int SOLDIER_CREATION_NEEDED_GOLD = 20;

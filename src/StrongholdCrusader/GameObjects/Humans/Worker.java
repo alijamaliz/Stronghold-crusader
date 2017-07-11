@@ -44,6 +44,7 @@ public class Worker extends Human {
         ImageView imageView = new ImageView(file.toURI().toString());
         Button button = new Button("Change to Vassal");
         CheckBox checkBox = new CheckBox("Can Climb ?");
+        checkBox.setSelected(canClimb);
         checkBox.setLayoutX(400);
         checkBox.setLayoutY(60);
         checkBox.setOnAction(new EventHandler<ActionEvent>() {

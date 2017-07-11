@@ -46,8 +46,6 @@ public class Soldier extends Human {
         CheckBox checkBox = new CheckBox("Can Climb ?");
         checkBox.setLayoutX(400);
         checkBox.setLayoutY(60);
-        boolean canClimb = checkBox.isSelected();
-        System.out.println(checkBox.isSelected());
         checkBox.setSelected(canClimb);
         checkBox.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -67,6 +65,5 @@ public class Soldier extends Human {
         anchorPane.setPrefHeight(100);
         anchorPane.setPrefWidth(300);
         return anchorPane;
-
     }
 }

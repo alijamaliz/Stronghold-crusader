@@ -1,28 +1,18 @@
 package StrongholdCrusader.GameObjects.Buildings;
 
 import StrongholdCrusader.GameObjects.Pair;
-import StrongholdCrusader.Map.Map;
 import StrongholdCrusader.Map.MapGUI;
 import StrongholdCrusader.Network.GameEvent;
 import StrongholdCrusader.Settings;
-import javafx.animation.FadeTransition;
-import javafx.animation.Transition;
-import javafx.animation.TranslateTransition;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
-import javafx.stage.Screen;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -44,18 +34,26 @@ public class Market extends Building {
 
 
     public AnchorPane anchorPane;
+    Button food;
+    Button iron;
+    Button wood;
+    Button buy;
+    Button sell;
+    Button back;
+    Button destroy;
 
     @Override
     public AnchorPane clickAction(boolean owner) {
         anchorPane = new AnchorPane();
         File building = new File("Resources/images/Buildings/Market.png");
         ImageView buildingImage = new ImageView(building.toURI().toString());
-        Button food = new Button("food");
-        Button iron = new Button("iron");
-        Button wood = new Button("wood");
-        Button buy = new Button("buy(5 piece)");
-        Button sell = new Button("sell(5 piece)");
-        Button back = new Button("Back");
+        food = new Button("food");
+        iron = new Button("iron");
+        wood = new Button("wood");
+        buy = new Button("buy(5 piece)");
+        sell = new Button("sell(5 piece)");
+        back = new Button("Back");
+        destroy = new Button("Distroy Building");
         back.setVisible(false);
         buy.setVisible(false);
         sell.setVisible(false);
@@ -64,6 +62,13 @@ public class Market extends Building {
         food.setId("food");
         wood.setId("wood");
         iron.setId("iron");
+        transition2(destroy);
+        transition2(back);
+        transition2(buy);
+        transition2(sell);
+        transition2(food);
+        transition2(wood);
+        transition2(iron);
         food.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -138,9 +143,7 @@ public class Market extends Building {
 
             }
         });
-
-        Button distroy = new Button("Distroy Building");
-        distroy.setOnAction(new EventHandler<ActionEvent>() {
+        destroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 Market.this.mapGUI.removeBuildings(Market.this);
@@ -160,8 +163,8 @@ public class Market extends Building {
 
         buildingImage.setLayoutX(30);
         buildingImage.setLayoutY(30);
-        distroy.setLayoutX(160);
-        distroy.setLayoutY(60);
+        destroy.setLayoutX(160);
+        destroy.setLayoutY(60);
         iron.setLayoutX(400);
         wood.setLayoutX(550);
         food.setLayoutX(700);
@@ -175,15 +178,16 @@ public class Market extends Building {
         back.setLayoutX(700);
         back.setLayoutY(60);
         ProgressBar health = new ProgressBar(this.health/100);
+        health.setStyle("-fx-accent: #96ff4c;");
         health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
         health.setLayoutY(20);
         health.setPrefSize(100,20);
-        anchorPane.getChildren().addAll(buildingImage, distroy, food, wood, iron, buy, sell, back,health);
+        anchorPane.getChildren().addAll(buildingImage, destroy, food, wood, iron, buy, sell, back,health);
         anchorPane.setId("marketMenu");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH,Settings.MENUS_ANCHORPANE_HEIGHT);
         anchorPane.getStylesheets().add("StrongholdCrusader/css/market.css");
         if (!owner){
-            distroy.setVisible(false);
+            destroy.setVisible(false);
             back.setVisible(false);
             buy.setVisible(false);
             sell.setVisible(false);
@@ -193,4 +197,32 @@ public class Market extends Building {
         }
         return anchorPane;
     }
+
+
+    public void transition2 (Node button) {
+        ScaleTransition transition = new ScaleTransition(Duration.millis(100), button);
+        transition.setAutoReverse(true);
+        button.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                transition.setFromX(1);
+                transition.setToX(1.1);
+                transition.setFromY(1);
+                transition.setToY(1.1);
+                transition.play();
+            }
+        });
+        button.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                transition.setFromX(1.1);
+                transition.setToX(1);
+                transition.setFromY(1.1);
+                transition.setToY(1);
+                transition.play();
+            }
+        });
+    }
+
+
 }

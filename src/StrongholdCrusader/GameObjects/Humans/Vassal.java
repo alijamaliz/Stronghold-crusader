@@ -45,8 +45,6 @@ public class Vassal extends Human {
         CheckBox checkBox = new CheckBox("Can Climb ?");
         checkBox.setLayoutX(400);
         checkBox.setLayoutY(60);
-        boolean canClimb = false;
-        canClimb = checkBox.isSelected();
         checkBox.setSelected(canClimb);
         checkBox.setOnAction(new EventHandler<ActionEvent>() {
             @Override
