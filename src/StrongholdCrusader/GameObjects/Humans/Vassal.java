@@ -4,10 +4,12 @@ import StrongholdCrusader.Map.Map;
 import StrongholdCrusader.Map.MapGUI;
 import StrongholdCrusader.Map.MapTile;
 import StrongholdCrusader.MenuGUI;
+import StrongholdCrusader.Settings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -43,6 +45,9 @@ public class Vassal extends Human {
         CheckBox checkBox = new CheckBox("Can Climb ?");
         checkBox.setLayoutX(400);
         checkBox.setLayoutY(60);
+        boolean canClimb = false;
+        canClimb = checkBox.isSelected();
+        checkBox.setSelected(canClimb);
         checkBox.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -50,7 +55,11 @@ public class Vassal extends Human {
             }
         });
         imageView.setLayoutX(200);
-        anchorPane.getChildren().addAll(imageView,checkBox);
+        ProgressBar health = new ProgressBar(this.health/100);
+        health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
+        health.setLayoutY(20);
+        health.setPrefSize(100,20);
+        anchorPane.getChildren().addAll(imageView,checkBox,health);
         imageView.setLayoutX(200);
         imageView.setLayoutY(40);
         anchorPane.setPrefSize(300,100);

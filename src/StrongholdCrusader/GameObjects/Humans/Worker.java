@@ -3,10 +3,12 @@ package StrongholdCrusader.GameObjects.Humans;
 import StrongholdCrusader.Map.Map;
 import StrongholdCrusader.Map.MapGUI;
 import StrongholdCrusader.Map.MapTile;
+import StrongholdCrusader.Settings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -54,7 +56,11 @@ public class Worker extends Human {
         imageView.setLayoutX(100);
         imageView.setLayoutY(40);
         button.setLayoutY(60);
-        anchorPane.getChildren().addAll(imageView,button,checkBox);
+        ProgressBar health = new ProgressBar(this.health/100);
+        health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
+        health.setLayoutY(20);
+        health.setPrefSize(100,20);
+        anchorPane.getChildren().addAll(imageView,button,checkBox,health);
         anchorPane.setPrefSize(300,100);
         return anchorPane;
     }
