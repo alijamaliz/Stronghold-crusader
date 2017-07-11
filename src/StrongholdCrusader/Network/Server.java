@@ -151,13 +151,18 @@ public class Server implements Runnable {
                 woodCutter.position = new Pair(x, y);
                 woodCutter.id = generateNewID();
                 woodCutter.ownerName = getSenderPlayerByAddress(address).playerName;
-                if (game.buildingCanCreate(woodCutter))
-                    if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.WOOD_CUTTER_CREATION_NEEDED_WOOD))
-                        game.addBuildingToMap(woodCutter);
+                if (game.playerHasVassal(getSenderPlayerByAddress(address))) {
+                    if (game.buildingCanCreate(woodCutter))
+                        if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.WOOD_CUTTER_CREATION_NEEDED_WOOD)) {
+                            assignVassalToBuilding(game.getPlayerRandomVassalId(getSenderPlayerByAddress(address)), woodCutter);
+                            game.addBuildingToMap(woodCutter);
+                        }
+                        else
+                            sendShowAlertRequest("چوب مورد نیاز است!", address, port);
                     else
-                        sendShowAlertRequest("چوب مورد نیاز است!", address, port);
-                else
-                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+                        sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+                } else
+                    sendShowAlertRequest("کارگر کافی وجود ندارد!", address, port);
                 break;
             }
             case GameEvent.BARRACKS_CREATED: {
@@ -219,13 +224,18 @@ public class Server implements Runnable {
                 quarry.position = new Pair(x, y);
                 quarry.id = generateNewID();
                 quarry.ownerName = getSenderPlayerByAddress(address).playerName;
-                if (game.buildingCanCreate(quarry))
-                    if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.QUARRY_CREATION_NEEDED_WOOD))
-                        game.addBuildingToMap(quarry);
+                if (game.playerHasVassal(getSenderPlayerByAddress(address))) {
+                    if (game.buildingCanCreate(quarry))
+                        if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.QUARRY_CREATION_NEEDED_WOOD)) {
+                            assignVassalToBuilding(game.getPlayerRandomVassalId(getSenderPlayerByAddress(address)), quarry);
+                            game.addBuildingToMap(quarry);
+                        }
+                        else
+                            sendShowAlertRequest("چوب مورد نیاز است!", address, port);
                     else
-                        sendShowAlertRequest("چوب مورد نیاز است!", address, port);
-                else
-                    sendShowAlertRequest("معدن باید در محل ذخایر آهن ساخته شود!", address, port);
+                        sendShowAlertRequest("معدن باید در محل ذخایر آهن ساخته شود!", address, port);
+                } else
+                    sendShowAlertRequest("کارگر کافی وجود ندارد!", address, port);
                 break;
             }
             case GameEvent.PORT_CREATED: {
@@ -470,7 +480,7 @@ public class Server implements Runnable {
         worker.position = vassal.position;
         worker.ownerName = vassal.ownerName;
         worker.health = vassal.health;
-        worker.id =  generateNewID();
+        worker.id = generateNewID();
         worker.goToTile(game.tiles, game.tiles[building.position.x - 1][building.position.y - 1]);
         game.removeHuman(vassal);
         GameEvent createGameEvent = new GameEvent(GameEvent.DISTROY_BUILDING, String.valueOf(vassal.id));
