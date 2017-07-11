@@ -62,6 +62,7 @@ public class Market extends Building {
         wood.setId("wood");
         iron.setId("iron");
         destroy.setGraphic(imageView);
+
         transition2(destroy);
         transition2(back);
         transition2(buy);

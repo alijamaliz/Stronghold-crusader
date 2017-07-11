@@ -35,6 +35,7 @@ public class GameEvent {
     public static final int BUY_RESOURCE = 24;
     public static final int SELL_RESOURCE = 25;
     public static final int PLAY_SOUND = 26;
+    public static final int ATTACK = 27;
     public int type;
     public String message;
     public GameEvent(int type, String message) {

@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.File;
@@ -27,7 +29,7 @@ public class Soldier extends Human {
         this.health=1000;
     }
 
-    public Soldier(MapGUI mapGUI)     {
+    public Soldier(MapGUI mapGUI) {
         super(mapGUI);
         this.type="Soldier";
         this.speed = 1;
@@ -47,9 +49,9 @@ public class Soldier extends Human {
         checkBox.setLayoutX(400);
         checkBox.setLayoutY(60);
         checkBox.setSelected(canClimb);
-        checkBox.setOnAction(new EventHandler<ActionEvent>() {
+        checkBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(MouseEvent event) {
                 mapGUI.changeClimbStatus(Soldier.this,checkBox.isSelected());
             }
         });
