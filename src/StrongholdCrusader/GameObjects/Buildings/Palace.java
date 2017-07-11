@@ -37,10 +37,13 @@ public class Palace extends Building {
     @Override
     public AnchorPane clickAction(boolean owner) {
         anchorPane = new AnchorPane();
-        File building = new File("Resources/images/Buildings/Palace.png");
-        ImageView imageView = new ImageView(building.toURI().toString());
+        ImageView imageView = new ImageView(mapGUI.getResourceManager().getImage("Palace"));
+        ImageView vassal = new ImageView(mapGUI.getResourceManager().getImage("Vassal"));
+        ImageView worker = new ImageView(mapGUI.getResourceManager().getImage("Worker"));
         Button createVassal = new Button("Create Vassal");
         Button createWorker = new Button("Create Worker");
+        createVassal.setGraphic(vassal);
+        createWorker.setGraphic(worker);
         transition(createVassal);
         transition(createWorker);
         createVassal.setOnAction(new EventHandler<ActionEvent>() {

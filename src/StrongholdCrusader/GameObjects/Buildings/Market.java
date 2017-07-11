@@ -45,15 +45,14 @@ public class Market extends Building {
     @Override
     public AnchorPane clickAction(boolean owner) {
         anchorPane = new AnchorPane();
-        File building = new File("Resources/images/Buildings/Market.png");
-        ImageView buildingImage = new ImageView(building.toURI().toString());
+        ImageView imageView = new ImageView(mapGUI.getResourceManager().getImage("Market"));
         food = new Button("food");
         iron = new Button("iron");
         wood = new Button("wood");
         buy = new Button("buy(5 piece)");
         sell = new Button("sell(5 piece)");
         back = new Button("Back");
-        destroy = new Button("Distroy Building");
+        destroy = new Button("Destroy Building");
         back.setVisible(false);
         buy.setVisible(false);
         sell.setVisible(false);
@@ -62,6 +61,7 @@ public class Market extends Building {
         food.setId("food");
         wood.setId("wood");
         iron.setId("iron");
+        destroy.setGraphic(imageView);
         transition2(destroy);
         transition2(back);
         transition2(buy);
@@ -160,11 +160,8 @@ public class Market extends Building {
                 back.setVisible(false);
             }
         });
-
-        buildingImage.setLayoutX(30);
-        buildingImage.setLayoutY(30);
-        destroy.setLayoutX(160);
-        destroy.setLayoutY(60);
+        destroy.setLayoutX(50);
+        destroy.setLayoutY(10);
         iron.setLayoutX(400);
         wood.setLayoutX(550);
         food.setLayoutX(700);
@@ -182,7 +179,7 @@ public class Market extends Building {
         health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
         health.setLayoutY(20);
         health.setPrefSize(100,20);
-        anchorPane.getChildren().addAll(buildingImage, destroy, food, wood, iron, buy, sell, back,health);
+        anchorPane.getChildren().addAll( destroy, food, wood, iron, buy, sell, back,health);
         anchorPane.setId("marketMenu");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH,Settings.MENUS_ANCHORPANE_HEIGHT);
         anchorPane.getStylesheets().add("StrongholdCrusader/css/market.css");

@@ -38,12 +38,12 @@ public class Barracks extends Building {
     @Override
     public AnchorPane clickAction(boolean owner) {
         anchorPane = new AnchorPane();
-        File building = new File("Resources/images/Buildings/Barracks.png");
-        ImageView buildingImage = new ImageView(building.toURI().toString());
+        ImageView imageView = new ImageView(mapGUI.getResourceManager().getImage("Barracks"));
+        ImageView soldierImage = new ImageView(mapGUI.getResourceManager().getImage("Soldier"));
         createSoldier = new Button("createSoldier");
-        File soldier = new File("Resources/images/Humans/Soldier.png");
-        ImageView soldierImage = new ImageView(soldier.toURI().toString());
-        destroy = new Button("Distroy Building");
+        destroy = new Button("Destroy Building");
+        destroy.setGraphic(imageView);
+        createSoldier.setGraphic(soldierImage);
         transition(createSoldier);
         transition(destroy);
         destroy.setOnAction(new EventHandler<ActionEvent>() {
@@ -60,20 +60,20 @@ public class Barracks extends Building {
                 Barracks.this.mapGUI.createHuman("Soldier", new Pair(x, y));
             }
         });
-        buildingImage.setLayoutX(20);
-        buildingImage.setLayoutY(buildingImage.getLayoutY());
-        destroy.setLayoutX(210);
-        destroy.setLayoutY(60);
+        imageView.setLayoutX(20);
+        imageView.setLayoutY(imageView.getLayoutY());
+        destroy.setLayoutX(100);
+        destroy.setLayoutY(10);
         soldierImage.setLayoutX(400);
         soldierImage.setLayoutY(40);
-        createSoldier.setLayoutX(480);
+        createSoldier.setLayoutX(400);
         createSoldier.setLayoutY(60);
         ProgressBar health = new ProgressBar(this.health/100);
         health.setStyle("-fx-accent: #96ff4c;");
         health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
         health.setLayoutY(20);
         health.setPrefSize(100,20);
-        anchorPane.getChildren().addAll(buildingImage, createSoldier, soldierImage, destroy,health);
+        anchorPane.getChildren().addAll(imageView, createSoldier, soldierImage, destroy,health);
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
         anchorPane.setId("building");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
