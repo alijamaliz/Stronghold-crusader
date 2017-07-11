@@ -55,6 +55,10 @@ public class Server implements Runnable {
 
     }
 
+    public static void main(String[] args) {
+        Server server = new Server(1);
+    }
+
     private void updateMapObjects() {
         for (GameObject object : game.objects) {
             if (object instanceof Human) {
@@ -62,10 +66,6 @@ public class Server implements Runnable {
                 human.updatePosition(game.tiles);
             }
         }
-    }
-
-    public static void main(String[] args) {
-        Server server = new Server(1);
     }
 
     @Override
@@ -121,6 +121,7 @@ public class Server implements Runnable {
                     palace.id = generateNewID();
                     palace.ownerName = getSenderPlayerByAddress(address).playerName;
                     game.addBuildingToMap(palace);
+                    createInitialVassels(palace);
 
                     //Send OK result for client
                     GameEvent createGameEvent = new GameEvent(GameEvent.USER_SUCCESSFULLY_CREATED, "ClientPlayer " + username + " created!");
@@ -182,13 +183,17 @@ public class Server implements Runnable {
                 farm.position = new Pair(x, y);
                 farm.id = generateNewID();
                 farm.ownerName = getSenderPlayerByAddress(address).playerName;
-                if (game.buildingCanCreate(farm))
-                    if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.FARM_CREATION_NEEDED_WOOD))
-                        game.addBuildingToMap(farm);
+                if (game.playerHasVassal(getSenderPlayerByAddress(address))) {
+                    if (game.buildingCanCreate(farm))
+                        if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.FARM_CREATION_NEEDED_WOOD)) {
+                            assignVassalToBuilding(game.getPlayerRandomVassalId(getSenderPlayerByAddress(address)), farm);
+                            game.addBuildingToMap(farm);
+                        } else
+                            sendShowAlertRequest("چوب مورد نیاز است!", address, port);
                     else
-                        sendShowAlertRequest("چوب مورد نیاز است!", address, port);
-                else
-                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+                        sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+                } else
+                    sendShowAlertRequest("کارگر کافی وجود ندارد!", address, port);
                 break;
             }
             case GameEvent.MARKET_CREATED: {
@@ -447,5 +452,29 @@ public class Server implements Runnable {
     private void sendShowAlertRequest(String message, InetAddress address, int port) {
         GameEvent showAlertGameEvent = new GameEvent(GameEvent.SHOW_ALERT, message);
         sendPacket(showAlertGameEvent.getJSON(), address, port);
+    }
+
+    private void createInitialVassels(Palace palace) {
+        for (int i = 0; i < 10; i++) {
+            Vassal vassal = new Vassal();
+            vassal.ownerName = palace.ownerName;
+            vassal.id = generateNewID();
+            vassal.position = new Pair(palace.position.x + (i % 5), palace.position.y + palace.size.y + (i / 5) + 1);
+            game.addHumanToMap(vassal);
+        }
+    }
+
+    private void assignVassalToBuilding(int vassalId, Building building) {
+        Vassal vassal = (Vassal) game.getGameObjectById(vassalId);
+        Worker worker = new Worker();
+        worker.position = vassal.position;
+        worker.ownerName = vassal.ownerName;
+        worker.health = vassal.health;
+        worker.id =  generateNewID();
+        worker.goToTile(game.tiles, game.tiles[building.position.x - 1][building.position.y - 1]);
+        game.removeHuman(vassal);
+        GameEvent createGameEvent = new GameEvent(GameEvent.DISTROY_BUILDING, String.valueOf(vassal.id));
+        sendPacketForAll(createGameEvent.getJSON());
+        game.addHumanToMap(worker);
     }
 }
