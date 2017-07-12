@@ -1,68 +1,1 @@
-package StrongholdCrusader.GameObjects.Humans;
-
-import StrongholdCrusader.Map.MapGUI;
-import StrongholdCrusader.Settings;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-
-import java.io.File;
-import java.util.Set;
-
-/**
- * Created by Baran on 5/29/2017.
- */
-public class Worker extends Human {
-    public AnchorPane anchorPane;
-
-    public Worker() {
-        this.type = "Worker";
-        this.speed = 1;
-        this.zone = 3;
-        this.power = Settings.HUMAN_POWER;
-        this.health = 500;
-    }
-
-    public Worker(MapGUI mapGUI) {
-        super(mapGUI);
-        this.type = "Worker";
-        this.speed = 1;
-        this.zone = 3;
-        this.power = Settings.HUMAN_POWER;
-        this.health = 500;
-    }
-
-    @Override
-    public AnchorPane clickAction(boolean owner) {
-        anchorPane = new AnchorPane();
-        File file = new File("Resources/images/Humans/Worker.png");
-        ImageView imageView = new ImageView(file.toURI().toString());
-        Button button = new Button("Change to Vassal");
-        CheckBox checkBox = new CheckBox("Can Climb ?");
-        checkBox.setSelected(canClimb);
-        checkBox.setLayoutX(400);
-        checkBox.setLayoutY(60);
-        checkBox.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                mapGUI.changeClimbStatus(Worker.this, checkBox.isSelected());
-            }
-        });
-        button.setLayoutX(200);
-        imageView.setLayoutX(100);
-        imageView.setLayoutY(40);
-        button.setLayoutY(60);
-        ProgressBar health = new ProgressBar(this.health / 100);
-        health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 150);
-        health.setStyle("-fx-accent: #96ff4c;");
-        health.setLayoutY(20);
-        health.setPrefSize(100, 20);
-        anchorPane.getChildren().addAll(imageView, button, checkBox, health);
-        anchorPane.setPrefSize(300, 100);
-        return anchorPane;
-    }
-}
+package StrongholdCrusader.GameObjects.Humans;import StrongholdCrusader.Map.MapGUI;import StrongholdCrusader.Settings;import javafx.event.ActionEvent;import javafx.event.EventHandler;import javafx.scene.control.Button;import javafx.scene.control.CheckBox;import javafx.scene.control.ProgressBar;import javafx.scene.image.ImageView;import javafx.scene.layout.AnchorPane;import java.io.File;import java.util.Set;/** * Created by Baran on 5/29/2017. */public class Worker extends Human {    public AnchorPane anchorPane;    public Worker() {        this.type = "Worker";        this.speed = 1;        this.zone = 3;        this.power = Settings.HUMAN_POWER;        this.health = 500;    }    public Worker(MapGUI mapGUI) {        super(mapGUI);        this.type = "Worker";        this.speed = 1;        this.zone = 3;        this.power = Settings.HUMAN_POWER;        this.health = 500;    }    File file;    ImageView imageView;    Button button;    CheckBox checkBox;    ProgressBar healthBar;    @Override    public AnchorPane clickAction(boolean owner) {        initializeAnchorPane();        checkBox.setOnAction(new EventHandler<ActionEvent>() {            @Override            public void handle(ActionEvent event) {                mapGUI.changeClimbStatus(Worker.this, checkBox.isSelected());            }        });        if (!owner){            button.setVisible(false);            checkBox.setVisible(false);        }        return anchorPane;    }    @Override    public void initializeAnchorPane() {        anchorPane = new AnchorPane();        file = new File("Resources/images/Humans/Worker.png");        imageView = new ImageView(file.toURI().toString());        button= new Button("Change to Vassal");        checkBox= new CheckBox("Can Climb ?");        checkBox.setSelected(canClimb);        checkBox.setLayoutX(400);        checkBox.setLayoutY(60);        button.setLayoutX(200);        imageView.setLayoutX(100);        imageView.setLayoutY(40);        button.setLayoutY(60);        healthBar = new ProgressBar((double)this.health/100);        healthBar.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 150);        healthBar.setStyle("-fx-accent: #96ff4c;");        healthBar.setLayoutY(20);        healthBar.setPrefSize(100, 20);        anchorPane.getChildren().addAll(imageView, button, checkBox, healthBar);        anchorPane.setPrefSize(300, 100);    }}

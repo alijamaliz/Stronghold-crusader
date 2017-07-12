@@ -21,6 +21,8 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class Palace extends Building {
+
+
     public Palace() {
         this.type = "Palace";
         this.size = new Pair(6, 6);
@@ -33,19 +35,18 @@ public class Palace extends Building {
     }
 
     public AnchorPane anchorPane;
+    ImageView imageView;
+    ImageView vassal;
+    ImageView worker;
+    Button createVassal;
+    ProgressBar healthBar;
 
     @Override
     public AnchorPane clickAction(boolean owner) {
-        anchorPane = new AnchorPane();
-        ImageView imageView = new ImageView(mapGUI.getResourceManager().getImage("Palace"));
-        ImageView vassal = new ImageView(mapGUI.getResourceManager().getImage("Vassal"));
-        ImageView worker = new ImageView(mapGUI.getResourceManager().getImage("Worker"));
-        Button createVassal = new Button("Create Vassal");
-        Button createWorker = new Button("Create Worker");
-        createVassal.setGraphic(vassal);
-        createWorker.setGraphic(worker);
+
+        initializeAnchorPane();
         transition(createVassal);
-        transition(createWorker);
+
         createVassal.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -54,35 +55,36 @@ public class Palace extends Building {
                 Palace.this.mapGUI.createHuman("Vassal", Palace.this.id);
             }
         });
-        createWorker.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                int x = Palace.this.position.x + Palace.this.size.x;
-                int y = Palace.this.position.y + Palace.this.size.y;
-                Palace.this.mapGUI.createHuman("Worker", Palace.this.id);
-            }
-        });
+
+
+        if (!owner){
+            createVassal.setVisible(false);
+        }
+        return anchorPane;
+    }
+
+    @Override
+    public void initializeAnchorPane() {
+        anchorPane = new AnchorPane();
+        imageView = new ImageView(mapGUI.getResourceManager().getImage("Palace"));
+        vassal = new ImageView(mapGUI.getResourceManager().getImage("Vassal"));
+        worker = new ImageView(mapGUI.getResourceManager().getImage("Worker"));
+        createVassal = new Button("Create Vassal");
+        createVassal.setGraphic(vassal);
         imageView.setLayoutX(40);
         imageView.setLayoutY(-20);
         createVassal.setLayoutX(350);
-        createWorker.setLayoutX(550);
         createVassal.setLayoutY(60);
-        createWorker.setLayoutY(60);
-        ProgressBar health = new ProgressBar(this.health/100);
-        health.setStyle("-fx-accent: #96ff4c;");
-        health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
-        health.setLayoutY(20);
-        health.setPrefSize(100,20);
-        anchorPane.getChildren().addAll(imageView, createVassal, createWorker,health);
+        healthBar = new ProgressBar((double)this.health/100);
+        healthBar.setStyle("-fx-accent: #96ff4c;");
+        healthBar.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
+        healthBar.setLayoutY(20);
+        healthBar.setPrefSize(100,20);
+        anchorPane.getChildren().addAll(imageView, createVassal, healthBar);
         anchorPane.setPrefSize(550, 250);
         anchorPane.setId("building");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
-        if (!owner){
-            createVassal.setVisible(false);
-            createWorker.setVisible(false);
-        }
-        return anchorPane;
     }
 
     public void transition(Node button){
