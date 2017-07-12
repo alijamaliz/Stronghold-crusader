@@ -365,10 +365,8 @@ public class Server implements Runnable {
             case GameEvent.ATTACK: {
                 String[] args  = gameEvent.message.split(":");
                 int humanId = Integer.parseInt(args[0]);
-                int x = Integer.parseInt(args[1]);
-                int y = Integer.parseInt(args[2]);
-                int objectId = getObjectIdByPosition(x,y);
-                attackToObject(humanId,objectId);
+                int objectId = Integer.parseInt(args[1]);
+                attackToObject(humanId, objectId);
                 break;
             }
         }
@@ -421,7 +419,8 @@ public class Server implements Runnable {
         if(human!=null && object!=null && target!=null)
         {
             human.goToTile(game.tiles,target);
-            game.changeHealth(human,object);
+            human.attack(object);
+            //game.changeHealth(human,object);
 //     human.attack(object);
         }
 

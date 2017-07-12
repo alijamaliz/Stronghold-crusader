@@ -1,8 +1,6 @@
 package StrongholdCrusader.GameObjects.Humans;
 
-import StrongholdCrusader.Map.Map;
 import StrongholdCrusader.Map.MapGUI;
-import StrongholdCrusader.Map.MapTile;
 import StrongholdCrusader.Settings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,30 +11,31 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.File;
-import java.util.LinkedList;
+import java.util.Set;
 
 /**
  * Created by Baran on 5/29/2017.
  */
 public class Worker extends Human {
-    public Worker()
-    {
-        this.type="Worker";
-        this.speed = 1;
-        this.zone=3;
-        this.power=20;
-        this.health=500;
-    }
-    public Worker(MapGUI mapGUI)
-    {
-        super(mapGUI);
-        this.type="Worker";
-        this.speed = 1;
-        this.zone=3;
-        this.power=20;
-        this.health=500;
-    }
     public AnchorPane anchorPane;
+
+    public Worker() {
+        this.type = "Worker";
+        this.speed = 1;
+        this.zone = 3;
+        this.power = Settings.HUMAN_POWER;
+        this.health = 500;
+    }
+
+    public Worker(MapGUI mapGUI) {
+        super(mapGUI);
+        this.type = "Worker";
+        this.speed = 1;
+        this.zone = 3;
+        this.power = Settings.HUMAN_POWER;
+        this.health = 500;
+    }
+
     @Override
     public AnchorPane clickAction(boolean owner) {
         anchorPane = new AnchorPane();
@@ -50,20 +49,20 @@ public class Worker extends Human {
         checkBox.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                    mapGUI.changeClimbStatus(Worker.this,checkBox.isSelected());
+                mapGUI.changeClimbStatus(Worker.this, checkBox.isSelected());
             }
         });
         button.setLayoutX(200);
         imageView.setLayoutX(100);
         imageView.setLayoutY(40);
         button.setLayoutY(60);
-        ProgressBar health = new ProgressBar(this.health/100);
+        ProgressBar health = new ProgressBar(this.health / 100);
         health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 150);
         health.setStyle("-fx-accent: #96ff4c;");
         health.setLayoutY(20);
-        health.setPrefSize(100,20);
-        anchorPane.getChildren().addAll(imageView,button,checkBox,health);
-        anchorPane.setPrefSize(300,100);
+        health.setPrefSize(100, 20);
+        anchorPane.getChildren().addAll(imageView, button, checkBox, health);
+        anchorPane.setPrefSize(300, 100);
         return anchorPane;
     }
 }

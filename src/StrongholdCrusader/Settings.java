@@ -36,5 +36,7 @@ public class Settings {
     public static int QUARRY_CREATION_NEEDED_WOOD = 30;
 
     public static int PLAYER_CITY_RADIUS = 35;
+    public static int SOLDIER_POWER = 10;
+    public static int HUMAN_POWER = 4;
 
 }
