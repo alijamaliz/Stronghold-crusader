@@ -98,17 +98,6 @@
 2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
 2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
 2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222" ,
-"mapObjects" : [{"type":"tree1", "position":[35,55]},{"type":"tree1", "position":[42,69]},{"type":"tree1", "position":[35,24]},{"type":"tree1", "position":[33,39]}, {"type" : "tree1", "position" : [36, 50]},{"type":"tree1", "position":[62,56]},{"type":"tree1", "position":[60,67]},{"type":"tree1", "position":[58,26]},{"type":"tree1", "position":[65,42]}, {"type" : "tree1", "position" : [66, 49]}],
+"mapObjects" : [{"type":"tree1", "position":[35,55]},{"type":"tree1", "position":[42,69]},{"type":"tree1", "position":[35,24]},{"type":"tree1", "position":[33,39]}, {"type" : "tree1", "position" : [36, 50]},{"type":"tree1", "position":[62,56]},{"type":"tree1", "position":[60,67]},{"type":"tree1", "position":[58,26]},{"type":"tree1", "position":[65,42]}, {"type" : "tree1", "position" : [66, 49]},{"type":"tree2", "position":[13,90]},{"type":"tree2", "position":[7,71]},{"type":"tree2", "position":[20,38]},{"type":"tree2", "position":[83,75]}],
 "palacePlaces" : [[75, 78],[15, 12],[75, 14],[15, 78]] ,
 "gameObjects" : []}
-
-
-
-
-
-
-
-
-, [70, 10], [10, 78], [70, 78]
-[[10, 10], [45, 10], [70, 10], [10, 78], [45, 78], [70, 78]]
-{"type":"tree1", "position":[41,32]},{"type":"tree1", "position":[41,33]},{"type":"tree1", "position":[41,34]},{"type":"tree1", "position":[41,35]},{"type":"tree1", "position":[41,36]},{"type":"tree1", "position":[41,37]},{"type":"tree1", "position":[41,38]},{"type":"tree1", "position":[40,34]},{"type":"tree1", "position":[40,35]},{"type":"tree1", "position":[40,36]},{"type":"tree1", "position":[49,32]},{"type":"tree1", "position":[39,33]},{"type":"tree1", "position":[39,34]},{"type":"tree1", "position":[38,33]}
