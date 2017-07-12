@@ -421,7 +421,8 @@ public class Server implements Runnable {
         if(human!=null && object!=null && target!=null)
         {
             human.goToTile(game.tiles,target);
-            human.attack(object);
+            game.changeHealth(human,object);
+//     human.attack(object);
         }
 
     }

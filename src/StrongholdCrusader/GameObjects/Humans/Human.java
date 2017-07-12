@@ -20,7 +20,7 @@ public abstract class Human extends GameObject {
     protected int speed;
     int zone;
     int foodUse, goldUse;
-    int power;
+    public int power;
     private int speedHandler;
     private MapTile nextTile;
     private MapTile targetTile;
