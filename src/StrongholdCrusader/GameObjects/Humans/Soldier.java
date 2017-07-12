@@ -60,7 +60,8 @@ public class Soldier extends Human {
         button.setLayoutX(200);
         button.setLayoutY(50);
         ProgressBar health = new ProgressBar(this.health/100);
-        health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
+        health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 150);
+        health.setStyle("-fx-accent: #96ff4c;");
         health.setLayoutY(20);
         health.setPrefSize(100,20);
         anchorPane.getChildren().addAll(imageView,button,checkBox,health);

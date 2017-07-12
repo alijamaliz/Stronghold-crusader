@@ -12,6 +12,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.util.Duration;
 
 import java.io.File;
@@ -40,7 +41,10 @@ public class Barracks extends Building {
         anchorPane = new AnchorPane();
         ImageView imageView = new ImageView(mapGUI.getResourceManager().getImage("Barracks"));
         ImageView soldierImage = new ImageView(mapGUI.getResourceManager().getImage("Soldier"));
+        imageView.setScaleX(0.8);
+        imageView.setScaleY(0.8);
         createSoldier = new Button("createSoldier");
+        File file = new File("Resources/images/Button/wooden-buttons.jpg");
         destroy = new Button("Destroy Building");
         destroy.setGraphic(imageView);
         createSoldier.setGraphic(soldierImage);
@@ -65,8 +69,8 @@ public class Barracks extends Building {
         destroy.setLayoutX(100);
         destroy.setLayoutY(10);
         soldierImage.setLayoutX(400);
-        soldierImage.setLayoutY(40);
-        createSoldier.setLayoutX(400);
+        soldierImage.setLayoutY(10);
+        createSoldier.setLayoutX(500);
         createSoldier.setLayoutY(60);
         ProgressBar health = new ProgressBar(this.health/100);
         health.setStyle("-fx-accent: #96ff4c;");

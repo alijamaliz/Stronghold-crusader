@@ -1,5 +1,7 @@
 package StrongholdCrusader;
 
+import javafx.stage.Screen;
+
 /**
  * Created by Baran on 5/29/2017.
  */
@@ -18,6 +20,8 @@ public class Settings {
     public static int MENUS_ANCHORPANE_HEIGHT = 150;
     public static int REFRENCES_ANCHORPANE_WIDTH = 179;
     public static int REFRENCES_ANCHORPANE_HEIGHT = 250;
+    public static int ZOOM_AREA_WIDTH = (int) (Screen.getPrimary().getBounds().getWidth()-300);
+    public static int ZOOM_AREA_HEIGHT = (int) (Screen.getPrimary().getBounds().getHeight()-300);
 
     public static int INITIAL_PLAYER_GOLDS = 500;
     public static int INITIAL_PLAYER_WOODS = 200;

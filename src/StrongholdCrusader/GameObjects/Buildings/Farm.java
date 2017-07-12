@@ -54,9 +54,10 @@ public class Farm extends Building {
         destroy.setLayoutY(10);
         ProgressBar health = new ProgressBar(this.health/100);
         health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
+        health.setStyle("-fx-accent : #96ff4c");
         health.setLayoutY(20);
         health.setPrefSize(100,20);
-
+        transition(destroy);
         anchorPane.getChildren().addAll(imageView, destroy,health);
         anchorPane.setId("building");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
