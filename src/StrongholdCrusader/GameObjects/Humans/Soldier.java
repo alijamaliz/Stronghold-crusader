@@ -21,8 +21,8 @@ public class Soldier extends Human {
 
     public Soldier() {
         this.type = "Soldier";
-        this.speed = 1;
-        this.zone = 7;
+        this.speed = Settings.SOLDIER_SPEED;
+        this.zone = Settings.SOLDIER_ATTACK_RADIUS;
         this.power = Settings.SOLDIER_POWER;
         this.health = 1000;
     }
@@ -30,9 +30,9 @@ public class Soldier extends Human {
     public Soldier(MapGUI mapGUI) {
         super(mapGUI);
         this.type = "Soldier";
-        this.speed = 1;
+        this.speed = Settings.SOLDIER_SPEED;
         this.power = Settings.SOLDIER_POWER;
-        this.zone = 7;
+        this.zone = Settings.SOLDIER_ATTACK_RADIUS;
         this.health = 1000;
     }
 

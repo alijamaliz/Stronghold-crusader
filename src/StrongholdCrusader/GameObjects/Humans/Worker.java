@@ -21,7 +21,7 @@ public class Worker extends Human {
 
     public Worker() {
         this.type = "Worker";
-        this.speed = 1;
+        this.speed = Settings.WORKER_SPEED;
         this.zone = 3;
         this.power = Settings.HUMAN_POWER;
         this.health = 500;
@@ -30,7 +30,7 @@ public class Worker extends Human {
     public Worker(MapGUI mapGUI) {
         super(mapGUI);
         this.type = "Worker";
-        this.speed = 1;
+        this.speed = Settings.WORKER_SPEED;
         this.zone = 3;
         this.power = Settings.HUMAN_POWER;
         this.health = 500;

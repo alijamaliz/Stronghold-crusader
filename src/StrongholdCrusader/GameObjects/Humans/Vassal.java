@@ -19,8 +19,8 @@ public class Vassal extends Human {
 
     public Vassal() {
         this.type = "Vassal";
-        this.speed = 1;
-        this.zone = 3;
+        this.speed = Settings.VASSAL_SPEED;
+        this.zone = Settings.VASSAL_ATTACK_RADIUS;
         this.power = Settings.HUMAN_POWER;
         this.health = 500;
     }
@@ -28,8 +28,8 @@ public class Vassal extends Human {
     public Vassal(MapGUI mapGUI) {
         super(mapGUI);
         this.type = "Vassal";
-        this.speed = 1;
-        this.zone = 3;
+        this.speed = Settings.VASSAL_SPEED;
+        this.zone = Settings.VASSAL_ATTACK_RADIUS;
         this.power = Settings.HUMAN_POWER;
         this.health = 500;
     }

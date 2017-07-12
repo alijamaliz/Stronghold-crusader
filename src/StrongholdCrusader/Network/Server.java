@@ -16,6 +16,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.net.*;
+import java.util.LinkedList;
 import java.util.Random;
 
 /**
@@ -64,9 +65,42 @@ public class Server implements Runnable {
         for (GameObject object : game.objects) {
             if (object instanceof Human) {
                 Human human = (Human) object;
-                human.updatePosition(game.tiles);
+                Human aroundEnemy = getAroundHumans(human);
+//                if(aroundEnemy != null) {
+//                    System.out.println(aroundEnemy.type);
+//                    human.attack(aroundEnemy);
+//                    System.out.println("Health: " + aroundEnemy.health);
+//                }
+//                else
+                    human.updatePosition(game.tiles);
             }
         }
+    }
+
+    private Human getAroundHumans(Human human) {
+        LinkedList<Human> aroundEnemyHumans = new LinkedList<>();
+        MapTile thisPosition = game.tiles[human.position.x][human.position.y];
+        for (int i = 0; i < game.objects.size(); i++) {
+            GameObject gameObject = game.objects.get(i);
+            if (gameObject instanceof Human && !gameObject.ownerName.equals(human.ownerName)) {
+                MapTile otherPosition = game.tiles[gameObject.position.x][gameObject.position.y];
+                if (game.getDistanceFromTileToTile(thisPosition, otherPosition) < human.zone) {
+                    aroundEnemyHumans.add((Human) gameObject);
+                }
+            }
+        }
+        if (aroundEnemyHumans.size() != 0) {
+            Human nearestEnemyHuman = aroundEnemyHumans.get(0);
+            for (Human aroundEnemyHuman : aroundEnemyHumans) {
+                MapTile otherPosition = game.tiles[aroundEnemyHuman.position.x][aroundEnemyHuman.position.y];
+                MapTile nearestPosition = game.tiles[nearestEnemyHuman.position.x][nearestEnemyHuman.position.y];
+                if (game.getDistanceFromTileToTile(thisPosition, otherPosition) < game.getDistanceFromTileToTile(thisPosition, nearestPosition)) {
+                    nearestEnemyHuman  = aroundEnemyHuman;
+                }
+            }
+            return nearestEnemyHuman;
+        }
+        return null;
     }
 
     @Override
@@ -363,9 +397,10 @@ public class Server implements Runnable {
                 break;
             }
             case GameEvent.ATTACK: {
-                String[] args  = gameEvent.message.split(":");
+                String[] args = gameEvent.message.split(":");
                 int humanId = Integer.parseInt(args[0]);
                 int objectId = Integer.parseInt(args[1]);
+                System.out.println(objectId);
                 attackToObject(humanId, objectId);
                 break;
             }
@@ -411,20 +446,20 @@ public class Server implements Runnable {
             human.goToTile(game.tiles, game.tiles[pair.x][pair.y]);
         }
     }
-    private  void attackToObject(int humanId,int objectId)
-    {
+
+    private void attackToObject(int humanId, int objectId) {
         Human human = (Human) game.getGameObjectById(humanId);
         GameObject object = game.getGameObjectById(objectId);
         MapTile target = game.getAnEmptyTileAroundObjects(object);
-        if(human!=null && object!=null && target!=null)
-        {
-            human.goToTile(game.tiles,target);
+        if (human != null && object != null && target != null) {
+            human.goToTile(game.tiles, target);
             human.attack(object);
             //game.changeHealth(human,object);
 //     human.attack(object);
         }
 
     }
+
     private ServerPlayer getSenderPlayerByAddress(InetAddress address) {
         for (ServerPlayer player : game.players) {
             if (player.address.getHostAddress().equals(address.getHostAddress()))
@@ -433,25 +468,21 @@ public class Server implements Runnable {
         return null;
     }
 
-    private int getObjectIdByPosition (int x, int y)
-    {
+    private int getObjectIdByPosition(int x, int y) {
         for (GameObject object : game.objects) {
-            if(object instanceof Human) {
-                if (object.position.x == x && object.position.y == y)
-                {
+            if (object instanceof Human) {
+                if (object.position.x == x && object.position.y == y) {
                     return object.id;
                 }
-            }
-            else if(object instanceof Building)
-            {
-                if (x >= object.position.x && x <= object.position.x + ((Building) object).size.x && y >= object.position.y && x <= object.position.y + ((Building) object).size.y)
-                {
+            } else if (object instanceof Building) {
+                if (x >= object.position.x && x <= object.position.x + ((Building) object).size.x && y >= object.position.y && x <= object.position.y + ((Building) object).size.y) {
                     return object.id;
                 }
             }
         }
         return -1;
     }
+
     public boolean sendPacket(String body, InetAddress address, int port) {
         DatagramPacket dp = new DatagramPacket(body.getBytes(), body.getBytes().length, address, port);
         try {

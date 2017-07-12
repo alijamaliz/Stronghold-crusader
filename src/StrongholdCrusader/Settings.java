@@ -37,6 +37,11 @@ public class Settings {
 
     public static int PLAYER_CITY_RADIUS = 35;
     public static int SOLDIER_POWER = 10;
+    public static int SOLDIER_ATTACK_RADIUS = 7;
+    public static int VASSAL_ATTACK_RADIUS = 3;
+    public static int WORKER_SPEED = 3;
+    public static int SOLDIER_SPEED = 3;
+    public static int VASSAL_SPEED = 2;
     public static int HUMAN_POWER = 4;
 
 }
