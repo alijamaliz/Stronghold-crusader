@@ -60,18 +60,8 @@ public abstract class Human extends GameObject {
         return adjacents;
     }
 
-    public void attack(MapTile[][] tiles, GameObject object, MapTile objectTile) {
-        int x = this.position.x;
-        int y = this.position.y;
-        LinkedList<Pair> zone = new LinkedList<>();
-        zone.add(new Pair(x - 1, y));
-        zone.add(new Pair(x + 1, y));
-        zone.add(new Pair(x, y - 1));
-        zone.add(new Pair(x, y + 1));
-        zone.add(new Pair(x, y));
-        Pair objectPair = new Pair(object.position.x, object.position.y);
-        if (!Pair.contains(zone, objectPair)) {
-            this.goToTile(tiles, objectTile);
+    public void attack(GameObject object) {
+        while (object.health!=0) {
             if (this.health > 0 && object.health > 0) {
                 if (object.health - power < 0) {
                     object.health = 0;
@@ -79,14 +69,11 @@ public abstract class Human extends GameObject {
                     object.health -= power;
                 }
             }
-        } else {
-            if (this.health > 0 && object.health > 0) {
-                if (object.health - power < 0) {
-                    object.health = 0;
-                } else {
-                    object.health -= power;
-                }
-            }
+            /*try {
+                Thread.currentThread().sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }*/
         }
     }
 

@@ -363,15 +363,12 @@ public class Server implements Runnable {
                 break;
             }
             case GameEvent.ATTACK: {
-                int x = Integer.parseInt(gameEvent.message.substring(0, gameEvent.message.indexOf(":")));
-                int y = Integer.parseInt(gameEvent.message.substring(gameEvent.message.indexOf(":") + 1));
-                for (GameObject object : game.objects) {
-                    if (object instanceof Building) {
-                        if (x >= object.position.x && x <= object.position.x + ((Building) object).size.x && y >= object.position.y && x <= object.position.y + ((Building) object).size.y)
-                            System.out.println("Building right");
-
-                    }
-                }
+                String[] args  = gameEvent.message.split(":");
+                int humanId = Integer.parseInt(args[0]);
+                int x = Integer.parseInt(args[1]);
+                int y = Integer.parseInt(args[2]);
+                int objectId = getObjectIdByPosition(x,y);
+                attackToObject(humanId,objectId);
                 break;
             }
         }
@@ -416,7 +413,17 @@ public class Server implements Runnable {
             human.goToTile(game.tiles, game.tiles[pair.x][pair.y]);
         }
     }
-
+    private  void attackToObject(int humanId,int objectId)
+    {
+        Human human = (Human) game.getGameObjectById(humanId);
+        GameObject object = game.getGameObjectById(objectId);
+        MapTile target = game.getAnEmptyTileAroundObject(object);
+        if(human!=null && object!=null && target!=null)
+        {
+            human.goToTile(game.tiles,target);
+        }
+        human.attack(object);
+    }
     private ServerPlayer getSenderPlayerByAddress(InetAddress address) {
         for (ServerPlayer player : game.players) {
             if (player.address.getHostAddress().equals(address.getHostAddress()))
@@ -425,6 +432,25 @@ public class Server implements Runnable {
         return null;
     }
 
+    private int getObjectIdByPosition (int x, int y)
+    {
+        for (GameObject object : game.objects) {
+            if(object instanceof Human) {
+                if (object.position.x == x && object.position.y == y)
+                {
+                    return object.id;
+                }
+            }
+            else if(object instanceof Building)
+            {
+                if (x >= object.position.x && x <= object.position.x + ((Building) object).size.x && y >= object.position.y && x <= object.position.y + ((Building) object).size.y)
+                {
+                    return object.id;
+                }
+            }
+        }
+        return -1;
+    }
     public boolean sendPacket(String body, InetAddress address, int port) {
         DatagramPacket dp = new DatagramPacket(body.getBytes(), body.getBytes().length, address, port);
         try {
