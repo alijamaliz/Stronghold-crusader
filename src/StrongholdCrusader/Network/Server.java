@@ -417,12 +417,13 @@ public class Server implements Runnable {
     {
         Human human = (Human) game.getGameObjectById(humanId);
         GameObject object = game.getGameObjectById(objectId);
-        MapTile target = game.getAnEmptyTileAroundObject(object);
+        MapTile target = game.getAnEmptyTileAroundObjects(object);
         if(human!=null && object!=null && target!=null)
         {
             human.goToTile(game.tiles,target);
+            human.attack(object);
         }
-        human.attack(object);
+
     }
     private ServerPlayer getSenderPlayerByAddress(InetAddress address) {
         for (ServerPlayer player : game.players) {
