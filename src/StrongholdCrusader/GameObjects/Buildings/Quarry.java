@@ -23,6 +23,8 @@ import java.util.Queue;
  * Created by Baran on 5/29/2017.
  */
 public class Quarry extends Building {
+
+
     public Quarry() {
         this.type = "Quarry";
         this.size = new Pair(4, 4);
@@ -40,10 +42,8 @@ public class Quarry extends Building {
     ProgressBar healthBar;
     @Override
     public AnchorPane clickAction(boolean owner) {
-        anchorPane = new AnchorPane();
-        imageView = new ImageView(mapGUI.getResourceManager().getImage("Quarry"));
-        destroy = new Button("Destroy Building");
-        destroy.setGraphic(imageView);
+
+        initializeAnchorPane();
         transition(destroy);
         destroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -51,6 +51,19 @@ public class Quarry extends Building {
                 Quarry.this.mapGUI.removeBuildings(Quarry.this);
             }
         });
+
+        if (!owner){
+            destroy.setVisible(false);
+        }
+        return anchorPane;
+    }
+
+    @Override
+    public void initializeAnchorPane() {
+        anchorPane = new AnchorPane();
+        imageView = new ImageView(mapGUI.getResourceManager().getImage("Quarry"));
+        destroy = new Button("Destroy Building");
+        destroy.setGraphic(imageView);
         imageView.setLayoutX(60);
         imageView.setLayoutY(20);
         destroy.setLayoutX(50);
@@ -64,10 +77,6 @@ public class Quarry extends Building {
         anchorPane.setId("building");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
-        if (!owner){
-            destroy.setVisible(false);
-        }
-        return anchorPane;
     }
 
     public void transition(Node button){

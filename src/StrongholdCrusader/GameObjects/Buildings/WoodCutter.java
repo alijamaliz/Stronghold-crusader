@@ -21,6 +21,8 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class WoodCutter extends Building {
+
+
     public WoodCutter() {
         this.type = "WoodCutter";
         this.size = new Pair(4, 4);
@@ -39,16 +41,28 @@ public class WoodCutter extends Building {
 
     @Override
     public AnchorPane clickAction(boolean owner) {
-        anchorPane = new AnchorPane();
-        imageView = new ImageView(mapGUI.getResourceManager().getImage("WoodCutter"));
-        destroy = new Button("Destroy Building");
-        destroy.setGraphic(imageView);
+
+        initializeAnchorPane();
+        transition(destroy);
         destroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 WoodCutter.this.mapGUI.removeBuildings(WoodCutter.this);
             }
         });
+
+        if (!owner){
+            destroy.setVisible(false);
+        }
+        return anchorPane;
+    }
+
+    @Override
+    public void initializeAnchorPane() {
+        anchorPane = new AnchorPane();
+        imageView = new ImageView(mapGUI.getResourceManager().getImage("WoodCutter"));
+        destroy = new Button("Destroy Building");
+        destroy.setGraphic(imageView);
         imageView.setLayoutX(60);
         imageView.setLayoutY(20);
         destroy.setLayoutX(50);
@@ -62,10 +76,6 @@ public class WoodCutter extends Building {
         anchorPane.setId("building");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
-        if (!owner){
-            destroy.setVisible(false);
-        }
-        return anchorPane;
     }
 
     public void transition(Node button){

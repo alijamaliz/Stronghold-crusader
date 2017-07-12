@@ -39,18 +39,29 @@ public class Farm extends Building {
 
     @Override
     public AnchorPane clickAction(boolean owner) {
-
-        anchorPane = new AnchorPane();
-        imageView = new ImageView(mapGUI.getResourceManager().getImage("Farm"));
-        destroy = new Button("Destroy Building");
-        destroy.setGraphic(imageView);
+        initializeAnchorPane();
         transition(destroy);
+        transition(destroy);
+
         destroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 Farm.this.mapGUI.removeBuildings(Farm.this);
             }
         });
+
+        if (!owner){
+            destroy.setVisible(false);
+        }
+        return anchorPane;
+    }
+
+    @Override
+    public void initializeAnchorPane(){
+        anchorPane = new AnchorPane();
+        imageView = new ImageView(mapGUI.getResourceManager().getImage("Farm"));
+        destroy = new Button("Destroy Building");
+        destroy.setGraphic(imageView);
         imageView.setLayoutX(60);
         imageView.setLayoutY(20);
         destroy.setLayoutX(50);
@@ -60,15 +71,11 @@ public class Farm extends Building {
         healthBar.setStyle("-fx-accent : #96ff4c");
         healthBar.setLayoutY(20);
         healthBar.setPrefSize(100,20);
-        transition(destroy);
         anchorPane.getChildren().addAll(imageView, destroy,healthBar);
         anchorPane.setId("building");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
-        if (!owner){
-            destroy.setVisible(false);
-        }
-        return anchorPane;
+
     }
 
     public void transition(Node button){

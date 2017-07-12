@@ -21,6 +21,8 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class Palace extends Building {
+
+
     public Palace() {
         this.type = "Palace";
         this.size = new Pair(6, 6);
@@ -42,16 +44,11 @@ public class Palace extends Building {
 
     @Override
     public AnchorPane clickAction(boolean owner) {
-        anchorPane = new AnchorPane();
-        imageView = new ImageView(mapGUI.getResourceManager().getImage("Palace"));
-        vassal = new ImageView(mapGUI.getResourceManager().getImage("Vassal"));
-        worker = new ImageView(mapGUI.getResourceManager().getImage("Worker"));
-        createVassal = new Button("Create Vassal");
-        createWorker = new Button("Create Worker");
-        createVassal.setGraphic(vassal);
-        createWorker.setGraphic(worker);
+
+        initializeAnchorPane();
         transition(createVassal);
         transition(createWorker);
+
         createVassal.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -68,6 +65,24 @@ public class Palace extends Building {
                 Palace.this.mapGUI.createHuman("Worker", Palace.this.id);
             }
         });
+
+        if (!owner){
+            createVassal.setVisible(false);
+            createWorker.setVisible(false);
+        }
+        return anchorPane;
+    }
+
+    @Override
+    public void initializeAnchorPane() {
+        anchorPane = new AnchorPane();
+        imageView = new ImageView(mapGUI.getResourceManager().getImage("Palace"));
+        vassal = new ImageView(mapGUI.getResourceManager().getImage("Vassal"));
+        worker = new ImageView(mapGUI.getResourceManager().getImage("Worker"));
+        createVassal = new Button("Create Vassal");
+        createWorker = new Button("Create Worker");
+        createVassal.setGraphic(vassal);
+        createWorker.setGraphic(worker);
         imageView.setLayoutX(40);
         imageView.setLayoutY(-20);
         createVassal.setLayoutX(350);
@@ -84,11 +99,6 @@ public class Palace extends Building {
         anchorPane.setId("building");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
-        if (!owner){
-            createVassal.setVisible(false);
-            createWorker.setVisible(false);
-        }
-        return anchorPane;
     }
 
     public void transition(Node button){

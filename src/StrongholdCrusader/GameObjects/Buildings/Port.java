@@ -21,6 +21,8 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class Port extends Building {
+
+
     public Port() {
         this.type = "Port";
         this.size = new Pair(4, 4);
@@ -39,10 +41,8 @@ public class Port extends Building {
 
     @Override
     public AnchorPane clickAction(boolean owner) {
-        anchorPane = new AnchorPane();
-        imageView = new ImageView(mapGUI.getResourceManager().getImage("Port"));
-        destroy = new Button("Destroy Building");
-        destroy.setGraphic(imageView);
+
+        initializeAnchorPane();
         transition(destroy);
         destroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -50,6 +50,19 @@ public class Port extends Building {
                 Port.this.mapGUI.removeBuildings(Port.this);
             }
         });
+
+        if (!owner){
+            destroy.setVisible(false);
+        }
+        return anchorPane;
+    }
+
+    @Override
+    public void initializeAnchorPane() {
+        anchorPane = new AnchorPane();
+        imageView = new ImageView(mapGUI.getResourceManager().getImage("Port"));
+        destroy = new Button("Destroy Building");
+        destroy.setGraphic(imageView);
         destroy.setLayoutX(50);
         destroy.setLayoutY(10);
         healthBar = new ProgressBar((double)this.health/100);
@@ -61,10 +74,6 @@ public class Port extends Building {
         anchorPane.setId("building");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
-        if (!owner){
-            destroy.setVisible(false);
-        }
-        return anchorPane;
     }
 
     public void transition(Node button){

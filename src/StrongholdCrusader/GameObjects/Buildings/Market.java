@@ -21,6 +21,8 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class Market extends Building {
+
+
     public Market() {
         this.type = "Market";
         this.size = new Pair(4, 4);
@@ -46,32 +48,16 @@ public class Market extends Building {
 
     @Override
     public AnchorPane clickAction(boolean owner) {
-        anchorPane = new AnchorPane();
-        imageView = new ImageView(mapGUI.getResourceManager().getImage("Market"));
-        food = new Button("food");
-        iron = new Button("iron");
-        wood = new Button("wood");
-        buy = new Button("buy(5 piece)");
-        sell = new Button("sell(5 piece)");
-        back = new Button("Back");
-        destroy = new Button("Destroy Building");
-        back.setVisible(false);
-        buy.setVisible(false);
-        sell.setVisible(false);
-        buy.setId("marketBuy");
-        sell.setId("marketSell");
-        food.setId("food");
-        wood.setId("wood");
-        iron.setId("iron");
-        destroy.setGraphic(imageView);
 
-        transition2(destroy);
-        transition2(back);
-        transition2(buy);
-        transition2(sell);
-        transition2(food);
-        transition2(wood);
-        transition2(iron);
+        initializeAnchorPane();
+        transition(destroy);
+        transition(back);
+        transition(buy);
+        transition(sell);
+        transition(food);
+        transition(wood);
+        transition(iron);
+
         food.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -163,6 +149,39 @@ public class Market extends Building {
                 back.setVisible(false);
             }
         });
+
+        if (!owner){
+            destroy.setVisible(false);
+            back.setVisible(false);
+            buy.setVisible(false);
+            sell.setVisible(false);
+            food.setVisible(false);
+            wood.setVisible(false);
+            iron.setVisible(false);
+        }
+        return anchorPane;
+    }
+
+    @Override
+    public void initializeAnchorPane() {
+        anchorPane = new AnchorPane();
+        imageView = new ImageView(mapGUI.getResourceManager().getImage("Market"));
+        food = new Button("food");
+        iron = new Button("iron");
+        wood = new Button("wood");
+        buy = new Button("buy(5 piece)");
+        sell = new Button("sell(5 piece)");
+        back = new Button("Back");
+        destroy = new Button("Destroy Building");
+        back.setVisible(false);
+        buy.setVisible(false);
+        sell.setVisible(false);
+        buy.setId("marketBuy");
+        sell.setId("marketSell");
+        food.setId("food");
+        wood.setId("wood");
+        iron.setId("iron");
+        destroy.setGraphic(imageView);
         destroy.setLayoutX(50);
         destroy.setLayoutY(10);
         iron.setLayoutX(400);
@@ -186,20 +205,9 @@ public class Market extends Building {
         anchorPane.setId("marketMenu");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH,Settings.MENUS_ANCHORPANE_HEIGHT);
         anchorPane.getStylesheets().add("StrongholdCrusader/css/market.css");
-        if (!owner){
-            destroy.setVisible(false);
-            back.setVisible(false);
-            buy.setVisible(false);
-            sell.setVisible(false);
-            food.setVisible(false);
-            wood.setVisible(false);
-            iron.setVisible(false);
-        }
-        return anchorPane;
     }
 
-
-    public void transition2 (Node button) {
+    public void transition (Node button) {
         ScaleTransition transition = new ScaleTransition(Duration.millis(100), button);
         transition.setAutoReverse(true);
         button.setOnMouseEntered(new EventHandler<MouseEvent>() {

@@ -42,9 +42,9 @@ public class Barracks extends Building {
     @Override
     public AnchorPane clickAction(boolean owner) {
 
+        initializeAnchorPane();
         transition(createSoldier);
         transition(destroy);
-        initializeAnchorPane();
 
 
         destroy.setOnAction(new EventHandler<ActionEvent>() {
@@ -69,6 +69,7 @@ public class Barracks extends Building {
         return anchorPane;
     }
 
+    @Override
     public void initializeAnchorPane(){
         anchorPane = new AnchorPane();
         imageView = new ImageView(mapGUI.getResourceManager().getImage("Barracks"));
