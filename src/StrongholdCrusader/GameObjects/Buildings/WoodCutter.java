@@ -21,6 +21,8 @@ import java.io.File;
  * Created by Baran on 5/29/2017.
  */
 public class WoodCutter extends Building {
+
+
     public WoodCutter() {
         this.type = "WoodCutter";
         this.size = new Pair(4, 4);
@@ -33,36 +35,47 @@ public class WoodCutter extends Building {
     }
 
     public AnchorPane anchorPane;
+    ImageView imageView;
+    Button destroy;
+    ProgressBar healthBar;
 
     @Override
     public AnchorPane clickAction(boolean owner) {
-        anchorPane = new AnchorPane();
-        ImageView imageView = new ImageView(mapGUI.getResourceManager().getImage("WoodCutter"));
-        Button destroy = new Button("Destroy Building");
-        destroy.setGraphic(imageView);
+
+        initializeAnchorPane();
+        transition(destroy);
         destroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 WoodCutter.this.mapGUI.removeBuildings(WoodCutter.this);
             }
         });
-        imageView.setLayoutX(60);
-        imageView.setLayoutY(20);
-        destroy.setLayoutX(50);
-        destroy.setLayoutY(10);
-        ProgressBar health = new ProgressBar(this.health/100);
-        health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
-        health.setLayoutY(20);
-        health.setPrefSize(100,20);
-        health.setStyle("-fx-accent: #96ff4c;");
-        anchorPane.getChildren().addAll(imageView, destroy, health);
-        anchorPane.setId("building");
-        anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
-        anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
+
         if (!owner){
             destroy.setVisible(false);
         }
         return anchorPane;
+    }
+
+    @Override
+    public void initializeAnchorPane() {
+        anchorPane = new AnchorPane();
+        imageView = new ImageView(mapGUI.getResourceManager().getImage("WoodCutter"));
+        destroy = new Button("Destroy Building");
+        destroy.setGraphic(imageView);
+        imageView.setLayoutX(60);
+        imageView.setLayoutY(20);
+        destroy.setLayoutX(50);
+        destroy.setLayoutY(10);
+        healthBar = new ProgressBar((double)this.health/100);
+        healthBar.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
+        healthBar.setLayoutY(20);
+        healthBar.setPrefSize(100,20);
+        healthBar.setStyle("-fx-accent: #96ff4c;");
+        anchorPane.getChildren().addAll(imageView, destroy, healthBar);
+        anchorPane.setId("building");
+        anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
+        anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
     }
 
     public void transition(Node button){

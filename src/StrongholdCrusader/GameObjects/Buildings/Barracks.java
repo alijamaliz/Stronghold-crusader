@@ -35,21 +35,18 @@ public class Barracks extends Building {
     public AnchorPane anchorPane;
     Button createSoldier;
     Button destroy;
+    ImageView imageView;
+    ImageView soldierImage;
+    ProgressBar healthBar;
 
     @Override
     public AnchorPane clickAction(boolean owner) {
-        anchorPane = new AnchorPane();
-        ImageView imageView = new ImageView(mapGUI.getResourceManager().getImage("Barracks"));
-        ImageView soldierImage = new ImageView(mapGUI.getResourceManager().getImage("Soldier"));
-        imageView.setScaleX(0.8);
-        imageView.setScaleY(0.8);
-        createSoldier = new Button("createSoldier");
-        File file = new File("Resources/images/Button/wooden-buttons.jpg");
-        destroy = new Button("Destroy Building");
-        destroy.setGraphic(imageView);
-        createSoldier.setGraphic(soldierImage);
+
+        initializeAnchorPane();
         transition(createSoldier);
         transition(destroy);
+
+
         destroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -64,6 +61,25 @@ public class Barracks extends Building {
                 Barracks.this.mapGUI.createHuman("Soldier", Barracks.this.id);
             }
         });
+
+        if (!owner){
+            destroy.setVisible(false);
+            createSoldier.setVisible(false);
+        }
+        return anchorPane;
+    }
+
+    @Override
+    public void initializeAnchorPane(){
+        anchorPane = new AnchorPane();
+        imageView = new ImageView(mapGUI.getResourceManager().getImage("Barracks"));
+        soldierImage = new ImageView(mapGUI.getResourceManager().getImage("Soldier"));
+        imageView.setScaleX(0.8);
+        imageView.setScaleY(0.8);
+        createSoldier = new Button("createSoldier");
+        destroy = new Button("Destroy Building");
+        destroy.setGraphic(imageView);
+        createSoldier.setGraphic(soldierImage);
         imageView.setLayoutX(20);
         imageView.setLayoutY(imageView.getLayoutY());
         destroy.setLayoutX(100);
@@ -72,20 +88,15 @@ public class Barracks extends Building {
         soldierImage.setLayoutY(10);
         createSoldier.setLayoutX(500);
         createSoldier.setLayoutY(60);
-        ProgressBar health = new ProgressBar(this.health/100);
-        health.setStyle("-fx-accent: #96ff4c;");
-        health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
-        health.setLayoutY(20);
-        health.setPrefSize(100,20);
-        anchorPane.getChildren().addAll(imageView, createSoldier, soldierImage, destroy,health);
+        healthBar = new ProgressBar((double)this.health);
+        healthBar.setStyle("-fx-accent: #96ff4c;");
+        healthBar.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
+        healthBar.setLayoutY(20);
+        healthBar.setPrefSize(100,20);
+        anchorPane.getChildren().addAll(imageView, createSoldier, soldierImage, destroy,healthBar);
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
         anchorPane.setId("building");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
-        if (!owner){
-            destroy.setVisible(false);
-            createSoldier.setVisible(false);
-        }
-        return anchorPane;
     }
 
 
