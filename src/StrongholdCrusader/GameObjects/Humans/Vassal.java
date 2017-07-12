@@ -53,7 +53,7 @@ public class Vassal extends Human {
             }
         });
         imageView.setLayoutX(200);
-        ProgressBar health = new ProgressBar(this.health/100);
+        ProgressBar health = new ProgressBar((double)this.health/100);
         health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 150);
         health.setStyle("-fx-accent: #96ff4c;");
         health.setLayoutY(20);

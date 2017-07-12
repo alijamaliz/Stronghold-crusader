@@ -33,13 +33,16 @@ public class Farm extends Building {
     }
 
     public AnchorPane anchorPane;
+    ImageView imageView;
+    Button destroy;
+    ProgressBar healthBar;
 
     @Override
     public AnchorPane clickAction(boolean owner) {
 
         anchorPane = new AnchorPane();
-        ImageView imageView = new ImageView(mapGUI.getResourceManager().getImage("Farm"));
-        Button destroy = new Button("Destroy Building");
+        imageView = new ImageView(mapGUI.getResourceManager().getImage("Farm"));
+        destroy = new Button("Destroy Building");
         destroy.setGraphic(imageView);
         transition(destroy);
         destroy.setOnAction(new EventHandler<ActionEvent>() {
@@ -52,13 +55,13 @@ public class Farm extends Building {
         imageView.setLayoutY(20);
         destroy.setLayoutX(50);
         destroy.setLayoutY(10);
-        ProgressBar health = new ProgressBar(this.health/100);
-        health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
-        health.setStyle("-fx-accent : #96ff4c");
-        health.setLayoutY(20);
-        health.setPrefSize(100,20);
+        healthBar = new ProgressBar((double)this.health/100);
+        healthBar.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
+        healthBar.setStyle("-fx-accent : #96ff4c");
+        healthBar.setLayoutY(20);
+        healthBar.setPrefSize(100,20);
         transition(destroy);
-        anchorPane.getChildren().addAll(imageView, destroy,health);
+        anchorPane.getChildren().addAll(imageView, destroy,healthBar);
         anchorPane.setId("building");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");

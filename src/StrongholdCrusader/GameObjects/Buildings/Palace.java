@@ -33,15 +33,21 @@ public class Palace extends Building {
     }
 
     public AnchorPane anchorPane;
+    ImageView imageView;
+    ImageView vassal;
+    ImageView worker;
+    Button createVassal;
+    Button createWorker;
+    ProgressBar healthBar;
 
     @Override
     public AnchorPane clickAction(boolean owner) {
         anchorPane = new AnchorPane();
-        ImageView imageView = new ImageView(mapGUI.getResourceManager().getImage("Palace"));
-        ImageView vassal = new ImageView(mapGUI.getResourceManager().getImage("Vassal"));
-        ImageView worker = new ImageView(mapGUI.getResourceManager().getImage("Worker"));
-        Button createVassal = new Button("Create Vassal");
-        Button createWorker = new Button("Create Worker");
+        imageView = new ImageView(mapGUI.getResourceManager().getImage("Palace"));
+        vassal = new ImageView(mapGUI.getResourceManager().getImage("Vassal"));
+        worker = new ImageView(mapGUI.getResourceManager().getImage("Worker"));
+        createVassal = new Button("Create Vassal");
+        createWorker = new Button("Create Worker");
         createVassal.setGraphic(vassal);
         createWorker.setGraphic(worker);
         transition(createVassal);
@@ -68,12 +74,12 @@ public class Palace extends Building {
         createWorker.setLayoutX(550);
         createVassal.setLayoutY(60);
         createWorker.setLayoutY(60);
-        ProgressBar health = new ProgressBar(this.health/100);
-        health.setStyle("-fx-accent: #96ff4c;");
-        health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
-        health.setLayoutY(20);
-        health.setPrefSize(100,20);
-        anchorPane.getChildren().addAll(imageView, createVassal, createWorker,health);
+        healthBar = new ProgressBar((double)this.health/100);
+        healthBar.setStyle("-fx-accent: #96ff4c;");
+        healthBar.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
+        healthBar.setLayoutY(20);
+        healthBar.setPrefSize(100,20);
+        anchorPane.getChildren().addAll(imageView, createVassal, createWorker,healthBar);
         anchorPane.setPrefSize(550, 250);
         anchorPane.setId("building");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");

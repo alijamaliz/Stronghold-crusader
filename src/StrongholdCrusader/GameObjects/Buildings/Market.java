@@ -41,11 +41,13 @@ public class Market extends Building {
     Button sell;
     Button back;
     Button destroy;
+    ImageView imageView;
+    ProgressBar healthBar;
 
     @Override
     public AnchorPane clickAction(boolean owner) {
         anchorPane = new AnchorPane();
-        ImageView imageView = new ImageView(mapGUI.getResourceManager().getImage("Market"));
+        imageView = new ImageView(mapGUI.getResourceManager().getImage("Market"));
         food = new Button("food");
         iron = new Button("iron");
         wood = new Button("wood");
@@ -175,12 +177,12 @@ public class Market extends Building {
         buy.setLayoutY(60);
         back.setLayoutX(700);
         back.setLayoutY(60);
-        ProgressBar health = new ProgressBar(this.health/100);
-        health.setStyle("-fx-accent: #96ff4c;");
-        health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
-        health.setLayoutY(20);
-        health.setPrefSize(100,20);
-        anchorPane.getChildren().addAll( destroy, food, wood, iron, buy, sell, back,health);
+        healthBar = new ProgressBar((double)this.health/100);
+        healthBar.setStyle("-fx-accent: #96ff4c;");
+        healthBar.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
+        healthBar.setLayoutY(20);
+        healthBar.setPrefSize(100,20);
+        anchorPane.getChildren().addAll( destroy, food, wood, iron, buy, sell, back,healthBar);
         anchorPane.setId("marketMenu");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH,Settings.MENUS_ANCHORPANE_HEIGHT);
         anchorPane.getStylesheets().add("StrongholdCrusader/css/market.css");

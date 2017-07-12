@@ -57,7 +57,7 @@ public class Worker extends Human {
         imageView.setLayoutX(100);
         imageView.setLayoutY(40);
         button.setLayoutY(60);
-        ProgressBar health = new ProgressBar(this.health/100);
+        ProgressBar health = new ProgressBar((double)this.health/100);
         health.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 150);
         health.setStyle("-fx-accent: #96ff4c;");
         health.setLayoutY(20);
