@@ -8,6 +8,7 @@ import StrongholdCrusader.GameObjects.Humans.Vassal;
 import StrongholdCrusader.GameObjects.Humans.Worker;
 import StrongholdCrusader.GameObjects.Pair;
 import StrongholdCrusader.Map.MapManager;
+import StrongholdCrusader.Map.MapTile;
 import StrongholdCrusader.Settings;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -27,7 +28,7 @@ public class Server implements Runnable {
     Game game;
 
     public Server(int mapId) {
-        game = new Game(mapId);
+        game = new Game(mapId, this);
 
         try {
             socket = new DatagramSocket(Settings.SERVER_PORT);
@@ -151,13 +152,13 @@ public class Server implements Runnable {
                 woodCutter.position = new Pair(x, y);
                 woodCutter.id = generateNewID();
                 woodCutter.ownerName = getSenderPlayerByAddress(address).playerName;
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
                 if (game.playerHasVassal(getSenderPlayerByAddress(address))) {
-                    if (game.buildingCanCreate(woodCutter))
+                    if (game.buildingCanCreate(woodCutter, playerPalace))
                         if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.WOOD_CUTTER_CREATION_NEEDED_WOOD)) {
                             assignVassalToBuilding(game.getPlayerRandomVassalId(getSenderPlayerByAddress(address)), woodCutter);
                             game.addBuildingToMap(woodCutter);
-                        }
-                        else
+                        } else
                             sendShowAlertRequest("چوب مورد نیاز است!", address, port);
                     else
                         sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
@@ -172,7 +173,8 @@ public class Server implements Runnable {
                 barracks.position = new Pair(x, y);
                 barracks.id = generateNewID();
                 barracks.ownerName = getSenderPlayerByAddress(address).playerName;
-                if (game.buildingCanCreate(barracks))
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
+                if (game.buildingCanCreate(barracks, playerPalace))
                     if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.BARRACKS_CREATION_NEEDED_WOOD))
                         game.addBuildingToMap(barracks);
                     else
@@ -188,8 +190,9 @@ public class Server implements Runnable {
                 farm.position = new Pair(x, y);
                 farm.id = generateNewID();
                 farm.ownerName = getSenderPlayerByAddress(address).playerName;
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
                 if (game.playerHasVassal(getSenderPlayerByAddress(address))) {
-                    if (game.buildingCanCreate(farm))
+                    if (game.buildingCanCreate(farm, playerPalace))
                         if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.FARM_CREATION_NEEDED_WOOD)) {
                             assignVassalToBuilding(game.getPlayerRandomVassalId(getSenderPlayerByAddress(address)), farm);
                             game.addBuildingToMap(farm);
@@ -208,13 +211,17 @@ public class Server implements Runnable {
                 market.position = new Pair(x, y);
                 market.id = generateNewID();
                 market.ownerName = getSenderPlayerByAddress(address).playerName;
-                if (game.buildingCanCreate(market))
-                    if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.MARKET_CREATION_NEEDED_WOOD))
-                        game.addBuildingToMap(market);
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
+                if (!game.playerHasMarket(getSenderPlayerByAddress(address))) {
+                    if (game.buildingCanCreate(market, playerPalace))
+                        if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.MARKET_CREATION_NEEDED_WOOD))
+                            game.addBuildingToMap(market);
+                        else
+                            sendShowAlertRequest("چوب مورد نیاز است!", address, port);
                     else
-                        sendShowAlertRequest("چوب مورد نیاز است!", address, port);
-                else
-                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+                        sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+                } else
+                    sendShowAlertRequest("بازار قبلا ساخته شده است!", address, port);
                 break;
             }
             case GameEvent.QUARRAY_CREATED: {
@@ -224,16 +231,16 @@ public class Server implements Runnable {
                 quarry.position = new Pair(x, y);
                 quarry.id = generateNewID();
                 quarry.ownerName = getSenderPlayerByAddress(address).playerName;
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
                 if (game.playerHasVassal(getSenderPlayerByAddress(address))) {
-                    if (game.buildingCanCreate(quarry))
+                    if (game.quarryCanCreate(quarry, playerPalace))
                         if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.QUARRY_CREATION_NEEDED_WOOD)) {
                             assignVassalToBuilding(game.getPlayerRandomVassalId(getSenderPlayerByAddress(address)), quarry);
                             game.addBuildingToMap(quarry);
-                        }
-                        else
+                        } else
                             sendShowAlertRequest("چوب مورد نیاز است!", address, port);
                     else
-                        sendShowAlertRequest("معدن باید در محل ذخایر آهن ساخته شود!", address, port);
+                        sendShowAlertRequest("معدن باید در محل ذخایر سنگ ساخته شود!", address, port);
                 } else
                     sendShowAlertRequest("کارگر کافی وجود ندارد!", address, port);
                 break;
@@ -245,7 +252,8 @@ public class Server implements Runnable {
                 portBuilding.position = new Pair(x, y);
                 portBuilding.id = generateNewID();
                 portBuilding.ownerName = getSenderPlayerByAddress(address).playerName;
-                if (game.portCanCreate(portBuilding))
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
+                if (game.portCanCreate(portBuilding, playerPalace))
                     if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.PORT_CREATION_NEEDED_WOOD))
                         game.addBuildingToMap(portBuilding);
                     else
@@ -255,46 +263,55 @@ public class Server implements Runnable {
                 break;
             }
             case GameEvent.WORKER_CREATED: {
-                int x = Integer.parseInt(gameEvent.message.substring(0, gameEvent.message.indexOf(":")));
-                int y = Integer.parseInt(gameEvent.message.substring(gameEvent.message.indexOf(":") + 1));
-                Worker worker = new Worker();
-                worker.position = new Pair(x, y);
-                worker.id = generateNewID();
-                worker.ownerName = getSenderPlayerByAddress(address).playerName;
-                if (game.humanCanCreate(worker))
-                    game.addHumanToMap(worker);
-                else
-                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+                int buildingId = Integer.parseInt(gameEvent.message);
+                MapTile target = game.getAnEmptyTileAroundBuilding((Building) game.getGameObjectById(buildingId));
+                if (target != null) {
+                    Worker worker = new Worker();
+                    worker.position = new Pair(target.position.x, target.position.y);
+                    worker.id = generateNewID();
+                    worker.ownerName = getSenderPlayerByAddress(address).playerName;
+                    if (game.humanCanCreate(worker))
+                        game.addHumanToMap(worker);
+                    else
+                        sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+                } else
+                    sendShowAlertRequest("فضای کافی در اطراف قصر موجود نیست!", address, port);
                 break;
             }
             case GameEvent.VASSEL_CREATED: {
-                int x = Integer.parseInt(gameEvent.message.substring(0, gameEvent.message.indexOf(":")));
-                int y = Integer.parseInt(gameEvent.message.substring(gameEvent.message.indexOf(":") + 1));
-                Vassal vassal = new Vassal();
-                vassal.position = new Pair(x, y);
-                vassal.id = generateNewID();
-                vassal.ownerName = getSenderPlayerByAddress(address).playerName;
-                if (game.humanCanCreate(vassal))
-                    game.addHumanToMap(vassal);
-                else
-                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+                int buildingId = Integer.parseInt(gameEvent.message);
+                MapTile target = game.getAnEmptyTileAroundBuilding((Building) game.getGameObjectById(buildingId));
+                if (target != null) {
+                    Vassal vassal = new Vassal();
+                    vassal.position = new Pair(target.position.x, target.position.y);
+                    vassal.id = generateNewID();
+                    vassal.ownerName = getSenderPlayerByAddress(address).playerName;
+                    if (game.humanCanCreate(vassal))
+                        game.addHumanToMap(vassal);
+                    else
+                        sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+                } else
+                    sendShowAlertRequest("فضای کافی در اطراف قصر موجود نیست!", address, port);
                 break;
             }
             case GameEvent.SOLDIER_CREATED: {
-                int x = Integer.parseInt(gameEvent.message.substring(0, gameEvent.message.indexOf(":")));
-                int y = Integer.parseInt(gameEvent.message.substring(gameEvent.message.indexOf(":") + 1));
-                Soldier soldier = new Soldier();
-                soldier.position = new Pair(x, y);
-                soldier.id = generateNewID();
-                soldier.ownerName = getSenderPlayerByAddress(address).playerName;
-                if (game.humanCanCreate(soldier))
-                    if (game.changeResources(getSenderPlayerByAddress(address), "gold", -1 * Settings.SOLDIER_CREATION_NEEDED_GOLD)) {
-                        game.addHumanToMap(soldier);
-                        sendPlaySoundRequest("SoldierAdd", address, port);
-                    } else
-                        sendShowAlertRequest("طلا کافی نیست!", address, port);
-                else
-                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+                int buildingId = Integer.parseInt(gameEvent.message);
+                MapTile target = game.getAnEmptyTileAroundBuilding((Building) game.getGameObjectById(buildingId));
+                if (target != null) {
+                    Soldier soldier = new Soldier();
+                    soldier.position = new Pair(target.position.x, target.position.y);
+                    soldier.id = generateNewID();
+                    soldier.ownerName = getSenderPlayerByAddress(address).playerName;
+                    if (game.humanCanCreate(soldier))
+                        if (game.changeResources(getSenderPlayerByAddress(address), "gold", -1 * Settings.SOLDIER_CREATION_NEEDED_GOLD)) {
+                            game.addHumanToMap(soldier);
+                            sendPlaySoundRequest("SoldierAdd", address, port);
+                        } else
+                            sendShowAlertRequest("طلا کافی نیست!", address, port);
+                    else
+                        sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+                } else
+                    sendShowAlertRequest("فضای کافی در اطراف سربازخانه موجود نیست!", address, port);
                 break;
             }
             case GameEvent.MOVE_HUMAN: {
@@ -346,15 +363,12 @@ public class Server implements Runnable {
                 break;
             }
             case GameEvent.ATTACK: {
-                int x = Integer.parseInt(gameEvent.message.substring(0,gameEvent.message.indexOf(":")));
-                int y = Integer.parseInt(gameEvent.message.substring(gameEvent.message.indexOf(":")+1));
-                for (GameObject object:game.objects ) {
-                    if (object instanceof Building) {
-                        if (x >= object.position.x && x <= object.position.x + ((Building) object).size.x && y >= object.position.y && x <= object.position.y + ((Building) object).size.y)
-                            System.out.println("Building right");
-
-                    }
-                }
+                String[] args  = gameEvent.message.split(":");
+                int humanId = Integer.parseInt(args[0]);
+                int x = Integer.parseInt(args[1]);
+                int y = Integer.parseInt(args[2]);
+                int objectId = getObjectIdByPosition(x,y);
+                attackToObject(humanId,objectId);
                 break;
             }
         }
@@ -399,7 +413,19 @@ public class Server implements Runnable {
             human.goToTile(game.tiles, game.tiles[pair.x][pair.y]);
         }
     }
+    private  void attackToObject(int humanId,int objectId)
+    {
+        Human human = (Human) game.getGameObjectById(humanId);
+        GameObject object = game.getGameObjectById(objectId);
+        MapTile target = game.getAnEmptyTileAroundObjects(object);
+        if(human!=null && object!=null && target!=null)
+        {
+            human.goToTile(game.tiles,target);
+            game.changeHealth(human,object);
+//     human.attack(object);
+        }
 
+    }
     private ServerPlayer getSenderPlayerByAddress(InetAddress address) {
         for (ServerPlayer player : game.players) {
             if (player.address.getHostAddress().equals(address.getHostAddress()))
@@ -408,7 +434,26 @@ public class Server implements Runnable {
         return null;
     }
 
-    private boolean sendPacket(String body, InetAddress address, int port) {
+    private int getObjectIdByPosition (int x, int y)
+    {
+        for (GameObject object : game.objects) {
+            if(object instanceof Human) {
+                if (object.position.x == x && object.position.y == y)
+                {
+                    return object.id;
+                }
+            }
+            else if(object instanceof Building)
+            {
+                if (x >= object.position.x && x <= object.position.x + ((Building) object).size.x && y >= object.position.y && x <= object.position.y + ((Building) object).size.y)
+                {
+                    return object.id;
+                }
+            }
+        }
+        return -1;
+    }
+    public boolean sendPacket(String body, InetAddress address, int port) {
         DatagramPacket dp = new DatagramPacket(body.getBytes(), body.getBytes().length, address, port);
         try {
             socket.send(dp);
@@ -419,7 +464,7 @@ public class Server implements Runnable {
         }
     }
 
-    private void sendPacketForAll(String body) {
+    public void sendPacketForAll(String body) {
         for (ServerPlayer player : game.players) {
             sendPacket(body, player.address, player.port);
         }
@@ -493,7 +538,9 @@ public class Server implements Runnable {
         worker.ownerName = vassal.ownerName;
         worker.health = vassal.health;
         worker.id = generateNewID();
-        worker.goToTile(game.tiles, game.tiles[building.position.x - 1][building.position.y - 1]);
+        MapTile target = game.getAnEmptyTileAroundBuilding(building);
+        if (target != null)
+            worker.goToTile(game.tiles, target);
         game.removeHuman(vassal);
         GameEvent createGameEvent = new GameEvent(GameEvent.DISTROY_BUILDING, String.valueOf(vassal.id));
         sendPacketForAll(createGameEvent.getJSON());

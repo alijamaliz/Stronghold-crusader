@@ -61,7 +61,7 @@ public class Barracks extends Building {
             public void handle(ActionEvent event) {
                 int x = Barracks.this.position.x + Barracks.this.size.x;
                 int y = Barracks.this.position.y + Barracks.this.size.y;
-                Barracks.this.mapGUI.createHuman("Soldier", new Pair(x, y));
+                Barracks.this.mapGUI.createHuman("Soldier", Barracks.this.id);
             }
         });
         imageView.setLayoutX(20);
