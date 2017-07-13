@@ -104,6 +104,9 @@ public class ResourceManager {
         File refrencesImageFile = new File("Resources/images/resources-board.png");
         Image refrencesAnchorpane = new Image(refrencesImageFile.toURI().toString());
         resources.put("Refrences", refrencesAnchorpane);
+        File shipFile = new File("Resources/images/ship/garakuta.jpg");
+        Image shipImage = new Image(shipFile.toURI().toString());
+        resources.put("Ship", shipImage);
 
         ///Animation of Tree
 

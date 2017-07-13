@@ -40,16 +40,26 @@ public class Port extends Building {
     Button destroy;
     ImageView imageView;
     ProgressBar healthBar;
+    Button createShip;
 
     @Override
     public AnchorPane objectsMenuAnchorPane(boolean owner) {
 
         initializeAnchorPane();
         transition(destroy);
+        transition(createShip);
         destroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 Port.this.mapGUI.removeBuildings(Port.this);
+            }
+        });
+
+        createShip.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                MapGUI.gameMode = mapGUI.gameMode.CREATING_SHIP;
+                mapGUI.scene.setCursor(mapGUI.getResourceManager().getCursor("Ship"));
             }
         });
 
@@ -64,6 +74,9 @@ public class Port extends Building {
         anchorPane = new AnchorPane();
         imageView = new ImageView(mapGUI.getResourceManager().getImage("Port"));
         destroy = new Button("Destroy Building");
+        createShip = new Button("Create Ship");
+        createShip.setStyle("-fx-font-size: 20px;-fx-text-fill: #411e5e");
+        ImageView ship = new ImageView(mapGUI.getResourceManager().getImage("Ship"));
         destroy.setGraphic(imageView);
         destroy.setLayoutX(50);
         destroy.setLayoutY(10);
@@ -72,7 +85,9 @@ public class Port extends Building {
         healthBar.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
         healthBar.setLayoutY(20);
         healthBar.setPrefSize(100,20);
-        anchorPane.getChildren().addAll(destroy,healthBar);
+        createShip.setLayoutX(500);
+        createShip.setLayoutY(60);
+        anchorPane.getChildren().addAll(destroy,healthBar,createShip);
         anchorPane.setId("building");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
