@@ -7,6 +7,7 @@ import StrongholdCrusader.GameObjects.Humans.Soldier;
 import StrongholdCrusader.GameObjects.Humans.Vassal;
 import StrongholdCrusader.GameObjects.Humans.Worker;
 import StrongholdCrusader.GameObjects.Pair;
+import StrongholdCrusader.GameObjects.Ship.Ship;
 import StrongholdCrusader.Map.MapManager;
 import StrongholdCrusader.Map.MapTile;
 import StrongholdCrusader.Settings;
@@ -401,6 +402,24 @@ public class Server implements Runnable {
                 int humanId = Integer.parseInt(args[0]);
                 int objectId = Integer.parseInt(args[1]);
                 attackToObject(humanId, objectId);
+                break;
+            }
+            case GameEvent.SHIP_CREATED: {
+                String[] args = gameEvent.message.split(":");
+                int x = Integer.parseInt(args[0]);
+                int y = Integer.parseInt(args[1]);
+                Ship ship = new Ship();
+                ship.position = new Pair(x, y);
+                ship.id = generateNewID();
+                ship.ownerName = getSenderPlayerByAddress(address).playerName;
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
+                if (game.shipCanCreate(ship, playerPalace))
+                    if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.SHIP_CREATION_NEEDED_WOOD))
+                        game.addShipToMap(ship);
+                    else
+                        sendShowAlertRequest("چوب مورد نیاز است!", address, port);
+                else
+                    sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
                 break;
             }
         }

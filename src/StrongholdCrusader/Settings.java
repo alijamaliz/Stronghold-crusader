@@ -34,6 +34,7 @@ public class Settings {
     public static int MARKET_CREATION_NEEDED_WOOD = 10;
     public static int PORT_CREATION_NEEDED_WOOD = 30;
     public static int QUARRY_CREATION_NEEDED_WOOD = 30;
+    public static int SHIP_CREATION_NEEDED_WOOD = 50;
 
     public static int PLAYER_CITY_RADIUS = 35;
     public static int SOLDIER_POWER = 50;
@@ -54,5 +55,7 @@ public class Settings {
     public static int PORT_INITIAL_HEALTH = 200;
     public static int QUARRY_INITIAL_HEALTH = 100;
     public static int WOOD_CUTTER_INITIAL_HEALTH = 100;
+    public static int SHIP_INITIAL_HEALTH = 200;
+    public static int SHIP_SPEED = 2;
 
 }

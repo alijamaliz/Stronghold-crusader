@@ -7,6 +7,7 @@ import StrongholdCrusader.GameObjects.Humans.Soldier;
 import StrongholdCrusader.GameObjects.Humans.Vassal;
 import StrongholdCrusader.GameObjects.Humans.Worker;
 import StrongholdCrusader.GameObjects.Pair;
+import StrongholdCrusader.GameObjects.Ship.Ship;
 import StrongholdCrusader.Map.Map;
 import StrongholdCrusader.Network.Client;
 import StrongholdCrusader.Network.GameEvent;
@@ -191,6 +192,14 @@ public class ClientPlayer {
                                 soldier.canClimb = (boolean) obj.get("canClimb");
                                 System.out.println(soldier.canClimb);
                                 map.objects.add(soldier);
+                            }
+                            if (obj.get("type").equals("Ship")) {
+                                Ship ship = new Ship(map.getGui());
+                                ship.position = new Pair(x, y);
+                                ship.id = id;
+                                ship.health = health;
+                                ship.ownerName = owner;
+                                map.objects.add(ship);
                             }
                         } else { //Update object
                             GameObject gameObject = map.findGameObjectObjectById(id);

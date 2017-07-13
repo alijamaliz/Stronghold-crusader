@@ -59,7 +59,7 @@ public class Port extends Building {
             @Override
             public void handle(MouseEvent event) {
                 MapGUI.gameMode = mapGUI.gameMode.CREATING_SHIP;
-                mapGUI.scene.setCursor(mapGUI.getResourceManager().getCursor("Ship"));
+                mapGUI.changeCursor("Ship");
             }
         });
 
