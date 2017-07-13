@@ -19,7 +19,7 @@ public class Ship extends GameObject {
     Button destroy;
 
 
-    @Override
+    
     public AnchorPane objectsMenuAnchorPane(boolean owner) {
         initializaAnchorPane();
 

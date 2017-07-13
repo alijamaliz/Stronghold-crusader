@@ -10,6 +10,7 @@ public abstract class Building extends GameObject {
     public Pair size;
     public AnchorPane anchorPane;
     public abstract void  initializeAnchorPane();
+    public abstract AnchorPane  objectsMenuAnchorPane(boolean owner);
 
     public Building() {
     }

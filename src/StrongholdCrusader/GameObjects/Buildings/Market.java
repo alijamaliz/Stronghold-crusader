@@ -48,7 +48,7 @@ public class Market extends Building {
     ImageView imageView;
     ProgressBar healthBar;
 
-    @Override
+
     public AnchorPane objectsMenuAnchorPane(boolean owner) {
 
         initializeAnchorPane();

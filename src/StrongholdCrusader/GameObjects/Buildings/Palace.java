@@ -43,7 +43,7 @@ public class Palace extends Building {
     Button createVassal;
     ProgressBar healthBar;
 
-    @Override
+
     public AnchorPane objectsMenuAnchorPane(boolean owner) {
 
         initializeAnchorPane();

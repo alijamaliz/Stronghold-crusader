@@ -41,23 +41,6 @@ public class WoodCutter extends Building {
     Button destroy;
     ProgressBar healthBar;
 
-    @Override
-    public AnchorPane objectsMenuAnchorPane(boolean owner) {
-
-        initializeAnchorPane();
-        transition(destroy);
-        destroy.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                WoodCutter.this.mapGUI.removeBuildings(WoodCutter.this);
-            }
-        });
-
-        if (!owner){
-            destroy.setVisible(false);
-        }
-        return anchorPane;
-    }
 
     @Override
     public void initializeAnchorPane() {
@@ -78,6 +61,23 @@ public class WoodCutter extends Building {
         anchorPane.setId("building");
         anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
+    }
+
+
+    public AnchorPane objectsMenuAnchorPane(boolean owner) {
+        initializeAnchorPane();
+        transition(destroy);
+        destroy.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                WoodCutter.this.mapGUI.removeBuildings(WoodCutter.this);
+            }
+        });
+
+        if (!owner){
+            destroy.setVisible(false);
+        }
+        return anchorPane;
     }
 
     public void transition(Node button){

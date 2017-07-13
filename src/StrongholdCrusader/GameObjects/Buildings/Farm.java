@@ -39,7 +39,7 @@ public class Farm extends Building {
     Button destroy;
     ProgressBar healthBar;
 
-    @Override
+
     public AnchorPane objectsMenuAnchorPane(boolean owner) {
         initializeAnchorPane();
         transition(destroy);

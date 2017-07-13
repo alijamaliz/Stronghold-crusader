@@ -42,7 +42,7 @@ public class Quarry extends Building {
     Button destroy;
     ImageView imageView;
     ProgressBar healthBar;
-    @Override
+
     public AnchorPane objectsMenuAnchorPane(boolean owner) {
 
         initializeAnchorPane();
