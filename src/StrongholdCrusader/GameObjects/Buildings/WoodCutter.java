@@ -42,7 +42,7 @@ public class WoodCutter extends Building {
     ProgressBar healthBar;
 
     @Override
-    public AnchorPane clickAction(boolean owner) {
+    public AnchorPane objectsMenuAnchorPane(boolean owner) {
 
         initializeAnchorPane();
         transition(destroy);
