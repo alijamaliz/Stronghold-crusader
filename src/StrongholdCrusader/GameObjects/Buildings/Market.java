@@ -49,7 +49,7 @@ public class Market extends Building {
     ProgressBar healthBar;
 
     @Override
-    public AnchorPane clickAction(boolean owner) {
+    public AnchorPane objectsMenuAnchorPane(boolean owner) {
 
         initializeAnchorPane();
         transition(destroy);

@@ -43,7 +43,7 @@ public class Quarry extends Building {
     ImageView imageView;
     ProgressBar healthBar;
     @Override
-    public AnchorPane clickAction(boolean owner) {
+    public AnchorPane objectsMenuAnchorPane(boolean owner) {
 
         initializeAnchorPane();
         transition(destroy);

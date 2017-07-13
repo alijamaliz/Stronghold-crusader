@@ -2,9 +2,93 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="351a4214-e5f6-4ff3-ae03-de786c49c5ff" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$21.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$22.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Palace$4.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Barracks$1.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Barracks$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Barracks$2.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Barracks$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Barracks$3.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Barracks$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Barracks$4.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Barracks$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Barracks.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Barracks.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Building.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Building.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Farm$1.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Farm$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Farm$2.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Farm$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Farm$3.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Farm$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Farm.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Farm.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$1$1.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$1$2.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$1$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$1.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$2$1.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$2$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$2$2.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$2$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$2.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$3$1.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$3$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$3$2.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$3$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$3.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$4.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$5.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$6.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$7.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Market.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Palace$1.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Palace$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Palace$2.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Palace$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Palace$3.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Palace$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Palace.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Palace.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Port$1.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Port$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Port$2.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Port$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Port$3.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Port$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Port.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Port.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Quarry$1.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Quarry$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Quarry$2.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Quarry$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Quarry$3.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Quarry$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Quarry.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/Quarry.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/WoodCutter$1.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/WoodCutter$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/WoodCutter$2.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/WoodCutter$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/WoodCutter$3.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/WoodCutter$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/WoodCutter.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Buildings/WoodCutter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Humans/Human.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Humans/Human.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Humans/Soldier$1.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Humans/Soldier$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Humans/Soldier.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Humans/Soldier.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Humans/Vassal$1.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Humans/Vassal$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Humans/Vassal.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Humans/Vassal.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Humans/Worker$1.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Humans/Worker$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Humans/Worker.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/GameObjects/Humans/Worker.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$1.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$10.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$10.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$11.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$11.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$12.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$12.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$13.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$13.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$14.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$14.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$15.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$15.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$16.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$16.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$17.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$17.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$18.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$18.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$19.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$19.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$2.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$20.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$20.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$3.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$4.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$5.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$6.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$7.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$8.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$9.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$GameMode.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI$GameMode.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Map/MapGUI.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Settings.class" afterPath="$PROJECT_DIR$/out/production/Stronghold-crusader/StrongholdCrusader/Settings.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/NatureObject.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/NatureObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/ResourceManager.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/ResourceManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Barracks.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Barracks.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Farm.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Farm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Market.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Market.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Palace.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Palace.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Port.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Port.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Quarry.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Quarry.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/WoodCutter.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/WoodCutter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/GameObject.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/GameObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Soldier.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Soldier.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Vassal.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Vassal.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Worker.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Worker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StrongholdCrusader/Map/MapGUI.java" afterPath="$PROJECT_DIR$/src/StrongholdCrusader/Map/MapGUI.java" />
     </list>
     <ignored path="Stronghold-crusader.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,31 +110,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Human.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Human.java">
+      <file leaf-file-name="MapGUI.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Map/MapGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="41" column="34" lean-forward="false" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+            <state relative-caret-position="266">
+              <caret line="430" column="0" selection-start-line="430" selection-start-column="0" selection-end-line="430" selection-end-column="0" />
+              <folding>
+                <element signature="method#MapGUI#0;class#MapGUI#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Soldier.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Soldier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="373">
+              <caret line="72" column="49" selection-start-line="72" selection-start-column="49" selection-end-line="72" selection-end-column="49" />
+              <folding>
+                <element signature="e#1256#1257#0" expanded="true" />
+                <element signature="e#1349#1350#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Vassal.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Vassal.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="581">
+              <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MenuGUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/MenuGUI.java">
+      <file leaf-file-name="Worker.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Worker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="28" column="14" lean-forward="false" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NatureObject.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/NatureObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="38" column="33" lean-forward="true" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+            <state relative-caret-position="2574">
+              <caret line="117" column="49" selection-start-line="117" selection-start-column="49" selection-end-line="117" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,11 +157,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResourceManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/ResourceManager.java">
+      <file leaf-file-name="GameObject.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/GameObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="113" column="54" lean-forward="false" selection-start-line="113" selection-start-column="54" selection-end-line="113" selection-end-column="54" />
+            <state relative-caret-position="198">
+              <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -99,23 +198,31 @@
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/MenuGUI.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/UI/menu.fxml" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/Settings.java" />
-        <option value="$PROJECT_DIR$/src/StrongholdCrusader/Map/MapGUI.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/Map/MapManager.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/Map/Mountain.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/Map/Plain.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/Map/Sea.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/Map/BFS.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/Map/MapTile.java" />
-        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Vassal.java" />
-        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Worker.java" />
-        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Human.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/Network/Game.java" />
         <option value="$PROJECT_DIR$/Resources/maps/map1.map" />
-        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Soldier.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/GameObject.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/Map/Map.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/ResourceManager.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/NatureObject.java" />
+        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Building.java" />
+        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/WoodCutter.java" />
+        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Quarry.java" />
+        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Port.java" />
+        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Market.java" />
+        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Farm.java" />
+        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Barracks.java" />
+        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Human.java" />
+        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Palace.java" />
+        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Vassal.java" />
+        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Soldier.java" />
+        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Worker.java" />
+        <option value="$PROJECT_DIR$/src/StrongholdCrusader/Map/MapGUI.java" />
       </list>
     </option>
   </component>
@@ -125,11 +232,28 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1048" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -156,6 +280,12 @@
               <option name="myItemId" value="Stronghold-crusader" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Stronghold-crusader" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Stronghold-crusader" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
@@ -176,28 +306,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="StrongholdCrusader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Stronghold-crusader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Stronghold-crusader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StrongholdCrusader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Network" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -281,32 +389,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StrongholdCrusader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GameObjects" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Buildings" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Stronghold-crusader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Stronghold-crusader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -333,6 +415,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.eslint.eslintPackage" value="" />
+    <property name="SearchEverywhereHistoryKey" value="Server&#9;FILE&#9;file://G:/university/term2/AP/final projectStronghold/Stronghold-crusader/src/StrongholdCrusader/Network/Server.java" />
   </component>
   <component name="RunManager" selected="Application.Menu">
     <configuration default="false" name="Menu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -362,7 +445,7 @@
       <predefined_log_file id="idea.log" enabled="true" />
       <method />
     </configuration>
-    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="DEPLOY" value="true" />
       <option name="ARTIFACT_NAME" value="" />
@@ -372,7 +455,7 @@
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="PREFERRED_AVD" value="" />
       <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
       <option name="FORCE_STOP_RUNNING_APP" value="true" />
       <option name="DEBUGGER_TYPE" value="Java" />
@@ -380,11 +463,7 @@
       <option name="PREFERRED_AVD" value="" />
       <Java />
       <Profilers>
-        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
-        <option name="GAPID_ENABLED" value="false" />
         <option name="GAPID_DISABLE_PCS" value="false" />
-        <option name="SUPPORT_LIB_ENABLED" value="true" />
-        <option name="INSTRUMENTATION_ENABLED" value="true" />
       </Profilers>
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -409,11 +488,7 @@
       <option name="PREFERRED_AVD" value="" />
       <Java />
       <Profilers>
-        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
-        <option name="GAPID_ENABLED" value="false" />
         <option name="GAPID_DISABLE_PCS" value="false" />
-        <option name="SUPPORT_LIB_ENABLED" value="true" />
-        <option name="INSTRUMENTATION_ENABLED" value="true" />
       </Profilers>
       <method />
     </configuration>
@@ -591,7 +666,6 @@
       <setting name="cmdLine" value="run-app" />
       <setting name="passParentEnv" value="true" />
       <setting name="launchBrowser" value="true" />
-      <setting name="launchBrowserUrl" value="" />
       <setting name="depsClasspath" value="false" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <method />
@@ -638,12 +712,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
-      <config-file value="" />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
@@ -672,49 +740,12 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
-      <method />
-    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
-      <method />
-    </configuration>
-    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <setting name="path" value="" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="" />
-      <setting name="testKind" value="Class" />
-      <setting name="showProgressMessages" value="true" />
-      <classRegexps />
-      <testRegexps />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="Specs2RunConfiguration" factoryName="Specs2">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <setting name="path" value="" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="" />
-      <setting name="testKind" value="Class" />
-      <setting name="showProgressMessages" value="true" />
-      <classRegexps />
-      <testRegexps />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -761,46 +792,16 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run" />
+      <command value="run-script" />
       <scripts />
       <node-interpreter value="project" />
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory />
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui />
-      <extra-mocha-options />
-      <test-kind>DIRECTORY</test-kind>
-      <test-directory />
-      <recursive>false</recursive>
       <method />
     </configuration>
     <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
       <method />
     </configuration>
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
-      <method />
-    </configuration>
-    <configuration default="true" type="uTestRunConfiguration" factoryName="utest">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <setting name="path" value="" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="" />
-      <setting name="testKind" value="Class" />
-      <setting name="showProgressMessages" value="true" />
-      <classRegexps />
-      <testRegexps />
-      <envs />
       <method />
     </configuration>
     <list size="1">
@@ -811,7 +812,7 @@
         <item index="0" class="java.lang.String" itemvalue="Application.Menu" />
       </list>
     </recent_temporary>
-    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="" />
       <option name="DEPLOY" value="true" />
       <option name="ARTIFACT_NAME" value="" />
@@ -821,7 +822,7 @@
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="PREFERRED_AVD" value="" />
       <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
       <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
       <option name="FORCE_STOP_RUNNING_APP" value="true" />
       <option name="DEBUGGER_TYPE" value="Java" />
@@ -829,7 +830,11 @@
       <option name="PREFERRED_AVD" value="" />
       <Java />
       <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="GAPID_ENABLED" value="false" />
         <option name="GAPID_DISABLE_PCS" value="false" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
       </Profilers>
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -867,11 +872,12 @@
       <workItem from="1499570474849" duration="54000" />
       <workItem from="1499579843801" duration="6177000" />
       <workItem from="1499595631971" duration="3294000" />
+      <workItem from="1499843698648" duration="8216000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58534000" />
+    <option name="totallyTimeSpent" value="66750000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -883,38 +889,38 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991454" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280757" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32649574" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3257403" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29425114" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29375" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3982906" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -942,39 +948,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/ResourceManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="54" column="34" lean-forward="false" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Settings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Map/MapManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/MenuGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
-          <caret line="51" column="11" lean-forward="true" selection-start-line="51" selection-start-column="11" selection-end-line="51" selection-end-column="11" />
+          <caret line="51" column="11" selection-start-line="51" selection-start-column="11" selection-end-line="51" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -982,14 +959,14 @@
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Map/Map.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
-          <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Network/Client.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
-          <caret line="25" column="39" lean-forward="false" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
+          <caret line="25" column="39" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -999,14 +976,14 @@
       </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/ClientPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="15" column="36" lean-forward="false" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+          <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -1014,22 +991,24 @@
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Map/MapGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#MapGUI#0;class#MapGUI#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/MenuGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
-          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1039,7 +1018,7 @@
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/ClientPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1047,14 +1026,14 @@
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Network/ServerPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="17" column="54" lean-forward="false" selection-start-line="17" selection-start-column="54" selection-end-line="17" selection-end-column="54" />
+          <caret line="17" column="54" selection-start-line="17" selection-start-column="54" selection-end-line="17" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-330">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1066,35 +1045,28 @@
       </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Building.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Map/Plain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Map/Mountain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
-          <caret line="17" column="16" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+          <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Map/Sea.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -1102,7 +1074,7 @@
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Map/MapTile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -1110,7 +1082,7 @@
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Network/Client.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1020">
-          <caret line="51" column="38" lean-forward="true" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
+          <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -1118,7 +1090,7 @@
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1126,7 +1098,7 @@
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-119">
-          <caret line="25" column="27" lean-forward="false" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+          <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -1134,7 +1106,7 @@
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Network/ServerPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="77">
-          <caret line="12" column="16" lean-forward="false" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1142,7 +1114,7 @@
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/ClientPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2431">
-          <caret line="27" column="24" lean-forward="false" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -1150,31 +1122,7 @@
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Network/GameEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1207">
-          <caret line="75" column="8" lean-forward="false" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Network/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="210" column="47" lean-forward="true" selection-start-line="210" selection-start-column="47" selection-end-line="210" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/WoodCutter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Map/MapGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2326">
-          <caret line="546" column="16" lean-forward="false" selection-start-line="546" selection-start-column="16" selection-end-line="546" selection-end-column="16" />
+          <caret line="75" column="8" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -1182,48 +1130,25 @@
     <entry file="file://$PROJECT_DIR$/Resources/maps/map1.map">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Network/Game.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="184" column="9" lean-forward="false" selection-start-line="184" selection-start-column="9" selection-end-line="184" selection-end-column="9" />
+          <caret line="184" column="9" selection-start-line="184" selection-start-column="9" selection-end-line="184" selection-end-column="9" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Other.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Other.java" />
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Pair.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/GameObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="10" lean-forward="true" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Barracks.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="21" column="15" lean-forward="true" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
+          <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
           <folding />
         </state>
       </provider>
@@ -1231,7 +1156,7 @@
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Map/MapManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="87" column="30" lean-forward="false" selection-start-line="87" selection-start-column="30" selection-end-line="87" selection-end-column="30" />
+          <caret line="87" column="30" selection-start-line="87" selection-start-column="30" selection-end-line="87" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -1239,76 +1164,184 @@
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Map/Map.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
-          <caret line="28" column="5" lean-forward="false" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-          <folding>
-            <element signature="e#598#599#0" expanded="true" />
-            <element signature="e#624#625#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Farm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Worker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="22" column="23" lean-forward="false" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Vassal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-374">
-          <caret line="23" column="20" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Soldier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="21" column="22" lean-forward="false" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Human.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="41" column="34" lean-forward="false" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/ResourceManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="113" column="54" lean-forward="false" selection-start-line="113" selection-start-column="54" selection-end-line="113" selection-end-column="54" />
+        <state relative-caret-position="2310">
+          <caret line="113" column="9" selection-start-line="113" selection-start-column="9" selection-end-line="113" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/MenuGUI.java">
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Building.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="28" column="14" lean-forward="false" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+        <state relative-caret-position="198">
+          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/WoodCutter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="44" column="31" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
+          <folding>
+            <element signature="e#1281#1282#0" expanded="true" />
+            <element signature="e#1368#1369#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Quarry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="45" column="31" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
+          <folding>
+            <element signature="e#1318#1319#0" expanded="true" />
+            <element signature="e#1397#1398#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Port.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="44" column="31" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
+          <folding>
+            <element signature="e#1251#1252#0" expanded="true" />
+            <element signature="e#1326#1327#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Farm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="41" column="31" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
+          <folding>
+            <element signature="e#1278#1279#0" expanded="true" />
+            <element signature="e#1353#1354#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Barracks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="44" column="31" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
+          <folding>
+            <element signature="e#1371#1372#0" expanded="true" />
+            <element signature="e#1454#1455#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Market.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="51" column="31" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
+          <folding>
+            <element signature="e#1925#1926#0" expanded="true" />
+            <element signature="e#2028#2029#0" expanded="true" />
+            <element signature="e#2205#2206#0" expanded="true" />
+            <element signature="e#2309#2310#0" expanded="true" />
+            <element signature="e#2882#2883#0" expanded="true" />
+            <element signature="e#2985#2986#0" expanded="true" />
+            <element signature="e#3162#3163#0" expanded="true" />
+            <element signature="e#3266#3267#0" expanded="true" />
+            <element signature="e#4245#4246#0" expanded="true" />
+            <element signature="e#4324#4325#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Network/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="215" column="61" selection-start-line="215" selection-start-column="61" selection-end-line="215" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Palace.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/NatureObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="38" column="33" lean-forward="true" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+        <state relative-caret-position="421">
+          <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Human.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-616">
+          <caret line="36" column="48" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/MenuGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/GameObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Worker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2574">
+          <caret line="117" column="49" selection-start-line="117" selection-start-column="49" selection-end-line="117" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Vassal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="581">
+          <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Soldier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="72" column="49" selection-start-line="72" selection-start-column="49" selection-end-line="72" selection-end-column="49" />
+          <folding>
+            <element signature="e#1256#1257#0" expanded="true" />
+            <element signature="e#1349#1350#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Map/MapGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="430" column="0" selection-start-line="430" selection-start-column="0" selection-end-line="430" selection-end-column="0" />
+          <folding>
+            <element signature="method#MapGUI#0;class#MapGUI#0" expanded="false" />
           </folding>
         </state>
       </provider>
