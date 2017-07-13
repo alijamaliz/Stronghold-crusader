@@ -28,12 +28,14 @@ public class Quarry extends Building {
     public Quarry() {
         this.type = "Quarry";
         this.size = new Pair(4, 4);
+        this.health = Settings.QUARRY_INITIAL_HEALTH;
     }
 
     public Quarry(MapGUI mapGUI) {
         super(mapGUI);
         this.type = "Quarry";
         this.size = new Pair(4, 4);
+        this.health = Settings.QUARRY_INITIAL_HEALTH;
     }
 
     private AnchorPane anchorPane;

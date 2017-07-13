@@ -36,12 +36,23 @@ public class Settings {
     public static int QUARRY_CREATION_NEEDED_WOOD = 30;
 
     public static int PLAYER_CITY_RADIUS = 35;
-    public static int SOLDIER_POWER = 10;
+    public static int SOLDIER_POWER = 50;
+    public static int HUMAN_POWER = 4;
     public static int SOLDIER_ATTACK_RADIUS = 7;
     public static int VASSAL_ATTACK_RADIUS = 3;
+    public static int WORKER_ATTACK_RADIUS = 3;
     public static int WORKER_SPEED = 3;
     public static int SOLDIER_SPEED = 3;
     public static int VASSAL_SPEED = 2;
-    public static int HUMAN_POWER = 4;
+    public static int SOLDIER_INITIAL_HEALTH = 1000;
+    public static int WORKER_INITIAL_HEALTH = 500;
+    public static int VASSAL_INITIAL_HEALTH = 500;
+    public static int BARRACKS_INITIAL_HEALTH = 200;
+    public static int FARM_INITIAL_HEALTH = 100;
+    public static int MARKET_INITIAL_HEALTH = 100;
+    public static int PALACE_INITIAL_HEALTH = 300;
+    public static int PORT_INITIAL_HEALTH = 200;
+    public static int QUARRY_INITIAL_HEALTH = 100;
+    public static int WOOD_CUTTER_INITIAL_HEALTH = 100;
 
 }

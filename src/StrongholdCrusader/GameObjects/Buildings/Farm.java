@@ -24,12 +24,14 @@ public class Farm extends Building {
     public Farm() {
         this.type = "Farm";
         this.size = new Pair(4, 4);
+        this.health = Settings.FARM_INITIAL_HEALTH;
     }
 
     public Farm(MapGUI mapGUI) {
         super(mapGUI);
         this.type = "Farm";
         this.size = new Pair(4, 4);
+        this.health = Settings.FARM_INITIAL_HEALTH;
     }
 
     public AnchorPane anchorPane;

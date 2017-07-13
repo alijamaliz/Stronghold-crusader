@@ -26,12 +26,14 @@ public class Palace extends Building {
     public Palace() {
         this.type = "Palace";
         this.size = new Pair(6, 6);
+        this.health = Settings.PALACE_INITIAL_HEALTH;
     }
 
     public Palace(MapGUI mapGUI) {
         super(mapGUI);
         this.type = "Palace";
         this.size = new Pair(6, 6);
+        this.health = Settings.PALACE_INITIAL_HEALTH;
     }
 
     public AnchorPane anchorPane;

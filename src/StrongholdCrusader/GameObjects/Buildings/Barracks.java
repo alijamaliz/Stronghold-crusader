@@ -24,12 +24,14 @@ public class Barracks extends Building {
     public Barracks() {
         this.type = "Barracks";
         this.size = new Pair(5, 5);
+        this.health = Settings.BARRACKS_INITIAL_HEALTH;
     }
 
     public Barracks(MapGUI mapGUI) {
         super(mapGUI);
         this.type = "Barracks";
         this.size = new Pair(5, 5);
+        this.health = Settings.BARRACKS_INITIAL_HEALTH;
     }
 
     public AnchorPane anchorPane;

@@ -26,12 +26,14 @@ public class WoodCutter extends Building {
     public WoodCutter() {
         this.type = "WoodCutter";
         this.size = new Pair(4, 4);
+        this.health = Settings.WOOD_CUTTER_INITIAL_HEALTH;
     }
 
     public WoodCutter(MapGUI mapGUI) {
         super(mapGUI);
         this.type = "WoodCutter";
         this.size = new Pair(4, 4);
+        this.health = Settings.WOOD_CUTTER_INITIAL_HEALTH;
     }
 
     public AnchorPane anchorPane;

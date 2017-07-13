@@ -400,7 +400,6 @@ public class Server implements Runnable {
                 String[] args = gameEvent.message.split(":");
                 int humanId = Integer.parseInt(args[0]);
                 int objectId = Integer.parseInt(args[1]);
-                System.out.println(objectId);
                 attackToObject(humanId, objectId);
                 break;
             }
@@ -454,10 +453,7 @@ public class Server implements Runnable {
         if (human != null && object != null && target != null) {
             human.goToTile(game.tiles, target);
             human.attack(object);
-            //game.changeHealth(human,object);
-//     human.attack(object);
         }
-
     }
 
     private ServerPlayer getSenderPlayerByAddress(InetAddress address) {

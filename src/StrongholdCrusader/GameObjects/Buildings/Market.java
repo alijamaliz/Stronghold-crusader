@@ -26,12 +26,14 @@ public class Market extends Building {
     public Market() {
         this.type = "Market";
         this.size = new Pair(4, 4);
+        this.health = Settings.MARKET_INITIAL_HEALTH;
     }
 
     public Market(MapGUI mapGUI) {
         super(mapGUI);
         this.type = "Market";
         this.size = new Pair(4, 4);
+        this.health = Settings.MARKET_INITIAL_HEALTH;
     }
 
 

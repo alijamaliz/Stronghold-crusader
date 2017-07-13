@@ -26,12 +26,14 @@ public class Port extends Building {
     public Port() {
         this.type = "Port";
         this.size = new Pair(4, 4);
+        this.health = Settings.PORT_INITIAL_HEALTH;
     }
 
     public Port(MapGUI mapGUI) {
         super(mapGUI);
         this.type = "Port";
         this.size = new Pair(4, 4);
+        this.health = Settings.PORT_INITIAL_HEALTH;
     }
 
     public AnchorPane anchorPane;
