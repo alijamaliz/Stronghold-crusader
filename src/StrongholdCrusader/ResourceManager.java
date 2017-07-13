@@ -97,13 +97,19 @@ public class ResourceManager {
         Image seaTile = new Image(seaTileFile.toURI().toString());
         resources.put("Sea", seaTile);
 
+        File refrencesImageFile = new File("Resources/images/resources-board.png");
+        Image refrencesAnchorpane = new Image(refrencesImageFile.toURI().toString());
+        resources.put("Refrences", refrencesAnchorpane);
+
+        //Cursors
+
         File selectDestinationFile = new File("Resources/images/Cursors/selectDestination.png");
         Image SelectDestination = new Image(selectDestinationFile.toURI().toString());
         resources.put("SelectDestination", SelectDestination);
 
-        File refrencesImageFile = new File("Resources/images/resources-board.png");
-        Image refrencesAnchorpane = new Image(refrencesImageFile.toURI().toString());
-        resources.put("Refrences", refrencesAnchorpane);
+        File noneCursorFile = new File("Resources/images/Cursors/none.png");
+        Image noneCursor = new Image(noneCursorFile.toURI().toString());
+        resources.put("none", noneCursor);
 
         ///Animation of Tree
 
