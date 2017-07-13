@@ -41,8 +41,8 @@ public class Settings {
     public static int SOLDIER_ATTACK_RADIUS = 7;
     public static int VASSAL_ATTACK_RADIUS = 3;
     public static int WORKER_ATTACK_RADIUS = 3;
-    public static int WORKER_SPEED = 3;
-    public static int SOLDIER_SPEED = 3;
+    public static int WORKER_SPEED = 2;
+    public static int SOLDIER_SPEED = 4;
     public static int VASSAL_SPEED = 2;
     public static int SOLDIER_INITIAL_HEALTH = 1000;
     public static int WORKER_INITIAL_HEALTH = 500;

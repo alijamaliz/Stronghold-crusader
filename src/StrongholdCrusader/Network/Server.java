@@ -72,7 +72,7 @@ public class Server implements Runnable {
 //                    System.out.println("Health: " + aroundEnemy.health);
 //                }
 //                else
-                    human.updatePosition(game.tiles);
+                human.updatePosition(game.tiles);
             }
         }
     }
@@ -95,7 +95,7 @@ public class Server implements Runnable {
                 MapTile otherPosition = game.tiles[aroundEnemyHuman.position.x][aroundEnemyHuman.position.y];
                 MapTile nearestPosition = game.tiles[nearestEnemyHuman.position.x][nearestEnemyHuman.position.y];
                 if (game.getDistanceFromTileToTile(thisPosition, otherPosition) < game.getDistanceFromTileToTile(thisPosition, nearestPosition)) {
-                    nearestEnemyHuman  = aroundEnemyHuman;
+                    nearestEnemyHuman = aroundEnemyHuman;
                 }
             }
             return nearestEnemyHuman;
@@ -413,7 +413,13 @@ public class Server implements Runnable {
 
     private void changeHumanClimb(int humanId, boolean status) {
         Human human = (Human) game.getGameObjectById(humanId);
-        human.canClimb = status;
+        if (status) {
+            human.canClimb = true;
+            human.speed = human.speed / 2;
+        } else {
+            human.canClimb = false;
+            human.speed = human.speed * 2;
+        }
     }
 
     private void sendFocusOnPalacePacketForAll() {
