@@ -2,10 +2,7 @@ package StrongholdCrusader.GameObjects.Ship;
 
 import StrongholdCrusader.GameObjects.GameObject;
 import StrongholdCrusader.GameObjects.Pair;
-import StrongholdCrusader.Map.MapGUI;
-import StrongholdCrusader.Map.MapTile;
-import StrongholdCrusader.Map.Mountain;
-import StrongholdCrusader.Map.Sea;
+import StrongholdCrusader.Map.*;
 import StrongholdCrusader.Settings;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
@@ -28,6 +25,8 @@ public class Ship extends GameObject {
     Button destroy;
     public Pair size;
     public int speed;
+    private MapTile targetTile;
+    private MapTile nextTile;
 
     public Ship() {
         this.speed = Settings.SHIP_SPEED;
@@ -148,5 +147,13 @@ public class Ship extends GameObject {
             path.addLast(tile);
         }
         return path;
+    }
+    public void goToTile(MapTile[][] tiles, MapTile tile) {
+        targetTile = tile;
+        LinkedList<MapTile> path = findRoute(tiles, tiles[position.x][position.y], targetTile);
+        if (path.size() != 0) {
+            path.removeLast();
+            this.nextTile = path.getLast();
+        }
     }
 }
