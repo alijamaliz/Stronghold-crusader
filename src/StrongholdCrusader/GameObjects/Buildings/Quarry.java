@@ -70,7 +70,7 @@ public class Quarry extends Building {
         imageView.setLayoutY(20);
         destroy.setLayoutX(50);
         destroy.setLayoutY(10);
-        healthBar = new ProgressBar((double)this.health/100);
+        healthBar = new ProgressBar((double)this.health/Settings.QUARRY_INITIAL_HEALTH);
         healthBar.setStyle("-fx-accent: #96ff4c;");
         healthBar.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
         healthBar.setLayoutY(20);

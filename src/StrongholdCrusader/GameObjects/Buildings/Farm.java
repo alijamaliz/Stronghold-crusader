@@ -68,7 +68,7 @@ public class Farm extends Building {
         imageView.setLayoutY(20);
         destroy.setLayoutX(50);
         destroy.setLayoutY(10);
-        healthBar = new ProgressBar((double)this.health/100);
+        healthBar = new ProgressBar((double)this.health/Settings.FARM_INITIAL_HEALTH);
         healthBar.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
         healthBar.setStyle("-fx-accent : #96ff4c");
         healthBar.setLayoutY(20);

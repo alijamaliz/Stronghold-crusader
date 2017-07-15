@@ -77,7 +77,7 @@ public class Palace extends Building {
         imageView.setLayoutY(-20);
         createVassal.setLayoutX(350);
         createVassal.setLayoutY(60);
-        healthBar = new ProgressBar((double)this.health/100);
+        healthBar = new ProgressBar((double)this.health/Settings.PALACE_INITIAL_HEALTH);
         healthBar.setStyle("-fx-accent: #96ff4c;");
         healthBar.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
         healthBar.setLayoutY(20);

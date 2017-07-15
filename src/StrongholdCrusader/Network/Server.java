@@ -396,6 +396,7 @@ public class Server implements Runnable {
                 break;
             }
             case GameEvent.ATTACK: {
+                System.out.println("Attack");
                 String[] args = gameEvent.message.split(":");
                 int humanId = Integer.parseInt(args[0]);
                 int objectId = Integer.parseInt(args[1]);

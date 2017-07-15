@@ -198,7 +198,7 @@ public class Market extends Building {
         buy.setLayoutY(60);
         back.setLayoutX(700);
         back.setLayoutY(60);
-        healthBar = new ProgressBar((double)this.health/100);
+        healthBar = new ProgressBar((double)this.health/Settings.MARKET_INITIAL_HEALTH);
         healthBar.setStyle("-fx-accent: #96ff4c;");
         healthBar.setLayoutX(Settings.MENUS_ANCHORPANE_WIDTH - 100);
         healthBar.setLayoutY(20);
