@@ -110,8 +110,6 @@ public class Server implements Runnable {
             //buffer to receive incoming data
             byte[] buffer = new byte[Settings.PACKET_MAX_SIZE];
             DatagramPacket incoming = new DatagramPacket(buffer, buffer.length);
-            //2. Wait for an incoming data
-            //System.out.println("Server socket created. Waiting for incoming data...");
             //communication loop
             while (true) {
                 socket.receive(incoming);
