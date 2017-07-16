@@ -4,7 +4,7 @@ import StrongholdCrusader.ResourceManager;
 import StrongholdCrusader.Settings;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
-import javafx.animation.TimelineBuilder;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -21,25 +21,24 @@ import java.util.LinkedList;
 public class NatureObject extends Group implements Runnable {
     public String type;
     public Pair position;
-    ResourceManager resourceManager;
 
     public NatureObject(String type, Pair pair) {
-        resourceManager = new ResourceManager();
         this.type = type;
         this.position = pair;
         this.setLayoutX(position.x * Settings.MAP_TILES_WIDTH);
         this.setLayoutY(position.y * Settings.MAP_TILES_HEIGHT);
-        new Thread(this).start();
-    }
-
-    @Override
-    public void run() {
         if (this.type.equals("tree1")) {
             createAnimation("tree1Anim", 13);
         }
         if (this.type.equals("tree2")) {
             createAnimation("tree2Anim", 13);
         }
+        //new Thread(this).start();
+    }
+
+    @Override
+    public void run() {
+
     }
 
     private void createAnimation(String imagePrefix, int framesCount) {
@@ -49,10 +48,14 @@ public class NatureObject extends Group implements Runnable {
             keyFrames[i] = new KeyFrame(Duration.millis((1000 / Settings.FRAME_RATE) * (i + 1)), new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    NatureObject.this.getChildren().setAll(new ImageView(resourceManager.getImage(imagePrefix + (finalI + 1))));
+                    NatureObject.this.getChildren().setAll(new ImageView(ResourceManager.getImage(imagePrefix + (finalI + 1))));
                 }
             });
         }
-        TimelineBuilder.create().cycleCount(Animation.INDEFINITE).keyFrames(keyFrames).build().play();
+        Timeline timeline = new Timeline();
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.setAutoReverse(false);
+        timeline.getKeyFrames().addAll(keyFrames);
+        timeline.play();
     }
 }

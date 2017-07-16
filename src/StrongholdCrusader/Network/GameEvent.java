@@ -39,6 +39,7 @@ public class GameEvent {
     public static final int PLAYER_LOSE = 28;
     public static final int YOU_WIN = 29;
     public static final int SHIP_CREATED = 30;
+    public static final int GAME_OBJECT_REMOVED = 31;
     public int type;
     public String message;
     public GameEvent(int type, String message) {

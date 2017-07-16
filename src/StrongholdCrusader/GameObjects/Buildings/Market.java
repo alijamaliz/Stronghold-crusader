@@ -3,6 +3,7 @@ package StrongholdCrusader.GameObjects.Buildings;
 import StrongholdCrusader.GameObjects.Pair;
 import StrongholdCrusader.Map.MapGUI;
 import StrongholdCrusader.Network.GameEvent;
+import StrongholdCrusader.ResourceManager;
 import StrongholdCrusader.Settings;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
@@ -31,6 +32,7 @@ public class Market extends Building {
 
     public Market(MapGUI mapGUI) {
         super(mapGUI);
+        setImage(ResourceManager.getImage("Market"));
         this.type = "Market";
         this.size = new Pair(4, 4);
         this.health = Settings.MARKET_INITIAL_HEALTH;
@@ -167,7 +169,7 @@ public class Market extends Building {
     @Override
     public void initializeAnchorPane() {
         anchorPane = new AnchorPane();
-        imageView = new ImageView(mapGUI.getResourceManager().getImage("Market"));
+        imageView = new ImageView(ResourceManager.getImage("Market"));
         food = new Button("food");
         iron = new Button("iron");
         wood = new Button("wood");

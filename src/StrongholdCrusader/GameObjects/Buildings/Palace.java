@@ -2,6 +2,7 @@ package StrongholdCrusader.GameObjects.Buildings;
 
 import StrongholdCrusader.GameObjects.Pair;
 import StrongholdCrusader.Map.MapGUI;
+import StrongholdCrusader.ResourceManager;
 import StrongholdCrusader.Settings;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
@@ -31,6 +32,7 @@ public class Palace extends Building {
 
     public Palace(MapGUI mapGUI) {
         super(mapGUI);
+        setImage(ResourceManager.getImage("Palace"));
         this.type = "Palace";
         this.size = new Pair(6, 6);
         this.health = Settings.PALACE_INITIAL_HEALTH;
@@ -68,9 +70,9 @@ public class Palace extends Building {
     @Override
     public void initializeAnchorPane() {
         anchorPane = new AnchorPane();
-        imageView = new ImageView(mapGUI.getResourceManager().getImage("Palace"));
-        vassal = new ImageView(mapGUI.getResourceManager().getImage("Vassal"));
-        worker = new ImageView(mapGUI.getResourceManager().getImage("Worker"));
+        imageView = new ImageView(ResourceManager.getImage("Palace"));
+        vassal = new ImageView(ResourceManager.getImage("Vassal"));
+        worker = new ImageView(ResourceManager.getImage("Worker"));
         createVassal = new Button("Create Vassal");
         createVassal.setGraphic(vassal);
         imageView.setLayoutX(40);

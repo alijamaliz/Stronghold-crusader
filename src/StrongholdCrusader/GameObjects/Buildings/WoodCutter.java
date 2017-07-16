@@ -2,6 +2,7 @@ package StrongholdCrusader.GameObjects.Buildings;
 
 import StrongholdCrusader.GameObjects.Pair;
 import StrongholdCrusader.Map.MapGUI;
+import StrongholdCrusader.ResourceManager;
 import StrongholdCrusader.Settings;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
@@ -31,6 +32,7 @@ public class WoodCutter extends Building {
     }
     public WoodCutter(MapGUI mapGUI) {
         super(mapGUI);
+        setImage(ResourceManager.getImage("WoodCutter"));
         this.type = "WoodCutter";
         this.size = new Pair(4, 4);
         this.health = Settings.WOOD_CUTTER_INITIAL_HEALTH;
@@ -39,7 +41,7 @@ public class WoodCutter extends Building {
     @Override
     public void initializeAnchorPane() {
         anchorPane = new AnchorPane();
-        imageView = new ImageView(mapGUI.getResourceManager().getImage("WoodCutter"));
+        imageView = new ImageView(ResourceManager.getImage("WoodCutter"));
         destroy = new Button("Destroy Building");
         destroy.setGraphic(imageView);
         imageView.setLayoutX(60);

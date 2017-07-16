@@ -2,6 +2,7 @@ package StrongholdCrusader.GameObjects.Buildings;
 
 import StrongholdCrusader.GameObjects.Pair;
 import StrongholdCrusader.Map.MapGUI;
+import StrongholdCrusader.ResourceManager;
 import StrongholdCrusader.Settings;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
@@ -31,6 +32,7 @@ public class Port extends Building {
 
     public Port(MapGUI mapGUI) {
         super(mapGUI);
+        setImage(ResourceManager.getImage("Port"));
         this.type = "Port";
         this.size = new Pair(4, 4);
         this.health = Settings.PORT_INITIAL_HEALTH;
@@ -72,11 +74,11 @@ public class Port extends Building {
     @Override
     public void initializeAnchorPane() {
         anchorPane = new AnchorPane();
-        imageView = new ImageView(mapGUI.getResourceManager().getImage("Port"));
+        imageView = new ImageView(ResourceManager.getImage("Port"));
         destroy = new Button("Destroy Building");
         createShip = new Button("Create Ship");
         createShip.setStyle("-fx-font-size: 20px;-fx-text-fill: #411e5e");
-        ImageView ship = new ImageView(mapGUI.getResourceManager().getImage("Ship"));
+        ImageView ship = new ImageView(ResourceManager.getImage("Ship"));
         destroy.setGraphic(imageView);
         destroy.setLayoutX(50);
         destroy.setLayoutY(10);

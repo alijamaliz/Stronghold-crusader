@@ -2,6 +2,7 @@ package StrongholdCrusader.GameObjects;
 
 import StrongholdCrusader.Map.MapGUI;
 import javafx.animation.TranslateTransition;
+import javafx.scene.image.ImageView;
 
 import java.io.Serializable;
 import java.util.LinkedList;
@@ -9,7 +10,7 @@ import java.util.LinkedList;
 /**
  * Created by Baran on 5/29/2017.
  */
-public abstract class GameObject implements Serializable {
+public abstract class GameObject extends ImageView implements Serializable {
     public int id;
     public Pair position;
     public int health;

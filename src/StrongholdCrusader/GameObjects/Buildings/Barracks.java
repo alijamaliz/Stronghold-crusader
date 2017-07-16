@@ -2,6 +2,7 @@ package StrongholdCrusader.GameObjects.Buildings;
 
 import StrongholdCrusader.GameObjects.Pair;
 import StrongholdCrusader.Map.MapGUI;
+import StrongholdCrusader.ResourceManager;
 import StrongholdCrusader.Settings;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
@@ -29,6 +30,7 @@ public class Barracks extends Building {
 
     public Barracks(MapGUI mapGUI) {
         super(mapGUI);
+        setImage(ResourceManager.getImage("Barracks"));
         this.type = "Barracks";
         this.size = new Pair(5, 5);
         this.health = Settings.BARRACKS_INITIAL_HEALTH;
@@ -74,8 +76,8 @@ public class Barracks extends Building {
     @Override
     public void initializeAnchorPane(){
         anchorPane = new AnchorPane();
-        imageView = new ImageView(mapGUI.getResourceManager().getImage("Barracks"));
-        soldierImage = new ImageView(mapGUI.getResourceManager().getImage("Soldier"));
+        imageView = new ImageView(ResourceManager.getImage("Barracks"));
+        soldierImage = new ImageView(ResourceManager.getImage("Soldier"));
         imageView.setScaleX(0.8);
         imageView.setScaleY(0.8);
         createSoldier = new Button("createSoldier");
