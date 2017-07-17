@@ -233,6 +233,7 @@ public class ClientPlayer {
                 if (gameEvent.message.equals(username)) {
                     map.getGui().showMessage("You lose!");
                     isPlayerAlive = false;
+                    map.getGui().gameOver(false);
                 }
                 else {
                     map.getGui().showMessage(gameEvent.message + " نابود شد!");
@@ -240,8 +241,9 @@ public class ClientPlayer {
                 break;
             }
             case GameEvent.YOU_WIN: {
-                map.getGui().showMessage("You lose!");
+                map.getGui().showMessage("You Win!");
                 isPlayerAlive = false;
+                map.getGui().gameOver(true);
                 break;
             }
         }
