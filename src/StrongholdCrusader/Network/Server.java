@@ -314,20 +314,28 @@ public class Server implements Runnable {
                     sendShowAlertRequest("فضای کافی در اطراف قصر موجود نیست!", address, port);
                 break;
             }
-            case GameEvent.VASSEL_CREATED: {
-                int buildingId = Integer.parseInt(gameEvent.message);
-                MapTile target = game.getAnEmptyTileAroundBuilding((Building) game.getGameObjectById(buildingId));
-                if (target != null) {
-                    Vassal vassal = new Vassal();
-                    vassal.position = new Pair(target.position.x, target.position.y);
-                    vassal.id = generateNewID();
-                    vassal.ownerName = getSenderPlayerByAddress(address).playerName;
-                    if (game.humanCanCreate(vassal))
-                        game.addHumanToMap(vassal);
-                    else
-                        sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+            case GameEvent.VASSAL_CREATED: {
+                if (game.changeResources(getSenderPlayerByAddress(address), "gold", -1 * Settings.CREATE_VASSAL_NEEDED_GOLD)) {
+                    if (game.changeResources(getSenderPlayerByAddress(address), "food", -1 * Settings.CREATE_VASSAL_NEEDED_FOOD)) {
+                        int buildingId = Integer.parseInt(gameEvent.message);
+                        MapTile target = game.getAnEmptyTileAroundBuilding((Building) game.getGameObjectById(buildingId));
+                        if (target != null) {
+                            Vassal vassal = new Vassal();
+                            vassal.position = new Pair(target.position.x, target.position.y);
+                            vassal.id = generateNewID();
+                            vassal.ownerName = getSenderPlayerByAddress(address).playerName;
+                            if (game.humanCanCreate(vassal))
+                                game.addHumanToMap(vassal);
+                            else
+                                sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
+                        } else
+                            sendShowAlertRequest("فضای کافی در اطراف قصر موجود نیست!", address, port);
+                    } else {
+                        game.changeResources(getSenderPlayerByAddress(address), "food", Settings.CREATE_VASSAL_NEEDED_FOOD);
+                        sendShowAlertRequest("غذا به مقدار کافی موجود نیست!", address, port);
+                    }
                 } else
-                    sendShowAlertRequest("فضای کافی در اطراف قصر موجود نیست!", address, port);
+                    sendShowAlertRequest("طلا کافی نیست!", address, port);
                 break;
             }
             case GameEvent.SOLDIER_CREATED: {
@@ -441,9 +449,11 @@ public class Server implements Runnable {
 
     private void changeHumanClimb(int humanId, boolean status) {
         Human human = (Human) game.getGameObjectById(humanId);
+        ServerPlayer serverPlayer = getPlayerByName(human.ownerName);
         if (status) {
             human.canClimb = true;
             human.speed = human.speed / 2;
+            game.changeResources(serverPlayer, "gold", Settings.CHANGE_CLIMB_COST);
         } else {
             human.canClimb = false;
             human.speed = human.speed * 2;
@@ -598,6 +608,8 @@ public class Server implements Runnable {
         worker.ownerName = vassal.ownerName;
         worker.health = vassal.health;
         worker.id = generateNewID();
+        if (building instanceof Quarry)
+            worker.canClimb = true;
         MapTile target = game.getAnEmptyTileAroundBuilding(building);
         if (target != null)
             worker.goToTile(game.tiles, target);

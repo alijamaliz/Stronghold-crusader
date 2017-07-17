@@ -25,7 +25,7 @@ public class GameEvent {
     public static final int MAP_ID = 14;
     public static final int SHOW_ALERT = 15;
     public static final int SOLDIER_CREATED = 16;
-    public static final int VASSEL_CREATED = 17;
+    public static final int VASSAL_CREATED = 17;
     public static final int WORKER_CREATED = 18;
     public static final int MOVE_HUMAN = 19;
     public static final int DISTROY_BUILDING = 20;
