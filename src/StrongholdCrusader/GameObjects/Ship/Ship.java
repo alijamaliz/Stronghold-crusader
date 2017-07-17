@@ -1,8 +1,11 @@
 package StrongholdCrusader.GameObjects.Ship;
 
+import StrongholdCrusader.GameObjects.Buildings.Port;
 import StrongholdCrusader.GameObjects.GameObject;
 import StrongholdCrusader.GameObjects.Pair;
 import StrongholdCrusader.Map.*;
+import StrongholdCrusader.Network.Server;
+import StrongholdCrusader.ResourceManager;
 import StrongholdCrusader.Settings;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
@@ -11,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.util.HashMap;
@@ -23,24 +27,47 @@ import java.util.Queue;
 public class Ship extends GameObject {
     AnchorPane anchorPane;
     Button destroy;
+    Text foodsText;
     public Pair size;
     public int speed;
     private MapTile targetTile;
     private MapTile nextTile;
+    public int collectedFood;
+    public Pair firstPosition;
+    private int speedHandler;
+    public shipMode mode = shipMode.GOING_TO_TARGET;
+
+    public enum shipMode {
+        GOING_TO_TARGET,
+        COLLECTING_FOOD,
+        RETURNING_BACK
+    }
+
+    public Ship(Pair firstPosition) {
+        this.speed = Settings.SHIP_SPEED;
+        this.health = Settings.SHIP_INITIAL_HEALTH;
+        this.size = new Pair(3, 3);
+        this.type = "Ship";
+        this.firstPosition = firstPosition;
+        collectedFood = 0;
+    }
 
     public Ship() {
         this.speed = Settings.SHIP_SPEED;
         this.health = Settings.SHIP_INITIAL_HEALTH;
-        this.size = new Pair(5, 4);
+        this.size = new Pair(3, 3);
         this.type = "Ship";
+        collectedFood = 0;
     }
 
     public Ship(MapGUI mapGUI) {
         super(mapGUI);
         this.speed = Settings.SHIP_SPEED;
         this.health = Settings.SHIP_INITIAL_HEALTH;
-        this.size = new Pair(5, 4);
+        this.size = new Pair(3, 3);
+        setImage(ResourceManager.getImage("Ship"));
         this.type = "Ship";
+        collectedFood = 0;
     }
 
     public AnchorPane objectsMenuAnchorPane(boolean owner) {
@@ -49,7 +76,7 @@ public class Ship extends GameObject {
         destroy.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                mapGUI.removeShip(id);
             }
         });
 
@@ -60,7 +87,9 @@ public class Ship extends GameObject {
     public void initializaAnchorPane() {
         anchorPane = new AnchorPane();
         destroy = new Button("Destroy Ship");
+        foodsText =  new Text();
         transition(destroy);
+        foodsText.setText("Collected foods: " + String.valueOf(collectedFood));
         destroy.setLayoutX(100);
         destroy.setLayoutY(40);
         anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
@@ -149,11 +178,40 @@ public class Ship extends GameObject {
         return path;
     }
     public void goToTile(MapTile[][] tiles, MapTile tile) {
+        System.out.println("Goto Tile");
         targetTile = tile;
         LinkedList<MapTile> path = findRoute(tiles, tiles[position.x][position.y], targetTile);
-        if (path.size() != 0) {
+        System.out.println("Route length: " + path.size());
+        if (path.size() > 1) {
             path.removeLast();
             this.nextTile = path.getLast();
         }
+    }
+    public void updatePosition(Server server, MapTile[][] tiles) {
+
+        if (speedHandler == Settings.SEND_DATA_RATE / speed) {
+            System.out.println("Update");
+            if (nextTile != null) {
+                tiles[this.position.x][this.position.y].filled = false;
+                this.position = nextTile.position;
+                tiles[this.position.x][this.position.y].filled = true;
+                if (!tiles[position.x][position.y].equals(targetTile)) {
+                    LinkedList<MapTile> path = findRoute(tiles, tiles[position.x][position.y], targetTile);
+                    if (path.size() != 0) {
+                        path.removeLast();
+                        this.nextTile = path.getLast();
+                    }
+                } else {
+                    if (mode == shipMode.GOING_TO_TARGET)
+                        mode = shipMode.COLLECTING_FOOD;
+                    if (mode == shipMode.RETURNING_BACK) {
+                        server.emptyShipAndSendThatAgain(id);
+                    }
+                    nextTile = null;
+                }
+            }
+            speedHandler = 0;
+        }
+        speedHandler++;
     }
 }

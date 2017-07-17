@@ -75,6 +75,9 @@ public class Server implements Runnable {
 //                else
                 human.updatePosition(game.tiles);
             }
+            if (object instanceof Ship) {
+                ((Ship) object).updatePosition(this, game.tiles);
+            }
         }
     }
 
@@ -362,6 +365,11 @@ public class Server implements Runnable {
                 sendPacketForAll(createGameEvent.getJSON());
                 break;
             }
+            case GameEvent.DESTROY_SHIP: {
+                int id = Integer.parseInt(gameEvent.message);
+                game.removeShip((Ship) game.getGameObjectById(id));
+                break;
+            }
             case GameEvent.CHANGE_HUMAN_CLIMB: {
                 String[] args = gameEvent.message.split(":");
                 int humanId = Integer.parseInt(args[0]);
@@ -407,15 +415,17 @@ public class Server implements Runnable {
                 String[] args = gameEvent.message.split(":");
                 int x = Integer.parseInt(args[0]);
                 int y = Integer.parseInt(args[1]);
-                Ship ship = new Ship();
+                int portId = Integer.parseInt(args[2]);
+                Ship ship = new Ship(new Pair(x, y));
                 ship.position = new Pair(x, y);
                 ship.id = generateNewID();
                 ship.ownerName = getSenderPlayerByAddress(address).playerName;
                 Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
                 if (game.shipCanCreate(ship, playerPalace))
-                    if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.SHIP_CREATION_NEEDED_WOOD))
+                    if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.SHIP_CREATION_NEEDED_WOOD)) {
                         game.addShipToMap(ship);
-                    else
+                        ship.goToTile(game.tiles, game.getRandomEmptySeaTile());
+                    } else
                         sendShowAlertRequest("چوب مورد نیاز است!", address, port);
                 else
                     sendShowAlertRequest("اینجا قرار نمی گیرد!", address, port);
@@ -595,5 +605,22 @@ public class Server implements Runnable {
         GameEvent createGameEvent = new GameEvent(GameEvent.DISTROY_BUILDING, String.valueOf(vassal.id));
         sendPacketForAll(createGameEvent.getJSON());
         game.addHumanToMap(worker);
+    }
+
+    public void emptyShipAndSendThatAgain(int id) {
+        Ship ship = (Ship) game.getGameObjectById(id);
+        ship.collectedFood = 0;
+        ServerPlayer serverPlayer = getPlayerByName(ship.ownerName);
+        game.changeResources(serverPlayer, "food", Settings.SHIP_MAX_CAPACITY);
+        ship.goToTile(game.tiles, game.getRandomEmptySeaTile());
+        ship.mode = Ship.shipMode.GOING_TO_TARGET;
+    }
+
+    private ServerPlayer getPlayerByName(String username) {
+        for (ServerPlayer player : game.players) {
+            if (player.playerName.equals(username))
+                return player;
+        }
+        return null;
     }
 }

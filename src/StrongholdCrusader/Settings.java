@@ -57,5 +57,7 @@ public class Settings {
     public static int WOOD_CUTTER_INITIAL_HEALTH = 100;
     public static int SHIP_INITIAL_HEALTH = 200;
     public static int SHIP_SPEED = 2;
+    public static int SHIP_FOOD_COLLECTING_PER_SECOND = 100;
+    public static int SHIP_MAX_CAPACITY = 1200;
 
 }
