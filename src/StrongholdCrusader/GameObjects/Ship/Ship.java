@@ -1,18 +1,17 @@
 package StrongholdCrusader.GameObjects.Ship;
 
-import StrongholdCrusader.GameObjects.Buildings.Port;
 import StrongholdCrusader.GameObjects.GameObject;
 import StrongholdCrusader.GameObjects.Pair;
-import StrongholdCrusader.Map.*;
+import StrongholdCrusader.Map.MapGUI;
+import StrongholdCrusader.Map.MapTile;
+import StrongholdCrusader.Map.Sea;
 import StrongholdCrusader.Network.Server;
 import StrongholdCrusader.ResourceManager;
 import StrongholdCrusader.Settings;
 import javafx.animation.ScaleTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -25,23 +24,16 @@ import java.util.Queue;
  * Created by Alireza on 7/13/2017.
  */
 public class Ship extends GameObject {
-    AnchorPane anchorPane;
-    Button destroy;
-    Text foodsText;
     public Pair size;
     public int speed;
-    private MapTile targetTile;
-    private MapTile nextTile;
     public int collectedFood;
     public Pair firstPosition;
-    private int speedHandler;
     public shipMode mode = shipMode.GOING_TO_TARGET;
-
-    public enum shipMode {
-        GOING_TO_TARGET,
-        COLLECTING_FOOD,
-        RETURNING_BACK
-    }
+    private AnchorPane anchorPane;
+    private Button destroy;
+    private MapTile targetTile;
+    private MapTile nextTile;
+    private int speedHandler;
 
     public Ship(Pair firstPosition) {
         this.speed = Settings.SHIP_SPEED;
@@ -70,58 +62,6 @@ public class Ship extends GameObject {
         collectedFood = 0;
     }
 
-    public AnchorPane objectsMenuAnchorPane(boolean owner) {
-        initializaAnchorPane();
-
-        destroy.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                mapGUI.removeShip(id);
-            }
-        });
-
-        return anchorPane;
-    }
-
-
-    public void initializaAnchorPane() {
-        anchorPane = new AnchorPane();
-        destroy = new Button("Destroy Ship");
-        foodsText =  new Text();
-        transition(destroy);
-        foodsText.setText("Collected foods: " + String.valueOf(collectedFood));
-        destroy.setLayoutX(100);
-        destroy.setLayoutY(40);
-        anchorPane.setPrefSize(Settings.MENUS_ANCHORPANE_WIDTH, Settings.MENUS_ANCHORPANE_HEIGHT);
-        anchorPane.getChildren().addAll(destroy);
-        anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
-
-    }
-
-    public void transition(Node button) {
-        ScaleTransition transition = new ScaleTransition(Duration.millis(100), button);
-        transition.setAutoReverse(true);
-        button.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                transition.setFromX(1);
-                transition.setToX(1.1);
-                transition.setFromY(1);
-                transition.setToY(1.1);
-                transition.play();
-            }
-        });
-        button.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                transition.setFromX(1.1);
-                transition.setToX(1);
-                transition.setFromY(1.1);
-                transition.setToY(1);
-                transition.play();
-            }
-        });
-    }
     private static LinkedList<MapTile> adjacentList(MapTile[][] tiles, MapTile tile) {
         LinkedList<MapTile> adjacents = new LinkedList<>();
         for (int i = tile.position.x - 1; i < tile.position.x + 2; i++) {
@@ -144,8 +84,53 @@ public class Ship extends GameObject {
         }
         return adjacents;
     }
-    private LinkedList<MapTile> findRoute(MapTile[][] tiles, MapTile start, MapTile end) ///BFS codes go here
-    {
+
+    public AnchorPane objectsMenuAnchorPane(boolean owner) {
+        initializeAnchorPane();
+        destroy.setOnAction(event -> mapGUI.removeShip(id));
+        if (!owner)
+            destroy.setVisible(false);
+        return anchorPane;
+    }
+
+    private void initializeAnchorPane() {
+        anchorPane = new AnchorPane();
+        destroy = new Button("Destroy Ship");
+        Text foodsText = new Text();
+        transition(destroy);
+        foodsText.setText("Collected foods: " + String.valueOf(collectedFood));
+        destroy.setLayoutX(100);
+        destroy.setLayoutY(40);
+        ProgressBar healthBar = new ProgressBar((double) this.health / Settings.SHIP_INITIAL_HEALTH);
+        healthBar.setLayoutX(Settings.MENUS_ANCHOR_PANE_WIDTH - 150);
+        healthBar.setStyle("-fx-accent: #96ff4c;");
+        healthBar.setLayoutY(20);
+        healthBar.setPrefSize(100, 20);
+        anchorPane.setPrefSize(Settings.MENUS_ANCHOR_PANE_WIDTH, Settings.MENUS_ANCHOR_PANE_HEIGHT);
+        anchorPane.getChildren().addAll(destroy, healthBar);
+        anchorPane.getStylesheets().add("StrongholdCrusader/css/building.css");
+    }
+
+    private void transition(Node button) {
+        ScaleTransition transition = new ScaleTransition(Duration.millis(100), button);
+        transition.setAutoReverse(true);
+        button.setOnMouseEntered(event -> {
+            transition.setFromX(1);
+            transition.setToX(1.1);
+            transition.setFromY(1);
+            transition.setToY(1.1);
+            transition.play();
+        });
+        button.setOnMouseExited(event -> {
+            transition.setFromX(1.1);
+            transition.setToX(1);
+            transition.setFromY(1.1);
+            transition.setToY(1);
+            transition.play();
+        });
+    }
+
+    private LinkedList<MapTile> findRoute(MapTile[][] tiles, MapTile start, MapTile end) { ///BFS codes go here
         HashMap<MapTile, Boolean> visited = new HashMap<>(); //every tile is visited or not
         HashMap<MapTile, MapTile> edgeTo = new HashMap<>(); // stores where the tile comes from
         LinkedList<MapTile> path = new LinkedList<>();
@@ -167,16 +152,15 @@ public class Ship extends GameObject {
                 }
             }
         }
-        if (!currunt.equals(end)) // runs when there is not a way and return an empty LinkedList
-        {
+        if (!currunt.equals(end)) { // runs when there is not a way and return an empty LinkedList
             return path;
         }
-        for (MapTile tile = end; tile != null; tile = edgeTo.get(tile)) // adding tiles to LinkedList (reversely)
-        {
+        for (MapTile tile = end; tile != null; tile = edgeTo.get(tile)) { // adding tiles to LinkedList (reversely)
             path.addLast(tile);
         }
         return path;
     }
+
     public void goToTile(MapTile[][] tiles, MapTile tile) {
         System.out.println("Goto Tile");
         targetTile = tile;
@@ -187,8 +171,8 @@ public class Ship extends GameObject {
             this.nextTile = path.getLast();
         }
     }
-    public void updatePosition(Server server, MapTile[][] tiles) {
 
+    public void updatePosition(Server server, MapTile[][] tiles) {
         if (speedHandler == Settings.SEND_DATA_RATE / speed) {
             System.out.println("Update");
             if (nextTile != null) {
@@ -213,5 +197,11 @@ public class Ship extends GameObject {
             speedHandler = 0;
         }
         speedHandler++;
+    }
+
+    public enum shipMode {
+        GOING_TO_TARGET,
+        COLLECTING_FOOD,
+        RETURNING_BACK
     }
 }

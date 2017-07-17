@@ -24,10 +24,9 @@ import java.util.Random;
  * Created by Baran on 5/29/2017.
  */
 public class Server implements Runnable {
-    Thread listenThread;
-    Thread sendMapObjectsThread;
-    DatagramSocket socket;
-    Game game;
+    private Thread sendMapObjectsThread;
+    private DatagramSocket socket;
+    private Game game;
 
     public Server(int mapId) {
         game = new Game(mapId, this);
@@ -37,29 +36,25 @@ public class Server implements Runnable {
         } catch (SocketException e) {
             e.printStackTrace();
         }
-        listenThread = new Thread(this);
+        Thread listenThread = new Thread(this);
         listenThread.start();
 
-        sendMapObjectsThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    updateMapObjects();
-                    sendMapObjectsToAll();
-                    sendResourcesForAll();
-                    try {
-                        Thread.sleep(1000 / Settings.SEND_DATA_RATE);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+        sendMapObjectsThread = new Thread(() -> {
+            while (true) {
+                updateMapObjects();
+                sendMapObjectsToAll();
+                sendResourcesForAll();
+                try {
+                    Thread.sleep(1000 / Settings.SEND_DATA_RATE);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         });
-
     }
 
     public static void main(String[] args) {
-        Server server = new Server(1);
+        new Server(1);
     }
 
     private void updateMapObjects() {
@@ -133,7 +128,7 @@ public class Server implements Runnable {
         GameEvent gameEvent = new GameEvent();
         try {
             JSONObject jsonObject = (JSONObject) jsonParser.parse(body);
-            gameEvent.type = new Integer(((Long) jsonObject.get("type")).intValue());
+            gameEvent.type = ((Long) jsonObject.get("type")).intValue();
             gameEvent.message = (String) (jsonObject.get("message"));
         } catch (ParseException e) {
             e.printStackTrace();
@@ -142,15 +137,12 @@ public class Server implements Runnable {
             case GameEvent.JOIN_TO_GAME: {
                 String username = gameEvent.message;
                 if (isUsernameAvailable(username)) {
-
                     //Send previous players for new player
                     for (ServerPlayer player : game.players) {
                         GameEvent joinGameEvent = new GameEvent(GameEvent.USER_JOINED_TO_NETWORK, player.playerName + "," + player.address.getHostAddress());
                         sendPacket(joinGameEvent.getJSON(), address, port);
                     }
-
                     game.players.add(new ServerPlayer(username, address, port));
-
                     //Create new user Palace
                     Palace palace = new Palace();
                     palace.position = game.getRandomPalacePosition();
@@ -177,7 +169,6 @@ public class Server implements Runnable {
                 GameEvent startGameEvent = new GameEvent(GameEvent.START_GAME, String.valueOf(game.mapId));
                 sendPacketForAll(startGameEvent.getJSON());
                 sendFocusOnPalacePacketForAll();
-                //sendMapToAll();
                 sendMapObjectsThread.start();
                 break;
             }
@@ -382,10 +373,7 @@ public class Server implements Runnable {
                 String[] args = gameEvent.message.split(":");
                 int humanId = Integer.parseInt(args[0]);
                 boolean status;
-                if (args[1].equals("true"))
-                    status = true;
-                else
-                    status = false;
+                status = args[1].equals("true");
                 changeHumanClimb(humanId, status);
                 break;
             }
@@ -523,7 +511,7 @@ public class Server implements Runnable {
         return -1;
     }
 
-    public boolean sendPacket(String body, InetAddress address, int port) {
+    boolean sendPacket(String body, InetAddress address, int port) {
         DatagramPacket dp = new DatagramPacket(body.getBytes(), body.getBytes().length, address, port);
         try {
             socket.send(dp);
@@ -534,25 +522,19 @@ public class Server implements Runnable {
         }
     }
 
-    public void sendPacketForAll(String body) {
+    void sendPacketForAll(String body) {
         for (ServerPlayer player : game.players) {
             sendPacket(body, player.address, player.port);
         }
     }
 
-    public void sendMapToAll() {
-        //String mapString = MapManager.mapTilesToJSON(game.mapId).toJSONString();
-        GameEvent mapGameEvent = new GameEvent(GameEvent.MAP_ID, String.valueOf(game.mapId));
-        sendPacketForAll(mapGameEvent.getJSON());
-    }
-
-    public void sendMapObjectsToAll() {
+    private void sendMapObjectsToAll() {
         String objects = MapManager.mapObjectsToJSON(game.objects).toJSONString();
         GameEvent gameEvent = new GameEvent(GameEvent.MAP_OBJECTS, objects);
         sendPacketForAll(gameEvent.getJSON());
     }
 
-    public boolean isUsernameAvailable(String username) {
+    private boolean isUsernameAvailable(String username) {
         for (ServerPlayer player : game.players) {
             if (player.playerName.equals(username))
                 return false;

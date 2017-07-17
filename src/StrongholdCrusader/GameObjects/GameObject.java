@@ -1,7 +1,6 @@
 package StrongholdCrusader.GameObjects;
 
 import StrongholdCrusader.Map.MapGUI;
-import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
 
 import java.io.Serializable;
@@ -31,6 +30,4 @@ public abstract class GameObject extends ImageView implements Serializable {
         health = 1000;
         this.mapGUI = mapGUI;
     }
-
-
 }

@@ -1,27 +1,23 @@
 package StrongholdCrusader.Network;
 
-import StrongholdCrusader.GameObjects.GameObject;
 import StrongholdCrusader.Settings;
 
-import java.net.*;
-import java.util.LinkedList;
+import java.net.InetAddress;
 
 /**
  * Created by Baran on 5/29/2017.
  */
 
-public class ServerPlayer {
+class ServerPlayer {
     String playerName;
     InetAddress address;
     int port;
-    LinkedList<GameObject> objects = new LinkedList<>();
 
-    public int golds;
-    public int woods;
-    public int foods;
+    int golds;
+    int woods;
+    int foods;
 
-
-    public ServerPlayer(String playerName, InetAddress address, int port) {
+    ServerPlayer(String playerName, InetAddress address, int port) {
         this.playerName = playerName;
         this.address = address;
         this.port = port;

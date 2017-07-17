@@ -1,7 +1,5 @@
 package StrongholdCrusader;
 
-import javafx.stage.Screen;
-
 /**
  * Created by Baran on 5/29/2017.
  */
@@ -16,12 +14,10 @@ public class Settings {
     public static final int MAP_NAVIGATION_SPEED = 50;
     public static final int MAP_TILES_WIDTH = 30;
     public static final int MAP_TILES_HEIGHT = 30;
-    public static final int MENUS_ANCHORPANE_WIDTH = 900;
-    public static final int MENUS_ANCHORPANE_HEIGHT = 150;
-    public static final int REFRENCES_ANCHORPANE_WIDTH = 179;
-    public static final int REFRENCES_ANCHORPANE_HEIGHT = 250;
-    public static final int ZOOM_AREA_WIDTH = (int) (Screen.getPrimary().getBounds().getWidth() - 300);
-    public static final int ZOOM_AREA_HEIGHT = (int) (Screen.getPrimary().getBounds().getHeight() - 300);
+    public static final int MENUS_ANCHOR_PANE_WIDTH = 900;
+    public static final int MENUS_ANCHOR_PANE_HEIGHT = 150;
+    public static final int RESOURCES_ANCHOR_PANE_WIDTH = 179;
+    public static final int RESOURCES_ANCHOR_PANE_HEIGHT = 250;
 
     public static final int INITIAL_PLAYER_GOLDS = 500;
     public static final int INITIAL_PLAYER_WOODS = 200;
@@ -63,5 +59,4 @@ public class Settings {
     public static final int SHIP_SPEED = 2;
     public static final int SHIP_FOOD_COLLECTING_PER_SECOND = 100;
     public static final int SHIP_MAX_CAPACITY = 1200;
-
 }

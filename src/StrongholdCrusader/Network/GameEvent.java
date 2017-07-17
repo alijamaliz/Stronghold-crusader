@@ -7,8 +7,8 @@ import org.json.simple.parser.ParseException;
 /**
  * Created by Baran on 6/1/2017.
  */
-public class GameEvent {
 
+public class GameEvent {
     public static final int JOIN_TO_GAME = 1;
     public static final int USER_JOINED_TO_NETWORK = 2;
     public static final int DUPLICATE_USERNAME = 3;
@@ -40,22 +40,25 @@ public class GameEvent {
     public static final int YOU_WIN = 29;
     public static final int SHIP_CREATED = 30;
     public static final int DESTROY_SHIP = 31;
+
     public int type;
     public String message;
-    public GameEvent(int type, String message) {
+
+    GameEvent(int type, String message) {
         this.type = type;
         this.message = message;
     }
 
-    public GameEvent() {
+    GameEvent() {
+
     }
 
-    public static GameEvent parseFromString(String string) {
+    static GameEvent parseFromString(String string) {
         JSONParser jsonParser = new JSONParser();
         GameEvent gameEvent = null;
         try {
             JSONObject jsonObject = (JSONObject) jsonParser.parse(string);
-            int type = new Integer(((Long) jsonObject.get("type")).intValue());
+            int type = ((Long) jsonObject.get("type")).intValue();
             String message = (String) jsonObject.get("message");
             gameEvent = new GameEvent(type, message);
         } catch (ParseException e) {
@@ -68,27 +71,10 @@ public class GameEvent {
         System.out.println("type: " + type + " , message: " + message);
     }
 
-    public String getJSON() {
+    String getJSON() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("type", this.type);
         jsonObject.put("message", this.message);
         return jsonObject.toJSONString();
     }
-
-    public enum EventType {
-        JOIN_TO_GAME,
-        USER_JOINED_TO_NETWORK,
-        DUPLICATE_USERNAME,
-        USER_SUCCESSFULLY_CREATED,
-        ALL_PLAYERS,
-        START_GAME,
-        WOOD_CUTTER_CREATED,
-        BARRACKS_CREATED,
-        MARKET_CREATED,
-        PORT_CREATED,
-        QUARRAY_CREATED,
-        FARM_CREATED,
-        MAP_OBJECTS,
-        MAP_ID
-    } //TODO
 }

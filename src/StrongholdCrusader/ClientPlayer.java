@@ -23,34 +23,30 @@ public class ClientPlayer {
     public String username;
     public Client client;
     public boolean isPlayerAlive = true;
-    Map map;
-    MenuGUI menuGUI;
+    private Map map;
+    private MenuGUI menuGUI;
 
-    public ClientPlayer(String username, String serverIP, MenuGUI menuGUI) {
+    ClientPlayer(String username, String serverIP, MenuGUI menuGUI) {
         this.username = username;
         client = new Client(serverIP);
         client.sendJoinRequest(username);
         map = new Map(this);
         this.menuGUI = menuGUI;
 
-        Runnable gameEventHandleRunnable = new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    if (client.hasNewEvent()) {
-                        analyseGameEvent(client.getEvent());
-                    }
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+        Runnable gameEventHandleRunnable = () -> {
+            while (true) {
+                if (client.hasNewEvent()) {
+                    analyseGameEvent(client.getEvent());
+                }
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         };
         new Thread(gameEventHandleRunnable).start();
     }
-
 
     private void analyseGameEvent(GameEvent gameEvent) {
         switch (gameEvent.type) {
@@ -103,10 +99,10 @@ public class ClientPlayer {
                     JSONArray objectsArray = (JSONArray) objects.get("objects");
                     for (Object o : objectsArray) {
                         JSONObject obj = (JSONObject) o;
-                        int x = new Integer(((Long) (((JSONObject) obj.get("position")).get("x"))).intValue());
-                        int y = new Integer(((Long) (((JSONObject) obj.get("position")).get("y"))).intValue());
-                        int id = new Integer(((Long) (obj.get("id"))).intValue());
-                        int health = new Integer(((Long) (obj.get("health"))).intValue());
+                        int x = ((Long) (((JSONObject) obj.get("position")).get("x"))).intValue();
+                        int y = ((Long) (((JSONObject) obj.get("position")).get("y"))).intValue();
+                        int id = ((Long) (obj.get("id"))).intValue();
+                        int health = ((Long) (obj.get("health"))).intValue();
                         String owner = (String) obj.get("ownerName");
                         if (map.findGameObjectObjectById(id) == null) { //Create object
                             if (obj.get("type").equals("Palace")) {
@@ -234,8 +230,7 @@ public class ClientPlayer {
                     map.getGui().showMessage("You lose!");
                     isPlayerAlive = false;
                     map.getGui().gameOver(false);
-                }
-                else {
+                } else {
                     map.getGui().showMessage(gameEvent.message + " نابود شد!");
                 }
                 break;
@@ -249,11 +244,9 @@ public class ClientPlayer {
         }
     }
 
-
     private void showMessage(String message) {
         map.showMessage(message);
     }
-
 
     private GameObject getObjectsById(int id) {
         for (GameObject gameObject : map.objects) {

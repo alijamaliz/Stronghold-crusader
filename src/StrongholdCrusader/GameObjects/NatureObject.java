@@ -5,15 +5,9 @@ import StrongholdCrusader.Settings;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
-
-import java.io.Serializable;
-import java.util.LinkedList;
 
 /**
  * Created by MiladIbra on 7/9/2017.
@@ -33,7 +27,6 @@ public class NatureObject extends Group implements Runnable {
         if (this.type.equals("tree2")) {
             createAnimation("tree2Anim", 13);
         }
-        //new Thread(this).start();
     }
 
     @Override
@@ -45,12 +38,7 @@ public class NatureObject extends Group implements Runnable {
         KeyFrame[] keyFrames = new KeyFrame[framesCount];
         for (int i = 0; i < framesCount; i++) {
             int finalI = i;
-            keyFrames[i] = new KeyFrame(Duration.millis((1000 / Settings.FRAME_RATE) * (i + 1)), new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    NatureObject.this.getChildren().setAll(new ImageView(ResourceManager.getImage(imagePrefix + (finalI + 1))));
-                }
-            });
+            keyFrames[i] = new KeyFrame(Duration.millis((1000 / Settings.FRAME_RATE) * (i + 1)), event -> NatureObject.this.getChildren().setAll(new ImageView(ResourceManager.getImage(imagePrefix + (finalI + 1)))));
         }
         Timeline timeline = new Timeline();
         timeline.setCycleCount(Animation.INDEFINITE);

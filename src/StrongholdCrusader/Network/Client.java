@@ -1,14 +1,10 @@
 package StrongholdCrusader.Network;
 
-import StrongholdCrusader.Map.Map;
 import StrongholdCrusader.Settings;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.net.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.Semaphore;
@@ -17,16 +13,14 @@ import java.util.concurrent.Semaphore;
  * Created by Baran on 6/2/2017.
  */
 public class Client implements Runnable {
-    DatagramSocket socket;
-    InetAddress serverAddress;
-    String lastServerMap;
-    Queue<GameEvent> events;
-    Semaphore semaphore;
+    private DatagramSocket socket;
+    private InetAddress serverAddress;
+    private Queue<GameEvent> events;
+    private Semaphore semaphore;
 
     public Client(String serverIP) {
         events = new LinkedList<>();
         semaphore = new Semaphore(1);
-        lastServerMap = "";
         try {
             socket = new DatagramSocket();
         } catch (SocketException e) {
@@ -49,8 +43,6 @@ public class Client implements Runnable {
                 socket.receive(incoming);
                 byte[] data = incoming.getData();
                 GameEvent gameEvent = GameEvent.parseFromString(new String(data, 0, incoming.getLength()));
-                //System.out.println(gameEvent.type + " | " + gameEvent.message);
-                //lastServerMap = new String(data, 0, incoming.getLength());
                 semaphore.acquire();
                 events.add(gameEvent);
                 semaphore.release();
@@ -60,18 +52,14 @@ public class Client implements Runnable {
             System.err.println("IOException " + e);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } finally {
         }
     }
-
 
     public boolean hasNewEvent() {
         boolean res = false;
         try {
-            //semaphore.acquire();
             res = events.size() != 0;
-        } finally {
-            //semaphore.release();
+        } catch (Exception ignored) {
         }
         return res;
     }
@@ -79,10 +67,8 @@ public class Client implements Runnable {
     public GameEvent getEvent() {
         GameEvent gameEvent = null;
         try {
-            //semaphore.acquire();
             gameEvent = events.poll();
-        } finally {
-            //semaphore.release();
+        } catch (Exception ignored) {
         }
         return gameEvent;
     }
@@ -115,11 +101,5 @@ public class Client implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public Map getLastServerMap() {
-        //Map lastMap = new Map();
-        //TODO parse map from string
-        return null;
     }
 }
