@@ -61,14 +61,12 @@ public class Server implements Runnable {
         for (GameObject object : game.objects) {
             if (object instanceof Human) {
                 Human human = (Human) object;
+                //Auto attack
                 Human aroundEnemy = getAroundHumans(human);
-//                if(aroundEnemy != null) {
-//                    System.out.println(aroundEnemy.type);
-//                    human.attack(aroundEnemy);
-//                    System.out.println("Health: " + aroundEnemy.health);
-//                }
-//                else
-                human.updatePosition(game.tiles);
+                if(aroundEnemy != null) {
+                    human.attack(aroundEnemy);
+                } else
+                    human.updatePosition(game.tiles);
             }
             if (object instanceof Ship) {
                 ((Ship) object).updatePosition(this, game.tiles);
@@ -179,7 +177,7 @@ public class Server implements Runnable {
                 woodCutter.position = new Pair(x, y);
                 woodCutter.id = generateNewID();
                 woodCutter.ownerName = getSenderPlayerByAddress(address).playerName;
-                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerAddress(address));
                 if (game.playerHasVassal(getSenderPlayerByAddress(address))) {
                     if (game.buildingCanCreate(woodCutter, playerPalace))
                         if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.WOOD_CUTTER_CREATION_NEEDED_WOOD)) {
@@ -200,7 +198,7 @@ public class Server implements Runnable {
                 barracks.position = new Pair(x, y);
                 barracks.id = generateNewID();
                 barracks.ownerName = getSenderPlayerByAddress(address).playerName;
-                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerAddress(address));
                 if (game.buildingCanCreate(barracks, playerPalace))
                     if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.BARRACKS_CREATION_NEEDED_WOOD))
                         game.addBuildingToMap(barracks);
@@ -217,7 +215,7 @@ public class Server implements Runnable {
                 farm.position = new Pair(x, y);
                 farm.id = generateNewID();
                 farm.ownerName = getSenderPlayerByAddress(address).playerName;
-                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerAddress(address));
                 if (game.playerHasVassal(getSenderPlayerByAddress(address))) {
                     if (game.buildingCanCreate(farm, playerPalace))
                         if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.FARM_CREATION_NEEDED_WOOD)) {
@@ -238,7 +236,7 @@ public class Server implements Runnable {
                 market.position = new Pair(x, y);
                 market.id = generateNewID();
                 market.ownerName = getSenderPlayerByAddress(address).playerName;
-                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerAddress(address));
                 if (!game.playerHasMarket(getSenderPlayerByAddress(address))) {
                     if (game.buildingCanCreate(market, playerPalace))
                         if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.MARKET_CREATION_NEEDED_WOOD))
@@ -258,7 +256,7 @@ public class Server implements Runnable {
                 quarry.position = new Pair(x, y);
                 quarry.id = generateNewID();
                 quarry.ownerName = getSenderPlayerByAddress(address).playerName;
-                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerAddress(address));
                 if (game.playerHasVassal(getSenderPlayerByAddress(address))) {
                     if (game.quarryCanCreate(quarry, playerPalace))
                         if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.QUARRY_CREATION_NEEDED_WOOD)) {
@@ -279,7 +277,7 @@ public class Server implements Runnable {
                 portBuilding.position = new Pair(x, y);
                 portBuilding.id = generateNewID();
                 portBuilding.ownerName = getSenderPlayerByAddress(address).playerName;
-                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerAddress(address));
                 if (game.portCanCreate(portBuilding, playerPalace))
                     if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.PORT_CREATION_NEEDED_WOOD))
                         game.addBuildingToMap(portBuilding);
@@ -416,7 +414,7 @@ public class Server implements Runnable {
                 ship.position = new Pair(x, y);
                 ship.id = generateNewID();
                 ship.ownerName = getSenderPlayerByAddress(address).playerName;
-                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(getSenderPlayerByAddress(address).playerName));
+                Palace playerPalace = (Palace) game.getGameObjectById(getPalaceIdByPlayerAddress(address));
                 if (game.shipCanCreate(ship, playerPalace))
                     if (game.changeResources(getSenderPlayerByAddress(address), "wood", -1 * Settings.SHIP_CREATION_NEEDED_WOOD)) {
                         game.addShipToMap(ship);
@@ -450,7 +448,7 @@ public class Server implements Runnable {
 
     private void sendFocusOnPalacePacketForAll() {
         for (ServerPlayer player : game.players) {
-            Palace palace = (Palace) game.getGameObjectById(getPalaceIdByPlayerName(player.playerName));
+            Palace palace = (Palace) game.getGameObjectById(getPalaceIdByPlayerAddress(player.address));
             GameEvent palaceFocus = new GameEvent(GameEvent.FOCUS_ON_BUILDING, palace.position.x + ":" + palace.position.y);
             sendPacket(palaceFocus.getJSON(), player.address, player.port);
         }
@@ -463,9 +461,9 @@ public class Server implements Runnable {
         }
     }
 
-    private int getPalaceIdByPlayerName(String playerName) {
+    private int getPalaceIdByPlayerAddress(InetAddress playerAddress) {
         for (GameObject object : game.objects) {
-            if (object instanceof Palace && object.ownerName.equals(playerName))
+            if (object instanceof Palace && object.ownerName.equals(getSenderPlayerByAddress(playerAddress).playerName))
                 return object.id;
         }
         return 0;
