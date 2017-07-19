@@ -144,7 +144,6 @@ public class Server implements Runnable {
                     //Create new user Palace
                     Palace palace = new Palace();
                     palace.position = game.getRandomPalacePosition();
-                    palace.health = 100;
                     palace.id = generateNewID();
                     palace.ownerName = getSenderPlayerByAddress(address).playerName;
                     game.addBuildingToMap(palace);
