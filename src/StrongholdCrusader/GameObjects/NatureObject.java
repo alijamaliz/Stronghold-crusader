@@ -27,6 +27,24 @@ public class NatureObject extends Group implements Runnable {
         if (this.type.equals("tree2")) {
             createAnimation("tree2Anim", 13);
         }
+        if (this.type.equals("tree3")) {
+            createAnimation("tree3Anim", 13);
+        }
+        if (this.type.equals("well")) {
+            NatureObject.this.getChildren().setAll(new ImageView(ResourceManager.getImage("natureWell")));
+        }
+        if (this.type.equals("panel")) {
+            NatureObject.this.getChildren().setAll(new ImageView(ResourceManager.getImage("naturePanel")));
+        }
+        if (this.type.equals("bush1")) {
+            NatureObject.this.getChildren().setAll(new ImageView(ResourceManager.getImage("natureBush1")));
+        }
+        if (this.type.equals("cactus1")) {
+            NatureObject.this.getChildren().setAll(new ImageView(ResourceManager.getImage("natureCactus1")));
+        }
+        if (this.type.equals("cactus2")) {
+            NatureObject.this.getChildren().setAll(new ImageView(ResourceManager.getImage("natureCactus2")));
+        }
     }
 
     @Override
