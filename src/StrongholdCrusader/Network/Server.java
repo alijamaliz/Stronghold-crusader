@@ -58,19 +58,23 @@ public class Server implements Runnable {
     }
 
     private void updateMapObjects() {
-        for (GameObject object : game.objects) {
-            if (object instanceof Human) {
-                Human human = (Human) object;
-                //Auto attack
-                Human aroundEnemy = getAroundHumans(human);
-                if(aroundEnemy != null) {
-                    human.attack(aroundEnemy);
-                } else
-                    human.updatePosition(game.tiles);
+        try {
+            for (GameObject object : game.objects) {
+                if (object instanceof Human) {
+                    Human human = (Human) object;
+                    //Auto attack
+                    Human aroundEnemy = getAroundHumans(human);
+                    if (aroundEnemy != null) {
+                        human.attack(aroundEnemy);
+                    } else
+                        human.updatePosition(game.tiles);
+                }
+                if (object instanceof Ship) {
+                    ((Ship) object).updatePosition(this, game.tiles);
+                }
             }
-            if (object instanceof Ship) {
-                ((Ship) object).updatePosition(this, game.tiles);
-            }
+        } catch (Exception e) {
+            System.out.println("Concurrent!");
         }
     }
 
