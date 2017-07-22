@@ -20,11 +20,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Market.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Market.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Market.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1428">
+            <state relative-caret-position="17">
               <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Human.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Human.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-841">
+              <caret line="114" column="16" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -51,7 +63,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/WoodCutter.java" />
-        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Human.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Soldier.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Barracks.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Building.java" />
@@ -83,6 +94,7 @@
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/MenuGUI.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/ResourceManager.java" />
         <option value="$PROJECT_DIR$/src/StrongholdCrusader/Settings.java" />
+        <option value="$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Human.java" />
       </list>
     </option>
   </component>
@@ -100,10 +112,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="-7" />
+    <option name="width" value="1378" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -130,8 +141,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -184,7 +193,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -685,14 +696,15 @@
       <updated>1500011656547</updated>
       <workItem from="1500011673841" duration="455000" />
       <workItem from="1500307745679" duration="8304000" />
+      <workItem from="1500700927700" duration="503000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8759000" />
+    <option name="totallyTimeSpent" value="9262000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-7" y="0" width="1378" height="735" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -702,12 +714,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3422713" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3392" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2489019" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24889868" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3984" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -749,6 +762,16 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Market.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -769,10 +792,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7072">
           <caret line="436" column="23" selection-start-line="436" selection-start-column="18" selection-end-line="436" selection-end-column="23" />
-          <folding>
-            <element signature="e#1742#1743#0" expanded="true" />
-            <element signature="e#1771#1772#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -798,7 +818,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -806,7 +825,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -814,7 +832,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="261">
           <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -880,16 +897,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
           <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Human.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -989,7 +996,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -997,7 +1003,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1047,10 +1052,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1156">
           <caret line="536" column="4" selection-start-line="536" selection-start-column="4" selection-end-line="536" selection-end-column="4" />
-          <folding>
-            <element signature="e#1742#1743#0" expanded="true" />
-            <element signature="e#1771#1772#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1104,8 +1106,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Buildings/Market.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1428">
+        <state relative-caret-position="17">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StrongholdCrusader/GameObjects/Humans/Human.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-841">
+          <caret line="114" column="16" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
