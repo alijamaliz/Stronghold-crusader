@@ -27,7 +27,7 @@ public class Menu extends Application {
             scene = new Scene(FXMLLoader.load(getClass().getResource("ui/menu.fxml")));
             Menu.stage.setScene(scene);
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
         Menu.stage.show();

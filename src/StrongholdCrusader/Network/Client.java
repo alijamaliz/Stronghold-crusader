@@ -24,12 +24,12 @@ public class Client implements Runnable {
         try {
             socket = new DatagramSocket();
         } catch (SocketException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         try {
             serverAddress = InetAddress.getByName(serverIP);
         } catch (UnknownHostException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         new Thread(this).start();
     }
@@ -51,7 +51,7 @@ public class Client implements Runnable {
         } catch (IOException e) {
             System.err.println("IOException " + e);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -99,7 +99,7 @@ public class Client implements Runnable {
         try {
             socket.send(dp);
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 }

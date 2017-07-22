@@ -34,7 +34,7 @@ public class Server implements Runnable {
         try {
             socket = new DatagramSocket(Settings.SERVER_PORT);
         } catch (SocketException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         Thread listenThread = new Thread(this);
         listenThread.start();
@@ -47,7 +47,7 @@ public class Server implements Runnable {
                 try {
                     Thread.sleep(1000 / Settings.SEND_DATA_RATE);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
                 }
             }
         });
@@ -117,7 +117,7 @@ public class Server implements Runnable {
         } catch (IOException e) {
             System.err.println("IOException " + e);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -129,7 +129,7 @@ public class Server implements Runnable {
             gameEvent.type = ((Long) jsonObject.get("type")).intValue();
             gameEvent.message = (String) (jsonObject.get("message"));
         } catch (ParseException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         switch (gameEvent.type) {
             case GameEvent.JOIN_TO_GAME: {
@@ -514,7 +514,7 @@ public class Server implements Runnable {
             socket.send(dp);
             return true;
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return false;
         }
     }
@@ -544,7 +544,7 @@ public class Server implements Runnable {
         try {
             serverIP = InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return serverIP;
     }

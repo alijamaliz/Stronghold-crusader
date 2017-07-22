@@ -41,7 +41,7 @@ public class ClientPlayer {
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
                 }
             }
         };
@@ -206,7 +206,7 @@ public class ClientPlayer {
                         }
                     }
                 } catch (ParseException e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
                 }
                 break;
             }

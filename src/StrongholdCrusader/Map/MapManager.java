@@ -40,7 +40,7 @@ public class MapManager implements Serializable {
         try {
             jsonObject = (JSONObject) jsonParser.parse(mapJSON);
         } catch (ParseException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return jsonObject;
     }
@@ -100,7 +100,7 @@ public class MapManager implements Serializable {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(map);
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -112,7 +112,7 @@ public class MapManager implements Serializable {
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             map = (Map) objectInputStream.readObject();
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return map;
     }

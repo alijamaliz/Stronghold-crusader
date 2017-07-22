@@ -62,7 +62,7 @@ public class GameEvent {
             String message = (String) jsonObject.get("message");
             gameEvent = new GameEvent(type, message);
         } catch (ParseException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return gameEvent;
     }
